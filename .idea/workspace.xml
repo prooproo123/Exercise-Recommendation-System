@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ddfd3fe6-4b34-446d-8d05-29c4cf1f9c6d" name="Default Changelist" comment="first commit">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/batch_polopt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/cem.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/cma_es.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/cma_es_lib.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/ddpg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/erwr.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/nop.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/npo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/ppo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/reps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/tnpg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/trpo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/algos/vpg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/baselines/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/baselines/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/baselines/gaussian_conv_baseline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/baselines/gaussian_mlp_baseline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/baselines/linear_feature_baseline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/baselines/zero_baseline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/config_personal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/config_personal_template.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/core/lasagne_helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/core/lasagne_layers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/core/lasagne_powered.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/core/network.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/core/parameterized.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/core/serializable.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/distributions/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/distributions/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/distributions/bernoulli.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/distributions/categorical.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/distributions/delta.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/distributions/diagonal_gaussian.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/distributions/recurrent_categorical.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/distributions/recurrent_diagonal_gaussian.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/box2d_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/box2d_viewer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/car_parking_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/cartpole_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/cartpole_swingup_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/double_pendulum_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/models/car_parking.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/models/car_parking.xml.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/models/cartpole.xml.mako" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/models/double_pendulum.xml.mako" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/models/mountain_car.xml.mako" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/mountain_car_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/parser/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/parser/xml_attr_types.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/parser/xml_box2d.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/box2d/parser/xml_types.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/env_spec.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/grid_world_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/gym_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/identification_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/ant_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/gather/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/gather/ant_gather_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/gather/embedded_viewer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/gather/gather_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/gather/point_gather_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/gather/swimmer_gather_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/half_cheetah_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hill/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hill/ant_hill_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hill/half_cheetah_hill_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hill/hill_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hill/hopper_hill_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hill/swimmer3d_hill_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hill/terrain.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hill/walker2d_hill_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/hopper_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/humanoid_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/inverted_double_pendulum_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/maze/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/maze/ant_maze_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/maze/maze_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/maze/maze_env_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/maze/point_maze_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/maze/swimmer_maze_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/mujoco_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/point_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/simple_humanoid_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/swimmer3d_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/swimmer_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/mujoco/walker2d_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/noisy_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/normalized_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/occlusion_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/proxy_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/envs/sliding_mem_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/exploration_strategies/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/exploration_strategies/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/exploration_strategies/gaussian_strategy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/exploration_strategies/ou_strategy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/autoargs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/console.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/ext.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/instrument.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/krylov.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/logger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/mako_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/meta.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/nb_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/overrides.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/resolve.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/special.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/tabulate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/tensor_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/misc/viewer2d.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/.rvmrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/Gemfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/Gemfile.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/codegen.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/gen_binding.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/glfw.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/mjconstants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/mjcore.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/mjextra.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/mjlib.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/mjtypes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/mjviewer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/mujoco_py/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/optimizers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/optimizers/conjugate_gradient_optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/optimizers/first_order_optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/optimizers/hessian_free_optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/optimizers/hf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/optimizers/lbfgs_optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/optimizers/minibatch_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/optimizers/penalty_lbfgs_optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/plotter/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/plotter/plotter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/categorical_conv_policy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/categorical_gru_policy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/categorical_mlp_policy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/deterministic_mlp_policy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/gaussian_gru_policy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/gaussian_mlp_policy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/policies/uniform_control_policy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/q_functions/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/q_functions/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/q_functions/continuous_mlp_q_function.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/regressors/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/regressors/categorical_mlp_regressor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/regressors/gaussian_conv_regressor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/regressors/gaussian_mlp_regressor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/regressors/product_regressor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/sampler/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/sampler/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/sampler/parallel_sampler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/sampler/stateful_pool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/sampler/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/spaces/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/spaces/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/spaces/box.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/spaces/discrete.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/spaces/product.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/frontend.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/static/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/static/css/dropdowns-enhancement.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/static/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/static/js/dropdowns-enhancement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/static/js/jquery-1.10.2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/static/js/jquery.loadTemplate-1.5.6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/static/js/plotly-latest.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rllab/viskit/templates/main.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="774ad71e-6a89-44eb-8252-e3eaa58d8737" />
+  <component name="ProjectId" id="1fGkXvlE770tOev3U3yIwAWIGYt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/.gitignore" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.RS">
+    <configuration name="KT" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Exercise-Recommendation-System" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/KT.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RS" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Exercise-Recommendation-System" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RS.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="data_loader" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Exercise-Recommendation-System" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_loader.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="fajlovi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Exercise-Recommendation-System" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fajlovi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mymodel_concat" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Exercise-Recommendation-System" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mymodel_concat.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.RS" />
+        <item itemvalue="Python.KT" />
+        <item itemvalue="Python.mymodel_concat" />
+        <item itemvalue="Python.data_loader" />
+        <item itemvalue="Python.fajlovi" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ddfd3fe6-4b34-446d-8d05-29c4cf1f9c6d" name="Default Changelist" comment="" />
+      <created>1595851859474</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595851859474</updated>
+      <workItem from="1595851860845" duration="186000" />
+      <workItem from="1595852055576" duration="31000" />
+      <workItem from="1595854590427" duration="2014000" />
+      <workItem from="1595919747007" duration="1904000" />
+      <workItem from="1595922149317" duration="11506000" />
+      <workItem from="1595967437578" duration="3425000" />
+      <workItem from="1596094592607" duration="23726000" />
+      <workItem from="1596437808362" duration="5447000" />
+      <workItem from="1596444071561" duration="11681000" />
+      <workItem from="1596457711658" duration="2716000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1596181003664</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1596181003664</updated>
+    </task>
+    <task id="LOCAL-00002" summary="small fixes">
+      <created>1596457931716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1596457931716</updated>
+    </task>
+    <task id="LOCAL-00003" summary="small fixes">
+      <created>1596458597537</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1596458597537</updated>
+    </task>
+    <task id="LOCAL-00004" summary="git setup">
+      <created>1596459306180</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1596459306180</updated>
+    </task>
+    <task id="LOCAL-00005" summary="first commit">
+      <created>1596460041979</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1596460041979</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="small fixes" />
+    <MESSAGE value="git setup" />
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="729" y="405" width="717" height="294" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1595943267309">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="729" y="405" width="717" height="294" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/67.27.1853.1053@67.27.1853.1053" timestamp="1595943267309" />
+    <state width="871" height="506" key="DebuggerActiveHint" timestamp="1596181525071">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="871" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1596181525071" />
+    <state x="776" y="310" width="447" height="484" key="FileChooserDialogImpl" timestamp="1596445242173">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="776" y="310" width="447" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1596445242173" />
+    <state x="764" y="452" width="458" height="260" key="Github.ShareDialog" timestamp="1596444931213">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="764" y="452" width="458" height="260" key="Github.ShareDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1596444931213" />
+    <state x="895" y="300" width="187" height="504" key="Github.UntrackedFilesDialog" timestamp="1596444266778">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="895" y="300" width="187" height="504" key="Github.UntrackedFilesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1596444266778" />
+    <state width="1807" height="288" key="GridCell.Tab.0.bottom" timestamp="1596459158219">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="288" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1596459158219" />
+    <state width="1807" height="288" key="GridCell.Tab.0.center" timestamp="1596459158217">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="288" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1596459158217" />
+    <state width="1807" height="288" key="GridCell.Tab.0.left" timestamp="1596459158215">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="288" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1596459158215" />
+    <state width="1807" height="288" key="GridCell.Tab.0.right" timestamp="1596459158218">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="288" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1596459158218" />
+    <state width="1807" height="355" key="GridCell.Tab.1.bottom" timestamp="1596457174872">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="355" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1596457174872" />
+    <state width="1807" height="355" key="GridCell.Tab.1.center" timestamp="1596457174870">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="355" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1596457174870" />
+    <state width="1807" height="355" key="GridCell.Tab.1.left" timestamp="1596457174869">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="355" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1596457174869" />
+    <state width="1807" height="355" key="GridCell.Tab.1.right" timestamp="1596457174871">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="355" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1596457174871" />
+    <state x="482" y="187" key="SettingsEditor" timestamp="1596460432308">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="482" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1596460432308" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1596180392935">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/67.27.1853.1053@67.27.1853.1053" timestamp="1596180392935" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1596446623569">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1596446623569" />
+    <state width="926" height="527" key="XDebugger.FullValuePopup" timestamp="1596095337847">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053@67.27.1853.1053" timestamp="1596095337847" />
+    <state x="775" y="467" width="427" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596444948540">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="775" y="467" width="427" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1596444948540" />
+    <state x="930" y="332" width="690" height="522" key="find.popup" timestamp="1596456159164">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="930" y="332" width="690" height="522" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1596456159164" />
+    <state x="656" y="257" key="search.everywhere.popup" timestamp="1596180394421">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="656" y="257" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1596180394421" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/lasagne/layers/base.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/RS.py</url>
+          <line>526</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/RS.py</url>
+          <line>502</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/RS.py</url>
+          <line>499</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fajlovi.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data_loader.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mymodel_concat.py</url>
+          <line>218</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$main.coverage" NAME="main Coverage Results" MODIFIED="1595921703757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DKVMN-CA" />
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$KT.coverage" NAME="KT Coverage Results" MODIFIED="1596459135772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$RS.coverage" NAME="RS Coverage Results" MODIFIED="1596459144717" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$fajlovi.coverage" NAME="fajlovi Coverage Results" MODIFIED="1596440945545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$main2.coverage" NAME="main2 Coverage Results" MODIFIED="1595927082873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$main__1_.coverage" NAME="KT Coverage Results" MODIFIED="1595941351873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$data_loader.coverage" NAME="data_loader Coverage Results" MODIFIED="1596453878593" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$mymodel_concat.coverage" NAME="mymodel_concat Coverage Results" MODIFIED="1596456773959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Exercise_Recommendation_System$base.coverage" NAME="base Coverage Results" MODIFIED="1595923228905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/lib/python3.6/site-packages/lasagne/layers" />
+  </component>
+</project>
