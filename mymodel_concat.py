@@ -216,13 +216,13 @@ class Model():
 
 			for steps in range(training_step):
 				# [batch size, seq_len]
-				q_batch_seq = q_data_shuffled[steps*self.args.batch_size:(steps+1)*self.args.batch_size, :]
+				q_batch_seq = q_data_shuffled[steps*self.args.batch_size:(steps+1)*self.args.batch_size]
 				qa_batch_seq = qa_data_shuffled[steps*self.args.batch_size:(steps+1)*self.args.batch_size, :]
-				kg_batch_seq = kg_shuffled[steps*self.args.batch_size:(steps+1)*self.args.batch_size, :]
-				kghot_batch_seq = kghot_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size, :]
-				time_batch_seq = time_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size, :]
-				guan_batch_seq = guan_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size, :]
-				diff_batch_seq = diff_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size, :]
+				kg_batch_seq = kg_shuffled[steps*self.args.batch_size:(steps+1)*self.args.batch_size]
+				kghot_batch_seq = kghot_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size]
+				time_batch_seq = time_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size]
+				guan_batch_seq = guan_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size]
+				diff_batch_seq = diff_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size]
 				# qa : exercise index + answer(0 or 1)*exercies_number
 				# right : 1, wrong : 0, padding : -1
 				target = qa_batch_seq[:,:]

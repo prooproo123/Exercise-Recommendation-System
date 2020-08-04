@@ -53,33 +53,33 @@ def main():
     data = DATA_LOADER(args.memory_size, 3, args.seq_len)
     data_directory = os.path.join(args.data_dir, args.dataset)
 
-    # history_path = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_data.csv'
-    #
-    # dffff = pd.read_csv(history_path,
-    #                  dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
-    #                         'problem_id': int,
-    #                         'original': int, 'correct': int, 'attempt_count': int, 'ms_first_response': int,
-    #                         'tutor_mode': 'string', 'answer_type': 'string', 'sequence_id': int,
-    #                         'student_class_id': int,
-    #                         'position': int, 'type': 'string', 'base_sequence_id': int, 'skill_id': float,
-    #                         'skill_name': 'string',
-    #                         'teacher_id': int, 'school_id': int, 'hint_count': int, 'hint_total': int,
-    #                         'overlap_time': int,
-    #                         'template_id': int, 'answer_id': int, 'answer_text': 'string', 'first_action': int,
-    #                         'bottom_hint': int, 'opportunity': int, 'opportunity_original': int
-    #                         },
-    #                  usecols=['order_id', 'assignment_id', 'user_id', 'assistment_id', 'problem_id', 'original',
-    #                           'correct',
-    #                           'attempt_count', 'ms_first_response', 'tutor_mode', 'answer_type', 'sequence_id',
-    #                           'student_class_id', 'position', 'type', 'base_sequence_id', 'skill_id', 'skill_name',
-    #                           'teacher_id', 'school_id', 'hint_count', 'hint_total', 'overlap_time', 'template_id',
-    #                           'first_action', 'opportunity', ])
+    history_path = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_data.csv'
+
+    dffff = pd.read_csv(history_path,
+                     dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
+                            'problem_id': int,
+                            'original': int, 'correct': int, 'attempt_count': int, 'ms_first_response': int,
+                            'tutor_mode': 'string', 'answer_type': 'string', 'sequence_id': int,
+                            'student_class_id': int,
+                            'position': int, 'type': 'string', 'base_sequence_id': int, 'skill_id': float,
+                            'skill_name': 'string',
+                            'teacher_id': int, 'school_id': int, 'hint_count': int, 'hint_total': int,
+                            'overlap_time': int,
+                            'template_id': int, 'answer_id': int, 'answer_text': 'string', 'first_action': int,
+                            'bottom_hint': int, 'opportunity': int, 'opportunity_original': int
+                            },
+                     usecols=['order_id', 'assignment_id', 'user_id', 'assistment_id', 'problem_id', 'original',
+                              'correct',
+                              'attempt_count', 'ms_first_response', 'tutor_mode', 'answer_type', 'sequence_id',
+                              'student_class_id', 'position', 'type', 'base_sequence_id', 'skill_id', 'skill_name',
+                              'teacher_id', 'school_id', 'hint_count', 'hint_total', 'overlap_time', 'template_id',
+                              'first_action', 'opportunity', ])
 
 
-    #pkl_path = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+    pkl_path = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
-    # with open(pkl_path, 'wb') as f:
-    #     pickle.dump(dffff, f, pickle.HIGHEST_PROTOCOL)
+    with open(pkl_path, 'wb') as f:
+        pickle.dump(dffff, f, pickle.HIGHEST_PROTOCOL)
 
     with tf.Session(config=run_config) as sess:
         dkvmn = Model(args, sess, name='DKVMN')
@@ -98,7 +98,10 @@ def main():
 
         q=qa_datas = df['problem_id'].values
         a=qa_datas = df['correct'].values
-        qa_datas = df['skill_id'].values
+        qa_datas = np.stack(arrays=(q,a),axis=1)
+
+
+        #qa_datas = df['skill_id'].values
 
 
 
