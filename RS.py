@@ -5,7 +5,7 @@ from __future__ import division
 import pickle
 import sys
 import types
-
+import matplotlib.pyplot as plt
 import copy
 import gym
 import numpy as np
@@ -604,3 +604,9 @@ reward = agent.train(rl_env, n_eps=n_eps)
 print('ok')
 print(evaluation(agent))
 print('Done.')
+outList = evaluation(agent)
+outList.sort()
+plt.figure()
+i = range(50)
+plt.plot(i, outList, '-bo')
+plt.savefig('plot10.png')
