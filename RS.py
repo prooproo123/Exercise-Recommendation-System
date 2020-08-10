@@ -214,9 +214,8 @@ class DKVEnv(StudentEnv):
         add_vector = self.linear_op(self.add_w, self.add_b, qa_embed)
         add_signal = np.tanh(add_vector)
         for dim in range(self.value_matrix.shape[0]):
-            self.value_matrix[dim] = self.value_matrix[dim] * (1 - correlation_weight[dim] * erase_signal) + \
-                                     correlation_weight[
-                                         dim] * add_signal
+            self.value_matrix[dim] = self.value_matrix[dim] * (1 - correlation_weight[dim] * erase_signal) * \
+                                     (1 + correlation_weight[dim] * add_signal)
         return self.value_matrix
 
     def _recall_likelihoods(self):
