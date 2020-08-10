@@ -2,7 +2,6 @@ import argparse
 import os
 import pickle
 
-import pandas as pd
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 
@@ -29,12 +28,12 @@ def main():
     parser.add_argument('--memory_value_state_dim', type=int, default=100)
     parser.add_argument('--final_fc_dim', type=int, default=100)
     # ???
-    parser.add_argument('--seq_len', type=int, default=150)
+    parser.add_argument('--seq_len', type=int, default=1900)
     parser.add_argument('--seq_iddiff', type=int, default=30)
     parser.add_argument('--count', type=int, default=0)
     dataset = 'skill_builder_data.csv'
-    parser.add_argument('--memory_size', type=int, default=188)
-    parser.add_argument('--n_questions', type=int, default=1982)
+    parser.add_argument('--memory_size', type=int, default=123)
+    parser.add_argument('--n_questions', type=int, default=26688)
     print(dataset)
 
     args = parser.parse_args()
@@ -52,10 +51,11 @@ def main():
     run_config = tf.ConfigProto()
     run_config.gpu_options.allow_growth = True
 
-    data = DATA_LOADER(args.memory_size, 3, args.seq_len)
-    data_directory = os.path.join(args.data_dir, args.dataset)
+    #data = DATA_LOADER(args.memory_size, 3, args.seq_len)
+    #data_directory = os.path.join(args.data_dir, args.dataset)
 
     assistments_data_path = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_data.csv'
+    ath = '/home/zvonimir/Exercise-Recommendation-System/o.csv'
 
     assistments_df = pd.read_csv(assistments_data_path,
                                  dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
@@ -84,14 +84,21 @@ def main():
 
     assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
-    with open(assistments_pickled, 'wb') as f:
-        pickle.dump(assistments_df, f, pickle.HIGHEST_PROTOCOL)
+    # with open(assistments_pickled, 'wb') as f:
+    #     pickle.dump(assistments_df, f, pickle.HIGHEST_PROTOCOL)
+
+    data = DATA_LOADER(args.memory_size, 1, args.seq_len,n_questions=args.n_questions)
+
+    e_ids,ans,kg_ids=data.load_data(ath)
+
 
     with tf.Session(config=run_config) as sess:
         dkvmn = Model(args, sess, name='DKVMN')
         # dkvmn.getParam()
         with open(assistments_pickled, 'rb') as f:
             df = pickle.load(f)
+
+        table = df.values
 
         # One Hot Coding Form of Knowledge Concepts
         knowledge_concept_onehots = pd.get_dummies(df['skill_id']).values
@@ -100,48 +107,81 @@ def main():
         # exercises ID
         exercise_ids = df['problem_id'].values
 
-        # q = df['problem_id'].values
-        # a = df['correct'].values
+        unique_concepts = np.unique(knowledge_concept_ids)
+
+        unique_concept_onehots = np.unique(pd.get_dummies(df['skill_id']).values)
+        unique_exercises = np.unique(exercise_ids)
+        unique_concepts = unique_concepts[~np.isnan(unique_concepts)]
+        num_concepts = unique_concepts.shape[0]
+        num_exercises = unique_exercises.shape[0]
+
         # cross feature of exercise and answer result
         exercise_answers = np.stack(arrays=(df['problem_id'].values, df['correct'].values), axis=1)
         # difficulty of exercises
-        exercise_difficulties = df['ms_first_response'].values / 100
-        # Exercise completion time
-        response_times = df['ms_first_response'].values
-        # the gate of exercises
-        exercise_gates = df['ms_first_response'].values / 1000
+        # exercise_difficulties = df['ms_first_response'].values / 100
+        # # Exercise completion time
+        # response_times = df['ms_first_response'].values
+        # # the gate of exercises
+        # exercise_gates = df['ms_first_response'].values / 1000
+
+        exercise_ids=e_ids
+        exercise_answers=ans
+        knowledge_concept_ids=kg_ids
+        
 
         if args.train:
             print('Start training')
             for i in range(50):
-                q_train, q_valid, qa_train, qa_valid, kg_hot_train, kg_hot_valid, kg_train, kg_valid, traintime, \
-                validtime, trainguan, validguan, traindiff, validdiff = train_test_split(
-                    exercise_ids, exercise_answers, knowledge_concept_onehots, knowledge_concept_ids, response_times,
-                    exercise_gates, exercise_difficulties, test_size=0.3)
+                q_train, q_valid, qa_train, qa_valid, kg_hot_train, kg_hot_valid, kg_train, kg_valid = train_test_split(
+                    exercise_ids, exercise_answers, knowledge_concept_onehots, knowledge_concept_ids, test_size=0.3)
 
-                train_q_datas, train_qa_datas, train_kg_datas, train_kgnum_datas, train_time, train_guan, train_diff = data.load_dataset2(
+                train_q_datas, train_qa_datas, train_kg_datas, train_kgnum_datas = data.load_dataes2(
                     q_train,
                     qa_train,
                     kg_hot_train,
                     kg_train,
-                    traintime,
-                    trainguan,
-                    traindiff)
-                valid_q_datas, valid_qa_datas, valid_kg_datas, valid_kgnum_datas, valid_time, valid_guan, valid_diff = data.load_dataset2(
+                )
+                valid_q_datas, valid_qa_datas, valid_kg_datas, valid_kgnum_datas = data.load_dataes2(
                     q_valid,
                     qa_valid,
                     kg_hot_valid,
                     kg_valid,
-                    validtime,
-                    validguan,
-                    validdiff)
+                )
 
                 dkvmn.train(train_q_datas, train_qa_datas, valid_q_datas, valid_qa_datas, train_kg_datas,
                             valid_kg_datas,
-                            train_kgnum_datas, valid_kgnum_datas, train_time, valid_time, train_guan, valid_guan,
-                            train_diff, valid_diff)
-
-                # optimize training code
+                            train_kgnum_datas, valid_kgnum_datas)
+        # if args.train:
+        #     print('Start training')
+        #     for i in range(50):
+        #         q_train, q_valid, qa_train, qa_valid, kg_hot_train, kg_hot_valid, kg_train, kg_valid, traintime, \
+        #         validtime, trainguan, validguan, traindiff, validdiff = train_test_split(
+        #             exercise_ids, exercise_answers, knowledge_concept_onehots, knowledge_concept_ids, response_times,
+        #             exercise_gates, exercise_difficulties, test_size=0.3)
+        #
+        #         train_q_datas, train_qa_datas, train_kg_datas, train_kgnum_datas, train_time, train_guan, train_diff = data.load_dataset2(
+        #             q_train,
+        #             qa_train,
+        #             kg_hot_train,
+        #             kg_train,
+        #             traintime,
+        #             trainguan,
+        #             traindiff)
+        #         valid_q_datas, valid_qa_datas, valid_kg_datas, valid_kgnum_datas, valid_time, valid_guan, valid_diff = data.load_dataset2(
+        #             q_valid,
+        #             qa_valid,
+        #             kg_hot_valid,
+        #             kg_valid,
+        #             validtime,
+        #             validguan,
+        #             validdiff)
+        #
+        #         dkvmn.train(train_q_datas, train_qa_datas, valid_q_datas, valid_qa_datas, train_kg_datas,
+        #                     valid_kg_datas,
+        #                     train_kgnum_datas, valid_kgnum_datas, train_time, valid_time, train_guan, valid_guan,
+        #                     train_diff, valid_diff)
+        #
+        #         # TODO optimize training code
 
 
 # print('Best epoch %d' % (best_epoch))

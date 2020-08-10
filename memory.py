@@ -18,7 +18,7 @@ class DKVMN_Memory():
 			Key matrix is used for calculating correlation weight(attention weight)
 		'''
 
-    def cor_weight(self, embedded, key_matrix, keys, mask, number_concepts=3):
+    def cor_weight(self, embedded, key_matrix, keys, mask, number_concepts=1):
         '''
             Calculate KCW of exercise
 			embedded : [batch size, memory state dim(d_k)]
@@ -31,6 +31,7 @@ class DKVMN_Memory():
         mask = tf.reshape(mask, [self.batch_size, self.memory_size, 1])
         kms = tf.multiply(key_matrixes, mask)
         embedded = tf.reshape(embedded, [self.batch_size, 1, self.memory_state_dim])
+
 
         embedding_result = tf.matmul(embedded, tf.matrix_transpose(kms))
 

@@ -163,6 +163,8 @@ class DKVEnv(StudentEnv):
         kg = self.q2kg[q]
         corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in kg])
         correlation = np.zeros(Concepts)
+
+        #dio algoritma 1
         for j in range(3):
             correlation[kg[j]] = corr[j]
         return correlation
@@ -516,13 +518,14 @@ def evaluation(agent):
 
 
 
-    allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
+    history_path_traces=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)],[(175, 1), (1010, 0), (447, 0),(857, 0)]]
     #allre lista rezultata,
     allre = [[] for i in range(50)]
-    for trace in allshulun:
+    for trace in history_path_traces:
         agent = all_reset(agent)
         # put duljine steps/50 i procjena tocnosti odgovora na svaki zadatak tog puta
         t, res = simulation(agent, trace, 50)
+        print("Preporuceni put:" + str(t))
         for j in range(50):
             #svaki allre je jedan korak na putu???
             allre[j].append(res[j])
