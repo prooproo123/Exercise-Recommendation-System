@@ -160,10 +160,12 @@ class DKVEnv(StudentEnv):
         :param q: exercise ID
         :return: the KCW of the exercise
         """
-        kg = self.q2kg[q]
+        #kg = self.q2kg[q]
+
+        kg = [int(k) for k in concept_exercise_mapping if q in concept_exercise_mapping[k]]
         corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in kg])
         correlation = np.zeros(Concepts)
-        for j in range(3):
+        for j in range(len(kg)):
             correlation[kg[j]] = corr[j]
         return correlation
 
@@ -511,42 +513,7 @@ def evaluation(agent):
     """
     # with open('./好未来数据/allshulun.pkl', 'rb') as f:
     #     allshulun = pickle.load(f)
-#
-    #allshulun lista POVIJESNIH puteva(1+/vise ucenika), jedan cvor u putu je par vjezba-ponudjeni odgovor
 
-
-
-    allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
-    #allre lista rezultata,
-    allre = [[] for i in range(50)]
-    for trace in allshulun:
-        agent = all_reset(agent)
-        # put duljine steps/50 i procjena tocnosti odgovora na svaki zadatak tog puta
-        t, res = simulation(agent, trace, 50)
-        for j in range(50):
-            #svaki allre je jedan korak na putu???
-            allre[j].append(res[j])
-    #dakle za svaki korak puta uzet ce se ar.sred. od potencijalno vise ucenika,tako da je result
-    #vjerojatnost ucenika koji idu sljedecim putevima da tocno odgovore na svaki pojedini korak svojih puteva
-    result = [np.mean(k) for k in allre]
-    return result
-
-
-def evaluation2(agent):
-    """
-    Evaluate the policy when it recommend exercises to different student
-    allshulun:[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)], [........], [.........]]
-    :param agent:
-    :return: different students'predicted knowledge status
-    """
-    # with open('./好未来数据/allshulun.pkl', 'rb') as f:
-    #     allshulun = pickle.load(f)
-
-    #allshulun lista POVIJESNIH puteva(1+/vise ucenika), jedan cvor u putu je par vjezba-ponudjeni odgovor
-
-
-
-    allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
     #allre lista rezultata,
     allre = [[] for i in range(50)]
     for trace in allshulun:
@@ -570,16 +537,59 @@ def run_eps(agent, env, n_eps=100):
     return tot_rew
 
 
+def get_candidate_exercises(traces, concept_exercise_mapping):
+    student_recommended_exercises = {}
+
+    for student_trace in traces:
+        completed_exercises = []
+        correctness = []
+        concepts_visited = []
+        for exercise_pair in student_trace:
+            completed_exercises.append(exercise_pair[0])
+            correctness.append(exercise_pair[1])
+            concepts_visited.append(list(k for k in concept_exercise_mapping if exercise_pair[0] in concept_exercise_mapping[k]))
+
+        concepts_visited = [j for i in concepts_visited for j in i]
+
+        recommended_exercises = set()
+
+        for concept in concepts_visited:
+            for exercise in concept_exercise_mapping[concept]:
+                recommended_exercises.add(exercise)
+
+        student_recommended_exercises[traces.index(student_trace)] = list(recommended_exercises)
+    return student_recommended_exercises
+
+
+
+
 # the recommended candidate sets of exercises
 # why only 64 ints???
-with open('arms.pkl', 'rb') as f:
-    candidate_exercises = pickle.load(f)
+#with open('arms.pkl', 'rb') as f:
+#candidate_exercises = pickle.load(f)
+
+
+#allshulun lista POVIJESNIH puteva(1+/vise ucenika), jedan cvor u putu je par vjezba-ponudjeni odgovor
+
+#allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
+
+allshulun = [[(1,1), (2,1), (3,0)], [(2,1), (10,0)], [(9,0), (4,1), (15,1), (12,1), (3,0)]]
+
+concept_exercise_mapping = {
+    "1": [1, 3, 6, 8, 9],
+    "2": [2, 4, 5],
+    "3": [10, 7, 15],
+    "4": [12, 13]
+}
+
+candidate_exercises = get_candidate_exercises(allshulun, concept_exercise_mapping)
 
 test = candidate_exercises
 Concepts = 188
 NumQ = 1982
 n_steps = 30
-n_items = len(candidate_exercises)
+#n_items = len(candidate_exercises)
+n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
 discount = 0.99
 n_eps = 1
 
