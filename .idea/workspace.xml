@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -16,17 +19,13 @@
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -36,9 +35,6 @@
       <change beforePath="$PROJECT_DIR$/KT.py" beforeDir="false" afterPath="$PROJECT_DIR$/KT.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RS.py" beforeDir="false" afterPath="$PROJECT_DIR$/RS.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assistments_obrada.py" beforeDir="false" afterPath="$PROJECT_DIR$/assistments_obrada.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/memory.py" beforeDir="false" afterPath="$PROJECT_DIR$/memory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mymodel_concat.py" beforeDir="false" afterPath="$PROJECT_DIR$/mymodel_concat.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +65,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/zsucicdl/Exercise-Recommendation-System" />
+      </set>
+    </option>
+  </component>
   <component name="JupyterTrust" id="774ad71e-6a89-44eb-8252-e3eaa58d8737" />
   <component name="ProjectId" id="1fGkXvlE770tOev3U3yIwAWIGYt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -85,7 +88,7 @@
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.gitignore" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PycharmProjects/avsplab1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PycharmProjects/lentil" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
@@ -97,7 +100,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.RS">
+  <component name="RunManager" selected="Python.KT">
     <configuration name="KT" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Exercise-Recommendation-System" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -207,11 +210,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.RS" />
-        <item itemvalue="Python.fajlovi" />
         <item itemvalue="Python.KT" />
-        <item itemvalue="Python.main0" />
         <item itemvalue="Python.assistments_obrada" />
+        <item itemvalue="Python.fajlovi" />
+        <item itemvalue="Python.main0" />
+        <item itemvalue="Python.RS" />
       </list>
     </recent_temporary>
   </component>
@@ -288,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596701375350</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fixes and adapting to assistments">
+      <created>1597044143321</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1597044143321</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +309,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -315,7 +337,8 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="started adapting for Assisstments" />
     <MESSAGE value="inital comments and trying to adapt knowledge tracing part" />
-    <option name="LAST_COMMIT_MESSAGE" value="inital comments and trying to adapt knowledge tracing part" />
+    <MESSAGE value="fixes and adapting to assistments" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes and adapting to assistments" />
   </component>
   <component name="WindowStateProjectService">
     <state x="619" y="354" width="738" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596973473432">
@@ -326,6 +349,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="729" y="405" width="717" height="294" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/67.27.1853.1053@67.27.1853.1053" timestamp="1595943267309" />
+    <state x="532" y="109" width="912" height="886" key="CommitChangelistDialog2" timestamp="1597044167147">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="532" y="109" width="912" height="886" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1597044167147" />
     <state width="871" height="506" key="DebuggerActiveHint" timestamp="1596542297820">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -334,10 +361,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="167" y="125" width="1653" height="855" key="DiffContextDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1596796426713" />
-    <state x="776" y="310" width="447" height="484" key="FileChooserDialogImpl" timestamp="1596799354915">
+    <state x="776" y="310" width="447" height="484" key="FileChooserDialogImpl" timestamp="1597045217702">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="776" y="310" width="447" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1596799354915" />
+    <state x="776" y="310" width="447" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1597045217702" />
     <state x="764" y="452" width="458" height="260" key="Github.ShareDialog" timestamp="1596444931213">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -346,38 +373,38 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="895" y="300" width="187" height="504" key="Github.UntrackedFilesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1596444266778" />
-    <state width="1830" height="285" key="GridCell.Tab.0.bottom" timestamp="1597038881937">
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom" timestamp="1597149848494">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="285" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1597038881937" />
-    <state width="1830" height="285" key="GridCell.Tab.0.center" timestamp="1597038881937">
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1597149848494" />
+    <state width="1830" height="278" key="GridCell.Tab.0.center" timestamp="1597149848492">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="285" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1597038881937" />
-    <state width="1830" height="285" key="GridCell.Tab.0.left" timestamp="1597038881936">
+    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1597149848492" />
+    <state width="1830" height="278" key="GridCell.Tab.0.left" timestamp="1597149848492">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="285" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1597038881936" />
-    <state width="1830" height="285" key="GridCell.Tab.0.right" timestamp="1597038881937">
+    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1597149848492" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right" timestamp="1597149848494">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="285" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1597038881937" />
-    <state width="1830" height="285" key="GridCell.Tab.1.bottom" timestamp="1597038881938">
+    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1597149848494" />
+    <state width="1830" height="285" key="GridCell.Tab.1.bottom" timestamp="1597145176552">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="285" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1597038881938" />
-    <state width="1830" height="285" key="GridCell.Tab.1.center" timestamp="1597038881938">
+    <state width="1830" height="285" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1597145176552" />
+    <state width="1830" height="285" key="GridCell.Tab.1.center" timestamp="1597145176551">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="285" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1597038881938" />
-    <state width="1830" height="285" key="GridCell.Tab.1.left" timestamp="1597038881937">
+    <state width="1830" height="285" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1597145176551" />
+    <state width="1830" height="285" key="GridCell.Tab.1.left" timestamp="1597145176551">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="285" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1597038881937" />
-    <state width="1830" height="285" key="GridCell.Tab.1.right" timestamp="1597038881938">
+    <state width="1830" height="285" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1597145176551" />
+    <state width="1830" height="285" key="GridCell.Tab.1.right" timestamp="1597145176552">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="285" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1597038881938" />
+    <state width="1830" height="285" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1597145176552" />
     <state x="482" y="187" key="SettingsEditor" timestamp="1596529303115">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -390,10 +417,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1596701411506" />
-    <state width="926" height="527" key="XDebugger.FullValuePopup" timestamp="1596973803596">
+    <state width="926" height="527" key="XDebugger.FullValuePopup" timestamp="1597050654338">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053@67.27.1853.1053" timestamp="1596973803596" />
+    <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053@67.27.1853.1053" timestamp="1597050654338" />
     <state x="775" y="467" width="427" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596444948540">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -402,14 +429,14 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="534" y="264" width="909" height="576" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/67.27.1853.1053@67.27.1853.1053" timestamp="1596545686475" />
-    <state x="882" y="338" width="690" height="546" key="find.popup" timestamp="1596782275592">
+    <state x="882" y="338" width="690" height="546" key="find.popup" timestamp="1597142979134">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="882" y="338" width="690" height="546" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1596782275592" />
-    <state x="656" y="257" key="search.everywhere.popup" timestamp="1596180394421">
+    <state x="882" y="338" width="690" height="546" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1597142979134" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1597145150318">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="656" y="257" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1596180394421" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1597145150318" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -421,17 +448,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/RS.py</url>
-          <line>529</line>
+          <line>530</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/RS.py</url>
-          <line>504</line>
+          <line>505</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/RS.py</url>
-          <line>501</line>
+          <line>502</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -460,14 +487,14 @@
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/assistments_obrada.py</url>
-          <line>72</line>
-          <option name="timeStamp" value="46" />
+          <url>file://$PROJECT_DIR$/KT.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/KT.py</url>
-          <line>94</line>
-          <option name="timeStamp" value="47" />
+          <url>file://$PROJECT_DIR$/assistments_obrada.py</url>
+          <line>83</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

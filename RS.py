@@ -32,6 +32,7 @@ class StudentEnv(gym.Env):
         self.reward_func = reward_func
         self.action_space = spaces.Discrete(n_items)
         self.observation_space = spaces.Box(np.zeros(2), np.array([n_items - 1, 1]))
+        self.candidate_exercises
 
     def _recall_likelihoods(self):
         raise NotImplementedError
@@ -224,7 +225,7 @@ class DKVEnv(StudentEnv):
         """
         The average probability of doing all the test exercises correctly
         """
-        return np.array(list(map(self.predict, test)))
+        return np.array(list(map(self.predict, candidate_exercises)))
 
     def _update_model(self, item, outcome):
         """
@@ -504,7 +505,7 @@ def simulation(agent, trace, steps):
     return recom_trace, res
 
 
-def evaluation(agent):
+def evaluation(agent,history_path_traces):
     """
     Evaluate the policy when it recommend exercises to different student
     allshulun:[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)], [........], [.........]]
@@ -518,7 +519,7 @@ def evaluation(agent):
 
 
 
-    history_path_traces=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)],[(175, 1), (1010, 0), (447, 0),(857, 0)]]
+    #history_path_traces=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)],[(175, 1), (1010, 0), (447, 0),(857, 0)]]
     #allre lista rezultata,
     allre = [[] for i in range(50)]
     for trace in history_path_traces:
@@ -526,36 +527,6 @@ def evaluation(agent):
         # put duljine steps/50 i procjena tocnosti odgovora na svaki zadatak tog puta
         t, res = simulation(agent, trace, 50)
         print("Preporuceni put:" + str(t))
-        for j in range(50):
-            #svaki allre je jedan korak na putu???
-            allre[j].append(res[j])
-    #dakle za svaki korak puta uzet ce se ar.sred. od potencijalno vise ucenika,tako da je result
-    #vjerojatnost ucenika koji idu sljedecim putevima da tocno odgovore na svaki pojedini korak svojih puteva
-    result = [np.mean(k) for k in allre]
-    return result
-
-
-def evaluation2(agent):
-    """
-    Evaluate the policy when it recommend exercises to different student
-    allshulun:[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)], [........], [.........]]
-    :param agent:
-    :return: different students'predicted knowledge status
-    """
-    # with open('./好未来数据/allshulun.pkl', 'rb') as f:
-    #     allshulun = pickle.load(f)
-
-    #allshulun lista POVIJESNIH puteva(1+/vise ucenika), jedan cvor u putu je par vjezba-ponudjeni odgovor
-
-
-
-    allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
-    #allre lista rezultata,
-    allre = [[] for i in range(50)]
-    for trace in allshulun:
-        agent = all_reset(agent)
-        # put duljine steps/50 i procjena tocnosti odgovora na svaki zadatak tog puta
-        t, res = simulation(agent, trace, 50)
         for j in range(50):
             #svaki allre je jedan korak na putu???
             allre[j].append(res[j])
@@ -575,14 +546,38 @@ def run_eps(agent, env, n_eps=100):
 
 # the recommended candidate sets of exercises
 # why only 64 ints???
-with open('arms.pkl', 'rb') as f:
-    candidate_exercises = pickle.load(f)
+# with open('arms.pkl', 'rb') as f:
+#     candidate_exercises = pickle.load(f)
 
-test = candidate_exercises
+
+assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+
+with open(assistments_pickled, 'rb') as f:
+    df = pickle.load(f)
+
+
+exercises = df['problem_id'].values.unique()
+concepts = df['skill_id'].values.unique()
+
+concepts_exercises_dict=dict.fromkeys(concepts)
+exercises_concepts_dict=dict.fromkeys(concepts)
+
+for concept in concepts:
+    condition2 = df['skill_id'] == concept
+    concepts_exercises_dict[concept] = df[condition2]['problem_id'].tolist()
+
+for exercise in exercises:
+    condition3 = df['problem_id'] == exercise
+    exercises_concepts_dict[exercise] = df[condition3]['skill_id'].tolist()
+
+#users 64525 and 70363
+evaluation_student_traces=[[(51424, 1), (51435, 1)],[(51444, 0), (51395, 1), (51481, 0)]]
+
 Concepts = 188
 NumQ = 1982
 n_steps = 30
 n_items = len(candidate_exercises)
+
 discount = 0.99
 n_eps = 1
 

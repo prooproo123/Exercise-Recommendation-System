@@ -1,9 +1,14 @@
 import pandas as pd
 import io
+import numpy as np
 
 
 def standard(listt):
     return str(listt).replace(" ", "").replace("[", "").replace("]", "")
+
+
+def standardCon(listt):
+    return str(list(map(int, listt))).replace(" ", "").replace("[", "").replace("]", "")
 
 
 assistments_data_path = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_data.csv'
@@ -37,37 +42,69 @@ assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_
 
 students = df.user_id.unique()
 
-outputFilePath = "o.csv"
+outputFilePath = '/home/zvonimir/Exercise-Recommendation-System/data/o.csv'
 outputFile = open(outputFilePath, "w+")
 
 max_exercises = 0
 max_concepts = 0
-l=[]
+l = []
 for student in students:
     condition = df['user_id'] == student
     studentData = df[condition]
-    exercises = studentData['problem_id'].tolist()
-    answers = studentData['correct'].tolist()
-    concepts = studentData['skill_id'].tolist()
+    exercises = studentData['problem_id'].values
+    answers = studentData['correct'].values
+    concepts = studentData['skill_id'].values
+    con=np.isnan(concepts)
+    concepts = concepts[~con]
+    exercises = exercises[~con]
     # time = studentData['skill_id'].tolist()
     # difficulty = studentData['skill_id'].tolist()
     # gate = studentData['skill_id'].tolist()
+    exercises=exercises.tolist()
+    answers=answers.tolist()
+    concepts=concepts.tolist()
 
-    if len(exercises)>max_exercises:
-        max_exercises=len(exercises)
+    if len(exercises) > max_exercises:
+        max_exercises = len(exercises)
 
-    if len(concepts)>max_concepts:
-        max_concepts=len(concepts)
+    if len(concepts) > max_concepts:
+        max_concepts = len(concepts)
 
-    if len(exercises)!= len(concepts):
-        print("razlika je"+str(len(exercises)-len(concepts)))
+    if len(exercises) != len(concepts):
+        print("razlika je" + str(len(exercises) - len(concepts)))
 
-    if len(exercises)<1900:
-        l.append(len(exercises))
-        outputFile.write(str(len(exercises)) + "\n")
-        outputFile.write(standard(exercises) + "\n")
-        outputFile.write(standard(answers) + "\n")
-        outputFile.write(standard(concepts) + "\n")
-#[8214, 6577, 4290, 3263, 2800, 2457, 2354, 2300, 1893, 1849, 1783, 1684, 1674, 1611, 1606, 1565, 1546, 1490, 1482, 1473, 1456, 1442, 1434,...
-l2=sorted(l,reverse=True)
+    #if len(exercises) < 1900:
+    l.append(len(exercises))
+    outputFile.write(str(len(exercises)) + "\n")
+    outputFile.write(standard(exercises) + "\n")
+    outputFile.write(standard(answers) + "\n")
+    outputFile.write(standardCon(concepts) + "\n")
+# [8214, 6577, 4290, 3263, 2800, 2457, 2354, 2300, 1893, 1849, 1783, 1684, 1674, 1611, 1606, 1565, 1546, 1490, 1482, 1473, 1456, 1442, 1434,...
+l2 = sorted(l, reverse=True)
 outputFile.close()
+
+outputFilePath = '/home/zvonimir/Exercise-Recommendation-System/data/o.csv'
+assistments_input = open(outputFilePath, "r+")
+
+lines = assistments_input.readlines()
+lines = [line.replace("\n", "") for line in lines]
+no_students = int(lines[0])
+student_recommended_exercises = {}
+
+
+# print(no_students)
+
+# header_offset = 1
+# for i in range(no_students):
+#     student_id = lines[header_offset + i * 4]
+#     completed_exercises = lines[header_offset + i * 4 + 1].split(",")
+#     correctness = lines[header_offset + i * 4 + 2]  # preskace se dio sa tocnosti
+#     concepts_visited = set(lines[header_offset + i * 4 + 3].split(","))
+#
+#     recommended_exercises = set()
+#     for concept in concepts_visited:
+#         for exercise in concepts_exercises_dict[concept]:
+#             recommended_exercises.add(exercise)
+#     student_recommended_exercises[student_id] = recommended_exercises
+#
+# assistments_input.close()

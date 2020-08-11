@@ -55,7 +55,7 @@ def main():
     #data_directory = os.path.join(args.data_dir, args.dataset)
 
     assistments_data_path = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_data.csv'
-    ath = '/home/zvonimir/Exercise-Recommendation-System/o.csv'
+
 
     assistments_df = pd.read_csv(assistments_data_path,
                                  dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
@@ -80,7 +80,7 @@ def main():
                                           'skill_name',
                                           'teacher_id', 'school_id', 'hint_count', 'hint_total', 'overlap_time',
                                           'template_id',
-                                          'first_action', 'opportunity', ])
+                                          'first_action', 'opportunity'])
 
     assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
@@ -89,6 +89,7 @@ def main():
 
     data = DATA_LOADER(args.memory_size, 1, args.seq_len,n_questions=args.n_questions)
 
+    ath = '/home/zvonimir/Exercise-Recommendation-System/data/o.csv'
     e_ids,ans,kg_ids=data.load_data(ath)
 
 
