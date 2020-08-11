@@ -5,32 +5,35 @@ import time
 
 def rollout(env, agent, max_path_length=np.inf, animated=False, speedup=1,
             always_return_paths=False):
-    observations = []
-    actions = []
-    rewards = []
-    agent_infos = []
-    env_infos = []
     o = env.reset()
+    observations = [[] for i in range(len(o))]
+    actions = [[] for i in range(len(o))]
+    rewards = [[] for i in range(len(o))]
+    agent_infos = [[] for i in range(len(o))]
+    env_infos = [[] for i in range(len(o))]
     agent.reset()
     path_length = 0
     if animated:
         env.render()
+
     while path_length < max_path_length:
-        a, agent_info = agent.get_action(o)
-        next_o, r, d, env_info = env.step(a)
-        observations.append(env.observation_space.flatten(o))
-        rewards.append(r)
-        actions.append(env.action_space.flatten(a))
-        agent_infos.append(agent_info)
-        env_infos.append(env_info)
+        for i in range(len(o)):
+            a, agent_info = agent.get_action(o[i], i)
+            next_o, r, d, env_info = env.step(a, i)
+            observations[i].append(env.observation_space[i].flatten(o))
+            rewards[i].append(r)
+            actions[i].append(env.action_space[i].flatten(a))
+            agent_infos[i].append(agent_info)
+            env_infos[i].append(env_info)
+            if d:
+                break
+            o = next_o
+            if animated:
+                env.render()
+                timestep = 0.05
+                time.sleep(timestep / speedup)
         path_length += 1
-        if d:
-            break
-        o = next_o
-        if animated:
-            env.render()
-            timestep = 0.05
-            time.sleep(timestep / speedup)
+
     if animated and not always_return_paths:
         return
 
