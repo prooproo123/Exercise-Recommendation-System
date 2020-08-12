@@ -22,15 +22,13 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ddfd3fe6-4b34-446d-8d05-29c4cf1f9c6d" name="Default Changelist" comment="add rlllab">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RS.py" beforeDir="false" afterPath="$PROJECT_DIR$/RS.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,19 +308,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -358,10 +344,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="871" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1596542297820" />
-    <state x="167" y="125" width="1653" height="855" key="DiffContextDialog" timestamp="1596796426713">
+    <state x="167" y="125" width="1653" height="855" key="DiffContextDialog" timestamp="1597237620215">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="167" y="125" width="1653" height="855" key="DiffContextDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1596796426713" />
+    <state x="167" y="125" width="1653" height="855" key="DiffContextDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1597237620215" />
     <state x="776" y="310" width="447" height="484" key="FileChooserDialogImpl" timestamp="1597222033752">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -434,6 +420,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="882" y="338" width="690" height="546" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1597217666587" />
+    <state x="673" y="440" width="631" height="224" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1597237295196">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="673" y="440" width="631" height="224" key="git4idea.remote.GitConfigureRemotesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1597237295196" />
     <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1597145150318">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
