@@ -19,7 +19,7 @@ from rllab.policies.categorical_gru_policy import CategoricalGRUPolicy
 
 class StudentEnv(gym.Env):
 
-    def __init__(self, n_items=10, n_steps=100, discount=1., reward_func='likelihood'):
+    def __init__(self, n_items=10, n_steps=100, discount=1., reward_func='likelihood', student=None):
 
         self.curr_step = None
         self.n_steps = n_steps
@@ -32,7 +32,7 @@ class StudentEnv(gym.Env):
         self.reward_func = reward_func
         self.action_space = spaces.Discrete(n_items)
         self.observation_space = spaces.Box(np.zeros(2), np.array([n_items - 1, 1]))
-        self.candidate_exercises
+        self.student = student
 
     def _recall_likelihoods(self):
         raise NotImplementedError
@@ -66,9 +66,9 @@ class StudentEnv(gym.Env):
 
         # student model do the exercise and update model
         self.curr_item = action
-        self.curr_outcome = 1 if np.random.random() < self.predict(candidate_exercises[action]) else 0
+        self.curr_outcome = 1 if np.random.random() < self.predict(candidate_exercises[self.student][action]) else 0
 
-        self._update_model(candidate_exercises[self.curr_item], self.curr_outcome)
+        self._update_model(candidate_exercises[self.student][self.curr_item], self.curr_outcome)
         self.curr_step += 1
 
         # if the exercise which student used to answer correctly, the reward is 0
@@ -88,7 +88,7 @@ class StudentEnv(gym.Env):
     def actualStep(self, action, answer):
         self.curr_item = action
         self.curr_outcome = answer
-        self._update_model(candidate_exercises[self.curr_item], self.curr_outcome)
+        self._update_model(candidate_exercises[self.student][self.curr_item], self.curr_outcome)
         obs = self._obs()
         return obs
 
@@ -161,12 +161,12 @@ class DKVEnv(StudentEnv):
         :param q: exercise ID
         :return: the KCW of the exercise
         """
-        kg = self.q2kg[q]
+        #kg = self.q2kg[q]
+
+        kg = [int(k) for k in concept_exercise_mapping if q in concept_exercise_mapping[k]]
         corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in kg])
         correlation = np.zeros(Concepts)
-
-        #dio algoritma 1
-        for j in range(3):
+        for j in range(len(kg)):
             correlation[kg[j]] = corr[j]
         return correlation
 
@@ -225,7 +225,7 @@ class DKVEnv(StudentEnv):
         """
         The average probability of doing all the test exercises correctly
         """
-        return np.array(list(map(self.predict, candidate_exercises)))
+        return np.array(list(map(self.predict, test)))
 
     def _update_model(self, item, outcome):
         """
@@ -387,10 +387,10 @@ class LoggedTRPO(TRPO):
 
 class RLTutor(Tutor):
 
-    def __init__(self, n_items, init_timestamp=0):
+    def __init__(self, n_items, env, init_timestamp=0):
         self.raw_policy = None
         self.curr_obs = None
-        self.rl_env = MyGymEnv(make_rl_student_env(env))
+        self.rl_env = MyGymEnv(env)
 
     def train(self, gym_env, n_eps=10):
         env = MyGymEnv(gym_env)
@@ -468,21 +468,24 @@ def all_reset(agent):
     return agent
 
 
-def simulation(agent, trace, steps):
+def simulation(agent, trace, steps, index):
     """
     Simulate the recommendation given the student history exercise trace
     :param agent: recommendation policy
     :param trace: student history exercise trace
     :param steps: the number of exercises recommended to the student
+    :param index: redni broj studenta za kojeg se računa
     :return: recommended exercises and his predicted knowledge status
     """
 
     #arms vjezbe kandidati
     recom_trace = []
-    a2i = dict(zip(candidate_exercises, range(len(candidate_exercises))))
+
+    a2i = dict(zip(candidate_exercises[index], range(len(candidate_exercises[index]))))
     trace = [(a2i[i[0]], i[1]) for i in trace]
-    #novi, i dalje povijesni put-na koji redni broj pitanja si kako odgovorio
-    #cilj ove petlje je proci po putu i da recomq bude dobar na kraju tog prelaska
+
+    # novi, i dalje povijesni put-na koji redni broj pitanja si kako odgovorio
+    # cilj ove petlje je proci po putu i da recomq bude dobar na kraju tog prelaska
     for q, a in trace:
         obs = agent.raw_policy.env.env.vectorize_obs(q, a)
         #preporucena vjezba/pitanje
@@ -490,22 +493,22 @@ def simulation(agent, trace, steps):
 
     res = []
     for t in range(steps):
-        prob = agent.raw_policy.env.env.predict(candidate_exercises[recomq])
+        prob = agent.raw_policy.env.env.predict(candidate_exercises[index][recomq])
         answer = 1 if np.random.random() < prob else 0
 
-        #
         recom_trace.append((recomq, answer))
         obs = agent.raw_policy.env.env.actualStep(recomq, answer)
-        #ar.sredina procjene tocnosti odgovora na svako od 50(jos ne steps) kandidatskih zadataka
-        #to naravno nakon actualstep updateanja modela s predlozenim(i odabaranim) zadatkom
-        res.append(np.mean(list(map(agent.raw_policy.env.env.predict, candidate_exercises))))
+
+        # ar.sredina procjene tocnosti odgovora na svako od kandidatskih zadataka, steps puta
+        # to naravno nakon actualstep updateanja modela s predlozenim (i odabaranim) zadatkom
+        res.append(np.mean(list(map(agent.raw_policy.env.env.predict, candidate_exercises[index]))))
         recomq = agent.guide(obs)
 
-    #vrati preporucene zadatke i predvidjeno
+    # vrati preporucene zadatke i predvidjeno
     return recom_trace, res
 
 
-def evaluation(agent,history_path_traces):
+def evaluation(agent, index, step):
     """
     Evaluate the policy when it recommend exercises to different student
     allshulun:[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)], [........], [.........]]
@@ -514,27 +517,25 @@ def evaluation(agent,history_path_traces):
     """
     # with open('./好未来数据/allshulun.pkl', 'rb') as f:
     #     allshulun = pickle.load(f)
-#
-    #allshulun lista POVIJESNIH puteva(1+/vise ucenika), jedan cvor u putu je par vjezba-ponudjeni odgovor
+
+    # allre lista rezultata,
+    allre = [[] for i in range(step)]
+    trace = allshulun[index]
+    agent = all_reset(agent)
+
+    # put duljine step i procjena tocnosti odgovora na svaki zadatak tog puta
+    t, res = simulation(agent, trace, step, index)
+    return res
 
 
-
-    #history_path_traces=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)],[(175, 1), (1010, 0), (447, 0),(857, 0)]]
-    #allre lista rezultata,
-    allre = [[] for i in range(50)]
-    for trace in history_path_traces:
-        agent = all_reset(agent)
-        # put duljine steps/50 i procjena tocnosti odgovora na svaki zadatak tog puta
-        t, res = simulation(agent, trace, 50)
-        print("Preporuceni put:" + str(t))
-        for j in range(50):
-            #svaki allre je jedan korak na putu???
-            allre[j].append(res[j])
-    #dakle za svaki korak puta uzet ce se ar.sred. od potencijalno vise ucenika,tako da je result
-    #vjerojatnost ucenika koji idu sljedecim putevima da tocno odgovore na svaki pojedini korak svojih puteva
-    result = [np.mean(k) for k in allre]
-    return result
-
+# računa aritmetičku sredinu za svaki step, uzimajući u obzir sve studente
+def calculate_mean(evaluations, step):
+    all_ev = [[] for i in range(step)]
+    for j in range(step):
+        for i in range(len(evaluations)):
+            all_ev[j].append(evaluations[i][j])
+    evaluations_mean = [np.mean(k) for k in all_ev]
+    return evaluations_mean
 
 def run_eps(agent, env, n_eps=100):
     tot_rew = []
@@ -544,40 +545,61 @@ def run_eps(agent, env, n_eps=100):
     return tot_rew
 
 
+# vraća dictionary koji povezuje studente i skup njima predloženih zadataka
+def get_candidate_exercises(traces, concept_exercise_mapping):
+    student_recommended_exercises = {}
+
+    for student_trace in traces:
+        completed_exercises = []
+        correctness = []
+        concepts_visited = []
+        for exercise_pair in student_trace:
+            completed_exercises.append(exercise_pair[0])
+            correctness.append(exercise_pair[1])
+            concepts_visited.append(list(k for k in concept_exercise_mapping if exercise_pair[0] in concept_exercise_mapping[k]))
+
+        concepts_visited = [j for i in concepts_visited for j in i]
+
+        recommended_exercises = set()
+
+        for concept in concepts_visited:
+            for exercise in concept_exercise_mapping[concept]:
+                recommended_exercises.add(exercise)
+
+        student_recommended_exercises[traces.index(student_trace)] = list(recommended_exercises)
+    return student_recommended_exercises
+
+
+
+# MAIN
+
 # the recommended candidate sets of exercises
 # why only 64 ints???
-# with open('arms.pkl', 'rb') as f:
-#     candidate_exercises = pickle.load(f)
+#with open('arms.pkl', 'rb') as f:
+#candidate_exercises = pickle.load(f)
 
 
-assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+#allshulun lista POVIJESNIH puteva(1+/vise ucenika), jedan cvor u putu je par vjezba-ponudjeni odgovor
 
-with open(assistments_pickled, 'rb') as f:
-    df = pickle.load(f)
+#allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
 
+allshulun = [[(1,1), (2,1), (3,0)], [(2,1), (10,0)], [(9,0), (4,1), (15,1), (12,1), (3,0)]]
 
-exercises = df['problem_id'].values.unique()
-concepts = df['skill_id'].values.unique()
+# dictionary koji povezuje koncepte i zadatke -> inace ce se citati iz filea
+concept_exercise_mapping = {
+    "1": [1, 3, 6, 8, 9],
+    "2": [2, 4, 5],
+    "3": [10, 7, 15],
+    "4": [12, 13]
+}
 
-concepts_exercises_dict=dict.fromkeys(concepts)
-exercises_concepts_dict=dict.fromkeys(concepts)
-
-for concept in concepts:
-    condition2 = df['skill_id'] == concept
-    concepts_exercises_dict[concept] = df[condition2]['problem_id'].tolist()
-
-for exercise in exercises:
-    condition3 = df['problem_id'] == exercise
-    exercises_concepts_dict[exercise] = df[condition3]['skill_id'].tolist()
-
-#users 64525 and 70363
-evaluation_student_traces=[[(51424, 1), (51435, 1)],[(51444, 0), (51395, 1), (51481, 0)]]
-
+candidate_exercises = get_candidate_exercises(allshulun, concept_exercise_mapping)
+test = candidate_exercises
 Concepts = 188
 NumQ = 1982
-n_steps = 30
-n_items = len(candidate_exercises)
-
+n_steps = 5
+#n_items = len(candidate_exercises)
+n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
 discount = 0.99
 n_eps = 1
 
@@ -590,14 +612,17 @@ tutor_builders = [
     ('RL', RLTutor)
 ]
 
-env_kwargs = {
-    'n_items': n_items, 'n_steps': n_steps, 'discount': discount
-}
+env_kwargs = [{
+    'n_items': n_items[i], 'n_steps': n_steps, 'discount': discount, 'student': i
+} for i in range(len(n_items))]
 
-env = DKVEnv(**env_kwargs, reward_func='likelihood')
-rl_env = make_rl_student_env(env)
-agent = RLTutor(n_items)
-reward = agent.train(rl_env, n_eps=n_eps)
+# stvaranje zasebnog agenta i environmenta za svakog studenta
+env = [DKVEnv(**env_kwargs[i], reward_func='likelihood') for i in range(len(n_items))]
+rl_env = [make_rl_student_env(env[i]) for i in range(len(n_items))]
+agent = [RLTutor(n_items[i], rl_env[i]) for i in range(len(n_items))]
+reward = [agent[i].train(rl_env[i], n_eps=n_eps) for i in range(len(n_items))]
 print('ok')
-print(evaluation(agent))
+
+evaluations = [(evaluation(agent[i], i, n_steps)) for i in range(len(n_items))]
+print(calculate_mean(evaluations, n_steps))
 print('Done.')
