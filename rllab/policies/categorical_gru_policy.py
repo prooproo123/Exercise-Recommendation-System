@@ -14,6 +14,7 @@ from rllab.misc import special
 from rllab.misc.overrides import overrides
 from rllab.policies.base import StochasticPolicy
 
+import global_vars
 
 class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
     def __init__(
@@ -29,8 +30,6 @@ class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
         :param hidden_nonlinearity: nonlinearity used for each hidden layer
         :return:
         """
-        self.i = i
-
         assert isinstance(env_spec.action_space[i], Discrete)
         Serializable.quick_init(self, locals())
         super(CategoricalGRUPolicy, self).__init__(env_spec)
@@ -66,7 +65,6 @@ class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
                 shape_op=lambda _, input_shape: (input_shape[0], input_shape[1], feature_dim)
             )
 
-        print("radim prob network od " + str(env_spec.action_space[i].n))
         prob_network = GRUNetwork(
             input_shape=(feature_dim,),
             input_layer=l_feature,
@@ -151,18 +149,14 @@ class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
     # of length N, where each entry is the density value for that action, under
     # the current policy
     @overrides
-    def get_action(self, observation, i):
-        print(observation)
-        print(self.prob_network.output_layer.output_shape)
+    def get_action(self, observation):
+        i = global_vars.get_current_student()
+
         if self.state_include_action:
             if self.prev_action is None:
                 prev_action = np.zeros((self.action_space[i].flat_dim,))
-                self.prev_action = []
-                self.prev_hidden = []
-            elif len(self.prev_action) <= i:
-                prev_action = np.zeros((self.action_space[i].flat_dim,))
             else:
-                prev_action = self.action_space[i].flatten(self.prev_action[i])
+                prev_action = self.action_space[i].flatten(self.prev_action)
 
             all_input = np.concatenate([
                 self.observation_space[i].flatten(observation),
@@ -172,26 +166,13 @@ class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
             all_input = self.observation_space[i].flatten(observation)
             # should not be used
             prev_action = np.nan
-        # self.f_step_prob([all_input], [self.prev_hidden])
 
-        if len(self.prev_hidden) <= i:
-            self.prev_hidden.append(self.prob_network.hid_init_param.get_value())
-
-        print([all_input], [self.prev_hidden[i]])
-        print(i)
-        print(len(self.prev_hidden[i]))
-
-        probs, hidden_vec = [x[0] for x in self.f_step_prob([all_input], [self.prev_hidden[i]])]
+        probs, hidden_vec = [x[0] for x in self.f_step_prob([all_input], [self.prev_hidden])]
         action = special.weighted_sample(probs, range(self.action_space[i].n))
-        if len(self.prev_action) <= i:
-            self.prev_action.append(action)
-        else:
-            self.prev_action[i] = action
 
-        if len(self.prev_hidden) <= i:
-            self.prev_hidden.append(hidden_vec)
-        else:
-            self.prev_hidden[i] = hidden_vec
+        self.prev_action = action
+        self.prev_hidden = hidden_vec
+
         agent_info = dict(prob=probs)
         if self.state_include_action:
             agent_info["prev_action"] = prev_action
