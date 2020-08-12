@@ -25,6 +25,7 @@ def rollout(env, agent, max_path_length=np.inf, animated=False, speedup=1,
         actions.append(env.action_space[global_vars.get_current_student()].flatten(a))
         agent_infos.append(agent_info)
         env_infos.append(env_info)
+        path_length += 1
         if d:
             break
         o = next_o
@@ -32,7 +33,6 @@ def rollout(env, agent, max_path_length=np.inf, animated=False, speedup=1,
             env.render()
             timestep = 0.05
             time.sleep(timestep / speedup)
-    path_length += 1
 
     if animated and not always_return_paths:
         return
