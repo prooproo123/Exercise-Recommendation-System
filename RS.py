@@ -10,6 +10,7 @@ import copy
 import gym
 import numpy as np
 from gym import spaces
+import pandas as pd
 
 from rllab.algos.trpo import TRPO
 from rllab.baselines.linear_feature_baseline import LinearFeatureBaseline
@@ -163,7 +164,7 @@ class DKVEnv(StudentEnv):
         :return: the KCW of the exercise
         """
         #kg = self.q2kg[q]
-        kg = [int(k) for k in concept_exercise_mapping if q in concept_exercise_mapping[k]]
+        kg = [int(k) for k in concept_exercises_mapping if q in concept_exercises_mapping[k]]
 
         corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in kg])
         correlation = np.zeros(Concepts)
@@ -552,6 +553,18 @@ def run_eps(agent, env, n_eps=100):
     return tot_rew
 
 
+# vraća dictionary koji mapira koncept sa zadacima iz tog koncepta
+def get_concept_exercises_mapping(data):
+    df = pd.read_csv(data, index_col=False, delimiter=";")
+    concepts = df.skill_id.unique()
+    concept_exercises_mapping = {}
+    for concept in concepts:
+        condition = df['skill_id'] == concept
+        concept_exercises_mapping[str(concept)] = list(set(df[condition]['problem_id'].tolist()))
+    return concept_exercises_mapping
+
+
+# vraća dictionary koji mapira studenta s njemu predloženim setom zadataka
 def get_candidate_exercises(traces, concept_exercise_mapping):
     student_recommended_exercises = {}
 
@@ -576,7 +589,7 @@ def get_candidate_exercises(traces, concept_exercise_mapping):
     return student_recommended_exercises
 
 
-
+# MAIN
 
 # the recommended candidate sets of exercises
 # why only 64 ints???
@@ -586,19 +599,28 @@ def get_candidate_exercises(traces, concept_exercise_mapping):
 
 # allshulun lista POVIJESNIH puteva(1+/vise ucenika), jedan cvor u putu je par vjezba-ponudjeni odgovor
 
+# originalni trace
 #allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
 
-allshulun = [[(1,1), (2,1), (3,0)], [(2,1), (10,0)], [(9,0), (4,1), (15,1), (12,1), (3,0)]]
+# trace za hardkodirane concept_exercises_mapping
+#allshulun = [[(1,1), (2,1), (3,0)], [(2,1), (10,0)], [(9,0), (4,1), (15,1), (12,1), (3,0)]]
 
-concept_exercise_mapping = {
-    "1": [1, 3, 6, 8, 9],
-    "2": [2, 4, 5],
-    "3": [10, 7, 15],
-    "4": [12, 13]
-}
+# trace za čitanje iz file-a (malo promijenjeni i jako skraćeni assistments)
+allshulun = [[(424,1), (434,1), (425,0)], [(454,1), (428,0)], [(428,0), (392,1), (472,1), (400,1), (399,0)]]
 
-candidate_exercises = get_candidate_exercises(allshulun, concept_exercise_mapping)
+# hardcoded
+#concept_exercises_mapping = {
+   # "1": [1, 3, 6, 8, 9],
+   # "2": [2, 4, 5],
+   # "3": [10, 7, 15],
+   # "4": [12, 13]
+#}
 
+# putanja do csv file-a
+file = 'C:\\Users\\Jelena\\Desktop\\sedam IT\\datasetovi\\dataset.csv'
+
+concept_exercises_mapping = get_concept_exercises_mapping(file)
+candidate_exercises = get_candidate_exercises(allshulun, concept_exercises_mapping)
 test = candidate_exercises
 Concepts = 188
 NumQ = 1982
