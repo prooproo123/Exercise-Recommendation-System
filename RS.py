@@ -19,6 +19,7 @@ from rllab.policies.categorical_gru_policy import CategoricalGRUPolicy
 
 import global_vars
 
+
 class StudentEnv(gym.Env):
 
     def __init__(self, n_items=10, n_steps=100, discount=1., reward_func='likelihood'):
@@ -98,7 +99,8 @@ class StudentEnv(gym.Env):
     def reset(self):
         self.curr_step = 0
         self.now = 0
-        return self.step(np.random.choice(range(self.n_items[global_vars.get_current_student()])), global_vars.get_current_student())[0]
+        return self.step(np.random.choice(range(self.n_items[global_vars.get_current_student()])),
+                         global_vars.get_current_student())[0]
 
     def recomreset(self):
         self.curr_step = 0
@@ -122,7 +124,7 @@ class DKVEnv(StudentEnv):
             params = pickle.load(f)[0]
 
         # Knowledge Concepts Corresponding to the exercise
-        #dict int-array of ints
+        # dict int-array of ints
         with open('q2kg.pkl', 'rb') as f:
             self.q2kg = pickle.load(f)
 
@@ -163,7 +165,7 @@ class DKVEnv(StudentEnv):
         :param q: exercise ID
         :return: the KCW of the exercise
         """
-        #kg = self.q2kg[q]
+        # kg = self.q2kg[q]
         kg = [int(k) for k in concept_exercises_mapping if q in concept_exercises_mapping[k]]
 
         corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in kg])
@@ -298,7 +300,8 @@ def make_rl_student_env(env):
     ) for i in range(len(env.n_item_feats))]
 
     def encode_item(self, item, outcome):
-        return self.item_feats[global_vars.get_current_student()][self.n_items[global_vars.get_current_student()] * outcome + item, :]
+        return self.item_feats[global_vars.get_current_student()][
+               self.n_items[global_vars.get_current_student()] * outcome + item, :]
 
     def vectorize_obs(self, item, outcome):
         return np.concatenate((self.encode_item(item, outcome), np.array([outcome])))
@@ -404,7 +407,7 @@ class RLTutor(Tutor):
         policy = [(CategoricalGRUPolicy(
             env_spec=env.spec, hidden_dim=32,
             state_include_action=True, i=i)) for i in range(len(env.action_space))]
-            #state_include_action=False)
+        # state_include_action=False)
         self.raw_policy = [LoggedTRPO(
             env=env,
             policy=policy[i],
@@ -427,7 +430,8 @@ class RLTutor(Tutor):
         return action
 
     def getObs(self, action, answer):
-        obs = self.raw_policy[global_vars.get_current_student()].env.env.actualStep(action, answer, global_vars.get_current_student())
+        obs = self.raw_policy[global_vars.get_current_student()].env.env.actualStep(action, answer,
+                                                                                    global_vars.get_current_student())
         return obs
 
     def reset(self):
@@ -489,7 +493,8 @@ def simulation(agent, trace, steps):
 
     # arms vjezbe kandidati
     recom_trace = []
-    a2i = dict(zip(candidate_exercises[global_vars.get_current_student()], range(len(candidate_exercises[global_vars.get_current_student()]))))
+    a2i = dict(zip(candidate_exercises[global_vars.get_current_student()],
+                   range(len(candidate_exercises[global_vars.get_current_student()]))))
     trace = [(a2i[i[0]], i[1]) for i in trace]
 
     # novi, i dalje povijesni put-na koji redni broj pitanja si kako odgovorio
@@ -501,15 +506,18 @@ def simulation(agent, trace, steps):
 
     res = []
     for t in range(steps):
-        prob = agent.raw_policy[global_vars.get_current_student()].env.env.predict(candidate_exercises[global_vars.get_current_student()][recomq])
+        prob = agent.raw_policy[global_vars.get_current_student()].env.env.predict(
+            candidate_exercises[global_vars.get_current_student()][recomq])
         answer = 1 if np.random.random() < prob else 0
 
         recom_trace.append((recomq, answer))
-        obs = agent.raw_policy[global_vars.get_current_student()].env.env.actualStep(recomq, answer, global_vars.get_current_student())
+        obs = agent.raw_policy[global_vars.get_current_student()].env.env.actualStep(recomq, answer,
+                                                                                     global_vars.get_current_student())
 
         # ar.sredina procjene tocnosti odgovora na svako od kandidatskih zadataka, steps puta
         # to naravno nakon actualstep updateanja modela s predlozenim (i odabaranim) zadatkom
-        res.append(np.mean(list(map(agent.raw_policy[global_vars.get_current_student()].env.env.predict, candidate_exercises[global_vars.get_current_student()]))))
+        res.append(np.mean(list(map(agent.raw_policy[global_vars.get_current_student()].env.env.predict,
+                                    candidate_exercises[global_vars.get_current_student()]))))
         recomq = agent.guide(obs)
 
     # vrati preporucene zadatke i predvidjeno
@@ -575,7 +583,8 @@ def get_candidate_exercises(traces, concept_exercise_mapping):
         for exercise_pair in student_trace:
             completed_exercises.append(exercise_pair[0])
             correctness.append(exercise_pair[1])
-            concepts_visited.append(list(k for k in concept_exercise_mapping if exercise_pair[0] in concept_exercise_mapping[k]))
+            concepts_visited.append(
+                list(k for k in concept_exercise_mapping if exercise_pair[0] in concept_exercise_mapping[k]))
 
         concepts_visited = [j for i in concepts_visited for j in i]
 
@@ -593,28 +602,28 @@ def get_candidate_exercises(traces, concept_exercise_mapping):
 
 # the recommended candidate sets of exercises
 # why only 64 ints???
-#with open('arms.pkl', 'rb') as f:
-#candidate_exercises = pickle.load(f)
+# with open('arms.pkl', 'rb') as f:
+# candidate_exercises = pickle.load(f)
 
 
 # allshulun lista POVIJESNIH puteva(1+/vise ucenika), jedan cvor u putu je par vjezba-ponudjeni odgovor
 
 # originalni trace
-#allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
+# allshulun=[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)]]
 
 # trace za hardkodirane concept_exercises_mapping
-#allshulun = [[(1,1), (2,1), (3,0)], [(2,1), (10,0)], [(9,0), (4,1), (15,1), (12,1), (3,0)]]
+# allshulun = [[(1,1), (2,1), (3,0)], [(2,1), (10,0)], [(9,0), (4,1), (15,1), (12,1), (3,0)]]
 
 # trace za čitanje iz file-a (malo promijenjeni i jako skraćeni assistments)
-allshulun = [[(424,1), (434,1), (425,0)], [(454,1), (428,0)], [(428,0), (392,1), (472,1), (400,1), (399,0)]]
+allshulun = [[(424, 1), (434, 1), (425, 0)], [(454, 1), (428, 0)], [(428, 0), (392, 1), (472, 1), (400, 1), (399, 0)]]
 
 # hardcoded
-#concept_exercises_mapping = {
-   # "1": [1, 3, 6, 8, 9],
-   # "2": [2, 4, 5],
-   # "3": [10, 7, 15],
-   # "4": [12, 13]
-#}
+# concept_exercises_mapping = {
+# "1": [1, 3, 6, 8, 9],
+# "2": [2, 4, 5],
+# "3": [10, 7, 15],
+# "4": [12, 13]
+# }
 
 # putanja do csv file-a
 file = 'C:\\Users\\Jelena\\Desktop\\sedam IT\\datasetovi\\dataset.csv'
@@ -625,7 +634,7 @@ test = candidate_exercises
 Concepts = 188
 NumQ = 1982
 n_steps = 5
-#n_items = len(candidate_exercises)
+# n_items = len(candidate_exercises)
 n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
 discount = 0.99
 n_eps = 1
