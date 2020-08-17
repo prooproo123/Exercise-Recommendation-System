@@ -10,7 +10,7 @@ def build_graph(parameters, data, cutoff=0.8, bkt_threshold=0.95, gauss_threshol
 
 #Artificial dataset generation, args-(conceptProperties - list of 4 element tuples, where elements represent:number of students,number of questions,correct answers mean,standard deviation respectively)
 def generate_and_draw(conceptProperties):
- return datagenerator.create_dataset(conceptProperties)
+ return datagenerator.create_dataset(concept_properties)
 
 #Calculates BKT parameters for given dataset using simulated annealing method
 def estimate_parameters(data):
@@ -21,14 +21,11 @@ def questions_to_concepts(data, cutoff = 0.8, kfold = False):
   return questionasconcepts.build_graph(data, cutoff, kfold)
 
 # Converts google forms .csv file to appropriate data format
-def form_to_dataset(data, skill_names, download):
-  return gformprocess.process_data(data, skill_names, download)
+def form_to_dataset(data, skill_names):
+  return gformprocess.process_data(data, skill_names)
 
 #main
 #====================================
-
-
-
 
 
 
