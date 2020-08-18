@@ -143,7 +143,7 @@ class DKVEnv(StudentEnv):
             params = pickle.load(f)
 
         # Knowledge Concepts Corresponding to the exercise
-        with open('../data/skill_builder/e2c_old.pkl', 'rb') as f:
+        with open('../data/skill_builder/old_e2c.pkl', 'rb') as f:
             self.q2kg = pickle.load(f)
 
         # contains the exercise which has already been answered correctly
