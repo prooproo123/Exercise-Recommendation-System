@@ -1,0 +1,57 @@
+\documentclass{report}
+\usepackage{amsmath}
+
+\begin{document}
+	\title{Bayesian knowledge tracing (BKT)}
+		
+	\maketitle
+		
+	\chapter{Uvod}
+	\section{Općenito o BKT}
+		Bayesian Knowledge Tracing koristi Hidden Markov Model i ima 4 osnovna parametra:
+		\begin{itemize}
+			\item p(L0) - vjerojatnost da je korisnik a priori savladao gradivo
+			\item p(G) - vjerojatnost da je korisnik pogodio točan odgovor bez da ima potrebno znanje	
+			\item p(S) - vjerojatnost da je korisnik krivo odgovorio iako ima potrebno znanje	
+			\item p(T) - vjerojatnost da je znanje prešlo iz NE ZNA u ZNA nakon prilike da se primjeni znanje
+		\end{itemize}
+		Kao izlaz dobivaju se vrijednosti:
+		\begin{itemize}
+			\item p(L) - vjerojatnost ovladavanja vještinom (eng. probability of skill mastery)
+			\item p(C) - vjerojatnost da će korisnik ispravno primijeniti vještinu u budućnosti (eng. probability of the student correctly applying the skill on a future practice)
+		\end{itemize}
+	\section{Ideje}
+		Prvobitna ideja je bila da se p(L0) računa iz inicijalnih pitanja, vrijednosti p(G) i p(S) bi se prema preporuci iz rada(trebalo bi pronaći kojeg i baciti referencu) stavile na interval [0,0.3], [0,0.1] te bi se p(T) postavio prema preporuci eksperta što ne želimo jer je cilj ovog projekta da smanjimo zadatke eksperata na minimum.
+		
+		To je ukazalo na potrebu pronalaska algoritama koji bi uz pomoć nekog skupa podataka aproksimirali parametre za BKT.
+	\section{Problemi i zadaci}
+	\begin{itemize}
+		\item proučiti parametar p(T)
+		\item proučiti kodove sa githuba kako bi se dobila ideja kako algoritam funkcionira
+		\item napraviti malu implementaciju s malo pitanja i provjeriti radi li
+		\item proučiti parameter fitting uz pomoć EM algoritma, stohastic gradient descenta ili neke druge metode
+		\item kako napraviti input dataset, prikupiti podatke
+		
+	
+	\end{itemize}
+	\chapter{Dobivanje BKT parametara}
+	\section{EM (expectation-maximization) algoritam}
+		\begin{itemize}
+			\item iterativni algoritam za pronalaženje (aproksimiranje) najveće izglednosti (eng. maximum likelihood) ili maksimalne a posteriori (MAP) procjene parametara u statističkim modelima
+			\item model ovisi o nepoznatim latentnim varijablama
+			\item EM iteracija sadrži 2 koraka:
+				\begin{itemize}
+					\item 	korak očekivanja (E), koji stvara funkciju za očekivanje log-izglednosti koja se procjenjuje pomoću trenutne procjene parametara, procjenjuju se vrijednosti latentnih varijabli
+					\item 	korak maksimizacije (M), koji izračunava parametre distribucije koji maksimiziraju očekivanu log-izglednost pronađenu u E koraku, ti se parametri zatim koriste za procjenu latentnih varijabli u sljedećem E koraku
+				\end{itemize}
+			
+			\item primjenjuje se kada želimo odrediti parametre distribucije (normalna, eksponencijalna, …)
+			\item problem: za korištenje potrebo znati distribuciju podataka ili točne vrijednosti (eng. true values) traženih parametara
+			
+		\end{itemize}
+	Kroz ovo istraživanje nije pronađena niti jedna implementacija EM algoritma za aproksimaciju BKT parametara niti je napravljena vlastiti implementacija zbog prevelikog praga znanja matematike.
+	
+	\section{Grid search i Simulated Annealing}
+		Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog kaljenja https://github.com/wlmiller/BKTSimulatedAnnealing. U README na githubu se također spominjao kod koji je bio baza za to, on je koristio običan grid search kako bi izračunao parametre. Oba koda su prevedena u python i prilagođena našim skupovima podataka. Na kraju se ispostavilo da je "simulirano kaljenje" povoljnije te se grid search odbacio.
+	\chapter{Rezultati}
+\end{document}
