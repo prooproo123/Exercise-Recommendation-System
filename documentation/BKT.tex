@@ -1,6 +1,6 @@
 \documentclass{report}
 \usepackage{amsmath}
-
+\usepackage{hyperref}
 \begin{document}
 	\title{Bayesian knowledge tracing (BKT)}
 		
@@ -64,6 +64,41 @@
 	Kroz ovo istraživanje nije pronađena niti jedna implementacija EM algoritma za aproksimaciju BKT parametara niti je napravljena vlastiti implementacija zbog prevelikog praga znanja matematike.
 	
 	\section{Grid search i Simulated Annealing}
-		Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog kaljenja https://github.com/wlmiller/BKTSimulatedAnnealing. U README na githubu se također spominjao kod koji je bio baza za to, on je koristio običan grid search kako bi izračunao parametre. Oba koda su prevedena u python i prilagođena našim skupovima podataka. Na kraju se ispostavilo da je "simulirano kaljenje" povoljnije te se grid search odbacio.
+		Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog kaljenja \url{https://github.com/wlmiller/BKTSimulatedAnnealing}. U README na githubu se također spominjao kod koji je bio baza za to, on je koristio običan grid search kako bi izračunao parametre. Oba koda su prevedena u python i prilagođena našim skupovima podataka. Na kraju se ispostavilo da je "simulirano kaljenje" povoljnije te se grid search odbacio.
 	\chapter{Rezultati}
+		\begin{itemize}
+			\item napravljen google forms kviz sa 20 pitanja iz biologije, ispitanici moraju odgovoriti na svih 20 pitanja kako bi podaci ušli u dataset
+			\item napravljena python skripta koja pretvara podatke dobivene iz google formsa u oblik prikladan za treniranje BKT-a i pronalaženje parametara
+			\item pronađen je kod u Javi koji tehnikom simuliranog kaljenja aproksimira parametre za BKT uz pomoć danog dataseta, kod je preveden u python skript
+			\item napravljena python skripta za BKT koja određuje vjerojatnost da je ispitanik naučio/  savladao gradivo
+			\item uz pomoć skripte za aproksimaciju BKT parametara, nađene su njihove vrijednosti za svaku vještinu iz ASSISTMENTS dataseta i pohranjenje u google sheets tablicu
+			\item dobiveni parametri algoritmom simuliranog kaljenja uspoređeni su s onima dobivenima pomoću grid search metode -> vrijednosti parametara su skoro iste, vrlo male razlike
+			\item napravljen google forms kviz sa po 6 pitanja iz 5 koncepata, izračunati su parametri za taj dataset
+			\item BKT kod i kod za aproksimaciju BKT parametara su se dalje koristili u bilježnicama za izgradnju grafa probabilističkim metodama
+			
+		\end{itemize}
+	\chapter{Poveznice}
+	\section{BKT}
+	\url{https://en.wikipedia.org/wiki/Bayesian_Knowledge_Tracing}\newline
+	\url{http://www.cs.cmu.edu/~./ggordon/yudelson-koedinger-gordon-individualized-bayesian-knowledge-tracing.pdf}\newline
+	\url{https://github.com/CAHLR/pyBKT/blob/master/README.md}\newline
+	\url{https://www.learnlab.org/uploads/mypslc/publications/bca2008v.pdf}\newline
+	\url{https://www.upenn.edu/learninganalytics/ryanbaker/paper_143.pdf}\newline
+	\url{https://github.com/yemao616/Bayesian-Knowledge-Tracing}\newline
+	\url{http://www.cs.cmu.edu/~./ggordon/yudelson-koedinger-gordon-individualized-bayesian-knowledge-tracing.pdf}\newline
+	\url{https://www.fi.muni.cz/~xpelanek/publications/umuai-overview.pdf}\newline
+	\url{https://medium.com/@joyboseroy/modelling-a-students-learning-34375b0131dd}\newline
+	\url{https://www.math.vu.nl/~sbhulai/publications/data_analytics2018c.pdf}\newline
+	\section{Pronalaženje parametara}
+	\url{https://www.fmrib.ox.ac.uk/datasets/techrep/tr00yz1/tr00yz1/node9.html}\newline
+	\url{https://github.com/wlmiller/BKTSimulatedAnnealing/blob/master/computeKTparams_SA.java}\newline
+	\url{https://www.upenn.edu/learninganalytics/ryanbaker/paper_143.pdf}\newline
+	\url{https://educationaldatamining.org/files/conferences/EDM2018/papers/EDM2018_paper_14.pdf}\newline
+	\url{http://yudelson.info/hmm-scalable/}\newline
+	\url{https://www.educationaldatamining.org/EDM2015/proceedings/short364-367.pdf}\newline
+	\url{https://concord.org/wp-content/uploads/2016/12/pdf/tracking-student-progress-in-a-game-like-learning-environment.pdf}\newline
+	\url{https://tinyheero.github.io/2016/01/03/gmm-em.html}\newline
+	\url{https://machinelearningmastery.com/expectation-maximization-em-algorithm/}\newline
+	\url{http://rstudio-pubs-static.s3.amazonaws.com/1001_3177e85f5e4840be840c84452780db52.html}\newline
+	\url{https://www.colorado.edu/amath/sites/default/files/attached-files/em_algorithm.pdf}
 \end{document}
