@@ -20,6 +20,18 @@
 			\item p(L) - vjerojatnost ovladavanja vještinom (eng. probability of skill mastery)
 			\item p(C) - vjerojatnost da će korisnik ispravno primijeniti vještinu u budućnosti (eng. probability of the student correctly applying the skill on a future practice)
 		\end{itemize}
+	\begin{equation}
+		$p(L_t\mid obs=correct)=\frac{p(L_t)*(1-p(S))}{p(L_t)*(1-p(S)+(1-p(L_t)*p(G))}$
+	\end{equation}
+	\begin{equation}
+		$p(L_t\mid obs=wrong)=\frac{p(L_t)*p(S)}{p(L_t)*p(S)+(1-p(L_t)*(1-p(G))}$
+	\end{equation}
+	\begin{equation}
+	$p(L_{t+1})=p(L_t\mid obs=correct) + (1-p(L_t\mid obs=correct))*p(T)
+	\end{equation}
+	\begin{equation}
+	$p(C_{t+1})=p(L_{t+1}) * (1-p(S)) + p(L_{t+1})*p(G)
+	\end{equation}
 	\section{Ideje}
 		Prvobitna ideja je bila da se p(L0) računa iz inicijalnih pitanja, vrijednosti p(G) i p(S) bi se prema preporuci iz rada(trebalo bi pronaći kojeg i baciti referencu) stavile na interval [0,0.3], [0,0.1] te bi se p(T) postavio prema preporuci eksperta što ne želimo jer je cilj ovog projekta da smanjimo zadatke eksperata na minimum.
 		
