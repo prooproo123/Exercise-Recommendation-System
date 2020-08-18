@@ -147,7 +147,7 @@ class Data_Loader():
         v = np.unique(df[['problem_id', 'skill_id']].values, axis=0).astype(np.int)
 
         # Knowledge Concepts Corresponding to the exercise
-        with open('data/skill_builder/e2c_old.pkl', 'rb') as f:
+        with open('data/skill_builder/old_e2c.pkl', 'rb') as f:
             q2kg = pickle.dump(exercise_concepts_dict, f)
 
         return 0

@@ -56,6 +56,7 @@ class StudentEnv(gym.Env):
 
     def __init__(self, n_items=10, n_steps=100, discount=1., reward_func='likelihood'):
 
+        self.right = []
         self.curr_step = None
         self.n_steps = n_steps
         self.n_items = n_items
@@ -91,7 +92,7 @@ class StudentEnv(gym.Env):
         else:
             raise ValueError
 
-    def step(self, action):
+    def step(self, action:int):
         if self.curr_step is None or self.curr_step >= self.n_steps:
             raise ValueError
 
@@ -153,8 +154,8 @@ class DKVEnv(StudentEnv):
             params = pickle.load(f)
 
         # Knowledge Concepts Corresponding to the exercise
-        with open('data/skill_builder/e2c_old.pkl', 'rb') as f:
-            self.q2kg = pickle.load(f)
+        with open('data/skill_builder/new_e2c.pkl', 'rb') as f:
+            self.e2c = pickle.load(f)
 
         # contains the exercise which has already been answered correctly
         self.right = []
@@ -193,11 +194,11 @@ class DKVEnv(StudentEnv):
         :param q: exercise ID
         :return: the KCW of the exercise
         """
-        kg = self.q2kg[q]
-        corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in kg])
+        concepts = self.e2c[q]
+        corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in concepts])
         correlation = np.zeros(Concepts)
-        for j in range(3):
-            correlation[kg[j]] = corr[j]
+        for j in range(len(concepts)):
+            correlation[concepts[j]] = corr[j]
         return correlation
 
     def read(self, value_matrix, correlation_weight):
@@ -544,21 +545,25 @@ student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
 with open('data/skill_builder/old_cand_ex.pkl', 'rb') as f:
     candidate_exercises = pickle.load(f)
 
-Concepts = 10  # number of concepts
-NumQ = 100  # number of exercises
-n_steps = 5  # number of steps of algorithm
-n_items = len(candidate_exercises)  # number of candidate exercises
-# n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
-discount = 0.99
-n_eps = 1  # number of epochs in algorithm
+dataset = 'assist2009_updated'
 
-# test = arms
-# Concepts = 188
-# NumQ = 1982
-# n_steps = 30
-# n_items = len(arms)
-# discount = 0.99
-# n_eps = 200
+if dataset == 'assist2009_updated':
+    Concepts = 123  # number of concepts
+    NumQ = 17751 # number of exercises
+    n_steps = 5  # number of steps of algorithm
+    n_items = len(candidate_exercises)  # number of candidate exercises
+    # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
+    discount = 0.99
+    n_eps = 1  # number of epochs in algorithm
+
+else:
+    Concepts = 123  # number of concepts
+    NumQ = 17751 # number of exercises
+    n_steps = 5  # number of steps of algorithm
+    n_items = len(candidate_exercises)  # number of candidate exercises
+    # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
+    discount = 0.99
+    n_eps = 1  # number of epochs in algorithm
 
 reward_funcs = ['likelihood']
 envs = [
