@@ -5,8 +5,8 @@ import pickle
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 
-from data_loader import *
-from mymodel_concat import Model
+from old.data_loader import *
+from old.mymodel_concat import Model
 
 
 def main():
@@ -54,7 +54,7 @@ def main():
     #data = DATA_LOADER(args.memory_size, 3, args.seq_len)
     #data_directory = os.path.join(args.data_dir, args.dataset)
 
-    assistments_data_path = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_data.csv'
+    assistments_data_path = '/data/skill_builder/skill_builder_data.csv'
 
 
     assistments_df = pd.read_csv(assistments_data_path,
@@ -89,7 +89,7 @@ def main():
 
     data = DATA_LOADER(args.memory_size, 1, args.seq_len,n_questions=args.n_questions)
 
-    ath = '/home/zvonimir/Exercise-Recommendation-System/data/o.csv'
+    ath = '/home/zvonimir/Exercise-Recommendation-System/data/stan_con.csv'
     e_ids,ans,kg_ids=data.load_data(ath)
 
 

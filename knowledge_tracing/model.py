@@ -1,9 +1,9 @@
 import numpy as np
 import os
 import tensorflow as tf
-import operations
+from knowledge_tracing import operations
 import shutil
-from old_memory import DKVMN
+from knowledge_tracing.old_memory import DKVMN
 from sklearn import metrics
 
 

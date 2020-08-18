@@ -1,13 +1,11 @@
 import numpy as np
-import os, time
+import os
 import tensorflow as tf
-import operations
+from knowledge_tracing import operations
 import shutil
-from memory import DKVMN
+from old.memory import DKVMN
 from sklearn import metrics
-import math
 import pickle
-from sklearn.metrics import classification_report
 
 
 class Model():

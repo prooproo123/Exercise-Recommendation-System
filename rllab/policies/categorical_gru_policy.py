@@ -14,12 +14,11 @@ from rllab.misc import special
 from rllab.misc.overrides import overrides
 from rllab.policies.base import StochasticPolicy
 
-import global_vars
 
 class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
     def __init__(
             self,
-            env_spec, i,
+            env_spec,
             hidden_dim=32,
             feature_network=None,
             state_include_action=True,
@@ -30,12 +29,12 @@ class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
         :param hidden_nonlinearity: nonlinearity used for each hidden layer
         :return:
         """
-        assert isinstance(env_spec.action_space[i], Discrete)
+        assert isinstance(env_spec.action_space, Discrete)
         Serializable.quick_init(self, locals())
         super(CategoricalGRUPolicy, self).__init__(env_spec)
 
-        obs_dim = env_spec.observation_space[i].flat_dim
-        action_dim = env_spec.action_space[i].flat_dim
+        obs_dim = env_spec.observation_space.flat_dim
+        action_dim = env_spec.action_space.flat_dim
 
         if state_include_action:
             input_dim = obs_dim + action_dim
@@ -68,7 +67,7 @@ class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
         prob_network = GRUNetwork(
             input_shape=(feature_dim,),
             input_layer=l_feature,
-            output_dim=env_spec.action_space[i].n,
+            output_dim=env_spec.action_space.n,
             hidden_dim=hidden_dim,
             hidden_nonlinearity=hidden_nonlinearity,
             output_nonlinearity=TT.nnet.softmax,
@@ -103,7 +102,7 @@ class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
 
         self.prev_action = None
         self.prev_hidden = None
-        self.dist = RecurrentCategorical(env_spec.action_space[i].n)
+        self.dist = RecurrentCategorical(env_spec.action_space.n)
 
         out_layers = [prob_network.output_layer]
         if feature_network is not None:
@@ -150,29 +149,24 @@ class CategoricalGRUPolicy(StochasticPolicy, LasagnePowered):
     # the current policy
     @overrides
     def get_action(self, observation):
-        i = global_vars.get_current_student()
-
         if self.state_include_action:
             if self.prev_action is None:
-                prev_action = np.zeros((self.action_space[i].flat_dim,))
+                prev_action = np.zeros((self.action_space.flat_dim,))
             else:
-                prev_action = self.action_space[i].flatten(self.prev_action)
-
+                prev_action = self.action_space.flatten(self.prev_action)
             all_input = np.concatenate([
-                self.observation_space[i].flatten(observation),
+                self.observation_space.flatten(observation),
                 prev_action
             ])
         else:
-            all_input = self.observation_space[i].flatten(observation)
+            all_input = self.observation_space.flatten(observation)
             # should not be used
             prev_action = np.nan
-
+        # self.f_step_prob([all_input], [self.prev_hidden])
         probs, hidden_vec = [x[0] for x in self.f_step_prob([all_input], [self.prev_hidden])]
-        action = special.weighted_sample(probs, range(self.action_space[i].n))
-
+        action = special.weighted_sample(probs, range(self.action_space.n))
         self.prev_action = action
         self.prev_hidden = hidden_vec
-
         agent_info = dict(prob=probs)
         if self.state_include_action:
             agent_info["prev_action"] = prev_action

@@ -1,6 +1,6 @@
 import tensorflow as tf
-from old_data_loader import *
-from model import Model
+from best_data_loader import *
+from knowledge_tracing.model import Model
 import os, argparse
 
 
@@ -18,7 +18,7 @@ def main():
     parser.add_argument('--momentum', type=float, default=0.9)
     parser.add_argument('--initial_lr', type=float, default=0.05)
     # synthetic / assist2009_updated / assist2015 / STATIC
-    dataset = 'assist2015'
+    dataset = 'assist2009_updated'
 
     if dataset == 'assist2009_updated':
         parser.add_argument('--batch_size', type=int, default=32)
@@ -71,7 +71,7 @@ def main():
     run_config = tf.ConfigProto()
     run_config.gpu_options.allow_growth = True
 
-    data = DATA_LOADER(args.n_questions, args.seq_len, ',')
+    data = Data_Loader(args.n_questions, args.seq_len, ',')
     data_directory = os.path.join(args.data_dir, args.dataset)
 
     with tf.Session(config=run_config) as sess:

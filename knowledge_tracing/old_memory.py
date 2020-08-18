@@ -1,5 +1,5 @@
 import tensorflow as tf
-import operations
+from knowledge_tracing import operations
 
 
 # This class defines Memory architecture in DKVMN
