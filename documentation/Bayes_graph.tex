@@ -1,0 +1,19 @@
+\documentclass{report}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+
+\titleformat{\chapter}[display]
+{\normalfont\bfseries}{}{0pt}{\Large}
+
+\begin{document}
+	\chapter{Uvod}
+	
+	Ideja je napraviti vlastiti model koji iz skupa podataka računa vjerojatnost savladavanja koncepata te se prema njima gradi graf znanja.
+	
+	Prvi pristup je račun uvjetnih vjerojatnosti $p(Y_j\mid X_i)$
+	
+	Najveći problem u oba pristupa je to što pokušavamo dobiti ovisnosti među konceptima,a ne pitanjima. Za razliku od pitanja za koncepte se ne može reći da ih se zna/ne zna jer se oni sastoje od više pitanja te se može samo gledati postotak riješenosti za svakog studenta / prosječan postotak riješenosti. Prosječan postotak rješenosti se može gledati kao pripadnost neizrazitom skupu ZNA odnosno 1- postotak riješenosti kao pripadnost skupu NE ZNA, to komplicira stvari kod Bayesovog zaključka. Potrebno je pronaći/proučiti postoji li ekvivalent Bayesovog zaključka kada se koriste neizraziti skupovi odnosno kontinuirane vrijednosti [0,1].
+	
+\end{document}

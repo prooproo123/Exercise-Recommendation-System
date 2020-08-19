@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{titlesec}
+
 \begin{document}
 
 % TODO: Navedite broj rada.
@@ -15,17 +16,43 @@
 \author{Jelena Nemčić, Marin Ovčariček,Zvonimir Sučić,Ivana Žeger}
 
 \maketitle
-% Ispis stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
+% stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
 %\izvornik
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
 %\zahvala{}
-
-\tableofcontents
+%\tableofcontents
 %Dodati općenitu ideju projekta
 \chapter{Uvod}
-Uvod rada. Nakon uvoda dolaze poglavlja u kojima se obrađuje tema.
+Adaptivno učenje u e-learning softverima tipično funkcionira tako da mjeri razinu znanja korisnika kroz početni skup pitanja, virtualnu simulaciju i/ili dodijeljene zadatke. Na temelju podataka prikupljenih iz odgovora korisnika, takav softver u stvarnom vremenu procjenjuje razliku između korisničkog znanja i znanja potrebnih za određenu kompetenciju, te odabire lekcije i zadatke za korisnika tako da minimizira količinu edukacijskog sadržaja koji tom korisniku prikazuje.
 
-\chapter{Razrada teme}
+Konstrukcija algoritma za određivanje puta za adaptivno učenje tipično se radi na dva načina: 1) kreiranjem formalnog modela znanja za određenu domenu, a koji kreiraju eksperti iz te domene ili 2) koristeći algoritamski pristup baziran na teorijama Bayesian Knowledge Tracing i Item Response Theory koji na temelju odgovora polaznika edukacije procjenjuje vjerojatnost da je polaznik usvojio određenu vještinu/koncept (što ponovno zahtijeva unaprijed definirane vještine/koncepte).
+
+U posljednje vrijeme, a s obzirom na dostupnost sve većih količina podataka (big data) ponovno su oživjele i dodatno se razvijaju tehnologije kreiranja grafova znanja (npr. pomoću dubokog učenja), a koji s obzirom na to da su kreirani statistički mogu biti mnogo kompleksniji i uže segmentirani (precizniji) u odnosu na one koje kreiraju eksperti nekog područja. Dodatno, prikupljanje velike količine informacija u različitim domenama omogućuje da kreiranje grafova znanja ne bude ograničeno samo na one tvrtke koje imaju golem broj korisnika kao što su Google ili Facebook). Na temelju inicijalnog istraživanja vjerujemo da se ova metoda može primijeniti i na kreiranje grafova znanja za adaptivno učenje, te time omogućiti s jedne strane znatno veću adaptivnost, a s druge strane veću jednostavnost kreiranja takvih grafova.
+
+Ovo je posebno važno za područja edukacije izvan formalnog obrazovanja, gdje nisu strogo definirane ishodi učenja i testovi kojima se mjeri je li neki ishod učenja dostignut kod pojedinog polaznika. Dva primjera za to su instrukcije, gdje učeniku često nedostaju i predznanja iz drugih područja koje je ranije u školi trebao usvojiti, te korporativne edukacije, koje često obuhvaćaju ljude različitih struka i različitim znanjima iz domene za koju nastoje dobiti certifikat
+
+
+\chapter{Cilj i postupak}
+Stoga je cilj ovog projekta provjeriti sljedeće:
+\begin{itemize}
+\item Provjera mogućnosti kreiranja grafa znanja isključivo na temelju točnosti odgovora na zadacima iz jedne domene znanja koje korisnici daju i informacije o redoslijedu zadavanja zadataka pojedinom korisniku
+\item Ako je navedeno moguće, potrebno je provjeriti može li se kreirati graf znanja na temelju rješavanja zadataka za istu domenu na temelju parcijalnog broja zadataka (što realnije reprezentira dostupne zadatke za stvarne domene – rijetko su dostupna baš sva znanja iz neke domene da bi se mogla kreirati zadaci koji pokrivaju baš svaku informaciju u toj domeni)
+\item Ako je navedeno moguće, potrebno je provjeriti može li se isto napraviti i za neku domenu realnog znanja\newline
+\end{itemize}
+
+Ukratko, ovim se projektom provjerava može li se graf znanja potreban za adaptivno učenje kreirati metodama dubokog učenja na temelju ponašanja korisnika na zadacima (probabilistički), a bez potrebe za time da eksperti unaprijed određuju koncepte/vještine u koje se grupiraju zadaci ili čak sam graf znanja.\newline\newline
+Za potrebe ove provjere kreirat će se:
+\begin{itemize}
+	\item umjetni, zatvoreni graf znanja 
+	\item zadaci koji pokrivaju sve informacije prisutne u tom zatvorenom grafu znanja\newline
+\end{itemize}
+Potom će se zadaci dati testerima na rješavanje, tako da se:
+\begin{itemize}
+	\item varira redoslijed zadataka koje pojedini tester dobiva kako bi pokrio sve kombinacije
+	\item bilježi točnost odgovora testera na zadatak
+	\item u slučaju netočnog odgovora testeru se prikazuje točna informacija.
+\end{itemize}
+
 \chapter{Bayesian knowledge tracing (BKT)}
 \section{Općenito o BKT}
 Bayesian Knowledge Tracing koristi Hidden Markov Model i ima 4 osnovna parametra:
@@ -70,6 +97,7 @@ To je ukazalo na potrebu pronalaska algoritama koji bi uz pomoć nekog skupa pod
 \end{itemize}
 \section{Dobivanje BKT parametara}
 \subsection{EM (expectation-maximization) algoritam}
+
 \begin{itemize}
 	\item iterativni algoritam za pronalaženje (aproksimiranje) najveće izglednosti (eng. maximum likelihood) ili maksimalne a posteriori (MAP) procjene parametara u statističkim modelima
 	\item model ovisi o nepoznatim latentnim varijablama
@@ -123,7 +151,14 @@ Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog 
 \url{https://machinelearningmastery.com/expectation-maximization-em-algorithm/}\newline
 \url{http://rstudio-pubs-static.s3.amazonaws.com/1001_3177e85f5e4840be840c84452780db52.html}\newline
 \url{https://www.colorado.edu/amath/sites/default/files/attached-files/em_algorithm.pdf}
-
+\chapter{Bayes graf}
+	\section{Uvod}
+	
+	Ideja je napraviti vlastiti model koji iz skupa podataka računa vjerojatnost savladavanja koncepata te se prema njima gradi graf znanja.
+	
+	Prvi pristup je račun uvjetnih vjerojatnosti $p(Y_j\mid X_i)$
+	
+	Najveći problem u oba pristupa je to što pokušavamo dobiti ovisnosti među konceptima,a ne pitanjima. Za razliku od pitanja za koncepte se ne može reći da ih se zna/ne zna jer se oni sastoje od više pitanja te se može samo gledati postotak riješenosti za svakog studenta / prosječan postotak riješenosti. Prosječan postotak rješenosti se može gledati kao pripadnost neizrazitom skupu ZNA odnosno 1- postotak riješenosti kao pripadnost skupu NE ZNA, to komplicira stvari kod Bayesovog zaključka. Potrebno je pronaći/proučiti postoji li ekvivalent Bayesovog zaključka kada se koriste neizraziti skupovi odnosno kontinuirane vrijednosti [0,1].
 \chapter{Zaključak}
 Zaključak.
 

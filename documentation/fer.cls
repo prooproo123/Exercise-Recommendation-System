@@ -264,15 +264,7 @@
 		\let\footnoterule\relax
 		\vfill
 		\begin{center}%
-	    	\if@radzavrsni%
-			  {\large\sffamily ZAVR\v{S}NI RAD br.~\@thesisnumber \par}%
-			\else \if@raddiplomski%
-			  {\large\sffamily DIPLOMSKI RAD br.~\@thesisnumber \par}%
-			\else \if@projekttrue%
-				{\large\sffamily PROJEKTNA DOKUMENTACIJA}
-			%\else {\large\sffamily\bfseries SEMINAR \par}%
-			
-			\fi\fi\fi
+				{\large\sffamily PROJEKTNA DOKUMENTACIJA}%
 			\if@radseminar \vskip 3em%
 			\else \vskip 1em%
 			\fi
