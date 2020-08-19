@@ -10,7 +10,7 @@
 %\thesisnumber{000}
 
 % TODO: Navedite naslov rada.
-\title{Strojno učenje u adaptivnom učenju}
+\title{Umjetna inteligencija u adaptivnom učenju}
 
 % TODO: Navedite vaše ime i prezime.
 \author{Jelena Nemčić, Marin Ovčariček,Zvonimir Sučić,Ivana Žeger}
@@ -23,13 +23,10 @@
 %\tableofcontents
 %Dodati općenitu ideju projekta
 \chapter{Uvod}
-Adaptivno učenje u e-learning softverima tipično funkcionira tako da mjeri razinu znanja korisnika kroz početni skup pitanja, virtualnu simulaciju i/ili dodijeljene zadatke. Na temelju podataka prikupljenih iz odgovora korisnika, takav softver u stvarnom vremenu procjenjuje razliku između korisničkog znanja i znanja potrebnih za određenu kompetenciju, te odabire lekcije i zadatke za korisnika tako da minimizira količinu edukacijskog sadržaja koji tom korisniku prikazuje.
-
-Konstrukcija algoritma za određivanje puta za adaptivno učenje tipično se radi na dva načina: 1) kreiranjem formalnog modela znanja za određenu domenu, a koji kreiraju eksperti iz te domene ili 2) koristeći algoritamski pristup baziran na teorijama Bayesian Knowledge Tracing i Item Response Theory koji na temelju odgovora polaznika edukacije procjenjuje vjerojatnost da je polaznik usvojio određenu vještinu/koncept (što ponovno zahtijeva unaprijed definirane vještine/koncepte).
-
-U posljednje vrijeme, a s obzirom na dostupnost sve većih količina podataka (big data) ponovno su oživjele i dodatno se razvijaju tehnologije kreiranja grafova znanja (npr. pomoću dubokog učenja), a koji s obzirom na to da su kreirani statistički mogu biti mnogo kompleksniji i uže segmentirani (precizniji) u odnosu na one koje kreiraju eksperti nekog područja. Dodatno, prikupljanje velike količine informacija u različitim domenama omogućuje da kreiranje grafova znanja ne bude ograničeno samo na one tvrtke koje imaju golem broj korisnika kao što su Google ili Facebook). Na temelju inicijalnog istraživanja vjerujemo da se ova metoda može primijeniti i na kreiranje grafova znanja za adaptivno učenje, te time omogućiti s jedne strane znatno veću adaptivnost, a s druge strane veću jednostavnost kreiranja takvih grafova.
-
-Ovo je posebno važno za područja edukacije izvan formalnog obrazovanja, gdje nisu strogo definirane ishodi učenja i testovi kojima se mjeri je li neki ishod učenja dostignut kod pojedinog polaznika. Dva primjera za to su instrukcije, gdje učeniku često nedostaju i predznanja iz drugih područja koje je ranije u školi trebao usvojiti, te korporativne edukacije, koje često obuhvaćaju ljude različitih struka i različitim znanjima iz domene za koju nastoje dobiti certifikat
+Adaptivno učenje u e-learning softverima tipično funkcionira tako da mjeri razinu znanja korisnika kroz početni skup pitanja, virtualnu simulaciju i/ili dodijeljene zadatke. Na temelju podataka prikupljenih iz odgovora korisnika, takav softver u stvarnom vremenu procjenjuje razliku između korisničkog znanja i znanja potrebnih za određenu kompetenciju, te odabire lekcije i zadatke za korisnika tako da minimizira količinu edukacijskog sadržaja koji tom korisniku prikazuje.\newline
+Konstrukcija algoritma za određivanje puta za adaptivno učenje tipično se radi na dva načina: 1) kreiranjem formalnog modela znanja za određenu domenu, a koji kreiraju eksperti iz te domene ili 2) koristeći algoritamski pristup baziran na teorijama Bayesian Knowledge Tracing i Item Response Theory koji na temelju odgovora polaznika edukacije procjenjuje vjerojatnost da je polaznik usvojio određenu vještinu/koncept (što ponovno zahtijeva unaprijed definirane vještine/koncepte).\newline
+U posljednje vrijeme, a s obzirom na dostupnost sve većih količina podataka (big data) ponovno su oživjele i dodatno se razvijaju tehnologije kreiranja grafova znanja (npr. pomoću dubokog učenja), a koji s obzirom na to da su kreirani statistički mogu biti mnogo kompleksniji i uže segmentirani (precizniji) u odnosu na one koje kreiraju eksperti nekog područja. Dodatno, prikupljanje velike količine informacija u različitim domenama omogućuje da kreiranje grafova znanja ne bude ograničeno samo na one tvrtke koje imaju golem broj korisnika kao što su Google ili Facebook). Na temelju inicijalnog istraživanja vjerujemo da se ova metoda može primijeniti i na kreiranje grafova znanja za adaptivno učenje, te time omogućiti s jedne strane znatno veću adaptivnost, a s druge strane veću jednostavnost kreiranja takvih grafova.\newline
+Ovo je posebno važno za područja edukacije izvan formalnog obrazovanja, gdje nisu strogo definirane ishodi učenja i testovi kojima se mjeri je li neki ishod učenja dostignut kod pojedinog polaznika. Dva primjera za to su instrukcije, gdje učeniku često nedostaju i predznanja iz drugih područja koje je ranije u školi trebao usvojiti, te korporativne edukacije, koje često obuhvaćaju ljude različitih struka i različitim znanjima iz domene za koju nastoje dobiti certifikat.
 
 
 \chapter{Cilj i postupak}
@@ -39,7 +36,6 @@ Stoga je cilj ovog projekta provjeriti sljedeće:
 \item Ako je navedeno moguće, potrebno je provjeriti može li se kreirati graf znanja na temelju rješavanja zadataka za istu domenu na temelju parcijalnog broja zadataka (što realnije reprezentira dostupne zadatke za stvarne domene – rijetko su dostupna baš sva znanja iz neke domene da bi se mogla kreirati zadaci koji pokrivaju baš svaku informaciju u toj domeni)
 \item Ako je navedeno moguće, potrebno je provjeriti može li se isto napraviti i za neku domenu realnog znanja\newline
 \end{itemize}
-
 Ukratko, ovim se projektom provjerava može li se graf znanja potreban za adaptivno učenje kreirati metodama dubokog učenja na temelju ponašanja korisnika na zadacima (probabilistički), a bez potrebe za time da eksperti unaprijed određuju koncepte/vještine u koje se grupiraju zadaci ili čak sam graf znanja.\newline\newline
 Za potrebe ove provjere kreirat će se:
 \begin{itemize}
@@ -54,6 +50,7 @@ Potom će se zadaci dati testerima na rješavanje, tako da se:
 \end{itemize}
 
 \chapter{Bayesian knowledge tracing (BKT)}
+\label{ch:BKT}
 \section{Općenito o BKT}
 Bayesian Knowledge Tracing koristi Hidden Markov Model i ima 4 osnovna parametra:
 \begin{itemize}
@@ -82,8 +79,7 @@ Kao izlaz dobivaju se vrijednosti:
 \end{equation}
 
 \section{Ideje}
-Prvobitna ideja je bila da se p(L0) računa iz inicijalnih pitanja, vrijednosti p(G) i p(S) bi se prema preporuci iz rada(trebalo bi pronaći kojeg i baciti referencu) stavile na interval [0,0.3], [0,0.1] te bi se p(T) postavio prema preporuci eksperta što ne želimo jer je cilj ovog projekta da smanjimo zadatke eksperata na minimum.
-
+Prvobitna ideja je bila da se p(L0) računa iz inicijalnih pitanja, vrijednosti p(G) i p(S) bi se prema preporuci iz rada(trebalo bi pronaći kojeg i baciti referencu) stavile na interval [0,0.3], [0,0.1] te bi se p(T) postavio prema preporuci eksperta što ne želimo jer je cilj ovog projekta da smanjimo zadatke eksperata na minimum.\newline
 To je ukazalo na potrebu pronalaska algoritama koji bi uz pomoć nekog skupa podataka aproksimirali parametre za BKT.
 \section{Problemi i zadaci}
 \begin{itemize}
@@ -154,11 +150,64 @@ Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog 
 \chapter{Bayes graf}
 	\section{Uvod}
 	
-	Ideja je napraviti vlastiti model koji iz skupa podataka računa vjerojatnost savladavanja koncepata te se prema njima gradi graf znanja.
-	
-	Prvi pristup je račun uvjetnih vjerojatnosti $p(Y_j\mid X_i)$
-	
+	Ideja je napraviti vlastiti model koji iz skupa podataka računa vjerojatnost savladavanja koncepata te se prema njima gradi graf znanja.\newline
+	Prvi pristup je račun uvjetnih vjerojatnosti $p(Y_j\mid X_i)$, odnosno vjerojatnost da korisnik zna (savladao je) koncept Y ako zna X. Koristi se klasična formula Bayesove uvjetne vjerojatnosti čime se gradi matrica odnosa koncepata.
+	\begin{equation}
+		p(Y \mid X)=\frac{p(X \wedge Y)}{p(X)}
+	\end{equation}
+	\newline Vjerojatnost Y uz X nam govori koliko je poznavanje X bitno za poznavanje Y. Pretpostavka je da će korisnik s većom vjerojatnošću znati jednostavniji koncept ako zna kompliciraniji (nadogradnju jednostavnog), ako su X uz Y i Y uz X podjednaki (potreban je neki prag) može se pretpostaviti da su koncepti nezavisni ili bi se mogli spojiti kao jedan koncept. \newline
+	Drugi pristup je bio pokušaj da se gleda kad su koncepti X i Y točni s obzirom koji od njih je položen prvi, pretpostavka je bila da bi se tako mogla odrediti relacija nadogradnje, odnosno prethodnika. Pristup nije uspio jer ili nije moguć ili nije bio dobro definiran / implementiran.\newline
 	Najveći problem u oba pristupa je to što pokušavamo dobiti ovisnosti među konceptima,a ne pitanjima. Za razliku od pitanja za koncepte se ne može reći da ih se zna/ne zna jer se oni sastoje od više pitanja te se može samo gledati postotak riješenosti za svakog studenta / prosječan postotak riješenosti. Prosječan postotak rješenosti se može gledati kao pripadnost neizrazitom skupu ZNA odnosno 1- postotak riješenosti kao pripadnost skupu NE ZNA, to komplicira stvari kod Bayesovog zaključka. Potrebno je pronaći/proučiti postoji li ekvivalent Bayesovog zaključka kada se koriste neizraziti skupovi odnosno kontinuirane vrijednosti [0,1].
+	
+	\section{Problem kontinuiranih vrijednosti}
+		Običan Bayesov zaključan radi sa diskretnih vrijednostima (true/false, 1/0). Dok je to istina kod izračuna vjerojatnosti i točnosti pitanja, isto se ne može reći za koncepte. Može se gledati da je koncept položen s nekom vjerojatnošću ili da određen pokušaj ispita pripada skupo "položen" s nekom pripadnošću, to je obično postotak točnih bodova i to je racionalan broj. Iako postoji Bayesov zaključak za kontinuirane vrijednosti nije jednostavan za izračunati jer se teško mogu dobiti latentne razdiobe bodova za neku populaciju. Pošto je Bayes kontinuiranoj domeni prekompliciran za računati potražena je altrenativa te se došlo do zaključka da se treba nekako vratiti u diskretnu domenu, odnosno napraviti model koji može odlučiti kad neki koncept je ili nije položen.\newline
+		Najjednostavnije rješenje je ručno za svaki koncept zadati bodovni prag te bi svi korisnici koji zadovolje prag imali oznaku da su savladali koncept. To i nije najbolji pristup jer se ne uzimaju u obzir razne druge varijable kao što su npr. vjerojatnost da korisnik pogađa ili slučajno pogrješi.\newline
+		Kako bi se rješio taj problem, pronađena je tehnika Bayesian Knowledge Tracing~\ref{ch:BKT} i kombinirana sa vlastitom tehnikom raspodjele po Gaussu kako bi se bolje aproksimiralo trenutno znanje korisnika.
+	\section{Skaliranje korisnika prema Gaussu}
+		Kao alternativa BKT-u implementirano je skaliranje studenata prema Gaussu:
+	\begin{itemize}
+		\item za svakog studenta i za svaku vještinu izračunat je percentil kojemu taj student pripada u ovisnosti o odgovorima svih studenata
+		\item postavi se threshold koji odgovara percentilu iznad kojeg se nalaze studenti koji su položili vještinu\newline
+	\end{itemize}
+		Paralelno se za svakog studenta računa prolaznost (0 ili 1) prema BKT-u i prema Gaussu:
+	\begin{itemize}
+		\item ako se one poklapaju, to se uzima kao vrijednost za tog studenta
+		\item ako je zbroj te dvije jačine veći od 0, uzima se da je student položio vještinu
+		\item ako su različite gleda se jačina s kojom model tvrdi da je student pao/položio, ona se računa na sljedeći način:%dodati sliku ispod
+	\end{itemize}
+	
+		
+		
+		
+	
+		 
+		
+		%TREBA UBACITI SLIKU
+
+		
+	\section{Izvještaji}
+		\subsection{22.07.2020.}
+		\subsection{28.07.2020.}
+		\subsection{29.07.2020.}
+		\subsection{30.07.2020.}
+			%Tu spada i Gauss, uzeti samo dio koji nije prethodno napisan, staviti dio koji dolazi nakon slike koda
+		\subsection{31.07.2020.}
+		\begin{itemize}
+			\item napravljene su potrebne izmjene skripti kako bi se broj studenata na pojedinim vještinama mogao razlikovati, što više odgovara realnim podacima (neće svaki student odgovarati na pitanja iz svake vještine)
+			\item kod računanja vrijednosti joint\_probability uzima se presjek studenata koji su rješavali koncept A i koncept B (gleda se njihov student\_id) i računa njihova uspješnost
+			\item kod generiranja umjetnog dataseta dodan je parametar broj\_studenata za svaki koncept
+			\item napravljena je skripta koja sjedinjuje sve važne dosad napravljene skripte u niz funkcija koje se lako pozivaju
+			kako bi se moglo raditi importanje .ipynb fileova potrebno je u istom kazalu gdje su  fileovi dodati praznu \_\_init\_\_.py datoteku
+			\item 	dodana je mogućnost odabira pragova cutoffa, gaussa, bkt-a kod pozivanja funkcije build\_graph().
+			\item 	trenutna greška u skripti pitanja->koncepti, izračun pX-a se pokreće dva puta, prvi put je sve u redu dok se drugi put neki keyevi ne nalazi u dictionaryu, uzrok tome je drugi poziv funkcije calculate, kod splitanja se maknu neki indeksi, greška je u pisanju koda, svugdje se gleda range(noStudents) umjesto list studenata, kod kfolda se određeni studenti miču i ostaju samo neki id-ovi i noStudents se smanjuje i može se desiti npr. da se makne student s id-om 1 što znači da ga više nema u dictionaryju ali for petlja će ga i dalje pokušati dohvatiti, treba napisati program da radi prema student id-u, ako se ne nađe bolje rješenje maknut će se k-fold izračun jer trentna implementacija nije dobra - POPRAVLJENO
+			\item 
+			treba u oba crtanja grafa riješiti problem dijeljenja sa nulom - DJELOMIČNO POPRAVLJENO - radi, ali rješenje nije najbolje (ako pX bude nula, ne dijeli se nego se joint probability postavlja na 0)
+			\item taj kod bi se možda mogao koristiti kao provjera povezanosti pitanja
+			\item zadnje što preostaje nakon popravljanja i uljepšavanja koda koji pretvara pitanja u koncepte jest smisliti obradu google formsa tako da je omogućeno da bude različit broj pitanja po konceptu, s tim da su pitanja grupirana odnosno nisu pomiješana po ispitu
+		\end{itemize}	
+		\subsection{14.08.2020.}
+			Prebačene su skripte iz colaba u .py fileove na git, obavaljeno refaktoriranje kako bi se malo više standardizirale konvencije imenovanja i ostala uljepšavanja koda.Napravljena main skripta koju se lagano može programirati da radi razne operacije uz pomoć funkcija koje pozivaju importane module.
+			
 \chapter{Zaključak}
 Zaključak.
 
