@@ -28,7 +28,7 @@
 \newif\if@citenumeric		\global\@citenumericfalse
 \newif\if@encutf			\global\@encutftrue
 \newif\if@enccp				\global\@enccpfalse
-
+\newif\if@projekt           \global\@projekttrue
 % Postavi font
 \DeclareOption{lmodern}{\@fontlmoderntrue%
 						\@fonttimesfalse}
@@ -45,7 +45,7 @@
 \DeclareOption{diplomski}{\@radseminarfalse%
 					  \@radzavrsnifalse%
 					  \@raddiplomskitrue}
-					  
+\DeclareOption{projekt}{\@projekttrue} %DODANO
 % Encoding
 \DeclareOption{utf8}{\@encutftrue%
 					 \@enccpfalse}
@@ -262,20 +262,17 @@
 	\begin{titlepage}%
 		\let\footnotesize\small
 		\let\footnoterule\relax
-	
-		\begin{center}
-			{\large\sffamily SVEU\v{C}ILI\v{S}TE U ZAGREBU}
-			
-			{\large\bfseries\sffamily FAKULTET ELEKTROTEHNIKE I RA\v{C}UNARSTVA}
-		\end{center}
 		\vfill
 		\begin{center}%
 	    	\if@radzavrsni%
 			  {\large\sffamily ZAVR\v{S}NI RAD br.~\@thesisnumber \par}%
 			\else \if@raddiplomski%
 			  {\large\sffamily DIPLOMSKI RAD br.~\@thesisnumber \par}%
-			\else {\large\sffamily\bfseries SEMINAR \par}%
-			\fi\fi
+			\else \if@projekttrue%
+				{\large\sffamily PROJEKTNA DOKUMENTACIJA}
+			%\else {\large\sffamily\bfseries SEMINAR \par}%
+			
+			\fi\fi\fi
 			\if@radseminar \vskip 3em%
 			\else \vskip 1em%
 			\fi

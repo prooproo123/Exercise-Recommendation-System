@@ -1,3 +1,16 @@
-\contentsline {chapter}{\numberline {1}Uvod}{1}
-\contentsline {chapter}{\numberline {2}Razrada teme}{2}
-\contentsline {chapter}{\numberline {3}Zaklju\IeC {\v c}ak}{3}
+\babel@toc {croatian}{}
+\contentsline {chapter}{\numberline {1}Uvod}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Razrada teme}{2}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Bayesian knowledge tracing (BKT)}{3}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Općenito o BKT}{3}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Ideje}{4}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Problemi i zadaci}{4}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Dobivanje BKT parametara}{4}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}EM (expectation-maximization) algoritam}{4}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Grid search i Simulated Annealing}{5}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}Rezultati}{5}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Poveznice}{6}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}BKT}{6}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Pronalaženje parametara}{6}{subsection.3.6.2}%
+\contentsline {chapter}{\numberline {4}Zaključak}{8}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Literatura}{9}{chapter.5}%

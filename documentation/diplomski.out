@@ -1,0 +1,15 @@
+\BOOKMARK [0][-]{chapter.1}{Uvod}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Razrada teme}{}% 2
+\BOOKMARK [0][-]{chapter.3}{Bayesian knowledge tracing \(BKT\)}{}% 3
+\BOOKMARK [1][-]{section.3.1}{Opcenito o BKT}{chapter.3}% 4
+\BOOKMARK [1][-]{section.3.2}{Ideje}{chapter.3}% 5
+\BOOKMARK [1][-]{section.3.3}{Problemi i zadaci}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.4}{Dobivanje BKT parametara}{chapter.3}% 7
+\BOOKMARK [2][-]{subsection.3.4.1}{EM \(expectation-maximization\) algoritam}{section.3.4}% 8
+\BOOKMARK [2][-]{subsection.3.4.2}{Grid search i Simulated Annealing}{section.3.4}% 9
+\BOOKMARK [1][-]{section.3.5}{Rezultati}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.6}{Poveznice}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.6.1}{BKT}{section.3.6}% 12
+\BOOKMARK [2][-]{subsection.3.6.2}{Pronala\236enje parametara}{section.3.6}% 13
+\BOOKMARK [0][-]{chapter.4}{Zakljucak}{}% 14
+\BOOKMARK [0][-]{chapter.5}{Literatura}{}% 15
