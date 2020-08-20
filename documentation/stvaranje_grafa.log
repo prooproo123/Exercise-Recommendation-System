@@ -1,0 +1,917 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.8.17)  20 AUG 2020 16:35
+entering extended mode
+**./stvaranje_grafa.tex
+(stvaranje_grafa.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-08-07> (fer.cls
+Document Class: fer 
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
+Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
+File: size12.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count168
+\c@chapter=\count169
+\c@section=\count170
+\c@subsection=\count171
+\c@subsubsection=\count172
+\c@paragraph=\count173
+\c@subparagraph=\count174
+\c@figure=\count175
+\c@table=\count176
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count177
+\Gm@cntv=\count178
+\c@Gm@tempcnt=\count179
+\Gm@bindingoffset=\dimen135
+\Gm@wd@mp=\dimen136
+\Gm@odd@mp=\dimen137
+\Gm@even@mp=\dimen138
+\Gm@layoutwidth=\dimen139
+\Gm@layoutheight=\dimen140
+\Gm@layouthoffset=\dimen141
+\Gm@layoutvoffset=\dimen142
+\Gm@dimlist=\toks16
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2020/07/13 3.47 The Babel package
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
+File: babel.def 2020/07/13 3.47 Babel common definitions
+\babel@savecnt=\count180
+\U@D=\dimen143
+\l@babelnohyphens=\language79
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count181
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/babel-croatian\croatian
+.ldf
+Language: croatian 2014/03/31 v1.3m Croatian support from the babel system
+)) (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+) (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks19
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks20
+\ex@=\dimen146
+))
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen147
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count182
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count183
+\leftroot@=\count184
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count185
+\DOTSCASE@=\count186
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box45
+\strutbox@=\box46
+\big@size=\dimen148
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count187
+\c@MaxMatrixCols=\count188
+\dotsspace@=\muskip16
+\c@parentequation=\count189
+\dspbrk@lvl=\count190
+\tag@help=\toks21
+\row@=\count191
+\column@=\count192
+\maxfields@=\count193
+\andhelp@=\toks22
+\eqnshift@=\dimen149
+\alignsep@=\dimen150
+\tagshift@=\dimen151
+\tagwidth@=\dimen152
+\totwidth@=\dimen153
+\lineht@=\dimen154
+\@envbody=\toks23
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks24
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/base\fixltx2e.sty
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
+
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
+) (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2020/05/30 v3.4k Customizing captions (AR)
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2020/07/20 v1.12b caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen155
+\captionmargin@=\dimen156
+\captionwidth=\dimen157
+\caption@tempdima=\dimen158
+\caption@indent=\dimen159
+\caption@parindent=\dimen160
+\caption@hangindent=\dimen161
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count194
+\c@continuedfloat=\count195
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip52
+\enit@outerparindent=\dimen162
+\enit@toks=\toks25
+\enit@inbox=\box47
+\enit@count@id=\count196
+\enitdp@description=\count197
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/tocbibind\tocbibind.sty
+Package: tocbibind 2010/10/13 v1.5k extra ToC listings
+Package tocbibind Info: The document has chapter divisions on input line 50.
+
+Package tocbibind Note: Using chapter style headings, unless overridden.
+
+) (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\times.sty
+Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip53
+\bibsep=\skip54
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count198
+)
+\listindentation=\dimen163
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
+Package: color 2019/11/23 v1.2a Standard LaTeX Color (DPC)
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+) (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.s
+ty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacro
+.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+)
+\@linkdim=\dimen164
+\Hy@linkcounter=\count199
+\Hy@pagecounter=\count266
+ (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count267
+Package hyperref Info: Hyper figures OFF on input line 4464.
+Package hyperref Info: Link nesting OFF on input line 4469.
+Package hyperref Info: Hyper index ON on input line 4472.
+Package hyperref Info: Plain pages OFF on input line 4479.
+Package hyperref Info: Backreferencing OFF on input line 4484.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4717.
+\c@Hy@tempcnt=\count268
+LaTeX Info: Redefining \url on input line 5076.
+\XeTeXLinkMargin=\dimen165
+ (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count269
+\Field@Width=\dimen166
+\Fld@charsize=\dimen167
+Package hyperref Info: Hyper figures OFF on input line 6347.
+Package hyperref Info: Link nesting OFF on input line 6352.
+Package hyperref Info: Hyper index ON on input line 6355.
+Package hyperref Info: backreferencing OFF on input line 6362.
+Package hyperref Info: Link coloring OFF on input line 6367.
+Package hyperref Info: Link coloring with OCG OFF on input line 6372.
+Package hyperref Info: PDF/A mode OFF on input line 6377.
+LaTeX Info: Redefining \ref on input line 6417.
+LaTeX Info: Redefining \pageref on input line 6421.
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/atbegshi\atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
+\Hy@abspage=\count270
+\c@Item=\count271
+\c@Hfootnote=\count272
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+ (C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/atveryend\atveryend.sty
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+)
+\Fld@listcount=\count273
+\c@bookmark@seq@number=\count274
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip55
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/datetime\datetime.sty
+Package: datetime 2015/03/20 v2.60 Date Time Package
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2020/07/15 v2.5i e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count275
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/fmtcount\fmtcount.sty
+Package: fmtcount 2020/01/30 v3.07
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
+\XKV@toks=\toks26
+\XKV@tempa@toks=\toks27
+)
+\XKV@depth=\count276
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/fmtcount\fcprefix.sty
+Package: fcprefix 2012/09/28
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/fmtcount\fcnumparser.st
+y
+Package: fcnumparser 2017/06/15
+\fc@digit@counter=\count277
+))
+\c@padzeroesN=\count278
+\fc@tmpcatcode=\count279
+\@DT@modctr=\count280
+\@ordinalctr=\count281
+\@orgargctr=\count282
+\@strctr=\count283
+\@tmpstrctr=\count284
+\@DT@loopN=\count285
+\@DT@X=\count286
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/datetime\datetime-defau
+lts.sty
+Package: datetime-defaults 2013/09/10
+)
+\@day=\count287
+\@month=\count288
+\@year=\count289
+\c@HOUR=\count290
+\c@HOURXII=\count291
+\c@MINUTE=\count292
+\c@TOHOUR=\count293
+\c@TOMINUTE=\count294
+\c@SECOND=\count295
+\currenthour=\count296
+\currentminute=\count297
+\currentsecond=\count298
+Package datetime Info: No datetime.cfg file found, using default settings on in
+put line 308.
+\@dtctr=\count299
+\dayofyear=\count300
+\dayofweek=\count301
+LaTeX Info: Redefining \today on input line 736.
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/datetime\dt-croatian.de
+f
+File: dt-croatian.def 2013/09/10
+LaTeX Info: Redefining \datecroatian on input line 108.
+)
+\dt@a=\toks28
+\dt@b=\toks29
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+mode.def
+File: l3backend-pdfmode.def 2020-08-07 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count302
+\l__pdf_internal_box=\box48
+) (stvaranje_grafa.aux)
+\openout1 = `stvaranje_grafa.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 17
+.
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(99.58464pt, 412.56497pt, 85.35826pt)
+* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=412.56497pt
+* \textheight=674.33032pt
+* \oddsidemargin=27.31465pt
+* \evensidemargin=27.31465pt
+* \topmargin=-23.91173pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count303
+\scratchdimen=\dimen168
+\scratchbox=\box49
+\nofMPsegments=\count304
+\nofMParguments=\count305
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count306
+\MPscratchDim=\dimen169
+\MPnumerator=\count307
+\makeMPintoPDFobject=\count308
+\everyMPtoPDFconversion=\toks31
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring OFF on input line 17.
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count309
+)
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
+ (stvaranje_grafa.out) (stvaranje_grafa.out)
+\@outlinefile=\write3
+\openout3 = `stvaranje_grafa.out'.
+
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 21
+.
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
+File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
+
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
+
+
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <14.4> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 21.
+
+
+LaTeX Warning: No \author given.
+
+
+LaTeX Warning: Voditelj nije naveden. Koristi \voditelj za definiranje.
+
+[1
+
+{C:/Users/Ivana/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
+Poglavlje 1.
+
+Package hyperref Warning: Composite letter `\textasciicaron+c'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciicaron' on input line 24.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
+
+ []
+
+[1]
+Underfull \hbox (badness 10000) in paragraph at lines 42--46
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--46
+
+ []
+
+
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 47.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--51
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--51
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 53--60
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--60
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--63
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--63
+
+ []
+
+[3]
+<./figures/protein.jpg, id=121, 77.088pt x 57.816pt>
+File: ./figures/protein.jpg Graphic file (type jpg)
+<use ./figures/protein.jpg>
+Package pdftex.def Info: ./figures/protein.jpg  used on input line 68.
+(pdftex.def)             Requested size: 308.3512pt x 231.26337pt.
+ [4 <./figures/protein.jpg>]
+
+Package natbib Warning: Citation `6' on page 5 undefined on input line 77.
+
+LaTeX Info: Symbol \textrightarrow not provided by
+            font family ptm in TS1 encoding.
+            Default family used instead on input line 83.
+[5] [6]
+<./figures/dot1.jpg, id=140, 361.35pt x 554.3109pt>
+File: ./figures/dot1.jpg Graphic file (type jpg)
+<use ./figures/dot1.jpg>
+Package pdftex.def Info: ./figures/dot1.jpg  used on input line 99.
+(pdftex.def)             Requested size: 180.67456pt x 277.15477pt.
+<./figures/circo1.jpg, id=143, 361.35pt x 323.7696pt>
+File: ./figures/circo1.jpg Graphic file (type jpg)
+<use ./figures/circo1.jpg>
+Package pdftex.def Info: ./figures/circo1.jpg  used on input line 109.
+(pdftex.def)             Requested size: 180.67456pt x 161.8844pt.
+<./figures/sfdp1.jpg, id=144, 168.63pt x 138.9993pt>
+File: ./figures/sfdp1.jpg Graphic file (type jpg)
+<use ./figures/sfdp1.jpg>
+Package pdftex.def Info: ./figures/sfdp1.jpg  used on input line 116.
+(pdftex.def)             Requested size: 252.94437pt x 208.49841pt.
+<./figures/dot2.png, id=145, 933.4875pt x 235.88126pt>
+File: ./figures/dot2.png Graphic file (type png)
+<use ./figures/dot2.png>
+Package pdftex.def Info: ./figures/dot2.png  used on input line 123.
+(pdftex.def)             Requested size: 373.38838pt x 94.35083pt.
+<./figures/sfdp2.jpg, id=146, 154.176pt x 94.1919pt>
+File: ./figures/sfdp2.jpg Graphic file (type jpg)
+<use ./figures/sfdp2.jpg>
+Package pdftex.def Info: ./figures/sfdp2.jpg  used on input line 130.
+(pdftex.def)             Requested size: 308.3512pt x 188.3833pt.
+ [7 <./figures/dot1.jpg>] [8 <./figures/circo1.jpg> <./figures/sfdp1.jpg> <./fi
+gures/dot2.png (PNG copy)>]
+<./figures/dot3.jpg, id=161, 96.36pt x 185.7339pt>
+File: ./figures/dot3.jpg Graphic file (type jpg)
+<use ./figures/dot3.jpg>
+Package pdftex.def Info: ./figures/dot3.jpg  used on input line 141.
+(pdftex.def)             Requested size: 96.35974pt x 185.73344pt.
+
+Poglavlje 2.
+[9 <./figures/sfdp2.jpg> <./figures/dot3.jpg>]
+<./figures/clust1.png, id=168, 966.61125pt x 1097.09875pt>
+File: ./figures/clust1.png Graphic file (type png)
+<use ./figures/clust1.png>
+Package pdftex.def Info: ./figures/clust1.png  used on input line 157.
+(pdftex.def)             Requested size: 289.98561pt x 329.13217pt.
+
+
+Package natbib Warning: Citation `6' on page 10 undefined on input line 164.
+
+[10]
+<./figures/clust2.png, id=178, 482.80376pt x 323.2075pt>
+File: ./figures/clust2.png Graphic file (type png)
+<use ./figures/clust2.png>
+Package pdftex.def Info: ./figures/clust2.png  used on input line 168.
+(pdftex.def)             Requested size: 241.40129pt x 161.60335pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--190
+
+ []
+
+[11 <./figures/clust1.png>] [12 <./figures/clust2.png>]
+
+Package natbib Warning: Citation `12' on page 13 undefined on input line 198.
+
+
+Package natbib Warning: Citation `13' on page 13 undefined on input line 199.
+
+
+Package natbib Warning: Citation `14' on page 13 undefined on input line 202.
+
+
+Package natbib Warning: Citation `15' on page 13 undefined on input line 205.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--213
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--213
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--213
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--213
+
+ []
+
+[13]
+
+Package natbib Warning: Citation `16' on page 14 undefined on input line 218.
+
+
+Package natbib Warning: Citation `17' on page 14 undefined on input line 221.
+
+
+Package natbib Warning: Citation `18' on page 14 undefined on input line 221.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--223
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--223
+
+ []
+
+[14]
+Poglavlje 3.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 22
+8.
+(C:\Users\Ivana\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
+[][]$\T1/pcr/m/n/12 https : / / www . analyticsvidhya . com / blog / 2019 / 10 
+/
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
+[]\T1/ptm/m/n/12 K12EduKG, []$\T1/pcr/m/n/12 https : / / aic-[]fe . bnu . edu .
+ cn / docs /
+ []
+
+
+Underfull \hbox (badness 7291) in paragraph at lines 233--234
+[]\T1/ptm/m/n/12 Latent Skill Em-bed-ding (Len-til), []$\T1/pcr/m/n/12 https : 
+/ / arxiv . org / pdf / 1602 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 235--236
+[][]$\T1/pcr/m/n/12 https : / / www . slideshare . net / bamparopoulos /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 236--237
+[][]$\T1/pcr/m/n/12 https : / / www . educationaldatamining . org / EDM2015 /
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+[][]$\T1/pcr/m/n/12 https : / / www . researchgate . net / publication / 333828
+640 _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/pcr/m/n/12 INTERACTIVE _ LEARNING _ IN _ A _ CONVERSATIONAL _ INTELLIGENT _
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+\T1/pcr/m/n/12 TUTORING _ SYSTEM _ USING _ STUDENT _ FEEDBACK _ CONCEPT _
+ []
+
+
+Underfull \hbox (badness 2486) in paragraph at lines 239--240
+[]\T1/ptm/m/n/12 Deep Hi-erar-c-hi-cal Knowledge Tra-cing, []$\T1/pcr/m/n/12 ht
+tp : / / www . personal . psu .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
+[][]$\T1/pcr/m/n/12 https : / / en . wikipedia . org / wiki / T-[]distributed _
+
+ []
+
+
+Underfull \hbox (badness 4940) in paragraph at lines 241--242
+[]\T1/ptm/m/n/12 Automatic Con-cept Re-la-ti-on-ships Dis-co-very for an Adap-t
+ive E-course,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
+[]$\T1/pcr/m/n/12 https : / / www . educationaldatamining . org / EDM2009 /
+ []
+
+
+Underfull \hbox (badness 1442) in paragraph at lines 242--243
+[]\T1/ptm/m/n/12 Differentiating Con-cepts and Ins-tan-ces for Knowledge Graph 
+Em-bed-ding,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 245--246
+[][]$\T1/pcr/m/n/12 https : / / github . com / Accenture / AmpliGraph / blob / 
+master /
+ []
+
+
+Overfull \hbox (23.7017pt too wide) in paragraph at lines 245--246
+\T1/pcr/m/n/12 docs / tutorials / ClusteringAndClassificationWithEmbeddings .
+ []
+
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 252.
+[16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 252.
+ (stvaranje_grafa.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 252.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 252.
+Package rerunfilecheck Info: File `stvaranje_grafa.out' has not changed.
+(rerunfilecheck)             Checksum: F30AAC365E431ABDC4053E00295C2CCD;1326.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 252.
+ ) 
+Here is how much of TeX's memory you used:
+ 11164 strings out of 481212
+ 168937 string characters out of 2905973
+ 471926 words of memory out of 3000000
+ 26443 multiletter control sequences out of 15000+200000
+ 580448 words of font info for 87 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 46i,8n,77p,1053b,483s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Ivana/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <C
+:\Users\Ivana\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.
+pk><C:/Users/Ivana/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmmi12.pfb><C:/Users/Ivana/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmmi8.pfb><C:/Users/Ivana/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb><C:/Users/Ivana/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Ivana/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Ivana/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/Ivana/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Ivana/AppData/Local/
+Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Ivana/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Ivana/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Ivana/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on stvaranje_grafa.pdf (17 pages, 528516 bytes).
+PDF statistics:
+ 313 PDF objects out of 1000 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
+
