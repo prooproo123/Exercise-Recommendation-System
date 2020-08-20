@@ -3,7 +3,10 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{titlesec}
-
+\usepackage{graphicx}
+\usepackage{xurl}
+\graphicspath{{figures/}}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \begin{document}
 
 % TODO: Navedite broj rada.
@@ -187,10 +190,110 @@ Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog 
 		
 	\section{Izvještaji}
 		\subsection{22.07.2020.}
+		\textbf{Planovi, problemi:}
+		\begin{itemize}
+			\item pronaći dobru vrijednost za cutoff kod micanja poveznica kod grafa
+			\item iteriranje po retcima dataframeova - nije dobro, treba pronaći efikasnije načine obrade tablica
+			\item isprobati program na malom datasetu
+			\item isprobati program na biologija dataset, ali gledajući da je svako pitanje jedan koncept (napraviti i program koji bi pretvorio pitanja u koncepte)
+			\item proučiti librarye za crtanje usmjerenih grafova (boje, labele, debljine poveznica)
+			\item dopuniti program da crta usmjerene grafove
+			\item pokušati naći implementacije EM i grid search algoritma za računanje BKT parametara
+			\item pokušati pronaći dobro objašnjenog bayesa u kontinuiranoj domeni
+			\item pronaći naprednije implementacije BKT-a koje uzimaju više parametara
+			\item osmisliti strukture podataka koje bi predstavljale čvorove i povezivale pitanja,koncepte i ostale čvorove u jednu cjelinu, omogućavale obilazak grafa te nalaženje najkraćeg puta (po nekom kriteriju) od početnog do ciljnog čvora
+			\item napraviti novi test koji bi imao mali broj pitanja iz različitih područja koja su međusobno povezana (npr. stanica, što je to -> građa stanice -> građa različitih organela) i na tome isprobati program\newline
+		\end{itemize}
+		\textbf{Rezultati}
+		\begin{itemize}
+			\item napravljena skripta za izgradnju grafa pomoću uvjetnih vjerojatnosti i Bayesove formule
+			\begin{itemize}
+				\item ulaz: datoteka koja sadrži BKT parametre za sve vještine i datoteka koja sadrži tablicu studenata i njihovih odgovora
+				\item izlaz: matrica koja predstavlja matricu susjedstva grafa, gdje svaki element predstavlja “jačinu”/”vjerojatnost” s kojom je koncept \textit{i} povezan s konceptom \textit{j}
+				\item skripta sadrži razred BKT i funkcije za računanje vjerojatnosti p(X), računanje zajedničke vjerojatnosti p(X and Y) i računanje matrice ovisnosti
+			\end{itemize}
+			\item skripta je isprobana na dosad prikupljenim podacima testa za biologiju (74 odgovora) i dobiveni su realni rezultati, ali nismo imali sa čime usporediti budući da je to samo jedan koncept
+			\item izrađeni su grafovi na malom umjetnom datasetu i datasetu biologija gdje su se pitanja gledali kao zasebni koncepti
+			\item za potrebu prilagodbe pitanja u koncept napravljena je skripta koja uzima pitanja kao koncepte, računa vjerojatnosti te crta graf
+			\item za crtanje grafova koristio se netowrkx library
+			\item vrijednost cutoffa za izgradnju grafova bi prema procjeni trebala u intervalu [0.8,0.95]. Nismo našli nikakve službene izvore/preporuke tako da  će se za sada cutoff morati ručno procijeniti.
+			\item odrađena optimizacija koda gdje se boljim iteriranjem po dataframeu dobiva ljepši i brži kod, daljnja optimizacija je vjerojatno moguća, ali trenutno nije prioritet trošiti vrijeme na istraživanje kako to napraviti
+		\end{itemize}
 		\subsection{28.07.2020.}
+		\begin{itemize}
+			\item napravljen je je novi kviz sa pet koncepata iz biologije
+			\item svaki koncept ima 6 pitanja
+			\item problemi: kviz ima više pitanja nego prošli, u prosjeku je mentalno zahtjevniji, znanje koncepta vjerojatno nije dobro pokriveno sa tih 6 pitanja, neki koncepti su su značajno zahtjevniji nego drugi te raspodjela pitanja po težini nije ista u svakom konceptu i vjerojatno nije optimalna budući da se trenutno svi odgovori vrednuju jednako
+			\item u trenutku pisanja izvještaja imamo samo 25 odgovora na kviz, pokrenuli smo model da vidimo kako reagira na manjak podataka
+			\item rezultati su očekivano lošiji nego prije, u početku su od 5 koncepata na grafu bila prikazana samo 3 te smo dobili NaN vrijednosti matrici povezanosti, što se dogodilo jer prema pragu BKT-a niti jedan student nije položio predmet te se pojavilo dijeljenje sa nulom. Nakon što smo spustili prag prolaska sa 0.95 na 0.9, pojavio se dodatan čvor na grafu i nismo imali NaN, ovo ukazuje na problem osjetljivosti BKT-a na manjak podataka i na redoslijed točno/netočno odgovora studenata
+			\item također same povezanosti grafa nisu imali smisla (npr. da je živčana stanica preduvjet za diobu stanice)
+			\item ovi rezultati nisu iznenađujući jer je samo svojstvo BKT-a da je osjetljiv na redoslijed i uzastopno ponavljanje točno/netočno u nizu odgovora te su modeli bazirani na vjerojatnostima jako osjetljivi na manjak ulaznih podataka
+			\item IDEJA: isprobati jednostavno skaliranje bodova studenata na temelju Gaussove raspodjele te odrediti prag prema kojem bi se dijelili na prolazak/pad. Ovako bi se maknula loša svojstva BKT-a, ali bi model postao još jednostavniji te bi vjerojatno imao slabija svojstva predviđanja.
+			\item treba proučiti kako napraviti da linije povezanosti imaju različite debljine s obzirom na jačinu povezanosti, onda bi se mogao malo spustiti cutoff da se dobije bolji pregled ovisnosti između koncepata
+		\end{itemize}
+		\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=1]{Bayes_graf3.png}
+		\caption{}
+		\label{}
+		\end{figure}
+		Legenda:
+		
+		0: Stanica
+		1: DNA
+		2: Stanični metabolizam
+		3: Dioba stanice
+		4: Živčana stanica
+
 		\subsection{29.07.2020.}
+		\begin{itemize}
+			\item napravljen program koji generira proizvoljan umjetan dataset
+			\item obavezni ulazni argumenti su broj studenata i trojka (broj pitanja po konceptu, prosječni udio točnih odgovora u tom konceptu, standardna devijacija)
+			\item skripta pretpostavlja da svaki student odgovara na sve koncepte i na sva pitanja
+			\item prema gaussovoj raspodjeli svakog koncepta se svakom studentu pridjeljuje postotak točno riješenih zadataka te mu se prema toma generiranju rješenja
+			\item dataset se sprema u klasičnom obliku kojeg naše skripte za crtanje mogu koristiti
+			\item u trenutku pisanja ima 75 odgovora na novu anketu
+			\item pokrenuta je obrada podataka i izračunavanje bkt parametara za trenutne odgovore
+			\item cutoff threshold je 0.5
+		\end{itemize}
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=1]{Bayes_graf4.png}
+			\caption{}
+			\label{}
+		\end{figure}
+		Legenda:
+		
+		0 : Stanica
+		1 : DNA
+		2 : Živčana stanica
+		3 : Stanični metabolizam
+		4 : Dioba stanice\newline
+		\newline Zaključci: ljudi koji su znali diobu stanicu i stanični metabolizem generalno su znali i živčanu stanicu, ljudi koji su znali diobu stanice obično su znali i živčanu stanicu te ljudi koji su znali DNA su obično znali i stanicu/živčanu stanicu. Ovo ne prikazuje realan slijed učenja biologije, ali nije ni očekivano da prikazuje jer biologija nema tako strogi uvjetni slijed koncepata kao npr. matematika\newline
+		\newline \textbf{Rezultati umjetnih datasetova}	\newline
+		BKT-annealing daje predzadnjem konceptu jako male vrijednosti parametara zbog čega nitko ne prolazi taj predmet, dobivaju se NaN vrijednosti te se ne crta taj čvor.
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=1]{Bayes_graf6.png}
+			\caption{}
+			\label{}
+		\end{figure}
+		Ovo ukazuje na veliku osjetljivost aproksimacije parametara na broj i redoslijed točnih odgovora studenata, ovo se može poboljšati pažljivim odabirom mean i stddev vrijednosti kod generiranja umjetnog dataseta (ne odabrati premali mean te pogotovo ne uzimati veliki stddev kod malog meana i uz mali broj studenata jer se može dogoditi da većina njih dobije male postotke riješenih zadataka što daje loše bkt parametre). Drugi način je staviti nekakvo zaglađivanje kako bi se onemogućilo dobivanje NaN vrijednosti s nekom malom konstantom (ovo samo sprječava errore, ali ne pomaže u točnosti modela). Zadnje što ostaje je pronaći i razviti alternativu BKT-u koja nije toliko osjetljiva.
 		\subsection{30.07.2020.}
-			%Tu spada i Gauss, uzeti samo dio koji nije prethodno napisan, staviti dio koji dolazi nakon slike koda
+		\begin{itemize}
+			\item 	ideja: trenutno je za model potrebno da svi studenti rješavaju sve koncepte, to nije pojava u realnim skupovima podataka pa se predlaže sljedeće rješenje - kod računa joint\_probabilitya uzeti presjek studenata koji su rješavali koncept A i koncept B po njihovom student\_id-u, sam izračun pX se ostavi kao što je i bio. Ova pretpostavka bi mogla vrijediti jer ako je realan skup podataka dovoljno velik te ako je presjek također dovoljno velik oni će imati dovoljno informacije da se da realni prikaz ovisnosti između koncepata
+			\item ideja2: iako je bitno da studenti odgovaraju istim redoslijedom na pitanja taj uvjet se može izbjeći naknadnim sortiranjem po quesiton\_id-u. Ovo nije prioritet za implementirati jer gotovo svi standardizirani ispiti daju pitanja istim redoslijedom te daju svakom studentu ista pitanja (treći uvjet za funkcioniranje modela)
+			\item ideja3: napraviti skriptu iz koja bi bila skup svi do sad proizvedenih skripti. Ta skripta bi zapravo bila skup “main” funkcija dobivenih pozivanjem određenih funkcija iz  ostalih bilježnica (ovdje se radi importanje, a ne kopiranje postojećeg koda)
+			\item Mogućnosti sjedinjene skripte:
+			\begin{itemize}
+				\item Izgradnja grafa
+				\item Generiranje umjetnog dataseta
+				\item BKT simulated annealing
+				\item Obrada podataka s google formsa
+				\item Gledanje pitanja kao koncepata
+			\end{itemize}
+		\end{itemize}
+	
 		\subsection{31.07.2020.}
 		\begin{itemize}
 			\item napravljene su potrebne izmjene skripti kako bi se broj studenata na pojedinim vještinama mogao razlikovati, što više odgovara realnim podacima (neće svaki student odgovarati na pitanja iz svake vještine)
@@ -207,10 +310,15 @@ Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog 
 		\end{itemize}	
 		\subsection{14.08.2020.}
 			Prebačene su skripte iz colaba u .py fileove na git, obavaljeno refaktoriranje kako bi se malo više standardizirale konvencije imenovanja i ostala uljepšavanja koda.Napravljena main skripta koju se lagano može programirati da radi razne operacije uz pomoć funkcija koje pozivaju importane module.
-			
+	\section{Poveznice}
+	\url{https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading13a.pdf}\newline
+	\url{https://www.probabilitycourse.com/chapter9/9_1_2_MAP_estimation.php}\newline
+	\url{https://www.sciencedirect.com/science/article/abs/pii/S0951832017300674}\newline
+	\url{https://arxiv.org/pdf/1610.09156.pdf}\newline
+	\url{http://www.dia.fi.upm.es/~mgremesal/MIR/slides/Lesson\%206\%20(Inference\%20from\%20Conditional\%20Fuzzy\%20Propositions).pdf}\newline
+	\url{https://www.intechopen.com/books/fuzzy-logic/some-methods-of-fuzzy-conditional-inference-for-application-to-fuzzy-control-systems}
 \chapter{Zaključak}
 Zaključak.
-
 \bibliography{literatura}
 \bibliographystyle{fer}
 

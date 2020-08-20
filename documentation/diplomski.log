@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.18)  19 AUG 2020 16:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.18)  20 AUG 2020 14:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -376,32 +376,42 @@ Package: titlesec 2019/10/16 v2.13 Sectioning titles
 \titlewidthlast=\dimen184
 \titlewidthfirst=\dimen185
 )
+(c:/texlive/2020/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2020/01/24 v 0.09 modify URL breaks
+)
 (c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-08-07 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count279
 \l__pdf_internal_box=\box49
 )
-(./diplomski.aux)
+(./diplomski.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+)
 \openout1 = `diplomski.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 7.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 10
+.
  (c:/texlive/2020/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -465,7 +475,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box51
-Package hyperref Info: Link coloring OFF on input line 7.
+Package hyperref Info: Link coloring OFF on input line 10.
 
 (c:/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -478,34 +488,34 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count286
 )
-LaTeX Info: Redefining \ref on input line 7.
-LaTeX Info: Redefining \pageref on input line 7.
-LaTeX Info: Redefining \nameref on input line 7.
+LaTeX Info: Redefining \ref on input line 10.
+LaTeX Info: Redefining \pageref on input line 10.
+LaTeX Info: Redefining \nameref on input line 10.
 
 (./diplomski.out) (./diplomski.out)
 \@outlinefile=\write3
 \openout3 = `diplomski.out'.
 
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 25
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 28
 .
 
 (c:/texlive/2020/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 25.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
 
 
 (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
 
 
 (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <14.4> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 25.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 28.
 
 
 LaTeX Warning: Voditelj nije naveden. Koristi \voditelj za definiranje.
@@ -519,17 +529,17 @@ Poglavlje 1.
 ]
 Poglavlje 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--41
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
 
  []
 
@@ -538,12 +548,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--44
 ]
 Poglavlje 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 65--66
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
@@ -557,119 +562,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 76--77
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
+
+ []
+
 [3
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-02.
+05.
  (c:/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [4]
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 11
-3.
+6.
 
 (c:/texlive/2020/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) [5]
-Overfull \hbox (317.63472pt too wide) in paragraph at lines 128--138
-[]$\T1/pcr/m/n/12 http : / / www . cs . cmu . edu / ~ . /ggordon / yudelson-[]k
-oedinger-[]gordon-[]individualized-[]bayesian-[]knowledge-[]tracing .
- []
+Underfull \hbox (badness 10000) in paragraph at lines 131--141
 
-
-Overfull \hbox (33.83484pt too wide) in paragraph at lines 128--138
-[]$\T1/pcr/m/n/12 https : / / www . learnlab . org / uploads / mypslc / publica
-tions / bca2008v .
- []
-
-
-Overfull \hbox (19.43484pt too wide) in paragraph at lines 128--138
-[]$\T1/pcr/m/n/12 https : / / www . upenn . edu / learninganalytics / ryanbaker
- / paper _ 143 .
- []
-
-
-Overfull \hbox (317.63472pt too wide) in paragraph at lines 128--138
-[]$\T1/pcr/m/n/12 http : / / www . cs . cmu . edu / ~ . /ggordon / yudelson-[]k
-oedinger-[]gordon-[]individualized-[]bayesian-[]knowledge-[]tracing .
- []
-
-
-Overfull \hbox (27.13484pt too wide) in paragraph at lines 128--138
-[]$\T1/pcr/m/n/12 https : / / www . fi . muni . cz / ~xpelanek / publications /
- umuai-[]overview .
- []
-
-
-Overfull \hbox (115.0348pt too wide) in paragraph at lines 128--138
-[]$\T1/pcr/m/n/12 https : / / medium . com / @joyboseroy / modelling-[]a-[]stud
-ents-[]learning-[]34375b0131dd$[] 
- []
-
-
-Overfull \hbox (55.43483pt too wide) in paragraph at lines 128--138
-[]$\T1/pcr/m/n/12 https : / / www . math . vu . nl / ~sbhulai / publications / 
-data _ analytics2018c .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 128--138
-
- []
-
-
-Overfull \hbox (19.43484pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 https : / / www . fmrib . ox . ac . uk / datasets / techrep /
- tr00yz1 / tr00yz1 /
- []
-
-
-Overfull \hbox (33.83484pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 https : / / github . com / wlmiller / BKTSimulatedAnnealing /
- blob / master /
- []
-
-
-Overfull \hbox (19.43484pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 https : / / www . upenn . edu / learninganalytics / ryanbaker
- / paper _ 143 .
- []
-
-
-Overfull \hbox (19.43484pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 https : / / educationaldatamining . org / files / conferences
- / EDM2018 /
- []
-
-
-Overfull \hbox (5.03485pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 https : / / www . educationaldatamining . org / EDM2015 / pro
-ceedings /
- []
-
-
-Overfull \hbox (405.53468pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 https : / / concord . org / wp-[]content / uploads / 2016 / 1
-2 / pdf / tracking-[]student-[]progress-[]in-[]a-[]game-[]like-[]learning-[]env
-ironment .
- []
-
-
-Overfull \hbox (114.5348pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 https : / / machinelearningmastery . com / expectation-[]maxi
-mization-[]em-[]algorithm/$[] 
- []
-
-
-Overfull \hbox (178.83478pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 http : / / rstudio-[]pubs-[]static . s3 . amazonaws . com / 1
-001 _ 3177e85f5e4840be840c84452780db52 .
- []
-
-
-Overfull \hbox (63.13483pt too wide) in paragraph at lines 139--150
-[]$\T1/pcr/m/n/12 https : / / www . colorado . edu / amath / sites / default / 
-files / attached-[]files /
  []
 
 [6] [7]
@@ -677,58 +590,87 @@ Poglavlje 4.
 [8
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
 
  []
 
-[9] [10]
-Overfull \hbox (2.42685pt too wide) in paragraph at lines 209--210
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
+
+ []
+
+[10] [11]
+<figures/Bayes_graf3.png, id=220, 339.51843pt x 220.57407pt>
+File: figures/Bayes_graf3.png Graphic file (type png)
+<use figures/Bayes_graf3.png>
+Package pdftex.def Info: figures/Bayes_graf3.png  used on input line 236.
+(pdftex.def)             Requested size: 339.5176pt x 220.57352pt.
+ [12 <./figures/Bayes_graf3.png>]
+<figures/Bayes_graf4.png, id=227, 252.945pt x 167.12437pt>
+File: figures/Bayes_graf4.png Graphic file (type png)
+<use figures/Bayes_graf4.png>
+Package pdftex.def Info: figures/Bayes_graf4.png  used on input line 261.
+(pdftex.def)             Requested size: 252.94438pt x 167.12395pt.
+<figures/Bayes_graf6.png, id=228, 344.78813pt x 280.79906pt>
+File: figures/Bayes_graf6.png Graphic file (type png)
+<use figures/Bayes_graf6.png>
+Package pdftex.def Info: figures/Bayes_graf6.png  used on input line 277.
+(pdftex.def)             Requested size: 344.78728pt x 280.79837pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--282
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 267--282
+
+ []
+
+[13 <./figures/Bayes_graf4.png>] [14 <./figures/Bayes_graf6.png>] [15]
+Overfull \hbox (2.42685pt too wide) in paragraph at lines 312--313
 \T1/ptm/m/n/12 malo vi²e stan-dar-di-zi-rale ko-nven-cije ime-no-va-nja i os-ta
 la uljep-²a-va-nja koda.Napravljena
  []
 
-[11]
+[16] [17]
 Poglavlje 5.
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 211.
+(hyperref)                removing `\textasciicaron' on input line 320.
 
-(./diplomski.bbl [12
+(./diplomski.bbl [18
 
 ]
 Poglavlje 6.
 
 Package natbib Warning: Empty `thebibliography' environment on input line 8.
 
-) [13
+) [19
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 231.
- [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 231.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 339.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 339.
  (./diplomski.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 231.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 231.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 339.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 339.
+Package rerunfilecheck Info: File `diplomski.out' has not changed.
+(rerunfilecheck)             Checksum: 300DE3D9C5340A4C7410712BFAA8724A;1685.
 
 
-Package rerunfilecheck Warning: File `diplomski.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: Checksums for `diplomski.out':
-(rerunfilecheck)             Before: BA87F7B8F3AC67339183D25C30620BD3;1564
-(rerunfilecheck)             After:  EF48ABF17B7285D5A3FAF564EE89E28E;1629.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 231.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 339.
  ) 
 Here is how much of TeX's memory you used:
- 10182 strings out of 480893
- 150182 string characters out of 5911972
- 444269 words of memory out of 5000000
- 25548 multiletter control sequences out of 15000+600000
- 573269 words of font info for 82 fonts, out of 8000000 for 9000
+ 10242 strings out of 480893
+ 151220 string characters out of 5911972
+ 457197 words of memory out of 5000000
+ 25586 multiletter control sequences out of 15000+600000
+ 581208 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 46i,6n,47p,877b,420s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,7n,47p,877b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2020/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2020/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/
@@ -738,11 +680,12 @@ sy10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/tex
 live/2020/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2020/texmf
 -dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/u
-tmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on diplomski.pdf (15 pages, 135902 bytes).
+tmb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texl
+ive/2020/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on diplomski.pdf (21 pages, 185908 bytes).
 PDF statistics:
- 273 PDF objects out of 1000 (max. 8388607)
- 242 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 334 PDF objects out of 1000 (max. 8388607)
+ 293 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 232 words of extra memory for PDF output out of 10000 (max. 10000000)
 
