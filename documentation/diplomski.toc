@@ -1,16 +1,28 @@
 \babel@toc {croatian}{}
 \contentsline {chapter}{\numberline {1}Uvod}{1}{chapter.1}%
-\contentsline {chapter}{\numberline {2}Razrada teme}{2}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Bayesian knowledge tracing (BKT)}{3}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Općenito o BKT}{3}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Ideje}{4}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Problemi i zadaci}{4}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Dobivanje BKT parametara}{4}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}EM (expectation-maximization) algoritam}{4}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Grid search i Simulated Annealing}{5}{subsection.3.4.2}%
-\contentsline {section}{\numberline {3.5}Rezultati}{5}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Poveznice}{6}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}BKT}{6}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Pronalaženje parametara}{6}{subsection.3.6.2}%
-\contentsline {chapter}{\numberline {4}Zaključak}{8}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Literatura}{9}{chapter.5}%
+\contentsline {chapter}{\numberline {2}Cilj i postupak}{2}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Postojeće ideje i koncepti}{3}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Bayesian Knowledge tracing (BKT)}{5}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Općenito o BKT}{5}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Ideje}{6}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Problemi i zadaci}{6}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Dobivanje BKT parametara}{6}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}EM (expectation-maximization) algoritam}{6}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Grid search i Simulated Annealing}{7}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Rezultati}{7}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Poveznice}{8}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}BKT}{8}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Pronalaženje parametara}{9}{subsection.4.6.2}%
+\contentsline {chapter}{\numberline {5}Bayes graf}{10}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Uvod}{10}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Problem kontinuiranih vrijednosti}{11}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Skaliranje korisnika prema Gaussu}{12}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Izvještaji}{12}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}22.07.2020.}{12}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}28.07.2020.}{14}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}29.07.2020.}{15}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}30.07.2020.}{17}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}31.07.2020.}{18}{subsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.4.6}14.08.2020.}{19}{subsection.5.4.6}%
+\contentsline {section}{\numberline {5.5}Poveznice}{19}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Literatura}{20}{chapter.6}%
