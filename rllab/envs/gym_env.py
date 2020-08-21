@@ -29,15 +29,6 @@ def convert_gym_space(space):
         return Discrete(n=space.n)
     elif isinstance(space, gym.spaces.Tuple):
         return Product([convert_gym_space(x) for x in space.spaces])
-    elif isinstance(space, list):
-        if all(isinstance(n, gym.spaces.Box) for n in space):
-            return [Box(low=sp.low, high=sp.high) for sp in space]
-        elif all(isinstance(n, gym.spaces.Discrete) for n in space):
-            return [Discrete(n=sp.n) for sp in space]
-        elif all(isinstance(n, gym.spaces.Tuple) for n in space):
-            return [Product([convert_gym_space(x) for x in sp.spaces]) for sp in space]
-        else:
-            raise NotImplementedError
     else:
         raise NotImplementedError
 
@@ -120,8 +111,8 @@ class GymEnv(Env, Serializable):
                 recorder.done = True
         return self.env.reset()
 
-    def step(self, action, student):
-        next_obs, reward, done, info = self.env.step(action, student)
+    def step(self, action):
+        next_obs, reward, done, info = self.env.step(action)
         return Step(next_obs, reward, done, **info)
 
     def render(self):

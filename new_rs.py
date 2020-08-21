@@ -93,6 +93,14 @@ class StudentEnv(gym.Env):
             raise ValueError
 
     def step(self, action:int):
+        """
+
+        Args:
+            action: Index of selected candidate exercise whose probability of correctness we want to predict.
+
+        Returns:
+
+        """
         if self.curr_step is None or self.curr_step >= self.n_steps:
             raise ValueError
 
@@ -149,40 +157,36 @@ class DKVEnv(StudentEnv):
         Init DKVMN-CA student model
         """
 
-        # the parameters of trained DKVMN-CA model
-        with open('data/skill_builder/new_kt_params.pkl', 'rb') as f:
-            params = pickle.load(f)
-
-        # Knowledge Concepts Corresponding to the exercise
-        with open('data/skill_builder/new_e2c.pkl', 'rb') as f:
-            self.e2c = pickle.load(f)
+        self.e2c=e2c
 
         # contains the exercise which has already been answered correctly
         self.right = []
 
-        self.q_embed_mtx = params['Embedding/q_embed:0']
-
-        self.qa_embed_mtx = params['Embedding/qa_embed:0']
-
+        # shape=(50)
         self.key_matrix = params['Memory/key:0']
-
+        # shape=()
         self.value_matrix = params['Memory/value:0']
-
+        #shape=(numq+1,50)
+        self.q_embed_mtx = params['Embedding/q_embed:0']
+        # shape=(2*numq+1,50)
+        self.qa_embed_mtx = params['Embedding/qa_embed:0']
+        # shape=(,)
+        self.erase_w = params['DKVMN_value_matrix/Erase_Vector/weight:0']
+        # shape=(,)
+        self.erase_b = params['DKVMN_value_matrix/Erase_Vector/bias:0']
+        # shape=(,)
+        self.add_w = params['DKVMN_value_matrix/Add_Vector/weight:0']
+        # shape=(,)
+        self.add_b = params['DKVMN_value_matrix/Add_Vector/bias:0']
+        # shape=(2*numq+1,memory_key_state_dim)
         self.summary_w = params['Summary_Vector/weight:0']
-
+        # shape=(,)
         self.summary_b = params['Summary_Vector/bias:0']
-
+        # shape=(,)
         self.predict_w = params['Prediction/weight:0']
-
+        # shape=(,)
         self.predict_b = params['Prediction/bias:0']
 
-        self.erase_w = params['DKVMN_value_matrix/Erase_Vector/weight:0']
-
-        self.erase_b = params['DKVMN_value_matrix/Erase_Vector/bias:0']
-
-        self.add_w = params['DKVMN_value_matrix/Add_Vector/weight:0']
-
-        self.add_b = params['DKVMN_value_matrix/Add_Vector/bias:0']
 
     def softmax(self, num):
         return np.exp(num) / np.sum(np.exp(num), axis=0)
@@ -195,6 +199,7 @@ class DKVEnv(StudentEnv):
         :return: the KCW of the exercise
         """
         concepts = self.e2c[q]
+
         corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in concepts])
         correlation = np.zeros(Concepts)
         for j in range(len(concepts)):
@@ -519,6 +524,7 @@ def evaluation(agent):
     for trace in student_traces:
         agent = all_reset(agent)
         t, res = simulation(agent, trace, 50)
+        print("Preporuceni put: " + str(t))
         for j in range(50):
             allre[j].append(res[j])
     result = [np.mean(k) for k in allre]
@@ -532,38 +538,41 @@ def run_eps(agent, env, n_eps=100):
         tot_rew.append(totalr)
     return tot_rew
 
+#student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
+#stu = [[(51424, 0), (51435, 1),(51444, 1)]]
+stu = [[(85829, 0),(85838, 1)]]
 
-student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
-# 18
-# 1,1,2,2,2,2,1,1,1,1,1,1,1,1,1,3,3,3
-# 0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1
-# 162
-# 6,6,7,3,3,3,3,60,33,32,32,32,30,30,5,5,5,5,38,38,38,5,5,30,30,30,33,33,33,33,33,33,40,40,60,60,60,68,68,68,68,40,40,40,5,5,6,6,6,7,7,88,88,88,2,2,2,2,68,68,68,1,1,1,1,1,1,1,1,24,24,24,24,20,20,20,63,32,32,32,30,40,33,33,33,5,5,5,88,88,88,1,40,38,38,38,30,30,30,40,40,40,60,60,60,60,60,60,6,6,6,6,7,7,7,7,7,7,7,68,68,68,2,2,2,2,1,1,1,63,63,63,37,46,46,46,46,46,46,46,46,72,72,72,77,77,77,77,75,75,75,75,1,1,1,1,71,71,71,18,18,18
-# 1,0,1,0,1,1,1,0,0,1,1,1,1,0,0,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,0,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,0
+# the parameters of trained DKVMN-CA model
+with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
+    params = pickle.load(f)
 
-# candidate_exercises=[]
-with open('data/skill_builder/old_cand_ex.pkl', 'rb') as f:
-    candidate_exercises = pickle.load(f)
+# Knowledge Concepts Corresponding to the exercise
+with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+    e2c = pickle.load(f)
 
-dataset = 'assist2009_updated'
 
-if dataset == 'assist2009_updated':
-    Concepts = 123  # number of concepts
-    NumQ = 17751 # number of exercises
-    n_steps = 5  # number of steps of algorithm
-    n_items = len(candidate_exercises)  # number of candidate exercises
-    # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
-    discount = 0.99
-    n_eps = 1  # number of epochs in algorithm
+with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
+    exercises_id_converter = pickle.load(f)
 
-else:
-    Concepts = 123  # number of concepts
-    NumQ = 17751 # number of exercises
-    n_steps = 5  # number of steps of algorithm
-    n_items = len(candidate_exercises)  # number of candidate exercises
-    # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
-    discount = 0.99
-    n_eps = 1  # number of epochs in algorithm
+#cands=[51424,51435,51444,51395,51481]
+cands=[85829,61089,85814,85838]
+
+candidate_exercises=[exercises_id_converter[e] for e in cands]
+student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
+
+
+#current problems:
+#key error?
+
+Concepts = 9  # number of concepts
+NumQ = 2446 # number of exercises
+# Concepts = 123  # number of concepts
+#NumQ = 17751 # number of exercises
+n_steps = 5  # number of steps of algorithm
+n_items = len(candidate_exercises)  # number of candidate exercises
+# n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
+discount = 0.99
+n_eps = 1  # number of epochs in algorithm
 
 reward_funcs = ['likelihood']
 envs = [
