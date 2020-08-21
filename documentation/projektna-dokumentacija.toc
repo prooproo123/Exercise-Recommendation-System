@@ -40,8 +40,8 @@
 \contentsline {subsection}{\numberline {6.3.2}Ideje}{24}{subsection.6.3.2}%
 \contentsline {subsection}{\numberline {6.3.3}Problemi i zadaci}{25}{subsection.6.3.3}%
 \contentsline {subsection}{\numberline {6.3.4}Rezultati}{26}{subsection.6.3.4}%
-\contentsline {chapter}{\numberline {7}Clustering}{29}{chapter.7}%
+\contentsline {chapter}{\numberline {7}Clustering}{28}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Latent Skill Embedding (Lentil)}{29}{section.7.1}%
 \contentsline {section}{\numberline {7.2}K-Medoids}{30}{section.7.2}%
 \contentsline {section}{\numberline {7.3}Ostatak istraživanja}{32}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Literatura}{35}{chapter.8}%
+\contentsline {chapter}{\numberline {8}Literatura}{34}{chapter.8}%
