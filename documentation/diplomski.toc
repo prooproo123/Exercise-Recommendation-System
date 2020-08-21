@@ -1,3 +1,48 @@
-\contentsline {chapter}{\numberline {1}Uvod}{1}
-\contentsline {chapter}{\numberline {2}Razrada teme}{2}
-\contentsline {chapter}{\numberline {3}Zaklju\IeC {\v c}ak}{3}
+\babel@toc {croatian}{}
+\contentsline {chapter}{\numberline {1}Uvod}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Cilj i postupak}{2}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Postojeće ideje i koncepti}{3}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Bayesian Knowledge tracing (BKT)}{4}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Općenito o BKT}{4}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Ideje}{5}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Problemi i zadaci}{5}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Dobivanje BKT parametara}{6}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}EM (expectation-maximization) algoritam}{6}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Grid search i Simulated Annealing}{6}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Rezultati}{7}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Poveznice}{7}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}BKT}{7}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Pronalaženje parametara}{8}{subsection.4.6.2}%
+\contentsline {chapter}{\numberline {5}Bayes graf}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Uvod}{9}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Problem kontinuiranih vrijednosti}{10}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Skaliranje korisnika prema Gaussu}{11}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Izvještaji}{11}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}22.07.2020.}{11}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}28.07.2020.}{13}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}29.07.2020.}{14}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}30.07.2020.}{16}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}31.07.2020.}{17}{subsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.4.6}14.08.2020.}{18}{subsection.5.4.6}%
+\contentsline {section}{\numberline {5.5}Poveznice}{18}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Stvaranje grafa}{19}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Početna istraživanja}{19}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Obrada prirodnog jezika}{19}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}K12EduKG}{19}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Deep Generative Models}{20}{subsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.1.4}Graph RNN}{20}{subsection.6.1.4}%
+\contentsline {section}{\numberline {6.2}Graph Recurrent Attention Networks}{21}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Općenito o GRAN-ovima}{21}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Tijek rješavanja}{22}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Rezultati}{22}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}Latent Skill Embedding (Lentil)}{23}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Općenito o Lentil-u}{23}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Ideje}{23}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Problemi i zadaci}{24}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.4}Rezultati}{25}{subsection.6.3.4}%
+\contentsline {chapter}{\numberline {7}Clustering}{28}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Latent Skill Embedding (Lentil)}{28}{section.7.1}%
+\contentsline {section}{\numberline {7.2}K-Medoids}{29}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Ostatak istraživanja}{31}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Literatura}{33}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Literatura}{35}{chapter.9}%

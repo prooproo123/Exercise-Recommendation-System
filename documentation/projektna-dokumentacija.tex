@@ -1,0 +1,44 @@
+\documentclass[times, utf8,projekt]{fer}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{xurl}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{float}
+\usepackage[nodayofweek,level]{datetime}
+%\usepackage[numbers,square]{natbib}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+\setcitestyle{numbers}
+\usepackage{standalone}
+\graphicspath{{figures/}}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+\begin{document}
+	
+	% TODO: Navedite broj rada.
+	%\thesisnumber{000}
+	
+	% TODO: Navedite naslov rada.
+	\title{Umjetna inteligencija u adaptivnom učenju}
+	
+	% TODO: Navedite vaše ime i prezime.
+	\author{Jelena Nemčić, Marin Ovčariček,Zvonimir Sučić,Ivana Žeger}
+	
+	\maketitle
+	% stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
+	%\izvornik
+	% Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
+	%\zahvala{}
+	\tableofcontents
+\include{uvod}
+\include{BKT}
+\include{Bayes_graph}
+\include{stvaranje-grafa-content}
+\include{literatura}
+\end{document}}

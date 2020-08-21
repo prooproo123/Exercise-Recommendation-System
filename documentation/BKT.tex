@@ -1,0 +1,99 @@
+\chapter{Bayesian Knowledge tracing (BKT)}
+\label{ch:BKT}
+Bayesian Knowledge Tracing je metoda praćenja razine znanja korisnika koja uzima u obzir vjerojatnosti pogađanja i slučajnog pogrešnog odgovora, također je osjetljiva i na redoslijed točnih/netočnih odgovora.
+\section{Općenito o BKT}
+Bayesian Knowledge Tracing koristi Hidden Markov Model i ima 4 osnovna parametra:
+\begin{itemize}
+	\item p(L0) - vjerojatnost da je korisnik a priori savladao gradivo
+	\item p(G) - vjerojatnost da je korisnik pogodio točan odgovor bez da ima potrebno znanje	
+	\item p(S) - vjerojatnost da je korisnik krivo odgovorio iako ima potrebno znanje	
+	\item p(T) - vjerojatnost da je znanje prešlo iz NE ZNA u ZNA nakon prilike da se primjeni znanje
+\end{itemize}
+Kao izlaz dobivaju se vrijednosti:
+\begin{itemize}
+	\item p(L) - vjerojatnost ovladavanja vještinom (eng. probability of skill mastery)
+	\item p(C) - vjerojatnost da će korisnik ispravno primijeniti vještinu u budućnosti (eng. probability of the student correctly applying the skill on a future practice)\newline
+\end{itemize}
+
+\begin{equation}
+ p(L_t\mid obs=correct)=\frac{p(L_t)*(1-p(S))}{p(L_t)*(1-p(S)+(1-p(L_t)*p(G))}
+\end{equation}\newline
+\begin{equation}
+ p(L_t\mid obs=wrong)=\frac{p(L_t)*p(S)}{p(L_t)*p(S)+(1-p(L_t)*(1-p(G))}
+\end{equation}\newline
+\begin{equation}
+ p(L_{t+1})=p(L_t\mid obs=correct) + (1-p(L_t\mid obs=correct))*p(T)
+\end{equation}\newline
+\begin{equation}
+ p(C_{t+1})=p(L_{t+1}) * (1-p(S)) + p(L_{t+1})*p(G)
+\end{equation}
+
+\section{Ideje}
+Prvobitna ideja je bila da se p(L0) računa iz inicijalnih pitanja, vrijednosti p(G) i p(S) bi se prema preporuci iz rada(trebalo bi pronaći kojeg i baciti referencu) stavile na interval [0,0.3], [0,0.1] te bi se p(T) postavio prema preporuci eksperta što ne želimo jer je cilj ovog projekta da smanjimo zadatke eksperata na minimum.\newline
+To je ukazalo na potrebu pronalaska algoritama koji bi uz pomoć nekog skupa podataka aproksimirali parametre za BKT.
+\section{Problemi i zadaci}
+\begin{itemize}
+	\item proučiti parametar p(T)
+	\item proučiti kodove sa githuba kako bi se dobila ideja kako algoritam funkcionira
+	\item napraviti malu implementaciju s malo pitanja i provjeriti radi li
+	\item proučiti parameter fitting uz pomoć EM algoritma, stohastic gradient descenta ili neke druge metode
+	\item kako napraviti input dataset, prikupiti podatke
+	
+	
+\end{itemize}
+\section{Dobivanje BKT parametara}
+\subsection{EM (expectation-maximization) algoritam}
+
+\begin{itemize}
+	\item iterativni algoritam za pronalaženje (aproksimiranje) najveće izglednosti (eng. maximum likelihood) ili maksimalne a posteriori (MAP) procjene parametara u statističkim modelima
+	\item model ovisi o nepoznatim latentnim varijablama
+	\item EM iteracija sadrži 2 koraka:
+	\begin{itemize}
+		\item 	korak očekivanja (E), koji stvara funkciju za očekivanje log-izglednosti koja se procjenjuje pomoću trenutne procjene parametara, procjenjuju se vrijednosti latentnih varijabli
+		\item 	korak maksimizacije (M), koji izračunava parametre distribucije koji maksimiziraju očekivanu log-izglednost pronađenu u E koraku, ti se parametri zatim koriste za procjenu latentnih varijabli u sljedećem E koraku
+	\end{itemize}
+	
+	\item primjenjuje se kada želimo odrediti parametre distribucije (normalna, eksponencijalna, …)
+	\item problem: za korištenje potrebo znati distribuciju podataka ili točne vrijednosti (eng. true values) traženih parametara
+	
+\end{itemize}
+Kroz ovo istraživanje nije pronađena niti jedna implementacija EM algoritma za aproksimaciju BKT parametara niti je napravljena vlastiti implementacija zbog prevelikog praga znanja matematike.
+
+\subsection{Grid search i Simulated Annealing}
+Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog kaljenja \url{https://github.com/wlmiller/BKTSimulatedAnnealing}. U README na githubu se također spominjao kod koji je bio baza za to, on je koristio običan grid search kako bi izračunao parametre. Oba koda su prevedena u python i prilagođena našim skupovima podataka. Na kraju se ispostavilo da je "simulirano kaljenje" povoljnije te se grid search odbacio.
+\section{Rezultati}
+\begin{itemize}
+	\item napravljen google forms kviz sa 20 pitanja iz biologije, ispitanici moraju odgovoriti na svih 20 pitanja kako bi podaci ušli u dataset
+	\item napravljena python skripta koja pretvara podatke dobivene iz google formsa u oblik prikladan za treniranje BKT-a i pronalaženje parametara
+	\item pronađen je kod u Javi koji tehnikom simuliranog kaljenja aproksimira parametre za BKT uz pomoć danog dataseta, kod je preveden u python skript
+	\item napravljena python skripta za BKT koja određuje vjerojatnost da je ispitanik naučio/  savladao gradivo
+	\item uz pomoć skripte za aproksimaciju BKT parametara, nađene su njihove vrijednosti za svaku vještinu iz ASSISTMENTS dataseta i pohranjenje u google sheets tablicu
+	\item dobiveni parametri algoritmom simuliranog kaljenja uspoređeni su s onima dobivenima pomoću grid search metode -> vrijednosti parametara su skoro iste, vrlo male razlike
+	\item napravljen google forms kviz sa po 6 pitanja iz 5 koncepata, izračunati su parametri za taj dataset
+	\item BKT kod i kod za aproksimaciju BKT parametara su se dalje koristili u bilježnicama za izgradnju grafa probabilističkim metodama
+	
+\end{itemize}
+\section{Poveznice}
+\subsection{BKT}
+\url{https://en.wikipedia.org/wiki/Bayesian_Knowledge_Tracing}\newline
+\url{http://www.cs.cmu.edu/~./ggordon/yudelson-koedinger-gordon-individualized-bayesian-knowledge-tracing.pdf}\newline
+\url{https://github.com/CAHLR/pyBKT/blob/master/README.md}\newline
+\url{https://www.learnlab.org/uploads/mypslc/publications/bca2008v.pdf}\newline
+\url{https://www.upenn.edu/learninganalytics/ryanbaker/paper_143.pdf}\newline
+\url{https://github.com/yemao616/Bayesian-Knowledge-Tracing}\newline
+\url{http://www.cs.cmu.edu/~./ggordon/yudelson-koedinger-gordon-individualized-bayesian-knowledge-tracing.pdf}\newline
+\url{https://www.fi.muni.cz/~xpelanek/publications/umuai-overview.pdf}\newline
+\url{https://medium.com/@joyboseroy/modelling-a-students-learning-34375b0131dd}\newline
+\url{https://www.math.vu.nl/~sbhulai/publications/data_analytics2018c.pdf}\newline
+\subsection{Pronalaženje parametara}
+\url{https://www.fmrib.ox.ac.uk/datasets/techrep/tr00yz1/tr00yz1/node9.html}\newline
+\url{https://github.com/wlmiller/BKTSimulatedAnnealing/blob/master/computeKTparams_SA.java}\newline
+\url{https://www.upenn.edu/learninganalytics/ryanbaker/paper_143.pdf}\newline
+\url{https://educationaldatamining.org/files/conferences/EDM2018/papers/EDM2018_paper_14.pdf}\newline
+\url{http://yudelson.info/hmm-scalable/}\newline
+\url{https://www.educationaldatamining.org/EDM2015/proceedings/short364-367.pdf}\newline
+\url{https://concord.org/wp-content/uploads/2016/12/pdf/tracking-student-progress-in-a-game-like-learning-environment.pdf}\newline
+\url{https://tinyheero.github.io/2016/01/03/gmm-em.html}\newline
+\url{https://machinelearningmastery.com/expectation-maximization-em-algorithm/}\newline
+\url{http://rstudio-pubs-static.s3.amazonaws.com/1001_3177e85f5e4840be840c84452780db52.html}\newline
+\url{https://www.colorado.edu/amath/sites/default/files/attached-files/em_algorithm.pdf}
