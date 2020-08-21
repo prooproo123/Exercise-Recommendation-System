@@ -6,7 +6,7 @@ import os, argparse
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--num_epochs', type=int, default=5)
+    parser.add_argument('--num_epochs', type=int, default=1)
     parser.add_argument('--train', type=str2bool, default='t')
     parser.add_argument('--init_from', type=str2bool, default='t')
     parser.add_argument('--show', type=str2bool, default='f')
@@ -17,7 +17,7 @@ def main():
     parser.add_argument('--maxgradnorm', type=float, default=50.0)
     parser.add_argument('--momentum', type=float, default=0.9)
     parser.add_argument('--initial_lr', type=float, default=0.05)
-    # synthetic / assist2009_updated / assist2015 / STATIC
+    # synthetic / assist2009_updated / assist2015 / STATICS
     dataset = 'assist2009_updated'
 
     if dataset == 'assist2009_updated':
@@ -56,8 +56,18 @@ def main():
         parser.add_argument('--n_questions', type=int, default=1223)
         parser.add_argument('--seq_len', type=int, default=200)
 
+    elif dataset == 'a':
+        parser.add_argument('--batch_size', type=int, default=32)
+        parser.add_argument('--memory_size', type=int, default=123)
+        parser.add_argument('--memory_key_state_dim', type=int, default=50)
+        parser.add_argument('--memory_value_state_dim', type=int, default=200)
+        parser.add_argument('--final_fc_dim', type=int, default=50)
+        parser.add_argument('--n_questions', type=int, default=17751)
+        parser.add_argument('--seq_len', type=int, default=200)
+
     args = parser.parse_args()
     args.dataset = dataset
+
 
     print(args)
     if not os.path.exists(args.checkpoint_dir):
@@ -77,8 +87,13 @@ def main():
     with tf.Session(config=run_config) as sess:
         dkvmn = Model(args, sess, name='DKVMN')
         if args.train:
+            if dataset == 'synthetic':
+                args.dataset = 'naive_c5_q50_s4000_v19'
             train_data_path = os.path.join(data_directory, args.dataset + '_train1.csv')
             valid_data_path = os.path.join(data_directory, args.dataset + '_valid1.csv')
+
+            # train_data_path = 'data/skill_builder/stand_ex_ind_con_ind.csv'
+            # valid_data_path = 'data/skill_builder/stand_ex_ind_con_ind.csv'
 
             train_q_data, train_qa_data = data.load_data(train_data_path)
             print('Train data loaded')

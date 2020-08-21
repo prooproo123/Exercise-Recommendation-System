@@ -139,7 +139,7 @@ class DKVEnv(StudentEnv):
         """
 
         # the parameters of trained DKVMN-CA model
-        with open('../data/skill_builder/new_kt_params.pkl', 'rb') as f:
+        with open('../data/skill_builder/kt_params.pkl', 'rb') as f:
             params = pickle.load(f)
 
         # Knowledge Concepts Corresponding to the exercise

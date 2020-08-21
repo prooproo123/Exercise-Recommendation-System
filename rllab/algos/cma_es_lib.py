@@ -320,6 +320,7 @@ if not sys.version.startswith('2'):  # in python 3
     raw_input = input
     str = str
 else:
+    a=0
     #???
     #input = input  # in py2, input(x) == eval(raw_input(x))
 

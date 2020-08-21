@@ -2,12 +2,26 @@ import pickle
 
 import pandas as pd
 import numpy as np
-
+from statistics import mean, median
 # DEBUGGING PKL FILES
 
 # zadaci kandidati za preporuku
-with open('data/skill_builder/new_kt_params.pkl', 'rb') as f:
+with open('data/skill_builder/kt_params.pkl', 'rb') as f:
     a = pickle.load(f)
+
+
+with open('data/skill_builder/old_cand_ex.pkl', 'rb') as f:
+    x = pickle.load(f)
+
+with open('/home/zvonimir/Exercise-Recommendation-System/checkpoint/a_32batch_1epochs/kt_params', 'rb') as f:
+    b = pickle.load(f)
+
+with open('checkpoint/assist2009_updated_32batch_3epochs/kt_params', 'rb') as f:
+    assist2009_updated_32batch_3epochs = pickle.load(f)
+
+with open('checkpoint/STATICS_10batch_3epochs/kt_params', 'rb') as f:
+    STATICS_10batch_3epochs = pickle.load(f)
+
 # dict poveznica koncepti-zadaci
 with open('data/skill_builder/old_cand_ex.pkl', 'rb') as f:
     arms = pickle.load(f)
@@ -21,7 +35,7 @@ with open('data/skill_builder/old_e2c.pkl', 'rb') as f:
 with open('data/skill_builder/old_kt_params.pkl', 'rb') as f:
     parametri_kt_modela = pickle.load(f)
 
-b = 0
+debug = 0
 
 # with open('data/skill_builder/stan_con.csv', 'rb') as f:
 #     stan_con = pickle.load(f)
@@ -71,10 +85,19 @@ users = sb09['user_id'].unique()
 exercises = sb09['problem_id'].unique()
 concepts = sb09['skill_id'].unique()
 
+concepts_id_converter={c:i for i,c in enumerate(concepts)}
+id_concepts_converter={i:c for i,c in enumerate(concepts)}
+
+exercises_concepts_converter={e:i for i,e in enumerate(exercises)}
+id_exercises_converter={i:e for i,e in enumerate(exercises)}
+
 exercise_concepts_mapping=sb09.groupby('problem_id')['skill_id'].apply(set).apply(list).to_dict()
 concept_exercises_mapping=sb09.groupby('skill_id')['problem_id'].apply(set).apply(list).to_dict()
 user_exercises_mapping=sb09.groupby('user_id')['problem_id'].apply(set).apply(list).to_dict()
 user_concepts_mapping=sb09.groupby('user_id')['skill_id'].apply(set).apply(list).to_dict()
+
+with open('data/skill_builder/e2c.pkl', 'wb') as f:
+    pickle.dump(exercise_concepts_mapping,f)
 
 print('Skill builder 2009 dataset:')
 print('Number of students: ' + str(len(users)))
@@ -88,8 +111,13 @@ print('Maximum exercises per concept: '+str(max([len(vals) for vals in concept_e
 print('Maximum concepts per exercise: '+str(max([len(vals) for vals in exercise_concepts_mapping.values()])))
 print()
 
-with open('data/skill_builder/new_e2c.pkl', 'rb') as f:
-    pickle.dump(exercise_concepts_mapping,f)
+print('Median exercises per student: '+str(median([len(vals) for vals in user_exercises_mapping.values()])))
+print('Median concepts per student: '+str(median([len(vals) for vals in user_concepts_mapping.values()])))
+print('Median exercises per concept: '+str(median([len(vals) for vals in concept_exercises_mapping.values()])))
+print('Median concepts per exercise: '+str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
+print()
+
+
 
 
 

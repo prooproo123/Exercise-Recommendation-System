@@ -1,10 +1,14 @@
-import numpy as np
 import os
-import tensorflow as tf
-from knowledge_tracing import operations
+import pickle
 import shutil
-from knowledge_tracing.old_memory import DKVMN
+
+import numpy as np
+import pyprind
+import tensorflow as tf
 from sklearn import metrics
+
+from knowledge_tracing import operations
+from knowledge_tracing.memory import DKVMN
 
 
 class Model():
@@ -37,7 +41,7 @@ class Model():
         self.memory = DKVMN(self.args.memory_size, self.args.memory_key_state_dim, \
                             self.args.memory_value_state_dim, init_memory_key=init_memory_key,
                             init_memory_value=init_memory_value, name='DKVMN')
-                            #init_memory_value=init_memory_value, name='DKVMN',batch_size=self.args.batch_size)
+        # init_memory_value=init_memory_value, name='DKVMN',batch_size=self.args.batch_size)
 
         # Embedding to [batch size, seq_len, memory_state_dim(d_k or d_v)]
         with tf.variable_scope('Embedding'):
@@ -119,10 +123,12 @@ class Model():
         grad, _ = tf.clip_by_global_norm(grads, self.args.maxgradnorm)
         self.train_op = optimizer.apply_gradients(zip(grad, vrbs), global_step=self.global_step)
         #		grad_clip = [(tf.clip_by_value(grad, -self.args.maxgradnorm, self.args.maxgradnorm), var) for grad, var in grads]
+        #TODO
         self.tr_vrbs = tf.trainable_variables()
+        self.params = {}
         for i in self.tr_vrbs:
             print(i.name)
-
+            self.params[i.name] = tf.get_default_graph().get_tensor_by_name(i.name)
         self.saver = tf.train.Saver()
 
     def train(self, train_q_data, train_qa_data, valid_q_data, valid_qa_data):
@@ -135,8 +141,9 @@ class Model():
         self.sess.run(tf.global_variables_initializer())
 
         if self.args.show:
-            from utils import ProgressBar
-            bar = ProgressBar(label, max=training_step)
+            # from rllab.utils import ProgressBar
+            # bar = ProgressBar(label, max=training_step)
+            bar = pyprind.ProgBar(training_step)
 
         self.train_count = 0
         if self.args.init_from:
@@ -305,21 +312,32 @@ class Model():
         return '{}_{}batch_{}epochs'.format(self.args.dataset, self.args.batch_size, self.args.num_epochs)
 
     def load(self):
-        checkpoint_dir = os.path.join(self.args.checkpoint_dir, self.model_dir)
-        ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
-        if ckpt and ckpt.model_checkpoint_path:
-            ckpt_name = os.path.basename(ckpt.model_checkpoint_path)
-            self.train_count = int(ckpt_name.split('-')[-1])
-            self.saver.restore(self.sess, os.path.join(checkpoint_dir, ckpt_name))
-            return True
-        else:
-            return False
+        # checkpoint_dir = os.path.join(self.args.checkpoint_dir, self.model_dir)
+        # ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
+        # if ckpt and ckpt.model_checkpoint_path:
+        #     ckpt_name = os.path.basename(ckpt.model_checkpoint_path)
+        #     self.train_count = int(ckpt_name.split('-')[-1])
+        #     self.saver.restore(self.sess, os.path.join(checkpoint_dir, ckpt_name))
+        #     return True
+        # else:
+        #     return False
+        return False
+
+    def getParams(self):
+        """
+        Get parameters of DKVMN-CA model
+        :return:
+        """
+        params = self.sess.run(self.params)
+        with open(os.path.join(self.args.checkpoint_dir, self.model_dir,'kt_params'), 'wb') as f:
+            pickle.dump(params, f)
 
     def save(self, global_step):
         model_name = 'DKVMN'
         checkpoint_dir = os.path.join(self.args.checkpoint_dir, self.model_dir)
         if not os.path.exists(checkpoint_dir):
             os.mkdir(checkpoint_dir)
+        self.getParams()
         self.saver.save(self.sess, os.path.join(checkpoint_dir, model_name), global_step=global_step)
         print('Save checkpoint at %d' % (global_step + 1))
 

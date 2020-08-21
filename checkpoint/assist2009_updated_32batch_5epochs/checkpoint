@@ -1,0 +1,6 @@
+model_checkpoint_path: "DKVMN-5"
+all_model_checkpoint_paths: "DKVMN-1"
+all_model_checkpoint_paths: "DKVMN-2"
+all_model_checkpoint_paths: "DKVMN-3"
+all_model_checkpoint_paths: "DKVMN-4"
+all_model_checkpoint_paths: "DKVMN-5"
