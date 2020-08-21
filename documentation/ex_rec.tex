@@ -1,19 +1,3 @@
-\documentclass[times, utf8,projekt]{fer}
-%\usepackage{titlesec}
-\graphicspath{ {./figures/} }
-\setcitestyle{numbers}
-\usepackage{color}
-\usepackage{hyperref} 
-\usepackage[nodayofweek,level]{datetime}
-%\usepackage[numbers,square]{natbib}
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
-\makeatother
-
-\begin{document}
-\title{ExRec}
-\maketitle
 
 \chapter{Općenito o ExRec-u}
 U radu \citep{exrec} prepoznata je neefikanost prevladavajućih sustava otvorenih online tečajeva (MOOC) zbog dodjeljivanja istih vježbi svim studentima. S druge strane, personalizirani sustavi preporuka zadataka mogu poboljšati efikasnost učenja prilagođavajući se razini znanja svakog studenta (učenika, korisnika). Takvo razmišljanje uvelike odgovara našem problemu. U originalnom radu krenulo se od temeljne pretpostavke da je ubrzavanje učenja temeljni cilj svakog personaliziranog sustava preporuke zadataka u obrazovanju. Rad predlaže personalizirani sustav preporuke zadataka za online učenje poboljšanjem performansi postojećih \textit{knowledge tracing} modela. Napominje se da postojeći modeli praćenja znanja ne koriste informacije o pripadnosti zadataka konceptima. Konkretno, ovim radom modificira se \textit{dynamic key-value memory network knowledge tracing (DKVMN)} model tako da se memorijska struktura temelji na listi koncepata određenog tečaja eksplicitno bilježeći vezu zadataka i koncepata tijekom procesa praćenja znanja. Model je korišten za izgradnju simulatora studenata korištenog za treniranje strategije preporuke zadataka pomoću podržanog učenja. \newline
@@ -54,7 +38,12 @@ DKVMN se generalno sastoji od statičke matrice (ključa) koji sprema latentne k
 DKVMN ExRec praćenja znanja poboljšan u aspektima memorijske strukture, težina koncepata znanja te procesa pisanja i čitanja. Osnovni DKVMN dizajn je modificiran tako da memorijska struktura ovisi o listi koncepata nekog tečaja. Na slici
 <> je prikazana struktura modela. $M^k_t$ je matrica ugrađenih koncepata veličine $M X N$ gdje je $N$ broj memorijskih lokacija, a $M$ je veličina vektora na svakoj lokaciji. $N$ se postavlja na broj koncepata znanja određenog tečaja. Pošto se u radu koristilo 1 koncept prve razine, 7 koncepata druge razine te 15 treće razine N=23. Nakon toga, na svakoj lokaciji koncepta znanja se sprema studentovo znanje.
 
-SLIKA SHEME
+	\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.8]{exrec1.png}
+	\caption{}
+	\label{}
+\end{figure}
 
 \subsection{Knowledge Concept Weight}
 
@@ -62,22 +51,39 @@ Pošto je studentovo stanje koncepta znanja spremljeno u memoriji, kada se pojav
 
 Prvo se dohvaćaju ugrađene vrijednosti od danog zadatka. Kao što se vidi na slici kada zadatak $q_t$ dođe u trenutku $t$ prvo se transformira u ugrađeni vektor $m_t$ kroz ugrađujuću matricu $A$, tada se KCW računa pomoću algoritma 1. Ukratko, DKVMN računa težinske veze između zadataka i skrivenih koncepata znanja, dok se u ovom kodu računaju samo veze između zadataka i poznatih povezanih koncepata, nepovezani koncepti se postavljaju na 0.
 
-SLIKA ALGORITMA
+	\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.8]{exrec2.png}
+	\caption{}
+	\label{}
+\end{figure}
 
 
 \subsection{Proces čitanja}
 
-Nakon što se izračunati KCW iskoristi za izračun težinske sume stanja koncepata znanja određenog korisnika, na tu sumu rt se nadodaju značajke težine zadatka i "stage feature" dt,gt. Rezultat se šalje u potpuno povezani sloj sa aktivacijskom funkcijom Tanh kako bi se dobio "summary" vektor koji sadrži sve informacije o studentovom znanju povezanom sa qt i značajkama zadatka.....<FORMULA>
+Nakon što se izračunati KCW iskoristi za izračun težinske sume stanja koncepata znanja određenog korisnika $r_t=\sum_{i=1}^{N}w_iM^v_t$, na tu sumu rt se nadodaju značajke težine zadatka i "stage feature" dt,gt. Rezultat se šalje u potpuno povezani sloj sa aktivacijskom funkcijom Tanh kako bi se dobio "summary" vektor koji sadrži sve informacije o studentovom znanju povezanom sa qt i značajkama zadatka.
+\begin{equation}
+	f_t=Tanh(W_0^T[r_t,d_t,g_t,m_t])
+\end{equation}
 
-Na kraju, ft prolazi korz potpuno povezani sloj koji daje kao izlaz vjerojatnosti da bi student odradio
-zadatake qt točno <FORMULA>
+Na kraju, ft prolazi kroz potpuno povezani sloj koji daje kao izlaz vjerojatnosti da bi student odradio
+zadatake qt točno.
+\begin{equation}
+p=Sigmoid(W^T_1f_t)
+\end{equation}
 
 \subsection{Proces ažuriranja}
 
 Proces ažuriranja mijenja vrijednosti matrice $M^v_t$ koja predstavlja trenutno stanje studentovog koncepta znanja k.
-Ovaj model je drukčiji od DKVMN po tome da se razmatra i trajanje rješavanja. Prema povezanim radovima, trajanje rješavanja zadatka je povezano sa razinom znanja studenta. Pošto je vrijeme rješavanja kontinuirana varijabla ona se prvo diskretizira po njenoj distribuciji i unda se prikaže kao varijabla t te se koristi kako bi se ažurirala matrica $M$. Ostali procesi su isti kao i u DKVMN, sastoji se od podprocessa dodavanja i brisanja. Vektor brisanjas e dobije FORMULA dok se vektor dodavanja dobije kao FORMULA te se nova matrica M računa kao FORMULA
+Ovaj model je drukčiji od DKVMN po tome da se razmatra i trajanje rješavanja. Prema povezanim radovima, trajanje rješavanja zadatka je povezano sa razinom znanja studenta. Pošto je vrijeme rješavanja kontinuirana varijabla ona se prvo diskretizira po njenoj distribuciji i unda se prikaže kao varijabla t te se koristi kako bi se ažurirala matrica $M$. Ostali procesi su isti kao i u DKVMN, sastoji se od podprocessa dodavanja i brisanja. Vektor brisanjas e dobije $e=Sigmoid(E^T[s_t,t])$ dok se vektor dodavanja dobije kao $a=Tanh(D^T[s_t,t])$ te se nova matrica M računa kao
+\begin{equation}
+	M^v_{t+1}(i+1) =M^v_t (i)[1-w(i)e][1+w(i)]
+\end{equation}
 Parametri ovog modela se račuaju tako da se minimizira "cross-entropy loss" između pretpostavljenog studentovog
-dobvivenog i pretpostavljenog rezultata. FORMULA
+dobvivenog i pretpostavljenog rezultata. 
+\begin{equation}
+	L=-\sum_t ((y_i \log p_t ) + (1-y_t)\log (1-p_t))
+\end{equation}
 
 
 
@@ -141,16 +147,3 @@ Ponovno se preporučuje početni zadatak i stvar se ponavlja dok se ne riješi t
 \url{https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process}
 \url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9}
 \url{https://arxiv.org/abs/1502.05477}
-
-
-
-\chapter{Literatura}
-\renewcommand{\bibsection}{}
-\begin{thebibliography}{99}
-\bibitem[1]{exrec} Concept-Aware Deep Knowledge Tracing and Exercise Recommendation in an Online Learning System (ExRec), \url{https://files.eric.ed.gov/fulltext/ED599194.pdf}
-
-
-
-\end{thebibliography}
-
-\end{document}

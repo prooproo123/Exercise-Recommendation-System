@@ -44,4 +44,20 @@
 \contentsline {section}{\numberline {7.1}Latent Skill Embedding (Lentil)}{29}{section.7.1}%
 \contentsline {section}{\numberline {7.2}K-Medoids}{30}{section.7.2}%
 \contentsline {section}{\numberline {7.3}Ostatak istraživanja}{32}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Literatura}{34}{chapter.8}%
+\contentsline {chapter}{\numberline {8}Općenito o ExRec-u}{34}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Povezani radovi}{34}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Pozadina sustava i dataset}{35}{section.8.2}%
+\contentsline {section}{\numberline {8.3}DKVMN - model za praćenje znanja}{36}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Concept Aware struktura}{36}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Knowledge Concept Weight}{37}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Proces čitanja}{38}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}Proces ažuriranja}{39}{subsection.8.3.4}%
+\contentsline {section}{\numberline {8.4}Preporuka zadataka podržanim učenjem}{39}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Općenito o podržanom učenju}{39}{subsection.8.4.1}%
+\contentsline {subsection}{\numberline {8.4.2}Primjena na ExRec}{40}{subsection.8.4.2}%
+\contentsline {section}{\numberline {8.5}Evaluacija performansi}{41}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Preporuke zadataka}{41}{subsection.8.5.1}%
+\contentsline {subsubsection}{Evaluacija porasta znanja studenta}{41}{subsection.8.5.1}%
+\contentsline {subsubsection}{Evaluacija preporuka}{42}{subsection.8.5.1}%
+\contentsline {section}{\numberline {8.6}Poveznice}{42}{section.8.6}%
+\contentsline {chapter}{\numberline {9}Literatura}{43}{chapter.9}%
