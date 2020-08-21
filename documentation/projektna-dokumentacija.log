@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.18)  21 AUG 2020 09:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.18)  21 AUG 2020 09:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**diplomski.tex
-(./diplomski.tex
+**projektna-dokumentacija.tex
+(./projektna-dokumentacija.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-08-07> (./fer.cls
 Document Class: fer 
@@ -531,7 +531,7 @@ File: l3backend-pdfmode.def 2020-08-07 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count309
 \l__pdf_internal_box=\box52
 )
-(./diplomski.aux
+(./projektna-dokumentacija.aux (./uvod.aux) (./BKT.aux) (./Bayes_graph.aux
 
 LaTeX Warning: Label `' multiply defined.
 
@@ -541,26 +541,26 @@ LaTeX Warning: Label `' multiply defined.
 
 LaTeX Warning: Label `' multiply defined.
 
-(./stvaranje_grafa.tex.aux))
-\openout1 = `diplomski.aux'.
+) (./stvaranje-grafa-content.aux) (./literatura.aux))
+\openout1 = `projektna-dokumentacija.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 20
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 21
 .
 
 (c:/texlive/2020/texmf-dist/tex/latex/psnfss/t1ptm.fd
@@ -626,7 +626,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box54
-Package hyperref Info: Link coloring OFF on input line 20.
+Package hyperref Info: Link coloring OFF on input line 21.
 
 (c:/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -639,34 +639,34 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count316
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 21.
+LaTeX Info: Redefining \pageref on input line 21.
+LaTeX Info: Redefining \nameref on input line 21.
 
-(./diplomski.out) (./diplomski.out)
+(./projektna-dokumentacija.out) (./projektna-dokumentacija.out)
 \@outlinefile=\write3
-\openout3 = `diplomski.out'.
+\openout3 = `projektna-dokumentacija.out'.
 
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 36
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 37
 .
 
 (c:/texlive/2020/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 
 
 (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 
 
 (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <14.4> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 36.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 37.
 
 
 LaTeX Warning: Voditelj nije naveden. Koristi \voditelj za definiranje.
@@ -674,144 +674,159 @@ LaTeX Warning: Voditelj nije naveden. Koristi \voditelj za definiranje.
 [1
 
 {c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./diplomski.toc [2])
+(./projektna-dokumentacija.toc [2])
 \tf@toc=\write4
-\openout4 = `diplomski.toc'.
+\openout4 = `projektna-dokumentacija.toc'.
 
+ [3]
+\openout2 = `uvod.aux'.
 
+ (./uvod.tex
 Poglavlje 1.
-[1]
 Poglavlje 2.
+[1
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--51
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 52--54
+]
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
+Underfull \hbox (badness 10000) in paragraph at lines 15--17
 
  []
 
-[2]
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+
+ []
+
 Poglavlje 3.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 29--38
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--38
+
+ []
+
+[2] [3] [4]
+\openout2 = `BKT.aux'.
+
+ (./BKT.tex
 Poglavlje 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--75
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--75
-
- []
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
-
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 94--95
+Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
+[5
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
 
  []
 
-[5]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-26.
- (c:/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
+2.
+(c:/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 13
-7.
+) [6]
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 63
+.
 
 (c:/texlive/2020/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [6]
-Underfull \hbox (badness 10000) in paragraph at lines 152--162
+) [7]
+Underfull \hbox (badness 10000) in paragraph at lines 78--88
 
  []
 
-[7]
+) [8] [9]
+\openout2 = `Bayes_graph.aux'.
+
+ (./Bayes_graph.tex
 Poglavlje 5.
-[8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+[10
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
 
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 211--212
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
  []
 
-<figures/Bayes_kod.png, id=256, 451.6875pt x 51.94406pt>
+<figures/Bayes_kod.png, id=359, 451.6875pt x 51.94406pt>
 File: figures/Bayes_kod.png Graphic file (type png)
 <use figures/Bayes_kod.png>
-Package pdftex.def Info: figures/Bayes_kod.png  used on input line 221.
+Package pdftex.def Info: figures/Bayes_kod.png  used on input line 48.
 (pdftex.def)             Requested size: 451.68639pt x 51.94392pt.
 
-Overfull \hbox (39.12141pt too wide) in paragraph at lines 221--222
+Overfull \hbox (39.12141pt too wide) in paragraph at lines 48--49
  [][] 
  []
 
-[11 <./figures/Bayes_kod.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
+[12 <./figures/Bayes_kod.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
 
  []
 
-[12] [13]
-<figures/Bayes_graf3.png, id=272, 339.51843pt x 220.57407pt>
+[13] [14]
+<figures/Bayes_graf3.png, id=373, 339.51843pt x 220.57407pt>
 File: figures/Bayes_graf3.png Graphic file (type png)
 <use figures/Bayes_graf3.png>
-Package pdftex.def Info: figures/Bayes_graf3.png  used on input line 271.
+Package pdftex.def Info: figures/Bayes_graf3.png  used on input line 98.
 (pdftex.def)             Requested size: 339.5176pt x 220.57352pt.
- [14 <./figures/Bayes_graf3.png>]
-<figures/Bayes_graf4.png, id=278, 252.945pt x 167.12437pt>
+ [15 <./figures/Bayes_graf3.png>]
+<figures/Bayes_graf4.png, id=379, 252.945pt x 167.12437pt>
 File: figures/Bayes_graf4.png Graphic file (type png)
 <use figures/Bayes_graf4.png>
-Package pdftex.def Info: figures/Bayes_graf4.png  used on input line 296.
+Package pdftex.def Info: figures/Bayes_graf4.png  used on input line 123.
 (pdftex.def)             Requested size: 252.94438pt x 167.12395pt.
-<figures/Bayes_graf6.png, id=279, 344.78813pt x 280.79906pt>
+<figures/Bayes_graf6.png, id=380, 344.78813pt x 280.79906pt>
 File: figures/Bayes_graf6.png Graphic file (type png)
 <use figures/Bayes_graf6.png>
-Package pdftex.def Info: figures/Bayes_graf6.png  used on input line 312.
+Package pdftex.def Info: figures/Bayes_graf6.png  used on input line 139.
 (pdftex.def)             Requested size: 344.78728pt x 280.79837pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 302--317
+Underfull \hbox (badness 10000) in paragraph at lines 129--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 302--317
+Underfull \hbox (badness 10000) in paragraph at lines 129--144
 
  []
 
-[15 <./figures/Bayes_graf4.png>] [16 <./figures/Bayes_graf6.png>] [17]
-Overfull \hbox (2.42685pt too wide) in paragraph at lines 347--348
+[16 <./figures/Bayes_graf4.png>] [17 <./figures/Bayes_graf6.png>] [18]
+Overfull \hbox (2.42685pt too wide) in paragraph at lines 174--175
 \T1/ptm/m/n/12 malo vi²e stan-dar-di-zi-rale ko-nven-cije ime-no-va-nja i os-ta
 la uljep-²a-va-nja koda.Napravljena
  []
 
-[18]
+) [19]
 \openout2 = `stvaranje-grafa-content.aux'.
 
  (./stvaranje-grafa-content.tex
@@ -856,7 +871,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--18
 
  []
 
-[19
+[20
+
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 25--29
@@ -881,115 +897,86 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--34
 
  []
 
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 36--43
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 36--43
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--46
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--46
-
- []
-
 [21]
+Underfull \hbox (badness 10000) in paragraph at lines 36--43
 
-LaTeX Warning: Reference `fig:protein' on page 22 undefined on input line 47.
+ []
 
-<figures/protein.jpg, id=340, 77.088pt x 57.816pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--43
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--46
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--46
+
+ []
+
+[22]
+<figures/protein.jpg, id=436, 77.088pt x 57.816pt>
 File: figures/protein.jpg Graphic file (type jpg)
 <use figures/protein.jpg>
 Package pdftex.def Info: figures/protein.jpg  used on input line 51.
 (pdftex.def)             Requested size: 308.3512pt x 231.26337pt.
-[22 <./figures/protein.jpg>]
+ [23 <./figures/protein.jpg>]
 
-Package natbib Warning: Citation `6' on page 23 undefined on input line 60.
+Package natbib Warning: Citation `6' on page 24 undefined on input line 60.
 
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
             Default family used instead on input line 66.
-[23] [24]
-
-LaTeX Warning: Reference `fig:dot1' on page 25 undefined on input line 78.
-
-
-LaTeX Warning: Reference `fig:dot2' on page 25 undefined on input line 79.
-
-
-LaTeX Warning: Reference `fig:sfdp2' on page 25 undefined on input line 79.
-
-<figures/dot1.jpg, id=361, 361.35pt x 554.3109pt>
+[24] [25]
+<figures/dot1.jpg, id=454, 361.35pt x 554.3109pt>
 File: figures/dot1.jpg Graphic file (type jpg)
 <use figures/dot1.jpg>
 Package pdftex.def Info: figures/dot1.jpg  used on input line 82.
 (pdftex.def)             Requested size: 180.67456pt x 277.15477pt.
-
-LaTeX Warning: Reference `fig:circo1' on page 25 undefined on input line 88.
-
-
-LaTeX Warning: Reference `fig:sfdp1' on page 25 undefined on input line 88.
-
-<figures/circo1.jpg, id=362, 361.35pt x 323.7696pt>
+<figures/circo1.jpg, id=457, 361.35pt x 323.7696pt>
 File: figures/circo1.jpg Graphic file (type jpg)
 <use figures/circo1.jpg>
 Package pdftex.def Info: figures/circo1.jpg  used on input line 92.
 (pdftex.def)             Requested size: 180.67456pt x 161.8844pt.
-<figures/sfdp1.jpg, id=363, 168.63pt x 138.9993pt>
+<figures/sfdp1.jpg, id=458, 168.63pt x 138.9993pt>
 File: figures/sfdp1.jpg Graphic file (type jpg)
 <use figures/sfdp1.jpg>
 Package pdftex.def Info: figures/sfdp1.jpg  used on input line 99.
 (pdftex.def)             Requested size: 252.94437pt x 208.49841pt.
-<figures/dot2.png, id=364, 933.4875pt x 235.88126pt>
+<figures/dot2.png, id=459, 933.4875pt x 235.88126pt>
 File: figures/dot2.png Graphic file (type png)
 <use figures/dot2.png>
 Package pdftex.def Info: figures/dot2.png  used on input line 106.
 (pdftex.def)             Requested size: 373.38838pt x 94.35083pt.
-<figures/sfdp2.jpg, id=365, 154.176pt x 94.1919pt>
+<figures/sfdp2.jpg, id=460, 154.176pt x 94.1919pt>
 File: figures/sfdp2.jpg Graphic file (type jpg)
 <use figures/sfdp2.jpg>
 Package pdftex.def Info: figures/sfdp2.jpg  used on input line 113.
 (pdftex.def)             Requested size: 308.3512pt x 188.3833pt.
-
-LaTeX Warning: Reference `fig:dot3' on page 25 undefined on input line 120.
-
-[25 <./figures/dot1.jpg>] [26 <./figures/circo1.jpg> <./figures/sfdp1.jpg> <./f
-igures/dot2.png (PNG copy)>]
-<figures/dot3.jpg, id=379, 96.36pt x 185.7339pt>
+ [26 <./figures/dot1.jpg>] [27 <./figures/circo1.jpg> <./figures/sfdp1.jpg> <./
+figures/dot2.png (PNG copy)>]
+<figures/dot3.jpg, id=475, 96.36pt x 185.7339pt>
 File: figures/dot3.jpg Graphic file (type jpg)
 <use figures/dot3.jpg>
 Package pdftex.def Info: figures/dot3.jpg  used on input line 124.
 (pdftex.def)             Requested size: 96.35974pt x 185.73344pt.
 
 Poglavlje 7.
-[27 <./figures/sfdp2.jpg> <./figures/dot3.jpg>]
-
-LaTeX Warning: Reference `fig:clust1' on page 28 undefined on input line 136.
-
-<figures/clust1.png, id=386, 966.61125pt x 1097.09875pt>
+[28 <./figures/sfdp2.jpg> <./figures/dot3.jpg>]
+<figures/clust1.png, id=483, 966.61125pt x 1097.09875pt>
 File: figures/clust1.png Graphic file (type png)
 <use figures/clust1.png>
 Package pdftex.def Info: figures/clust1.png  used on input line 140.
 (pdftex.def)             Requested size: 289.98561pt x 329.13217pt.
 
-LaTeX Warning: Reference `fig:clust1' on page 28 undefined on input line 145.
 
+Package natbib Warning: Citation `6' on page 29 undefined on input line 147.
 
-LaTeX Warning: Reference `fig:clust2' on page 28 undefined on input line 145.
-
-
-Package natbib Warning: Citation `6' on page 28 undefined on input line 147.
-
-[28]
-<figures/clust2.png, id=394, 482.80376pt x 323.2075pt>
+[29]
+<figures/clust2.png, id=493, 482.80376pt x 323.2075pt>
 File: figures/clust2.png Graphic file (type png)
 <use figures/clust2.png>
 Package pdftex.def Info: figures/clust2.png  used on input line 151.
@@ -999,26 +986,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--173
 
  []
 
-[29 <./figures/clust1.png>] [30 <./figures/clust2.png>]
+[30 <./figures/clust1.png>] [31 <./figures/clust2.png>]
 
-Package natbib Warning: Citation `ct10' on page 31 undefined on input line 177.
-
-
-
-Package natbib Warning: Citation `ct11' on page 31 undefined on input line 178.
+Package natbib Warning: Citation `ct11' on page 32 undefined on input line 178.
 
 
 
-Package natbib Warning: Citation `12' on page 31 undefined on input line 181.
+Package natbib Warning: Citation `12' on page 32 undefined on input line 181.
 
 
-Package natbib Warning: Citation `13' on page 31 undefined on input line 182.
+Package natbib Warning: Citation `13' on page 32 undefined on input line 182.
 
 
-Package natbib Warning: Citation `14' on page 31 undefined on input line 185.
+Package natbib Warning: Citation `14' on page 32 undefined on input line 185.
 
 
-Package natbib Warning: Citation `15' on page 31 undefined on input line 188.
+Package natbib Warning: Citation `15' on page 32 undefined on input line 188.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 175--196
@@ -1037,111 +1020,64 @@ Underfull \hbox (badness 10000) in paragraph at lines 175--196
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 175--196
-
- []
-
-[31]
-
-Package natbib Warning: Citation `16' on page 32 undefined on input line 201.
-
-
-Package natbib Warning: Citation `17' on page 32 undefined on input line 204.
-
-
-Package natbib Warning: Citation `18' on page 32 undefined on input line 204.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--206
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--206
 
  []
 
 [32]
+
+Package natbib Warning: Citation `16' on page 33 undefined on input line 201.
+
+
+Package natbib Warning: Citation `17' on page 33 undefined on input line 204.
+
+
+Package natbib Warning: Citation `18' on page 33 undefined on input line 204.
+
+)
+Underfull \hbox (badness 10000) in paragraph at lines 199--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--41
+
+ []
+
+[33] [34]
+\openout2 = `literatura.aux'.
+
+ (./literatura.tex
 Poglavlje 8.
-[33]) [34]
-Poglavlje 9.
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ct1}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.363 	\bibitem[1]{ct1}
-                        Knewton, \url{https://www.knewton.com/blog/mastery/w...
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ct2}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.364 	\bibitem[2]{ct2}
-                        Deep Knowledge Tracing, \url{ http://papers.nips.cc/...
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ct3}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.365 	\bibitem[3]{ct3}
-                        KnowEdu, \url{ https://ieeexplore.ieee.org/stamp/sta...
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ct4}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.366 	\bibitem[4]{ct4}
-                        Back to the basics: Bayesian extensions of IRT outpe...
-pdfTeX warning (ext4): destination with the same identifier (name{cite.ct5}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.368 	\bibitem[5]{ct5}
-                        Addressing Two Problems in Deep Knowledge Tracing viapd
-fTeX warning (ext4): destination with the same identifier (name{cite.ct6}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.370 	\bibitem[6]{ct6}
-                        Latent Skill Embedding (Lentil), \url{https://arxiv....
 [35
 
-]
+
+]) [36]
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 388.
-[36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 388.
- (./diplomski.aux (./stvaranje-grafa-content.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 388.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 388.
-
-
-Package rerunfilecheck Warning: File `diplomski.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `diplomski.out':
-(rerunfilecheck)             Before: 1EE1309CD106C2DCD8A733FB42C7FD25;1702
-(rerunfilecheck)             After:  3DF40BB5A75C816559176D04FF6B4977;3037.
-
-LaTeX Warning: There were undefined references.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 43.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 43.
+(./projektna-dokumentacija.aux (./uvod.aux) (./BKT.aux) (./Bayes_graph.aux)
+(./stvaranje-grafa-content.aux) (./literatura.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 43.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 43.
+Package rerunfilecheck Info: File `projektna-dokumentacija.out' has not changed
+.
+(rerunfilecheck)             Checksum: 3A1C1AFCE59206EED7CC6AD6FC595B56;2991.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 388.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 43.
  ) 
 Here is how much of TeX's memory you used:
- 12880 strings out of 480893
- 193064 string characters out of 5911972
- 522599 words of memory out of 5000000
- 28042 multiletter control sequences out of 15000+600000
+ 12965 strings out of 480893
+ 194321 string characters out of 5911972
+ 528588 words of memory out of 5000000
+ 28094 multiletter control sequences out of 15000+600000
  588917 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,8n,81p,1406b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,8n,81p,1435b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{c:/tex
 live/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2020/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2020/texmf-dist/fonts/type1
@@ -1155,10 +1091,10 @@ rw/helvetic/uhvr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhv
 ro8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texli
 ve/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on diplomski.pdf (38 pages, 610225 bytes).
+Output written on projektna-dokumentacija.pdf (39 pages, 612349 bytes).
 PDF statistics:
- 572 PDF objects out of 1000 (max. 8388607)
- 499 compressed objects within 5 object streams
- 125 named destinations out of 1000 (max. 500000)
- 282 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 668 PDF objects out of 1000 (max. 8388607)
+ 593 compressed objects within 6 object streams
+ 131 named destinations out of 1000 (max. 500000)
+ 434 words of extra memory for PDF output out of 10000 (max. 10000000)
 

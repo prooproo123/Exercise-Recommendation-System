@@ -6,7 +6,15 @@
 \usepackage{graphicx}
 \usepackage{xurl}
 \usepackage{natbib}
+\usepackage{color}
+\usepackage[nodayofweek,level]{datetime}
+%\usepackage[numbers,square]{natbib}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
 \setcitestyle{numbers}
+\usepackage{standalone}
 \graphicspath{{figures/}}
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \begin{document}
@@ -344,6 +352,8 @@ Pronađen je kod napisan u Javi koji računa BKT parametre tehnikom simuliranog 
 	\url{https://arxiv.org/pdf/1610.09156.pdf}\newline
 	\url{http://www.dia.fi.upm.es/~mgremesal/MIR/slides/Lesson\%206\%20(Inference\%20from\%20Conditional\%20Fuzzy\%20Propositions).pdf}\newline
 	\url{https://www.intechopen.com/books/fuzzy-logic/some-methods-of-fuzzy-conditional-inference-for-application-to-fuzzy-control-systems}
+	
+	\include{stvaranje-grafa-content}
 %\bibliography{literatura}
 %\bibliographystyle{fer}
 \chapter{Literatura}
