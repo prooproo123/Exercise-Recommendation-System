@@ -7,6 +7,8 @@ import pickle
 import sys
 import types
 
+import matplotlib.pyplot as plt
+%pylab inline
 import numpy as np
 from gym import spaces
 
@@ -584,3 +586,12 @@ agent = RLTutor(n_items)
 reward = agent.train(rl_env, n_eps=n_eps)
 print(evaluation(agent))
 print('ok')
+
+print('knowledge growth')
+outList = evaluation(agent)
+#outList.sort()
+plt.figure()
+i = range(50)
+plt.plot(i, outList, '-bo')
+plt.savefig('plot.png')
+#plt.show()
