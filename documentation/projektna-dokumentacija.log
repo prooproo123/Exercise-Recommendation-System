@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.18)  21 AUG 2020 14:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.18)  24 AUG 2020 08:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -717,17 +717,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--20
  []
 
 Poglavlje 3.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 29--39
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--37
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--39
+Underfull \hbox (badness 10000) in paragraph at lines 29--37
 
  []
 
-[2] [3] [4]
+[2]) [3] [4]
 \openout2 = `BKT.aux'.
 
  (./BKT.tex
@@ -1111,10 +1111,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--37
 <figures/exrec1.png, id=607, 517.935pt x 520.19344pt>
 File: figures/exrec1.png Graphic file (type png)
 <use figures/exrec1.png>
-Package pdftex.def Info: figures/exrec1.png  used on input line 43.
+Package pdftex.def Info: figures/exrec1.png  used on input line 44.
 (pdftex.def)             Requested size: 414.34854pt x 416.1553pt.
 
-Overfull \hbox (1.78357pt too wide) in paragraph at lines 43--44
+Overfull \hbox (1.78357pt too wide) in paragraph at lines 44--45
  [][] 
  []
 
@@ -1122,74 +1122,74 @@ Overfull \hbox (1.78357pt too wide) in paragraph at lines 43--44
 <figures/exrec2.png, id=617, 464.4853pt x 449.42906pt>
 File: figures/exrec2.png Graphic file (type png)
 <use figures/exrec2.png>
-Package pdftex.def Info: figures/exrec2.png  used on input line 56.
+Package pdftex.def Info: figures/exrec2.png  used on input line 59.
 (pdftex.def)             Requested size: 371.58875pt x 359.54372pt.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 62.
+(hyperref)                removing `\textasciicaron' on input line 66.
 
 [38 <./figures/exrec2.png>]
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 92.
+(hyperref)                removing `\textasciicaron' on input line 99.
 
 
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 93.
+(hyperref)                removing `\textasciicaron' on input line 100.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--105
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 94--105
+Underfull \hbox (badness 10000) in paragraph at lines 101--112
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--105
+Underfull \hbox (badness 10000) in paragraph at lines 101--112
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--105
+Underfull \hbox (badness 10000) in paragraph at lines 101--112
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--112
 
  []
 
 [39]
-Underfull \hbox (badness 10000) in paragraph at lines 106--108
+Underfull \hbox (badness 10000) in paragraph at lines 113--115
 
  []
 
 [40]
-Underfull \hbox (badness 10000) in paragraph at lines 110--114
+Underfull \hbox (badness 10000) in paragraph at lines 117--121
 
  []
 
 
-Overfull \hbox (10.98164pt too wide) in paragraph at lines 110--114
+Overfull \hbox (10.98164pt too wide) in paragraph at lines 117--121
 \T1/ptm/m/n/12 Krajnji cilj je mak-si-mi-zi-rati na-gradu odre-žene stra-te-gij
 e gdje su tra-jek-to-rije $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 s[]; o[]; a[]; :::
 \OT1/cmr/m/n/12 )$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--114
+Underfull \hbox (badness 10000) in paragraph at lines 117--121
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--120
+Underfull \hbox (badness 10000) in paragraph at lines 123--127
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--120
+Underfull \hbox (badness 10000) in paragraph at lines 123--127
 
  []
 
@@ -1244,7 +1244,7 @@ tic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 20/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on projektna-dokumentacija.pdf (48 pages, 859713 bytes).
+Output written on projektna-dokumentacija.pdf (48 pages, 859749 bytes).
 PDF statistics:
  825 PDF objects out of 1000 (max. 8388607)
  734 compressed objects within 8 object streams
