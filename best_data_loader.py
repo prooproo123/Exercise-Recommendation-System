@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import os
 
+#'/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+PATH_TO_EXREC='/home/zvonimir/'
 
 class Data_Loader():
     def __init__(self, n_questions=100, seqlen=150, seperate_char=','):
@@ -14,7 +16,7 @@ class Data_Loader():
         self.data_path=os.path.curdir
 
     '''
-    Data format as followed
+    Data format a followed
     1) Number of exercies
     2) Exercise tag
     3) Answers
@@ -87,7 +89,7 @@ class Data_Loader():
         return q_data_array, qa_data_array
 
     def pickle_candidates(self):
-        assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+        assistments_pickled = PATH_TO_EXREC+'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
         with open(assistments_pickled, 'rb') as f:
             df = pickle.load(f)
@@ -133,11 +135,11 @@ class Data_Loader():
         return 0
 
     def load_ids(self):
-        pat = "/home/zvonimir/Exercise-Recommendation-System/data/assist2015/assist2015_qname_qid"
+        pat = PATH_TO_EXREC+'Exercise-Recommendation-System/data/assist2015/assist2015_qname_qid'
         with open(file=pat) as f:
             lines = f.readlines()
 
-        assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+        assistments_pickled = PATH_TO_EXREC+'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
         with open(assistments_pickled, 'rb') as f:
             df = pickle.load(f)
 
@@ -188,53 +190,12 @@ class Data_Loader():
                                   'template_id',
                                   'first_action', 'opportunity', ])
 
-        assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+        assistments_pickled = PATH_TO_EXREC+'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
         students = df.user_id.unique()
 
-        outputFilePath = '/home/zvonimir/Exercise-Recommendation-System/data/stan_con.csv'
-        outputFile = open(outputFilePath, "w+")
-
-        max_exercises = 0
-        max_concepts = 0
-        l = []
-        for student in students:
-            condition = df['user_id'] == student
-            studentData = df[condition]
-            exercises = studentData['problem_id'].values
-            answers = studentData['correct'].values
-            concepts = studentData['skill_id'].values
-            con = np.isnan(concepts)
-            concepts = concepts[~con]
-            exercises = exercises[~con]
-            # time = studentData['skill_id'].tolist()
-            # difficulty = studentData['skill_id'].tolist()
-            # gate = studentData['skill_id'].tolist()
-            exercises = exercises.tolist()
-            answers = answers.tolist()
-            concepts = concepts.tolist()
-
-            if len(exercises) > max_exercises:
-                max_exercises = len(exercises)
-
-            if len(concepts) > max_concepts:
-                max_concepts = len(concepts)
-
-            if len(exercises) != len(concepts):
-                print("razlika je" + str(len(exercises) - len(concepts)))
-
-            # if len(exercises) < 1900:
-            l.append(len(exercises))
-            outputFile.write(str(len(exercises)) + "\n")
-            outputFile.write(self.standard(exercises) + "\n")
-            outputFile.write(self.standard(answers) + "\n")
-            outputFile.write(self.standardCon(concepts) + "\n")
-        # [8214, 6577, 4290, 3263, 2800, 2457, 2354, 2300, 1893, 1849, 1783, 1684, 1674, 1611, 1606, 1565, 1546, 1490, 1482, 1473, 1456, 1442, 1434,...
-        l2 = sorted(l, reverse=True)
-        outputFile.close()
-
-
-
+        outputFilePath = PATH_TO_EXREC+'Exercise-Recommendation-System/data/stan_con.csv'
+        self.for_students_write(self,outputFilePath,df)
 
     def obradi_assistments2(self):
         assistments_data_path = '/data/skill_builder/skill_builder_data.csv'
@@ -264,13 +225,24 @@ class Data_Loader():
                                   'template_id',
                                   'first_action', 'opportunity', ])
 
-        assistments_pickled = '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+        assistments_pickled = PATH_TO_EXREC+'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
         students = df.user_id.unique()
 
-        outputFilePath = '/home/zvonimir/Exercise-Recommendation-System/data/stand_exind_nocon.csv'
-        outputFile = open(outputFilePath, "w+")
+        outputFilePath = PATH_TO_EXREC+'Exercise-Recommendation-System/data/stand_exind_nocon.csv'
+        self.for_students_write(self,outputFilePath,df)
 
+
+    def preprocess_gforms(self,filename):
+        csv_path=PATH_TO_EXREC+'Exercise-Recommendation-System/data/gforms_raw/'+filename
+        df=pd.read_csv(filepath_or_buffer=csv_path,delimiter='\t')
+
+        self.for_students_write(PATH_TO_EXREC+'Exercise-Recommendation-System/data/gforms_raw/'+filename+'processed.csv',df)
+
+    def for_students_write(self,path,df):
+
+        outputFile = open(path, "w+")
+        students = df.user_id.unique()
         max_exercises = 0
         max_concepts = 0
         l = []
@@ -313,4 +285,3 @@ class Data_Loader():
         # [8214, 6577, 4290, 3263, 2800, 2457, 2354, 2300, 1893, 1849, 1783, 1684, 1674, 1611, 1606, 1565, 1546, 1490, 1482, 1473, 1456, 1442, 1434,...
         l2 = sorted(l, reverse=True)
         outputFile.close()
-

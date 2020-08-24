@@ -3,7 +3,6 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 from scipy.stats import percentileofscore
-from google.colab import files
 import io
 
 
