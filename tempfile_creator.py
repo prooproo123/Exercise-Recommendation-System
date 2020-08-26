@@ -13,12 +13,12 @@ def standardCon(listt, di):
     return str(list(map(int, listtt))).replace(" ", "").replace("[", "").replace("]", "")
 
 def create_files(path_to_chunk):
-    df = pd.read_csv(path_to_chunk)
+    df = pd.read_csv(path_to_chunk+'biology30.csv', sep='\t')
 
     # removing rows with nan concept value
-    df = df[df['skill_id'].notna()]
+    #df = df[df['skill_id'].notna()]
 
-    df['skill_id'] = df['skill_id'].astype(np.int64)
+    #df['skill_id'] = df['skill_id'].astype(np.int64)
 
     users = df['user_id'].unique()
     unique_exercises = df['problem_id'].unique()
@@ -73,9 +73,9 @@ def create_files(path_to_chunk):
         exercises = studentData['problem_id'].values
         answers = studentData['correct'].values
         concepts = studentData['skill_id'].values
-        con = np.isnan(concepts)
-        concepts = concepts[~con]
-        exercises = exercises[~con]
+        #con = np.isnan(concepts)
+        #concepts = concepts[~con]
+        #exercises = exercises[~con]
         # time = studentData['skill_id'].tolist()
         # difficulty = studentData['skill_id'].tolist()
         # gate = studentData['skill_id'].tolist()
@@ -123,4 +123,4 @@ def create_files(path_to_chunk):
 
 #main
 
-create_files('/Biologija')
+create_files('data/biology30/')
