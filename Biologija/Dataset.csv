@@ -1,0 +1,2521 @@
+problem_id	user_id	skill_id	correct
+0	0	Stanica	0
+1	0	Stanica	0
+2	0	Stanica	1
+3	0	Stanica	1
+4	0	Stanica	1
+5	0	Stanica	1
+0	1	Stanica	0
+1	1	Stanica	1
+2	1	Stanica	0
+3	1	Stanica	0
+4	1	Stanica	0
+5	1	Stanica	0
+0	2	Stanica	1
+1	2	Stanica	1
+2	2	Stanica	0
+3	2	Stanica	1
+4	2	Stanica	1
+5	2	Stanica	1
+0	3	Stanica	0
+1	3	Stanica	0
+2	3	Stanica	1
+3	3	Stanica	1
+4	3	Stanica	0
+5	3	Stanica	1
+0	4	Stanica	1
+1	4	Stanica	1
+2	4	Stanica	1
+3	4	Stanica	1
+4	4	Stanica	1
+5	4	Stanica	0
+0	5	Stanica	0
+1	5	Stanica	0
+2	5	Stanica	1
+3	5	Stanica	1
+4	5	Stanica	1
+5	5	Stanica	1
+0	6	Stanica	1
+1	6	Stanica	0
+2	6	Stanica	0
+3	6	Stanica	0
+4	6	Stanica	0
+5	6	Stanica	1
+0	7	Stanica	1
+1	7	Stanica	1
+2	7	Stanica	0
+3	7	Stanica	1
+4	7	Stanica	1
+5	7	Stanica	1
+0	8	Stanica	0
+1	8	Stanica	0
+2	8	Stanica	1
+3	8	Stanica	1
+4	8	Stanica	0
+5	8	Stanica	0
+0	9	Stanica	1
+1	9	Stanica	1
+2	9	Stanica	0
+3	9	Stanica	1
+4	9	Stanica	0
+5	9	Stanica	1
+0	10	Stanica	0
+1	10	Stanica	0
+2	10	Stanica	1
+3	10	Stanica	1
+4	10	Stanica	0
+5	10	Stanica	1
+0	11	Stanica	1
+1	11	Stanica	1
+2	11	Stanica	0
+3	11	Stanica	1
+4	11	Stanica	1
+5	11	Stanica	0
+0	12	Stanica	1
+1	12	Stanica	1
+2	12	Stanica	1
+3	12	Stanica	1
+4	12	Stanica	1
+5	12	Stanica	1
+0	13	Stanica	1
+1	13	Stanica	1
+2	13	Stanica	1
+3	13	Stanica	1
+4	13	Stanica	0
+5	13	Stanica	0
+0	14	Stanica	1
+1	14	Stanica	0
+2	14	Stanica	0
+3	14	Stanica	1
+4	14	Stanica	0
+5	14	Stanica	1
+0	15	Stanica	1
+1	15	Stanica	0
+2	15	Stanica	0
+3	15	Stanica	1
+4	15	Stanica	0
+5	15	Stanica	1
+0	16	Stanica	0
+1	16	Stanica	0
+2	16	Stanica	0
+3	16	Stanica	1
+4	16	Stanica	0
+5	16	Stanica	1
+0	17	Stanica	1
+1	17	Stanica	1
+2	17	Stanica	1
+3	17	Stanica	0
+4	17	Stanica	0
+5	17	Stanica	1
+0	18	Stanica	0
+1	18	Stanica	0
+2	18	Stanica	1
+3	18	Stanica	0
+4	18	Stanica	0
+5	18	Stanica	0
+0	19	Stanica	0
+1	19	Stanica	0
+2	19	Stanica	0
+3	19	Stanica	0
+4	19	Stanica	0
+5	19	Stanica	0
+0	20	Stanica	0
+1	20	Stanica	0
+2	20	Stanica	0
+3	20	Stanica	0
+4	20	Stanica	0
+5	20	Stanica	1
+0	21	Stanica	0
+1	21	Stanica	1
+2	21	Stanica	0
+3	21	Stanica	0
+4	21	Stanica	1
+5	21	Stanica	0
+0	22	Stanica	1
+1	22	Stanica	1
+2	22	Stanica	1
+3	22	Stanica	0
+4	22	Stanica	1
+5	22	Stanica	1
+0	23	Stanica	0
+1	23	Stanica	1
+2	23	Stanica	0
+3	23	Stanica	0
+4	23	Stanica	0
+5	23	Stanica	0
+0	24	Stanica	1
+1	24	Stanica	0
+2	24	Stanica	0
+3	24	Stanica	0
+4	24	Stanica	1
+5	24	Stanica	0
+0	25	Stanica	1
+1	25	Stanica	1
+2	25	Stanica	1
+3	25	Stanica	1
+4	25	Stanica	1
+5	25	Stanica	1
+0	26	Stanica	1
+1	26	Stanica	1
+2	26	Stanica	0
+3	26	Stanica	0
+4	26	Stanica	0
+5	26	Stanica	1
+0	27	Stanica	1
+1	27	Stanica	1
+2	27	Stanica	1
+3	27	Stanica	0
+4	27	Stanica	1
+5	27	Stanica	0
+0	28	Stanica	1
+1	28	Stanica	0
+2	28	Stanica	1
+3	28	Stanica	1
+4	28	Stanica	0
+5	28	Stanica	0
+0	29	Stanica	1
+1	29	Stanica	1
+2	29	Stanica	1
+3	29	Stanica	0
+4	29	Stanica	1
+5	29	Stanica	1
+0	30	Stanica	0
+1	30	Stanica	0
+2	30	Stanica	0
+3	30	Stanica	1
+4	30	Stanica	0
+5	30	Stanica	1
+0	31	Stanica	1
+1	31	Stanica	0
+2	31	Stanica	0
+3	31	Stanica	0
+4	31	Stanica	0
+5	31	Stanica	0
+0	32	Stanica	1
+1	32	Stanica	1
+2	32	Stanica	1
+3	32	Stanica	0
+4	32	Stanica	1
+5	32	Stanica	1
+0	33	Stanica	0
+1	33	Stanica	0
+2	33	Stanica	1
+3	33	Stanica	1
+4	33	Stanica	0
+5	33	Stanica	1
+0	34	Stanica	1
+1	34	Stanica	0
+2	34	Stanica	1
+3	34	Stanica	0
+4	34	Stanica	0
+5	34	Stanica	0
+0	35	Stanica	1
+1	35	Stanica	0
+2	35	Stanica	1
+3	35	Stanica	1
+4	35	Stanica	1
+5	35	Stanica	1
+0	36	Stanica	1
+1	36	Stanica	0
+2	36	Stanica	0
+3	36	Stanica	1
+4	36	Stanica	1
+5	36	Stanica	1
+0	37	Stanica	1
+1	37	Stanica	1
+2	37	Stanica	1
+3	37	Stanica	0
+4	37	Stanica	1
+5	37	Stanica	1
+0	38	Stanica	0
+1	38	Stanica	0
+2	38	Stanica	1
+3	38	Stanica	0
+4	38	Stanica	0
+5	38	Stanica	1
+0	39	Stanica	1
+1	39	Stanica	1
+2	39	Stanica	0
+3	39	Stanica	0
+4	39	Stanica	0
+5	39	Stanica	0
+0	40	Stanica	0
+1	40	Stanica	0
+2	40	Stanica	0
+3	40	Stanica	0
+4	40	Stanica	1
+5	40	Stanica	1
+0	41	Stanica	0
+1	41	Stanica	0
+2	41	Stanica	0
+3	41	Stanica	0
+4	41	Stanica	0
+5	41	Stanica	1
+0	42	Stanica	1
+1	42	Stanica	1
+2	42	Stanica	0
+3	42	Stanica	1
+4	42	Stanica	1
+5	42	Stanica	1
+0	43	Stanica	0
+1	43	Stanica	0
+2	43	Stanica	0
+3	43	Stanica	0
+4	43	Stanica	1
+5	43	Stanica	1
+0	44	Stanica	1
+1	44	Stanica	1
+2	44	Stanica	0
+3	44	Stanica	0
+4	44	Stanica	0
+5	44	Stanica	0
+0	45	Stanica	0
+1	45	Stanica	0
+2	45	Stanica	1
+3	45	Stanica	1
+4	45	Stanica	0
+5	45	Stanica	1
+0	46	Stanica	1
+1	46	Stanica	0
+2	46	Stanica	0
+3	46	Stanica	0
+4	46	Stanica	0
+5	46	Stanica	0
+0	47	Stanica	1
+1	47	Stanica	1
+2	47	Stanica	1
+3	47	Stanica	1
+4	47	Stanica	1
+5	47	Stanica	1
+0	48	Stanica	0
+1	48	Stanica	0
+2	48	Stanica	1
+3	48	Stanica	0
+4	48	Stanica	0
+5	48	Stanica	1
+0	49	Stanica	0
+1	49	Stanica	0
+2	49	Stanica	0
+3	49	Stanica	0
+4	49	Stanica	0
+5	49	Stanica	0
+0	50	Stanica	1
+1	50	Stanica	0
+2	50	Stanica	1
+3	50	Stanica	1
+4	50	Stanica	1
+5	50	Stanica	1
+0	51	Stanica	1
+1	51	Stanica	1
+2	51	Stanica	1
+3	51	Stanica	1
+4	51	Stanica	0
+5	51	Stanica	1
+0	52	Stanica	1
+1	52	Stanica	1
+2	52	Stanica	1
+3	52	Stanica	1
+4	52	Stanica	1
+5	52	Stanica	1
+0	53	Stanica	1
+1	53	Stanica	1
+2	53	Stanica	1
+3	53	Stanica	1
+4	53	Stanica	1
+5	53	Stanica	1
+0	54	Stanica	1
+1	54	Stanica	1
+2	54	Stanica	1
+3	54	Stanica	0
+4	54	Stanica	1
+5	54	Stanica	1
+0	55	Stanica	0
+1	55	Stanica	0
+2	55	Stanica	1
+3	55	Stanica	1
+4	55	Stanica	1
+5	55	Stanica	1
+0	56	Stanica	1
+1	56	Stanica	1
+2	56	Stanica	1
+3	56	Stanica	0
+4	56	Stanica	1
+5	56	Stanica	1
+0	57	Stanica	1
+1	57	Stanica	1
+2	57	Stanica	1
+3	57	Stanica	1
+4	57	Stanica	1
+5	57	Stanica	1
+0	58	Stanica	0
+1	58	Stanica	1
+2	58	Stanica	0
+3	58	Stanica	1
+4	58	Stanica	0
+5	58	Stanica	1
+0	59	Stanica	0
+1	59	Stanica	1
+2	59	Stanica	1
+3	59	Stanica	0
+4	59	Stanica	1
+5	59	Stanica	0
+0	60	Stanica	0
+1	60	Stanica	1
+2	60	Stanica	1
+3	60	Stanica	1
+4	60	Stanica	1
+5	60	Stanica	1
+0	61	Stanica	1
+1	61	Stanica	1
+2	61	Stanica	0
+3	61	Stanica	0
+4	61	Stanica	0
+5	61	Stanica	1
+0	62	Stanica	1
+1	62	Stanica	1
+2	62	Stanica	0
+3	62	Stanica	0
+4	62	Stanica	1
+5	62	Stanica	1
+0	63	Stanica	1
+1	63	Stanica	1
+2	63	Stanica	1
+3	63	Stanica	1
+4	63	Stanica	1
+5	63	Stanica	1
+0	64	Stanica	1
+1	64	Stanica	1
+2	64	Stanica	1
+3	64	Stanica	1
+4	64	Stanica	1
+5	64	Stanica	1
+0	65	Stanica	0
+1	65	Stanica	0
+2	65	Stanica	1
+3	65	Stanica	1
+4	65	Stanica	0
+5	65	Stanica	1
+0	66	Stanica	1
+1	66	Stanica	0
+2	66	Stanica	0
+3	66	Stanica	0
+4	66	Stanica	0
+5	66	Stanica	0
+0	67	Stanica	1
+1	67	Stanica	1
+2	67	Stanica	0
+3	67	Stanica	0
+4	67	Stanica	1
+5	67	Stanica	1
+0	68	Stanica	1
+1	68	Stanica	1
+2	68	Stanica	1
+3	68	Stanica	1
+4	68	Stanica	0
+5	68	Stanica	1
+0	69	Stanica	1
+1	69	Stanica	0
+2	69	Stanica	0
+3	69	Stanica	0
+4	69	Stanica	0
+5	69	Stanica	0
+0	70	Stanica	1
+1	70	Stanica	0
+2	70	Stanica	1
+3	70	Stanica	1
+4	70	Stanica	1
+5	70	Stanica	0
+0	71	Stanica	1
+1	71	Stanica	1
+2	71	Stanica	1
+3	71	Stanica	1
+4	71	Stanica	0
+5	71	Stanica	1
+0	72	Stanica	1
+1	72	Stanica	1
+2	72	Stanica	1
+3	72	Stanica	1
+4	72	Stanica	1
+5	72	Stanica	1
+0	73	Stanica	1
+1	73	Stanica	1
+2	73	Stanica	0
+3	73	Stanica	1
+4	73	Stanica	1
+5	73	Stanica	1
+0	74	Stanica	1
+1	74	Stanica	1
+2	74	Stanica	1
+3	74	Stanica	0
+4	74	Stanica	1
+5	74	Stanica	1
+0	75	Stanica	0
+1	75	Stanica	1
+2	75	Stanica	0
+3	75	Stanica	1
+4	75	Stanica	0
+5	75	Stanica	1
+0	76	Stanica	0
+1	76	Stanica	0
+2	76	Stanica	0
+3	76	Stanica	0
+4	76	Stanica	0
+5	76	Stanica	0
+0	77	Stanica	1
+1	77	Stanica	1
+2	77	Stanica	1
+3	77	Stanica	1
+4	77	Stanica	1
+5	77	Stanica	0
+0	78	Stanica	1
+1	78	Stanica	0
+2	78	Stanica	1
+3	78	Stanica	1
+4	78	Stanica	1
+5	78	Stanica	0
+0	79	Stanica	1
+1	79	Stanica	1
+2	79	Stanica	1
+3	79	Stanica	0
+4	79	Stanica	1
+5	79	Stanica	1
+0	80	Stanica	0
+1	80	Stanica	0
+2	80	Stanica	1
+3	80	Stanica	1
+4	80	Stanica	0
+5	80	Stanica	1
+0	81	Stanica	0
+1	81	Stanica	1
+2	81	Stanica	0
+3	81	Stanica	0
+4	81	Stanica	1
+5	81	Stanica	0
+0	82	Stanica	1
+1	82	Stanica	1
+2	82	Stanica	0
+3	82	Stanica	0
+4	82	Stanica	1
+5	82	Stanica	1
+0	83	Stanica	1
+1	83	Stanica	1
+2	83	Stanica	1
+3	83	Stanica	0
+4	83	Stanica	0
+5	83	Stanica	0
+6	0	Stanični metabolizam	1
+7	0	Stanični metabolizam	0
+8	0	Stanični metabolizam	0
+9	0	Stanični metabolizam	1
+10	0	Stanični metabolizam	1
+11	0	Stanični metabolizam	0
+6	1	Stanični metabolizam	0
+7	1	Stanični metabolizam	1
+8	1	Stanični metabolizam	1
+9	1	Stanični metabolizam	1
+10	1	Stanični metabolizam	1
+11	1	Stanični metabolizam	1
+6	2	Stanični metabolizam	0
+7	2	Stanični metabolizam	1
+8	2	Stanični metabolizam	0
+9	2	Stanični metabolizam	1
+10	2	Stanični metabolizam	1
+11	2	Stanični metabolizam	1
+6	3	Stanični metabolizam	1
+7	3	Stanični metabolizam	1
+8	3	Stanični metabolizam	1
+9	3	Stanični metabolizam	1
+10	3	Stanični metabolizam	1
+11	3	Stanični metabolizam	1
+6	4	Stanični metabolizam	0
+7	4	Stanični metabolizam	0
+8	4	Stanični metabolizam	1
+9	4	Stanični metabolizam	1
+10	4	Stanični metabolizam	0
+11	4	Stanični metabolizam	1
+6	5	Stanični metabolizam	1
+7	5	Stanični metabolizam	1
+8	5	Stanični metabolizam	1
+9	5	Stanični metabolizam	1
+10	5	Stanični metabolizam	1
+11	5	Stanični metabolizam	0
+6	6	Stanični metabolizam	0
+7	6	Stanični metabolizam	0
+8	6	Stanični metabolizam	0
+9	6	Stanični metabolizam	0
+10	6	Stanični metabolizam	0
+11	6	Stanični metabolizam	0
+6	7	Stanični metabolizam	0
+7	7	Stanični metabolizam	0
+8	7	Stanični metabolizam	0
+9	7	Stanični metabolizam	0
+10	7	Stanični metabolizam	0
+11	7	Stanični metabolizam	1
+6	8	Stanični metabolizam	1
+7	8	Stanični metabolizam	1
+8	8	Stanični metabolizam	0
+9	8	Stanični metabolizam	1
+10	8	Stanični metabolizam	1
+11	8	Stanični metabolizam	1
+6	9	Stanični metabolizam	0
+7	9	Stanični metabolizam	1
+8	9	Stanični metabolizam	1
+9	9	Stanični metabolizam	0
+10	9	Stanični metabolizam	0
+11	9	Stanični metabolizam	1
+6	10	Stanični metabolizam	0
+7	10	Stanični metabolizam	0
+8	10	Stanični metabolizam	1
+9	10	Stanični metabolizam	1
+10	10	Stanični metabolizam	0
+11	10	Stanični metabolizam	1
+6	11	Stanični metabolizam	0
+7	11	Stanični metabolizam	0
+8	11	Stanični metabolizam	1
+9	11	Stanični metabolizam	1
+10	11	Stanični metabolizam	1
+11	11	Stanični metabolizam	0
+6	12	Stanični metabolizam	1
+7	12	Stanični metabolizam	0
+8	12	Stanični metabolizam	0
+9	12	Stanični metabolizam	0
+10	12	Stanični metabolizam	0
+11	12	Stanični metabolizam	0
+6	13	Stanični metabolizam	1
+7	13	Stanični metabolizam	1
+8	13	Stanični metabolizam	1
+9	13	Stanični metabolizam	1
+10	13	Stanični metabolizam	1
+11	13	Stanični metabolizam	1
+6	14	Stanični metabolizam	1
+7	14	Stanični metabolizam	0
+8	14	Stanični metabolizam	1
+9	14	Stanični metabolizam	1
+10	14	Stanični metabolizam	0
+11	14	Stanični metabolizam	0
+6	15	Stanični metabolizam	1
+7	15	Stanični metabolizam	1
+8	15	Stanični metabolizam	1
+9	15	Stanični metabolizam	0
+10	15	Stanični metabolizam	1
+11	15	Stanični metabolizam	1
+6	16	Stanični metabolizam	0
+7	16	Stanični metabolizam	0
+8	16	Stanični metabolizam	1
+9	16	Stanični metabolizam	1
+10	16	Stanični metabolizam	1
+11	16	Stanični metabolizam	1
+6	17	Stanični metabolizam	0
+7	17	Stanični metabolizam	0
+8	17	Stanični metabolizam	0
+9	17	Stanični metabolizam	1
+10	17	Stanični metabolizam	0
+11	17	Stanični metabolizam	0
+6	18	Stanični metabolizam	1
+7	18	Stanični metabolizam	1
+8	18	Stanični metabolizam	0
+9	18	Stanični metabolizam	0
+10	18	Stanični metabolizam	1
+11	18	Stanični metabolizam	1
+6	19	Stanični metabolizam	0
+7	19	Stanični metabolizam	1
+8	19	Stanični metabolizam	0
+9	19	Stanični metabolizam	0
+10	19	Stanični metabolizam	0
+11	19	Stanični metabolizam	0
+6	20	Stanični metabolizam	0
+7	20	Stanični metabolizam	1
+8	20	Stanični metabolizam	0
+9	20	Stanični metabolizam	0
+10	20	Stanični metabolizam	1
+11	20	Stanični metabolizam	0
+6	21	Stanični metabolizam	0
+7	21	Stanični metabolizam	1
+8	21	Stanični metabolizam	1
+9	21	Stanični metabolizam	1
+10	21	Stanični metabolizam	1
+11	21	Stanični metabolizam	1
+6	22	Stanični metabolizam	1
+7	22	Stanični metabolizam	1
+8	22	Stanični metabolizam	1
+9	22	Stanični metabolizam	1
+10	22	Stanični metabolizam	1
+11	22	Stanični metabolizam	1
+6	23	Stanični metabolizam	1
+7	23	Stanični metabolizam	1
+8	23	Stanični metabolizam	0
+9	23	Stanični metabolizam	1
+10	23	Stanični metabolizam	1
+11	23	Stanični metabolizam	1
+6	24	Stanični metabolizam	1
+7	24	Stanični metabolizam	1
+8	24	Stanični metabolizam	1
+9	24	Stanični metabolizam	1
+10	24	Stanični metabolizam	0
+11	24	Stanični metabolizam	0
+6	25	Stanični metabolizam	1
+7	25	Stanični metabolizam	0
+8	25	Stanični metabolizam	1
+9	25	Stanični metabolizam	0
+10	25	Stanični metabolizam	1
+11	25	Stanični metabolizam	0
+6	26	Stanični metabolizam	1
+7	26	Stanični metabolizam	0
+8	26	Stanični metabolizam	1
+9	26	Stanični metabolizam	1
+10	26	Stanični metabolizam	1
+11	26	Stanični metabolizam	1
+6	27	Stanični metabolizam	1
+7	27	Stanični metabolizam	1
+8	27	Stanični metabolizam	1
+9	27	Stanični metabolizam	1
+10	27	Stanični metabolizam	0
+11	27	Stanični metabolizam	1
+6	28	Stanični metabolizam	1
+7	28	Stanični metabolizam	1
+8	28	Stanični metabolizam	1
+9	28	Stanični metabolizam	1
+10	28	Stanični metabolizam	1
+11	28	Stanični metabolizam	1
+6	29	Stanični metabolizam	1
+7	29	Stanični metabolizam	1
+8	29	Stanični metabolizam	1
+9	29	Stanični metabolizam	1
+10	29	Stanični metabolizam	1
+11	29	Stanični metabolizam	1
+6	30	Stanični metabolizam	1
+7	30	Stanični metabolizam	1
+8	30	Stanični metabolizam	1
+9	30	Stanični metabolizam	0
+10	30	Stanični metabolizam	1
+11	30	Stanični metabolizam	1
+6	31	Stanični metabolizam	1
+7	31	Stanični metabolizam	1
+8	31	Stanični metabolizam	0
+9	31	Stanični metabolizam	0
+10	31	Stanični metabolizam	0
+11	31	Stanični metabolizam	1
+6	32	Stanični metabolizam	0
+7	32	Stanični metabolizam	1
+8	32	Stanični metabolizam	0
+9	32	Stanični metabolizam	0
+10	32	Stanični metabolizam	0
+11	32	Stanični metabolizam	1
+6	33	Stanični metabolizam	1
+7	33	Stanični metabolizam	1
+8	33	Stanični metabolizam	1
+9	33	Stanični metabolizam	0
+10	33	Stanični metabolizam	1
+11	33	Stanični metabolizam	0
+6	34	Stanični metabolizam	0
+7	34	Stanični metabolizam	0
+8	34	Stanični metabolizam	1
+9	34	Stanični metabolizam	1
+10	34	Stanični metabolizam	0
+11	34	Stanični metabolizam	1
+6	35	Stanični metabolizam	1
+7	35	Stanični metabolizam	1
+8	35	Stanični metabolizam	0
+9	35	Stanični metabolizam	0
+10	35	Stanični metabolizam	0
+11	35	Stanični metabolizam	1
+6	36	Stanični metabolizam	0
+7	36	Stanični metabolizam	1
+8	36	Stanični metabolizam	1
+9	36	Stanični metabolizam	1
+10	36	Stanični metabolizam	1
+11	36	Stanični metabolizam	1
+6	37	Stanični metabolizam	1
+7	37	Stanični metabolizam	0
+8	37	Stanični metabolizam	0
+9	37	Stanični metabolizam	1
+10	37	Stanični metabolizam	1
+11	37	Stanični metabolizam	1
+6	38	Stanični metabolizam	1
+7	38	Stanični metabolizam	1
+8	38	Stanični metabolizam	0
+9	38	Stanični metabolizam	1
+10	38	Stanični metabolizam	1
+11	38	Stanični metabolizam	1
+6	39	Stanični metabolizam	1
+7	39	Stanični metabolizam	1
+8	39	Stanični metabolizam	1
+9	39	Stanični metabolizam	1
+10	39	Stanični metabolizam	0
+11	39	Stanični metabolizam	0
+6	40	Stanični metabolizam	1
+7	40	Stanični metabolizam	0
+8	40	Stanični metabolizam	1
+9	40	Stanični metabolizam	0
+10	40	Stanični metabolizam	0
+11	40	Stanični metabolizam	1
+6	41	Stanični metabolizam	1
+7	41	Stanični metabolizam	0
+8	41	Stanični metabolizam	1
+9	41	Stanični metabolizam	1
+10	41	Stanični metabolizam	1
+11	41	Stanični metabolizam	1
+6	42	Stanični metabolizam	1
+7	42	Stanični metabolizam	1
+8	42	Stanični metabolizam	0
+9	42	Stanični metabolizam	0
+10	42	Stanični metabolizam	0
+11	42	Stanični metabolizam	0
+6	43	Stanični metabolizam	1
+7	43	Stanični metabolizam	1
+8	43	Stanični metabolizam	0
+9	43	Stanični metabolizam	0
+10	43	Stanični metabolizam	1
+11	43	Stanični metabolizam	1
+6	44	Stanični metabolizam	0
+7	44	Stanični metabolizam	0
+8	44	Stanični metabolizam	1
+9	44	Stanični metabolizam	1
+10	44	Stanični metabolizam	0
+11	44	Stanični metabolizam	1
+6	45	Stanični metabolizam	1
+7	45	Stanični metabolizam	0
+8	45	Stanični metabolizam	1
+9	45	Stanični metabolizam	1
+10	45	Stanični metabolizam	1
+11	45	Stanični metabolizam	0
+6	46	Stanični metabolizam	0
+7	46	Stanični metabolizam	0
+8	46	Stanični metabolizam	0
+9	46	Stanični metabolizam	0
+10	46	Stanični metabolizam	0
+11	46	Stanični metabolizam	1
+6	47	Stanični metabolizam	0
+7	47	Stanični metabolizam	0
+8	47	Stanični metabolizam	0
+9	47	Stanični metabolizam	0
+10	47	Stanični metabolizam	1
+11	47	Stanični metabolizam	0
+6	48	Stanični metabolizam	1
+7	48	Stanični metabolizam	1
+8	48	Stanični metabolizam	1
+9	48	Stanični metabolizam	0
+10	48	Stanični metabolizam	0
+11	48	Stanični metabolizam	0
+6	49	Stanični metabolizam	0
+7	49	Stanični metabolizam	1
+8	49	Stanični metabolizam	1
+9	49	Stanični metabolizam	0
+10	49	Stanični metabolizam	0
+11	49	Stanični metabolizam	1
+6	50	Stanični metabolizam	1
+7	50	Stanični metabolizam	0
+8	50	Stanični metabolizam	0
+9	50	Stanični metabolizam	0
+10	50	Stanični metabolizam	0
+11	50	Stanični metabolizam	0
+6	51	Stanični metabolizam	1
+7	51	Stanični metabolizam	1
+8	51	Stanični metabolizam	1
+9	51	Stanični metabolizam	1
+10	51	Stanični metabolizam	1
+11	51	Stanični metabolizam	1
+6	52	Stanični metabolizam	1
+7	52	Stanični metabolizam	1
+8	52	Stanični metabolizam	1
+9	52	Stanični metabolizam	1
+10	52	Stanični metabolizam	0
+11	52	Stanični metabolizam	1
+6	53	Stanični metabolizam	1
+7	53	Stanični metabolizam	1
+8	53	Stanični metabolizam	1
+9	53	Stanični metabolizam	1
+10	53	Stanični metabolizam	1
+11	53	Stanični metabolizam	1
+6	54	Stanični metabolizam	1
+7	54	Stanični metabolizam	1
+8	54	Stanični metabolizam	1
+9	54	Stanični metabolizam	1
+10	54	Stanični metabolizam	1
+11	54	Stanični metabolizam	1
+6	55	Stanični metabolizam	1
+7	55	Stanični metabolizam	1
+8	55	Stanični metabolizam	1
+9	55	Stanični metabolizam	1
+10	55	Stanični metabolizam	0
+11	55	Stanični metabolizam	0
+6	56	Stanični metabolizam	0
+7	56	Stanični metabolizam	1
+8	56	Stanični metabolizam	1
+9	56	Stanični metabolizam	1
+10	56	Stanični metabolizam	0
+11	56	Stanični metabolizam	1
+6	57	Stanični metabolizam	0
+7	57	Stanični metabolizam	1
+8	57	Stanični metabolizam	0
+9	57	Stanični metabolizam	0
+10	57	Stanični metabolizam	0
+11	57	Stanični metabolizam	1
+6	58	Stanični metabolizam	1
+7	58	Stanični metabolizam	1
+8	58	Stanični metabolizam	1
+9	58	Stanični metabolizam	0
+10	58	Stanični metabolizam	1
+11	58	Stanični metabolizam	1
+6	59	Stanični metabolizam	0
+7	59	Stanični metabolizam	0
+8	59	Stanični metabolizam	1
+9	59	Stanični metabolizam	1
+10	59	Stanični metabolizam	0
+11	59	Stanični metabolizam	0
+6	60	Stanični metabolizam	1
+7	60	Stanični metabolizam	1
+8	60	Stanični metabolizam	1
+9	60	Stanični metabolizam	1
+10	60	Stanični metabolizam	1
+11	60	Stanični metabolizam	0
+6	61	Stanični metabolizam	0
+7	61	Stanični metabolizam	1
+8	61	Stanični metabolizam	1
+9	61	Stanični metabolizam	1
+10	61	Stanični metabolizam	0
+11	61	Stanični metabolizam	1
+6	62	Stanični metabolizam	1
+7	62	Stanični metabolizam	1
+8	62	Stanični metabolizam	0
+9	62	Stanični metabolizam	1
+10	62	Stanični metabolizam	1
+11	62	Stanični metabolizam	1
+6	63	Stanični metabolizam	0
+7	63	Stanični metabolizam	1
+8	63	Stanični metabolizam	1
+9	63	Stanični metabolizam	0
+10	63	Stanični metabolizam	1
+11	63	Stanični metabolizam	1
+6	64	Stanični metabolizam	0
+7	64	Stanični metabolizam	0
+8	64	Stanični metabolizam	1
+9	64	Stanični metabolizam	1
+10	64	Stanični metabolizam	0
+11	64	Stanični metabolizam	0
+6	65	Stanični metabolizam	1
+7	65	Stanični metabolizam	1
+8	65	Stanični metabolizam	0
+9	65	Stanični metabolizam	1
+10	65	Stanični metabolizam	0
+11	65	Stanični metabolizam	0
+6	66	Stanični metabolizam	1
+7	66	Stanični metabolizam	0
+8	66	Stanični metabolizam	0
+9	66	Stanični metabolizam	1
+10	66	Stanični metabolizam	1
+11	66	Stanični metabolizam	1
+6	67	Stanični metabolizam	0
+7	67	Stanični metabolizam	0
+8	67	Stanični metabolizam	0
+9	67	Stanični metabolizam	0
+10	67	Stanični metabolizam	0
+11	67	Stanični metabolizam	1
+6	68	Stanični metabolizam	1
+7	68	Stanični metabolizam	1
+8	68	Stanični metabolizam	0
+9	68	Stanični metabolizam	0
+10	68	Stanični metabolizam	1
+11	68	Stanični metabolizam	1
+6	69	Stanični metabolizam	0
+7	69	Stanični metabolizam	0
+8	69	Stanični metabolizam	1
+9	69	Stanični metabolizam	1
+10	69	Stanični metabolizam	0
+11	69	Stanični metabolizam	0
+6	70	Stanični metabolizam	0
+7	70	Stanični metabolizam	0
+8	70	Stanični metabolizam	1
+9	70	Stanični metabolizam	0
+10	70	Stanični metabolizam	0
+11	70	Stanični metabolizam	1
+6	71	Stanični metabolizam	1
+7	71	Stanični metabolizam	0
+8	71	Stanični metabolizam	1
+9	71	Stanični metabolizam	0
+10	71	Stanični metabolizam	0
+11	71	Stanični metabolizam	1
+6	72	Stanični metabolizam	0
+7	72	Stanični metabolizam	0
+8	72	Stanični metabolizam	1
+9	72	Stanični metabolizam	1
+10	72	Stanični metabolizam	0
+11	72	Stanični metabolizam	1
+6	73	Stanični metabolizam	1
+7	73	Stanični metabolizam	1
+8	73	Stanični metabolizam	0
+9	73	Stanični metabolizam	1
+10	73	Stanični metabolizam	0
+11	73	Stanični metabolizam	0
+6	74	Stanični metabolizam	1
+7	74	Stanični metabolizam	1
+8	74	Stanični metabolizam	1
+9	74	Stanični metabolizam	1
+10	74	Stanični metabolizam	0
+11	74	Stanični metabolizam	0
+6	75	Stanični metabolizam	1
+7	75	Stanični metabolizam	1
+8	75	Stanični metabolizam	1
+9	75	Stanični metabolizam	0
+10	75	Stanični metabolizam	0
+11	75	Stanični metabolizam	0
+6	76	Stanični metabolizam	1
+7	76	Stanični metabolizam	0
+8	76	Stanični metabolizam	1
+9	76	Stanični metabolizam	1
+10	76	Stanični metabolizam	1
+11	76	Stanični metabolizam	1
+6	77	Stanični metabolizam	1
+7	77	Stanični metabolizam	1
+8	77	Stanični metabolizam	1
+9	77	Stanični metabolizam	1
+10	77	Stanični metabolizam	1
+11	77	Stanični metabolizam	1
+6	78	Stanični metabolizam	1
+7	78	Stanični metabolizam	1
+8	78	Stanični metabolizam	1
+9	78	Stanični metabolizam	1
+10	78	Stanični metabolizam	1
+11	78	Stanični metabolizam	1
+6	79	Stanični metabolizam	1
+7	79	Stanični metabolizam	1
+8	79	Stanični metabolizam	0
+9	79	Stanični metabolizam	1
+10	79	Stanični metabolizam	1
+11	79	Stanični metabolizam	1
+6	80	Stanični metabolizam	1
+7	80	Stanični metabolizam	1
+8	80	Stanični metabolizam	1
+9	80	Stanični metabolizam	1
+10	80	Stanični metabolizam	1
+11	80	Stanični metabolizam	1
+6	81	Stanični metabolizam	0
+7	81	Stanični metabolizam	0
+8	81	Stanični metabolizam	1
+9	81	Stanični metabolizam	0
+10	81	Stanični metabolizam	1
+11	81	Stanični metabolizam	1
+6	82	Stanični metabolizam	1
+7	82	Stanični metabolizam	1
+8	82	Stanični metabolizam	0
+9	82	Stanični metabolizam	1
+10	82	Stanični metabolizam	0
+11	82	Stanični metabolizam	0
+6	83	Stanični metabolizam	1
+7	83	Stanični metabolizam	1
+8	83	Stanični metabolizam	1
+9	83	Stanični metabolizam	1
+10	83	Stanični metabolizam	0
+11	83	Stanični metabolizam	0
+12	0	Živčana stanica	1
+13	0	Živčana stanica	0
+14	0	Živčana stanica	1
+15	0	Živčana stanica	1
+16	0	Živčana stanica	0
+17	0	Živčana stanica	1
+12	1	Živčana stanica	1
+13	1	Živčana stanica	1
+14	1	Živčana stanica	1
+15	1	Živčana stanica	1
+16	1	Živčana stanica	1
+17	1	Živčana stanica	1
+12	2	Živčana stanica	0
+13	2	Živčana stanica	1
+14	2	Živčana stanica	1
+15	2	Živčana stanica	1
+16	2	Živčana stanica	0
+17	2	Živčana stanica	1
+12	3	Živčana stanica	0
+13	3	Živčana stanica	1
+14	3	Živčana stanica	0
+15	3	Živčana stanica	1
+16	3	Živčana stanica	1
+17	3	Živčana stanica	1
+12	4	Živčana stanica	1
+13	4	Živčana stanica	1
+14	4	Živčana stanica	1
+15	4	Živčana stanica	0
+16	4	Živčana stanica	1
+17	4	Živčana stanica	1
+12	5	Živčana stanica	0
+13	5	Živčana stanica	0
+14	5	Živčana stanica	1
+15	5	Živčana stanica	1
+16	5	Živčana stanica	0
+17	5	Živčana stanica	0
+12	6	Živčana stanica	1
+13	6	Živčana stanica	1
+14	6	Živčana stanica	1
+15	6	Živčana stanica	0
+16	6	Živčana stanica	1
+17	6	Živčana stanica	0
+12	7	Živčana stanica	1
+13	7	Živčana stanica	0
+14	7	Živčana stanica	1
+15	7	Živčana stanica	1
+16	7	Živčana stanica	1
+17	7	Živčana stanica	1
+12	8	Živčana stanica	1
+13	8	Živčana stanica	1
+14	8	Živčana stanica	1
+15	8	Živčana stanica	1
+16	8	Živčana stanica	1
+17	8	Živčana stanica	1
+12	9	Živčana stanica	1
+13	9	Živčana stanica	1
+14	9	Živčana stanica	1
+15	9	Živčana stanica	1
+16	9	Živčana stanica	1
+17	9	Živčana stanica	1
+12	10	Živčana stanica	1
+13	10	Živčana stanica	1
+14	10	Živčana stanica	0
+15	10	Živčana stanica	1
+16	10	Živčana stanica	1
+17	10	Živčana stanica	1
+12	11	Živčana stanica	1
+13	11	Živčana stanica	1
+14	11	Živčana stanica	1
+15	11	Živčana stanica	1
+16	11	Živčana stanica	1
+17	11	Živčana stanica	1
+12	12	Živčana stanica	1
+13	12	Živčana stanica	0
+14	12	Živčana stanica	1
+15	12	Živčana stanica	1
+16	12	Živčana stanica	1
+17	12	Živčana stanica	1
+12	13	Živčana stanica	1
+13	13	Živčana stanica	1
+14	13	Živčana stanica	1
+15	13	Živčana stanica	1
+16	13	Živčana stanica	1
+17	13	Živčana stanica	1
+12	14	Živčana stanica	1
+13	14	Živčana stanica	1
+14	14	Živčana stanica	1
+15	14	Živčana stanica	1
+16	14	Živčana stanica	1
+17	14	Živčana stanica	1
+12	15	Živčana stanica	1
+13	15	Živčana stanica	1
+14	15	Živčana stanica	0
+15	15	Živčana stanica	1
+16	15	Živčana stanica	1
+17	15	Živčana stanica	1
+12	16	Živčana stanica	1
+13	16	Živčana stanica	1
+14	16	Živčana stanica	1
+15	16	Živčana stanica	1
+16	16	Živčana stanica	1
+17	16	Živčana stanica	1
+12	17	Živčana stanica	1
+13	17	Živčana stanica	1
+14	17	Živčana stanica	1
+15	17	Živčana stanica	1
+16	17	Živčana stanica	0
+17	17	Živčana stanica	0
+12	18	Živčana stanica	0
+13	18	Živčana stanica	1
+14	18	Živčana stanica	0
+15	18	Živčana stanica	0
+16	18	Živčana stanica	0
+17	18	Živčana stanica	1
+12	19	Živčana stanica	1
+13	19	Živčana stanica	1
+14	19	Živčana stanica	0
+15	19	Živčana stanica	0
+16	19	Živčana stanica	1
+17	19	Živčana stanica	1
+12	20	Živčana stanica	0
+13	20	Živčana stanica	1
+14	20	Živčana stanica	1
+15	20	Živčana stanica	1
+16	20	Živčana stanica	0
+17	20	Živčana stanica	0
+12	21	Živčana stanica	1
+13	21	Živčana stanica	1
+14	21	Živčana stanica	0
+15	21	Živčana stanica	0
+16	21	Živčana stanica	0
+17	21	Živčana stanica	0
+12	22	Živčana stanica	0
+13	22	Živčana stanica	0
+14	22	Živčana stanica	0
+15	22	Živčana stanica	0
+16	22	Živčana stanica	1
+17	22	Živčana stanica	1
+12	23	Živčana stanica	1
+13	23	Živčana stanica	0
+14	23	Živčana stanica	0
+15	23	Živčana stanica	0
+16	23	Živčana stanica	0
+17	23	Živčana stanica	1
+12	24	Živčana stanica	1
+13	24	Živčana stanica	1
+14	24	Živčana stanica	1
+15	24	Živčana stanica	0
+16	24	Živčana stanica	1
+17	24	Živčana stanica	1
+12	25	Živčana stanica	0
+13	25	Živčana stanica	0
+14	25	Živčana stanica	1
+15	25	Živčana stanica	0
+16	25	Živčana stanica	0
+17	25	Živčana stanica	0
+12	26	Živčana stanica	0
+13	26	Živčana stanica	1
+14	26	Živčana stanica	0
+15	26	Živčana stanica	0
+16	26	Živčana stanica	0
+17	26	Živčana stanica	1
+12	27	Živčana stanica	0
+13	27	Živčana stanica	0
+14	27	Živčana stanica	1
+15	27	Živčana stanica	1
+16	27	Živčana stanica	1
+17	27	Živčana stanica	1
+12	28	Živčana stanica	1
+13	28	Živčana stanica	0
+14	28	Živčana stanica	0
+15	28	Živčana stanica	0
+16	28	Živčana stanica	0
+17	28	Živčana stanica	1
+12	29	Živčana stanica	1
+13	29	Živčana stanica	1
+14	29	Živčana stanica	0
+15	29	Živčana stanica	1
+16	29	Živčana stanica	1
+17	29	Živčana stanica	1
+12	30	Živčana stanica	0
+13	30	Živčana stanica	0
+14	30	Živčana stanica	1
+15	30	Živčana stanica	1
+16	30	Živčana stanica	0
+17	30	Živčana stanica	1
+12	31	Živčana stanica	1
+13	31	Živčana stanica	1
+14	31	Živčana stanica	1
+15	31	Živčana stanica	1
+16	31	Živčana stanica	1
+17	31	Živčana stanica	1
+12	32	Živčana stanica	0
+13	32	Živčana stanica	1
+14	32	Živčana stanica	1
+15	32	Živčana stanica	0
+16	32	Živčana stanica	0
+17	32	Živčana stanica	1
+12	33	Živčana stanica	1
+13	33	Živčana stanica	1
+14	33	Živčana stanica	0
+15	33	Živčana stanica	0
+16	33	Živčana stanica	0
+17	33	Živčana stanica	0
+12	34	Živčana stanica	1
+13	34	Živčana stanica	1
+14	34	Živčana stanica	0
+15	34	Živčana stanica	0
+16	34	Živčana stanica	1
+17	34	Živčana stanica	1
+12	35	Živčana stanica	1
+13	35	Živčana stanica	0
+14	35	Živčana stanica	1
+15	35	Živčana stanica	1
+16	35	Živčana stanica	0
+17	35	Živčana stanica	0
+12	36	Živčana stanica	1
+13	36	Živčana stanica	1
+14	36	Živčana stanica	1
+15	36	Živčana stanica	0
+16	36	Živčana stanica	1
+17	36	Živčana stanica	0
+12	37	Živčana stanica	0
+13	37	Živčana stanica	0
+14	37	Živčana stanica	1
+15	37	Živčana stanica	0
+16	37	Živčana stanica	0
+17	37	Živčana stanica	1
+12	38	Živčana stanica	0
+13	38	Živčana stanica	0
+14	38	Živčana stanica	0
+15	38	Živčana stanica	0
+16	38	Živčana stanica	1
+17	38	Živčana stanica	0
+12	39	Živčana stanica	1
+13	39	Živčana stanica	1
+14	39	Živčana stanica	0
+15	39	Živčana stanica	0
+16	39	Živčana stanica	1
+17	39	Živčana stanica	1
+12	40	Živčana stanica	1
+13	40	Živčana stanica	0
+14	40	Živčana stanica	1
+15	40	Živčana stanica	0
+16	40	Živčana stanica	0
+17	40	Živčana stanica	1
+12	41	Živčana stanica	0
+13	41	Živčana stanica	0
+14	41	Živčana stanica	0
+15	41	Živčana stanica	0
+16	41	Živčana stanica	1
+17	41	Živčana stanica	0
+12	42	Živčana stanica	0
+13	42	Živčana stanica	0
+14	42	Živčana stanica	1
+15	42	Živčana stanica	0
+16	42	Živčana stanica	0
+17	42	Živčana stanica	1
+12	43	Živčana stanica	0
+13	43	Živčana stanica	1
+14	43	Živčana stanica	0
+15	43	Živčana stanica	0
+16	43	Živčana stanica	0
+17	43	Živčana stanica	1
+12	44	Živčana stanica	1
+13	44	Živčana stanica	1
+14	44	Živčana stanica	1
+15	44	Živčana stanica	0
+16	44	Živčana stanica	1
+17	44	Živčana stanica	1
+12	45	Živčana stanica	1
+13	45	Živčana stanica	0
+14	45	Živčana stanica	1
+15	45	Živčana stanica	0
+16	45	Živčana stanica	0
+17	45	Živčana stanica	0
+12	46	Živčana stanica	1
+13	46	Živčana stanica	1
+14	46	Živčana stanica	1
+15	46	Živčana stanica	0
+16	46	Živčana stanica	0
+17	46	Živčana stanica	0
+12	47	Živčana stanica	0
+13	47	Živčana stanica	0
+14	47	Živčana stanica	1
+15	47	Živčana stanica	0
+16	47	Živčana stanica	1
+17	47	Živčana stanica	1
+12	48	Živčana stanica	0
+13	48	Živčana stanica	1
+14	48	Živčana stanica	0
+15	48	Živčana stanica	0
+16	48	Živčana stanica	0
+17	48	Živčana stanica	1
+12	49	Živčana stanica	1
+13	49	Živčana stanica	1
+14	49	Živčana stanica	0
+15	49	Živčana stanica	1
+16	49	Živčana stanica	1
+17	49	Živčana stanica	1
+12	50	Živčana stanica	1
+13	50	Živčana stanica	0
+14	50	Živčana stanica	1
+15	50	Živčana stanica	1
+16	50	Živčana stanica	0
+17	50	Živčana stanica	1
+12	51	Živčana stanica	1
+13	51	Živčana stanica	1
+14	51	Živčana stanica	1
+15	51	Živčana stanica	1
+16	51	Živčana stanica	1
+17	51	Živčana stanica	1
+12	52	Živčana stanica	1
+13	52	Živčana stanica	0
+14	52	Živčana stanica	1
+15	52	Živčana stanica	1
+16	52	Živčana stanica	1
+17	52	Živčana stanica	1
+12	53	Živčana stanica	1
+13	53	Živčana stanica	1
+14	53	Živčana stanica	1
+15	53	Živčana stanica	1
+16	53	Živčana stanica	1
+17	53	Živčana stanica	1
+12	54	Živčana stanica	1
+13	54	Živčana stanica	1
+14	54	Živčana stanica	1
+15	54	Živčana stanica	1
+16	54	Živčana stanica	1
+17	54	Živčana stanica	1
+12	55	Živčana stanica	1
+13	55	Živčana stanica	1
+14	55	Živčana stanica	0
+15	55	Živčana stanica	1
+16	55	Živčana stanica	1
+17	55	Živčana stanica	1
+12	56	Živčana stanica	1
+13	56	Živčana stanica	1
+14	56	Živčana stanica	1
+15	56	Živčana stanica	1
+16	56	Živčana stanica	1
+17	56	Živčana stanica	1
+12	57	Živčana stanica	0
+13	57	Živčana stanica	0
+14	57	Živčana stanica	1
+15	57	Živčana stanica	1
+16	57	Živčana stanica	1
+17	57	Živčana stanica	1
+12	58	Živčana stanica	0
+13	58	Živčana stanica	0
+14	58	Živčana stanica	0
+15	58	Živčana stanica	1
+16	58	Živčana stanica	0
+17	58	Živčana stanica	1
+12	59	Živčana stanica	1
+13	59	Živčana stanica	1
+14	59	Živčana stanica	1
+15	59	Živčana stanica	1
+16	59	Živčana stanica	1
+17	59	Živčana stanica	1
+12	60	Živčana stanica	1
+13	60	Živčana stanica	0
+14	60	Živčana stanica	1
+15	60	Živčana stanica	1
+16	60	Živčana stanica	0
+17	60	Živčana stanica	1
+12	61	Živčana stanica	0
+13	61	Živčana stanica	1
+14	61	Živčana stanica	1
+15	61	Živčana stanica	1
+16	61	Živčana stanica	1
+17	61	Živčana stanica	0
+12	62	Živčana stanica	0
+13	62	Živčana stanica	1
+14	62	Živčana stanica	1
+15	62	Živčana stanica	1
+16	62	Živčana stanica	1
+17	62	Živčana stanica	0
+12	63	Živčana stanica	0
+13	63	Živčana stanica	0
+14	63	Živčana stanica	0
+15	63	Živčana stanica	0
+16	63	Živčana stanica	0
+17	63	Živčana stanica	1
+12	64	Živčana stanica	1
+13	64	Živčana stanica	1
+14	64	Živčana stanica	0
+15	64	Živčana stanica	0
+16	64	Živčana stanica	1
+17	64	Živčana stanica	1
+12	65	Živčana stanica	1
+13	65	Živčana stanica	1
+14	65	Živčana stanica	0
+15	65	Živčana stanica	0
+16	65	Živčana stanica	0
+17	65	Živčana stanica	0
+12	66	Živčana stanica	0
+13	66	Živčana stanica	0
+14	66	Živčana stanica	0
+15	66	Živčana stanica	1
+16	66	Živčana stanica	0
+17	66	Živčana stanica	1
+12	67	Živčana stanica	1
+13	67	Živčana stanica	0
+14	67	Živčana stanica	1
+15	67	Živčana stanica	1
+16	67	Živčana stanica	1
+17	67	Živčana stanica	1
+12	68	Živčana stanica	1
+13	68	Živčana stanica	1
+14	68	Živčana stanica	1
+15	68	Živčana stanica	1
+16	68	Živčana stanica	1
+17	68	Živčana stanica	1
+12	69	Živčana stanica	1
+13	69	Živčana stanica	1
+14	69	Živčana stanica	1
+15	69	Živčana stanica	1
+16	69	Živčana stanica	1
+17	69	Živčana stanica	1
+12	70	Živčana stanica	1
+13	70	Živčana stanica	1
+14	70	Živčana stanica	1
+15	70	Živčana stanica	1
+16	70	Živčana stanica	0
+17	70	Živčana stanica	1
+12	71	Živčana stanica	1
+13	71	Živčana stanica	1
+14	71	Živčana stanica	1
+15	71	Živčana stanica	0
+16	71	Živčana stanica	1
+17	71	Živčana stanica	1
+12	72	Živčana stanica	0
+13	72	Živčana stanica	0
+14	72	Živčana stanica	1
+15	72	Živčana stanica	1
+16	72	Živčana stanica	1
+17	72	Živčana stanica	1
+12	73	Živčana stanica	0
+13	73	Živčana stanica	0
+14	73	Živčana stanica	1
+15	73	Živčana stanica	1
+16	73	Živčana stanica	0
+17	73	Živčana stanica	0
+12	74	Živčana stanica	1
+13	74	Živčana stanica	0
+14	74	Živčana stanica	1
+15	74	Živčana stanica	0
+16	74	Živčana stanica	1
+17	74	Živčana stanica	0
+12	75	Živčana stanica	1
+13	75	Živčana stanica	0
+14	75	Živčana stanica	1
+15	75	Živčana stanica	1
+16	75	Živčana stanica	0
+17	75	Živčana stanica	1
+12	76	Živčana stanica	0
+13	76	Živčana stanica	1
+14	76	Živčana stanica	0
+15	76	Živčana stanica	1
+16	76	Živčana stanica	1
+17	76	Živčana stanica	0
+12	77	Živčana stanica	0
+13	77	Živčana stanica	1
+14	77	Živčana stanica	1
+15	77	Živčana stanica	1
+16	77	Živčana stanica	0
+17	77	Živčana stanica	1
+12	78	Živčana stanica	1
+13	78	Živčana stanica	0
+14	78	Živčana stanica	0
+15	78	Živčana stanica	0
+16	78	Živčana stanica	1
+17	78	Živčana stanica	1
+12	79	Živčana stanica	1
+13	79	Živčana stanica	1
+14	79	Živčana stanica	1
+15	79	Živčana stanica	1
+16	79	Živčana stanica	1
+17	79	Živčana stanica	1
+12	80	Živčana stanica	0
+13	80	Živčana stanica	0
+14	80	Živčana stanica	0
+15	80	Živčana stanica	1
+16	80	Živčana stanica	0
+17	80	Živčana stanica	1
+12	81	Živčana stanica	1
+13	81	Živčana stanica	1
+14	81	Živčana stanica	1
+15	81	Živčana stanica	0
+16	81	Živčana stanica	1
+17	81	Živčana stanica	0
+12	82	Živčana stanica	0
+13	82	Živčana stanica	0
+14	82	Živčana stanica	1
+15	82	Živčana stanica	1
+16	82	Živčana stanica	0
+17	82	Živčana stanica	1
+12	83	Živčana stanica	1
+13	83	Živčana stanica	1
+14	83	Živčana stanica	0
+15	83	Živčana stanica	1
+16	83	Živčana stanica	0
+17	83	Živčana stanica	1
+18	0	Dioba stanice	1
+19	0	Dioba stanice	1
+20	0	Dioba stanice	1
+21	0	Dioba stanice	1
+22	0	Dioba stanice	1
+23	0	Dioba stanice	1
+18	1	Dioba stanice	1
+19	1	Dioba stanice	1
+20	1	Dioba stanice	1
+21	1	Dioba stanice	1
+22	1	Dioba stanice	0
+23	1	Dioba stanice	1
+18	2	Dioba stanice	1
+19	2	Dioba stanice	1
+20	2	Dioba stanice	1
+21	2	Dioba stanice	1
+22	2	Dioba stanice	1
+23	2	Dioba stanice	1
+18	3	Dioba stanice	0
+19	3	Dioba stanice	0
+20	3	Dioba stanice	0
+21	3	Dioba stanice	0
+22	3	Dioba stanice	0
+23	3	Dioba stanice	1
+18	4	Dioba stanice	1
+19	4	Dioba stanice	0
+20	4	Dioba stanice	0
+21	4	Dioba stanice	0
+22	4	Dioba stanice	1
+23	4	Dioba stanice	1
+18	5	Dioba stanice	1
+19	5	Dioba stanice	1
+20	5	Dioba stanice	0
+21	5	Dioba stanice	0
+22	5	Dioba stanice	1
+23	5	Dioba stanice	1
+18	6	Dioba stanice	1
+19	6	Dioba stanice	0
+20	6	Dioba stanice	1
+21	6	Dioba stanice	1
+22	6	Dioba stanice	0
+23	6	Dioba stanice	0
+18	7	Dioba stanice	0
+19	7	Dioba stanice	1
+20	7	Dioba stanice	1
+21	7	Dioba stanice	0
+22	7	Dioba stanice	0
+23	7	Dioba stanice	0
+18	8	Dioba stanice	1
+19	8	Dioba stanice	0
+20	8	Dioba stanice	1
+21	8	Dioba stanice	1
+22	8	Dioba stanice	0
+23	8	Dioba stanice	1
+18	9	Dioba stanice	0
+19	9	Dioba stanice	0
+20	9	Dioba stanice	0
+21	9	Dioba stanice	0
+22	9	Dioba stanice	1
+23	9	Dioba stanice	1
+18	10	Dioba stanice	1
+19	10	Dioba stanice	1
+20	10	Dioba stanice	1
+21	10	Dioba stanice	1
+22	10	Dioba stanice	1
+23	10	Dioba stanice	1
+18	11	Dioba stanice	0
+19	11	Dioba stanice	0
+20	11	Dioba stanice	1
+21	11	Dioba stanice	1
+22	11	Dioba stanice	0
+23	11	Dioba stanice	1
+18	12	Dioba stanice	1
+19	12	Dioba stanice	1
+20	12	Dioba stanice	1
+21	12	Dioba stanice	0
+22	12	Dioba stanice	0
+23	12	Dioba stanice	0
+18	13	Dioba stanice	0
+19	13	Dioba stanice	0
+20	13	Dioba stanice	1
+21	13	Dioba stanice	1
+22	13	Dioba stanice	1
+23	13	Dioba stanice	1
+18	14	Dioba stanice	0
+19	14	Dioba stanice	1
+20	14	Dioba stanice	0
+21	14	Dioba stanice	0
+22	14	Dioba stanice	1
+23	14	Dioba stanice	1
+18	15	Dioba stanice	1
+19	15	Dioba stanice	1
+20	15	Dioba stanice	1
+21	15	Dioba stanice	1
+22	15	Dioba stanice	1
+23	15	Dioba stanice	0
+18	16	Dioba stanice	1
+19	16	Dioba stanice	0
+20	16	Dioba stanice	1
+21	16	Dioba stanice	1
+22	16	Dioba stanice	0
+23	16	Dioba stanice	0
+18	17	Dioba stanice	1
+19	17	Dioba stanice	1
+20	17	Dioba stanice	1
+21	17	Dioba stanice	0
+22	17	Dioba stanice	1
+23	17	Dioba stanice	1
+18	18	Dioba stanice	1
+19	18	Dioba stanice	0
+20	18	Dioba stanice	0
+21	18	Dioba stanice	1
+22	18	Dioba stanice	0
+23	18	Dioba stanice	1
+18	19	Dioba stanice	0
+19	19	Dioba stanice	0
+20	19	Dioba stanice	0
+21	19	Dioba stanice	0
+22	19	Dioba stanice	0
+23	19	Dioba stanice	1
+18	20	Dioba stanice	1
+19	20	Dioba stanice	1
+20	20	Dioba stanice	1
+21	20	Dioba stanice	0
+22	20	Dioba stanice	1
+23	20	Dioba stanice	1
+18	21	Dioba stanice	0
+19	21	Dioba stanice	0
+20	21	Dioba stanice	1
+21	21	Dioba stanice	1
+22	21	Dioba stanice	0
+23	21	Dioba stanice	0
+18	22	Dioba stanice	0
+19	22	Dioba stanice	0
+20	22	Dioba stanice	0
+21	22	Dioba stanice	0
+22	22	Dioba stanice	0
+23	22	Dioba stanice	0
+18	23	Dioba stanice	0
+19	23	Dioba stanice	0
+20	23	Dioba stanice	0
+21	23	Dioba stanice	0
+22	23	Dioba stanice	1
+23	23	Dioba stanice	1
+18	24	Dioba stanice	0
+19	24	Dioba stanice	1
+20	24	Dioba stanice	0
+21	24	Dioba stanice	0
+22	24	Dioba stanice	1
+23	24	Dioba stanice	1
+18	25	Dioba stanice	1
+19	25	Dioba stanice	0
+20	25	Dioba stanice	0
+21	25	Dioba stanice	1
+22	25	Dioba stanice	1
+23	25	Dioba stanice	0
+18	26	Dioba stanice	0
+19	26	Dioba stanice	0
+20	26	Dioba stanice	0
+21	26	Dioba stanice	0
+22	26	Dioba stanice	0
+23	26	Dioba stanice	0
+18	27	Dioba stanice	0
+19	27	Dioba stanice	0
+20	27	Dioba stanice	0
+21	27	Dioba stanice	0
+22	27	Dioba stanice	0
+23	27	Dioba stanice	1
+18	28	Dioba stanice	0
+19	28	Dioba stanice	0
+20	28	Dioba stanice	0
+21	28	Dioba stanice	0
+22	28	Dioba stanice	0
+23	28	Dioba stanice	1
+18	29	Dioba stanice	1
+19	29	Dioba stanice	0
+20	29	Dioba stanice	0
+21	29	Dioba stanice	0
+22	29	Dioba stanice	0
+23	29	Dioba stanice	0
+18	30	Dioba stanice	0
+19	30	Dioba stanice	0
+20	30	Dioba stanice	0
+21	30	Dioba stanice	0
+22	30	Dioba stanice	1
+23	30	Dioba stanice	1
+18	31	Dioba stanice	0
+19	31	Dioba stanice	0
+20	31	Dioba stanice	0
+21	31	Dioba stanice	0
+22	31	Dioba stanice	1
+23	31	Dioba stanice	0
+18	32	Dioba stanice	0
+19	32	Dioba stanice	0
+20	32	Dioba stanice	0
+21	32	Dioba stanice	0
+22	32	Dioba stanice	0
+23	32	Dioba stanice	0
+18	33	Dioba stanice	0
+19	33	Dioba stanice	1
+20	33	Dioba stanice	0
+21	33	Dioba stanice	0
+22	33	Dioba stanice	1
+23	33	Dioba stanice	1
+18	34	Dioba stanice	0
+19	34	Dioba stanice	0
+20	34	Dioba stanice	1
+21	34	Dioba stanice	0
+22	34	Dioba stanice	0
+23	34	Dioba stanice	0
+18	35	Dioba stanice	1
+19	35	Dioba stanice	0
+20	35	Dioba stanice	0
+21	35	Dioba stanice	1
+22	35	Dioba stanice	0
+23	35	Dioba stanice	1
+18	36	Dioba stanice	1
+19	36	Dioba stanice	1
+20	36	Dioba stanice	0
+21	36	Dioba stanice	0
+22	36	Dioba stanice	0
+23	36	Dioba stanice	0
+18	37	Dioba stanice	0
+19	37	Dioba stanice	0
+20	37	Dioba stanice	1
+21	37	Dioba stanice	0
+22	37	Dioba stanice	0
+23	37	Dioba stanice	0
+18	38	Dioba stanice	0
+19	38	Dioba stanice	1
+20	38	Dioba stanice	1
+21	38	Dioba stanice	1
+22	38	Dioba stanice	1
+23	38	Dioba stanice	1
+18	39	Dioba stanice	1
+19	39	Dioba stanice	1
+20	39	Dioba stanice	0
+21	39	Dioba stanice	1
+22	39	Dioba stanice	1
+23	39	Dioba stanice	1
+18	40	Dioba stanice	1
+19	40	Dioba stanice	1
+20	40	Dioba stanice	0
+21	40	Dioba stanice	0
+22	40	Dioba stanice	1
+23	40	Dioba stanice	1
+18	41	Dioba stanice	1
+19	41	Dioba stanice	1
+20	41	Dioba stanice	1
+21	41	Dioba stanice	1
+22	41	Dioba stanice	1
+23	41	Dioba stanice	0
+18	42	Dioba stanice	1
+19	42	Dioba stanice	1
+20	42	Dioba stanice	1
+21	42	Dioba stanice	0
+22	42	Dioba stanice	1
+23	42	Dioba stanice	1
+18	43	Dioba stanice	1
+19	43	Dioba stanice	1
+20	43	Dioba stanice	1
+21	43	Dioba stanice	1
+22	43	Dioba stanice	1
+23	43	Dioba stanice	1
+18	44	Dioba stanice	1
+19	44	Dioba stanice	1
+20	44	Dioba stanice	1
+21	44	Dioba stanice	1
+22	44	Dioba stanice	1
+23	44	Dioba stanice	1
+18	45	Dioba stanice	1
+19	45	Dioba stanice	1
+20	45	Dioba stanice	0
+21	45	Dioba stanice	0
+22	45	Dioba stanice	1
+23	45	Dioba stanice	1
+18	46	Dioba stanice	1
+19	46	Dioba stanice	1
+20	46	Dioba stanice	1
+21	46	Dioba stanice	1
+22	46	Dioba stanice	1
+23	46	Dioba stanice	0
+18	47	Dioba stanice	1
+19	47	Dioba stanice	1
+20	47	Dioba stanice	1
+21	47	Dioba stanice	1
+22	47	Dioba stanice	1
+23	47	Dioba stanice	1
+18	48	Dioba stanice	0
+19	48	Dioba stanice	1
+20	48	Dioba stanice	1
+21	48	Dioba stanice	1
+22	48	Dioba stanice	1
+23	48	Dioba stanice	1
+18	49	Dioba stanice	0
+19	49	Dioba stanice	0
+20	49	Dioba stanice	0
+21	49	Dioba stanice	1
+22	49	Dioba stanice	1
+23	49	Dioba stanice	0
+18	50	Dioba stanice	1
+19	50	Dioba stanice	1
+20	50	Dioba stanice	1
+21	50	Dioba stanice	0
+22	50	Dioba stanice	1
+23	50	Dioba stanice	0
+18	51	Dioba stanice	0
+19	51	Dioba stanice	0
+20	51	Dioba stanice	0
+21	51	Dioba stanice	0
+22	51	Dioba stanice	0
+23	51	Dioba stanice	1
+18	52	Dioba stanice	0
+19	52	Dioba stanice	1
+20	52	Dioba stanice	1
+21	52	Dioba stanice	1
+22	52	Dioba stanice	1
+23	52	Dioba stanice	0
+18	53	Dioba stanice	0
+19	53	Dioba stanice	1
+20	53	Dioba stanice	1
+21	53	Dioba stanice	1
+22	53	Dioba stanice	1
+23	53	Dioba stanice	1
+18	54	Dioba stanice	1
+19	54	Dioba stanice	1
+20	54	Dioba stanice	0
+21	54	Dioba stanice	1
+22	54	Dioba stanice	1
+23	54	Dioba stanice	1
+18	55	Dioba stanice	1
+19	55	Dioba stanice	1
+20	55	Dioba stanice	0
+21	55	Dioba stanice	1
+22	55	Dioba stanice	1
+23	55	Dioba stanice	0
+18	56	Dioba stanice	0
+19	56	Dioba stanice	0
+20	56	Dioba stanice	1
+21	56	Dioba stanice	1
+22	56	Dioba stanice	0
+23	56	Dioba stanice	0
+18	57	Dioba stanice	1
+19	57	Dioba stanice	1
+20	57	Dioba stanice	1
+21	57	Dioba stanice	0
+22	57	Dioba stanice	1
+23	57	Dioba stanice	1
+18	58	Dioba stanice	0
+19	58	Dioba stanice	0
+20	58	Dioba stanice	0
+21	58	Dioba stanice	1
+22	58	Dioba stanice	0
+23	58	Dioba stanice	1
+18	59	Dioba stanice	1
+19	59	Dioba stanice	1
+20	59	Dioba stanice	1
+21	59	Dioba stanice	0
+22	59	Dioba stanice	0
+23	59	Dioba stanice	0
+18	60	Dioba stanice	1
+19	60	Dioba stanice	1
+20	60	Dioba stanice	0
+21	60	Dioba stanice	1
+22	60	Dioba stanice	1
+23	60	Dioba stanice	0
+18	61	Dioba stanice	0
+19	61	Dioba stanice	1
+20	61	Dioba stanice	0
+21	61	Dioba stanice	0
+22	61	Dioba stanice	0
+23	61	Dioba stanice	0
+18	62	Dioba stanice	1
+19	62	Dioba stanice	0
+20	62	Dioba stanice	1
+21	62	Dioba stanice	0
+22	62	Dioba stanice	1
+23	62	Dioba stanice	0
+18	63	Dioba stanice	0
+19	63	Dioba stanice	0
+20	63	Dioba stanice	1
+21	63	Dioba stanice	1
+22	63	Dioba stanice	1
+23	63	Dioba stanice	1
+18	64	Dioba stanice	0
+19	64	Dioba stanice	1
+20	64	Dioba stanice	0
+21	64	Dioba stanice	0
+22	64	Dioba stanice	1
+23	64	Dioba stanice	1
+18	65	Dioba stanice	1
+19	65	Dioba stanice	1
+20	65	Dioba stanice	0
+21	65	Dioba stanice	0
+22	65	Dioba stanice	1
+23	65	Dioba stanice	1
+18	66	Dioba stanice	0
+19	66	Dioba stanice	1
+20	66	Dioba stanice	0
+21	66	Dioba stanice	0
+22	66	Dioba stanice	0
+23	66	Dioba stanice	0
+18	67	Dioba stanice	1
+19	67	Dioba stanice	1
+20	67	Dioba stanice	1
+21	67	Dioba stanice	1
+22	67	Dioba stanice	0
+23	67	Dioba stanice	0
+18	68	Dioba stanice	0
+19	68	Dioba stanice	0
+20	68	Dioba stanice	1
+21	68	Dioba stanice	1
+22	68	Dioba stanice	1
+23	68	Dioba stanice	1
+18	69	Dioba stanice	1
+19	69	Dioba stanice	1
+20	69	Dioba stanice	0
+21	69	Dioba stanice	1
+22	69	Dioba stanice	1
+23	69	Dioba stanice	1
+18	70	Dioba stanice	1
+19	70	Dioba stanice	1
+20	70	Dioba stanice	1
+21	70	Dioba stanice	1
+22	70	Dioba stanice	1
+23	70	Dioba stanice	1
+18	71	Dioba stanice	1
+19	71	Dioba stanice	1
+20	71	Dioba stanice	1
+21	71	Dioba stanice	1
+22	71	Dioba stanice	1
+23	71	Dioba stanice	0
+18	72	Dioba stanice	1
+19	72	Dioba stanice	1
+20	72	Dioba stanice	1
+21	72	Dioba stanice	1
+22	72	Dioba stanice	1
+23	72	Dioba stanice	1
+18	73	Dioba stanice	1
+19	73	Dioba stanice	0
+20	73	Dioba stanice	1
+21	73	Dioba stanice	1
+22	73	Dioba stanice	1
+23	73	Dioba stanice	1
+18	74	Dioba stanice	1
+19	74	Dioba stanice	1
+20	74	Dioba stanice	1
+21	74	Dioba stanice	1
+22	74	Dioba stanice	1
+23	74	Dioba stanice	1
+18	75	Dioba stanice	1
+19	75	Dioba stanice	1
+20	75	Dioba stanice	1
+21	75	Dioba stanice	1
+22	75	Dioba stanice	1
+23	75	Dioba stanice	1
+18	76	Dioba stanice	1
+19	76	Dioba stanice	1
+20	76	Dioba stanice	1
+21	76	Dioba stanice	1
+22	76	Dioba stanice	0
+23	76	Dioba stanice	1
+18	77	Dioba stanice	1
+19	77	Dioba stanice	1
+20	77	Dioba stanice	1
+21	77	Dioba stanice	1
+22	77	Dioba stanice	1
+23	77	Dioba stanice	1
+18	78	Dioba stanice	0
+19	78	Dioba stanice	0
+20	78	Dioba stanice	1
+21	78	Dioba stanice	0
+22	78	Dioba stanice	1
+23	78	Dioba stanice	0
+18	79	Dioba stanice	1
+19	79	Dioba stanice	1
+20	79	Dioba stanice	0
+21	79	Dioba stanice	0
+22	79	Dioba stanice	0
+23	79	Dioba stanice	1
+18	80	Dioba stanice	1
+19	80	Dioba stanice	1
+20	80	Dioba stanice	1
+21	80	Dioba stanice	0
+22	80	Dioba stanice	1
+23	80	Dioba stanice	1
+18	81	Dioba stanice	1
+19	81	Dioba stanice	1
+20	81	Dioba stanice	0
+21	81	Dioba stanice	1
+22	81	Dioba stanice	0
+23	81	Dioba stanice	0
+18	82	Dioba stanice	0
+19	82	Dioba stanice	0
+20	82	Dioba stanice	1
+21	82	Dioba stanice	0
+22	82	Dioba stanice	0
+23	82	Dioba stanice	0
+18	83	Dioba stanice	1
+19	83	Dioba stanice	0
+20	83	Dioba stanice	0
+21	83	Dioba stanice	0
+22	83	Dioba stanice	1
+23	83	Dioba stanice	0
+24	0	DNA	1
+25	0	DNA	0
+26	0	DNA	1
+27	0	DNA	1
+28	0	DNA	1
+29	0	DNA	1
+24	1	DNA	1
+25	1	DNA	1
+26	1	DNA	0
+27	1	DNA	0
+28	1	DNA	1
+29	1	DNA	1
+24	2	DNA	0
+25	2	DNA	0
+26	2	DNA	1
+27	2	DNA	1
+28	2	DNA	0
+29	2	DNA	1
+24	3	DNA	1
+25	3	DNA	1
+26	3	DNA	1
+27	3	DNA	0
+28	3	DNA	0
+29	3	DNA	1
+24	4	DNA	0
+25	4	DNA	0
+26	4	DNA	0
+27	4	DNA	0
+28	4	DNA	0
+29	4	DNA	1
+24	5	DNA	0
+25	5	DNA	0
+26	5	DNA	0
+27	5	DNA	0
+28	5	DNA	0
+29	5	DNA	0
+24	6	DNA	0
+25	6	DNA	0
+26	6	DNA	0
+27	6	DNA	0
+28	6	DNA	1
+29	6	DNA	1
+24	7	DNA	0
+25	7	DNA	0
+26	7	DNA	0
+27	7	DNA	0
+28	7	DNA	0
+29	7	DNA	0
+24	8	DNA	0
+25	8	DNA	0
+26	8	DNA	1
+27	8	DNA	0
+28	8	DNA	0
+29	8	DNA	0
+24	9	DNA	1
+25	9	DNA	0
+26	9	DNA	1
+27	9	DNA	1
+28	9	DNA	1
+29	9	DNA	1
+24	10	DNA	1
+25	10	DNA	1
+26	10	DNA	1
+27	10	DNA	1
+28	10	DNA	1
+29	10	DNA	1
+24	11	DNA	1
+25	11	DNA	1
+26	11	DNA	1
+27	11	DNA	1
+28	11	DNA	1
+29	11	DNA	1
+24	12	DNA	1
+25	12	DNA	1
+26	12	DNA	1
+27	12	DNA	1
+28	12	DNA	1
+29	12	DNA	0
+24	13	DNA	1
+25	13	DNA	1
+26	13	DNA	1
+27	13	DNA	1
+28	13	DNA	0
+29	13	DNA	1
+24	14	DNA	0
+25	14	DNA	1
+26	14	DNA	1
+27	14	DNA	1
+28	14	DNA	0
+29	14	DNA	1
+24	15	DNA	1
+25	15	DNA	0
+26	15	DNA	0
+27	15	DNA	0
+28	15	DNA	1
+29	15	DNA	0
+24	16	DNA	1
+25	16	DNA	1
+26	16	DNA	0
+27	16	DNA	0
+28	16	DNA	1
+29	16	DNA	1
+24	17	DNA	0
+25	17	DNA	1
+26	17	DNA	1
+27	17	DNA	1
+28	17	DNA	0
+29	17	DNA	0
+24	18	DNA	1
+25	18	DNA	1
+26	18	DNA	1
+27	18	DNA	0
+28	18	DNA	0
+29	18	DNA	1
+24	19	DNA	0
+25	19	DNA	1
+26	19	DNA	1
+27	19	DNA	1
+28	19	DNA	1
+29	19	DNA	1
+24	20	DNA	0
+25	20	DNA	0
+26	20	DNA	0
+27	20	DNA	0
+28	20	DNA	1
+29	20	DNA	1
+24	21	DNA	1
+25	21	DNA	1
+26	21	DNA	1
+27	21	DNA	0
+28	21	DNA	1
+29	21	DNA	1
+24	22	DNA	1
+25	22	DNA	0
+26	22	DNA	0
+27	22	DNA	1
+28	22	DNA	0
+29	22	DNA	1
+24	23	DNA	1
+25	23	DNA	0
+26	23	DNA	1
+27	23	DNA	1
+28	23	DNA	0
+29	23	DNA	0
+24	24	DNA	1
+25	24	DNA	1
+26	24	DNA	1
+27	24	DNA	1
+28	24	DNA	1
+29	24	DNA	1
+24	25	DNA	1
+25	25	DNA	1
+26	25	DNA	1
+27	25	DNA	1
+28	25	DNA	1
+29	25	DNA	1
+24	26	DNA	1
+25	26	DNA	1
+26	26	DNA	1
+27	26	DNA	1
+28	26	DNA	1
+29	26	DNA	1
+24	27	DNA	1
+25	27	DNA	1
+26	27	DNA	1
+27	27	DNA	1
+28	27	DNA	1
+29	27	DNA	1
+24	28	DNA	1
+25	28	DNA	1
+26	28	DNA	1
+27	28	DNA	1
+28	28	DNA	1
+29	28	DNA	1
+24	29	DNA	0
+25	29	DNA	0
+26	29	DNA	1
+27	29	DNA	0
+28	29	DNA	1
+29	29	DNA	1
+24	30	DNA	1
+25	30	DNA	0
+26	30	DNA	0
+27	30	DNA	1
+28	30	DNA	1
+29	30	DNA	0
+24	31	DNA	1
+25	31	DNA	1
+26	31	DNA	0
+27	31	DNA	0
+28	31	DNA	1
+29	31	DNA	1
+24	32	DNA	0
+25	32	DNA	0
+26	32	DNA	1
+27	32	DNA	1
+28	32	DNA	0
+29	32	DNA	0
+24	33	DNA	1
+25	33	DNA	0
+26	33	DNA	1
+27	33	DNA	0
+28	33	DNA	1
+29	33	DNA	0
+24	34	DNA	1
+25	34	DNA	0
+26	34	DNA	1
+27	34	DNA	1
+28	34	DNA	1
+29	34	DNA	1
+24	35	DNA	1
+25	35	DNA	1
+26	35	DNA	1
+27	35	DNA	1
+28	35	DNA	1
+29	35	DNA	1
+24	36	DNA	1
+25	36	DNA	1
+26	36	DNA	1
+27	36	DNA	1
+28	36	DNA	1
+29	36	DNA	1
+24	37	DNA	1
+25	37	DNA	1
+26	37	DNA	1
+27	37	DNA	1
+28	37	DNA	1
+29	37	DNA	0
+24	38	DNA	1
+25	38	DNA	1
+26	38	DNA	1
+27	38	DNA	1
+28	38	DNA	0
+29	38	DNA	1
+24	39	DNA	0
+25	39	DNA	1
+26	39	DNA	1
+27	39	DNA	1
+28	39	DNA	0
+29	39	DNA	1
+24	40	DNA	0
+25	40	DNA	0
+26	40	DNA	0
+27	40	DNA	0
+28	40	DNA	1
+29	40	DNA	1
+24	41	DNA	1
+25	41	DNA	1
+26	41	DNA	0
+27	41	DNA	0
+28	41	DNA	1
+29	41	DNA	1
+24	42	DNA	0
+25	42	DNA	0
+26	42	DNA	1
+27	42	DNA	0
+28	42	DNA	0
+29	42	DNA	0
+24	43	DNA	0
+25	43	DNA	0
+26	43	DNA	0
+27	43	DNA	0
+28	43	DNA	1
+29	43	DNA	0
+24	44	DNA	0
+25	44	DNA	1
+26	44	DNA	1
+27	44	DNA	1
+28	44	DNA	0
+29	44	DNA	1
+24	45	DNA	1
+25	45	DNA	1
+26	45	DNA	0
+27	45	DNA	1
+28	45	DNA	0
+29	45	DNA	1
+24	46	DNA	1
+25	46	DNA	1
+26	46	DNA	0
+27	46	DNA	0
+28	46	DNA	1
+29	46	DNA	0
+24	47	DNA	0
+25	47	DNA	1
+26	47	DNA	1
+27	47	DNA	1
+28	47	DNA	0
+29	47	DNA	1
+24	48	DNA	0
+25	48	DNA	0
+26	48	DNA	1
+27	48	DNA	0
+28	48	DNA	0
+29	48	DNA	0
+24	49	DNA	0
+25	49	DNA	1
+26	49	DNA	1
+27	49	DNA	1
+28	49	DNA	1
+29	49	DNA	1
+24	50	DNA	1
+25	50	DNA	0
+26	50	DNA	0
+27	50	DNA	1
+28	50	DNA	0
+29	50	DNA	1
+24	51	DNA	1
+25	51	DNA	1
+26	51	DNA	1
+27	51	DNA	0
+28	51	DNA	1
+29	51	DNA	1
+24	52	DNA	1
+25	52	DNA	0
+26	52	DNA	1
+27	52	DNA	1
+28	52	DNA	1
+29	52	DNA	1
+24	53	DNA	1
+25	53	DNA	1
+26	53	DNA	1
+27	53	DNA	1
+28	53	DNA	0
+29	53	DNA	1
+24	54	DNA	0
+25	54	DNA	0
+26	54	DNA	1
+27	54	DNA	0
+28	54	DNA	0
+29	54	DNA	0
+24	55	DNA	0
+25	55	DNA	0
+26	55	DNA	0
+27	55	DNA	1
+28	55	DNA	0
+29	55	DNA	1
+24	56	DNA	1
+25	56	DNA	1
+26	56	DNA	0
+27	56	DNA	0
+28	56	DNA	1
+29	56	DNA	1
+24	57	DNA	0
+25	57	DNA	0
+26	57	DNA	1
+27	57	DNA	1
+28	57	DNA	0
+29	57	DNA	1
+24	58	DNA	0
+25	58	DNA	0
+26	58	DNA	1
+27	58	DNA	0
+28	58	DNA	1
+29	58	DNA	1
+24	59	DNA	1
+25	59	DNA	1
+26	59	DNA	1
+27	59	DNA	1
+28	59	DNA	1
+29	59	DNA	1
+24	60	DNA	1
+25	60	DNA	0
+26	60	DNA	1
+27	60	DNA	0
+28	60	DNA	1
+29	60	DNA	1
+24	61	DNA	1
+25	61	DNA	1
+26	61	DNA	1
+27	61	DNA	1
+28	61	DNA	1
+29	61	DNA	1
+24	62	DNA	0
+25	62	DNA	0
+26	62	DNA	1
+27	62	DNA	1
+28	62	DNA	1
+29	62	DNA	1
+24	63	DNA	1
+25	63	DNA	1
+26	63	DNA	1
+27	63	DNA	0
+28	63	DNA	1
+29	63	DNA	1
+24	64	DNA	0
+25	64	DNA	1
+26	64	DNA	1
+27	64	DNA	1
+28	64	DNA	1
+29	64	DNA	1
+24	65	DNA	1
+25	65	DNA	0
+26	65	DNA	1
+27	65	DNA	0
+28	65	DNA	0
+29	65	DNA	0
+24	66	DNA	1
+25	66	DNA	1
+26	66	DNA	1
+27	66	DNA	1
+28	66	DNA	1
+29	66	DNA	0
+24	67	DNA	1
+25	67	DNA	0
+26	67	DNA	1
+27	67	DNA	1
+28	67	DNA	0
+29	67	DNA	0
+24	68	DNA	1
+25	68	DNA	1
+26	68	DNA	1
+27	68	DNA	0
+28	68	DNA	1
+29	68	DNA	1
+24	69	DNA	0
+25	69	DNA	0
+26	69	DNA	0
+27	69	DNA	0
+28	69	DNA	0
+29	69	DNA	1
+24	70	DNA	0
+25	70	DNA	0
+26	70	DNA	0
+27	70	DNA	1
+28	70	DNA	0
+29	70	DNA	0
+24	71	DNA	1
+25	71	DNA	1
+26	71	DNA	1
+27	71	DNA	1
+28	71	DNA	1
+29	71	DNA	1
+24	72	DNA	1
+25	72	DNA	0
+26	72	DNA	0
+27	72	DNA	1
+28	72	DNA	0
+29	72	DNA	1
+24	73	DNA	0
+25	73	DNA	1
+26	73	DNA	1
+27	73	DNA	0
+28	73	DNA	1
+29	73	DNA	0
+24	74	DNA	0
+25	74	DNA	0
+26	74	DNA	0
+27	74	DNA	1
+28	74	DNA	1
+29	74	DNA	0
+24	75	DNA	0
+25	75	DNA	0
+26	75	DNA	0
+27	75	DNA	0
+28	75	DNA	0
+29	75	DNA	0
+24	76	DNA	1
+25	76	DNA	1
+26	76	DNA	0
+27	76	DNA	1
+28	76	DNA	1
+29	76	DNA	0
+24	77	DNA	0
+25	77	DNA	0
+26	77	DNA	0
+27	77	DNA	0
+28	77	DNA	0
+29	77	DNA	0
+24	78	DNA	1
+25	78	DNA	0
+26	78	DNA	0
+27	78	DNA	0
+28	78	DNA	1
+29	78	DNA	0
+24	79	DNA	0
+25	79	DNA	0
+26	79	DNA	1
+27	79	DNA	0
+28	79	DNA	1
+29	79	DNA	1
+24	80	DNA	0
+25	80	DNA	1
+26	80	DNA	0
+27	80	DNA	0
+28	80	DNA	0
+29	80	DNA	1
+24	81	DNA	1
+25	81	DNA	1
+26	81	DNA	0
+27	81	DNA	1
+28	81	DNA	1
+29	81	DNA	1
+24	82	DNA	1
+25	82	DNA	0
+26	82	DNA	1
+27	82	DNA	1
+28	82	DNA	0
+29	82	DNA	1
+24	83	DNA	1
+25	83	DNA	1
+26	83	DNA	1
+27	83	DNA	1
+28	83	DNA	1
+29	83	DNA	1
