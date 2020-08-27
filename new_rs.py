@@ -8,7 +8,6 @@ import sys
 import types
 
 import matplotlib.pyplot as plt
-%pylab inline
 import numpy as np
 from gym import spaces
 
@@ -542,22 +541,27 @@ def run_eps(agent, env, n_eps=100):
 
 #student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
 #stu = [[(51424, 0), (51435, 1),(51444, 1)]]
-stu = [[(85829, 0),(85838, 1)]]
+#stu = [[(85829, 0),(85838, 1)]]
+#za biologiju
+stu = [[(1, 0), (27, 1)]]
 
 # the parameters of trained DKVMN-CA model
-with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
+#with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
+with open('checkpoint/biology30_32batch_1epochs/kt_params', 'rb') as f:
     params = pickle.load(f)
 
 # Knowledge Concepts Corresponding to the exercise
-with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+#with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+with open('data/biology30/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
     e2c = pickle.load(f)
 
-
-with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
+#with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
+with open('data/biology30/chunk_exercises_id_converter.pkl', 'rb') as f:
     exercises_id_converter = pickle.load(f)
 
 #cands=[51424,51435,51444,51395,51481]
-cands=[85829,61089,85814,85838]
+#cands=[85829,61089,85814,85838]
+cands=[1, 15, 16, 27]
 
 candidate_exercises=[exercises_id_converter[e] for e in cands]
 student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
@@ -566,8 +570,10 @@ student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
 #current problems:
 #key error?
 
-Concepts = 9  # number of concepts
-NumQ = 2446 # number of exercises
+Concepts = 5  # number of concepts
+NumQ = 30 # number of exercises
+#Concepts = 9  # number of concepts
+#NumQ = 2446 # number of exercises
 # Concepts = 123  # number of concepts
 #NumQ = 17751 # number of exercises
 n_steps = 5  # number of steps of algorithm
