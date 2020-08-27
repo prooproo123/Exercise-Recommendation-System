@@ -134,19 +134,34 @@ Algoritmi za treniranje strategije preporuke zadataka pomoću podržanog učenja
 Kao strategije algoritma podržanog učenja u originalnom ExRec-u korištena su dva algoritma, Expectimax i RL. Kod Expectimaxa prvo se računa iznos predviđenog znanja u slučaju da se preporuči određen zadatak. Sustav kao preporuku izabire zadatak kojim bi maksimizirao predviđeno znanje u tom trenutku. RL razmatra dugoročnu nagradu akcije maksimizacijom Q funkcije.\newline
 %(isto izbaciti/izmijeniti ovisno kako cemo mi raditi)
 Za usporedbu algoritama, autori rada izvlače 15 studenata iz dataseta. Za oba algoritma inicijaliziraju se simulatori pomoću slijeda prethodno riješenih zadataka svakog studenta. Preporuča se 50 zadataka. Sprema se prosjek predviđenog znanja svih studenata u svakom koraku preporuke. %ubaciti sliku
-Na slici je vidljivo da s RL algoritmom srednje predviđeno znanje stalno raste - moguće je pronaci zadatke koji poboljšavaju performanse.
-%\begin{figure}[!htb]
-%\centering
-%\includegraphics[scale=1]{dot3.jpg}
-%\caption{"dot" graf tijeka s podacima smanjenog Assistment dataseta uz dodane oznake korisnika}
-%\label{fig:dot3}
-%\end{figure}
+
 
 \subsubsection{Evaluacija preporuka} %izaciti ako nećemo koristiti?
 Za proučavanje RL strategije autori su osmislili dodatni eksperiment kojim se uzme student i njegovih prijašnje riješenih 5 zadataka te pokrene simulator. Preporuči mu se novih 5 zadataka pomocu RL. Vizualno se prikaže tih 10 zadataka u obliku (broj zadatka, povezani koncept, točnost). Promatra se povezanost točnosti zadataka i odgovarajućih koncepata. Ako ne postoji znanje o nekom konceptu, grafički prikaz je crne boje. Kako znanje raste, boja je svjetlija.\newline
 Kad student netočno riješi zadatak, algoritam mu preporuči povezani koncept. Ako padne i preporučeni zadatak, sustav mu nudi ponovno rješavanje.\newline
 Nakon povećanja znanja o nekom konceptu, prebacuje se na neki drugi koncept. Ako je zadatak okarakteriziran kao lagan, znanje se ne povećava pretjerano iako je točno riješen.\newline
 Ponovno se preporučuje početni zadatak i stvar se ponavlja dok se ne riješi točno.
+
+
+\subsection{Rezultati i problemi}
+ 	\subsubsection{26.8.2020.}
+ 		Prilagođena je skripta new\_kt kako bi davala parametre za biologiju (smanjen je seq\_len), napravljene su skripte koje stvaraju potrebne .pkl fileove bez da su putevi do datoteka hardkodirani. Također, napravljena je skripta koja dataset dijeli na dio za treniranje i dio za validaciju u formatu koji treba za pokretanje new\_kt.py. Nakon što su broj koncepata i jedinstvenih pitanja postavljeni da odgovaraju datasetu biologije new\_rs.py se može normalno pokrenuti.
+ 		\newlineZa razliku od assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.507 te slabo osciliraju.
+ 		\begin{figure}[!htb]
+ 			\centering
+ 			\includegraphics[scale=0.8]{exrec_bio1.png}
+ 			\caption{}
+ 			\label{}
+ 		\end{figure}
+ 	
+ 	\begin{figure}[!htb]
+ 		\centering
+ 		\includegraphics[scale=0.8]{exrec_bio2.png}
+ 		\caption{}
+ 		\label{}
+ 	\end{figure}
+ 		
+ 	I dalje nije jasno koje vrijednosti hiperparametara poput seq\_len i veličina memorije bi se trebali koristiti te koje je pravo značenje "porasta/vrijednosti" znanja u svakom trenutku. Za iste parametre i dataset new\_rs.py uvijek daje drugačiji put preporuke što nije poželjno. Potrebno je i omogućiti izvedbu RS-a po chunkovima Assistmentsa koji nisu hardkodirani. Iz nekog razloga kada se koristi biologija trebaju se zakomentirati sve "isnan" funkcije, dok su iste potrebne kod assitmentsa.
 
 \section{Poveznice}
 \url{http://incompleteideas.net/book/first/ebook/node9.html}

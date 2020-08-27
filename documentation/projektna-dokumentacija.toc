@@ -59,5 +59,7 @@
 \contentsline {subsection}{\numberline {8.5.1}Preporuke zadataka}{41}{subsection.8.5.1}%
 \contentsline {subsubsection}{Evaluacija porasta znanja studenta}{41}{subsection.8.5.1}%
 \contentsline {subsubsection}{Evaluacija preporuka}{42}{subsection.8.5.1}%
-\contentsline {section}{\numberline {8.6}Poveznice}{42}{section.8.6}%
-\contentsline {chapter}{\numberline {9}Literatura}{43}{chapter.9}%
+\contentsline {subsection}{\numberline {8.5.2}Rezultati i problemi}{42}{subsection.8.5.2}%
+\contentsline {subsubsection}{26.8.2020.}{42}{subsection.8.5.2}%
+\contentsline {section}{\numberline {8.6}Poveznice}{43}{section.8.6}%
+\contentsline {chapter}{\numberline {9}Literatura}{45}{chapter.9}%
