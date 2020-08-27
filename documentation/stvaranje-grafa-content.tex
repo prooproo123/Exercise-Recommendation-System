@@ -8,10 +8,10 @@ Nakon početnog grupnog istraživanja grafova znanja i termina BKT, DKT, IRT i s
 Većina prvih proučenih radova i modela je napuštena zbog nepoklapanja s glavnom idejom našeg projekta, prevelike matematičke kompliciranosti ili kompleknosti računarske izvedbe te zbog namjernog ili nenamjernog uskraćivanja informacija o pozadini funkcionalnosti u objavljenim radovima.\newline
 \newline
 \subsection{Obrada prirodnog jezika}
-Početna istraživanja mogućnosti stvaranja grafa odvela su nas u smjeru metoda s korištenjem NLP-a (engl. \textit{natural language processing}). Iako je smjer ocijenjen kao prezahtjevan za potrebe projekta, proučene su osnovne funkcionalnosti Python biblioteka koje olakšavaju takve postupke - spaCy, networkX, seaborn \citep{ct1}. NetworkX je kasnije korišten za vizualizaciju grafova u BKT-u, kao u i Lentil pokušajima grupiranja zadataka po konceptima.\newline
+Početna istraživanja mogućnosti stvaranja grafa odvela su nas u smjeru metoda s korištenjem NLP-a (engl. \textit{natural language processing}). Iako je smjer ocijenjen kao prezahtjevan za potrebe projekta, proučene su osnovne funkcionalnosti Python biblioteka koje olakšavaju takve postupke - spaCy, networkX, seaborn \citep{spacy}. NetworkX je kasnije korišten za vizualizaciju grafova u BKT-u, kao u i Lentil pokušajima grupiranja zadataka po konceptima.\newline
 \newline
 \subsection{K12EduKG}
-Za edukacijske aplikacije pronađen je K12EduKG, sustav automatske konstrukcije grafa znanja gdje čvorovi i veze predstavljaju međusobno povezane koncepte \citep{ct2}, no nejasan je način pretakanja te ideje u kod koji bi odgovarao našem problemu. Autori daju premalo iskoristive informacije. Odlučeno je nastaviti istraživanje u drugačijim smjerovima.\newline
+Za edukacijske aplikacije pronađen je K12EduKG, sustav automatske konstrukcije grafa znanja gdje čvorovi i veze predstavljaju međusobno povezane koncepte \citep{k12} odlučeno je nastaviti istraživanje u drugačijim smjerovima.\newline
 \newline
 Novi smjerovi istraživanja od tog trenutka uključuju Deep Generative Models i GraphRNN. Proučeni su općeniti koncepti metoda nepovezani s edukacijskim aplikacijama kako bi poslužili kao inspiracija za nadogradnju na naš problem.\newline
 \newline
@@ -23,17 +23,17 @@ Model je temeljen na klasi modela grafičkih neuronskih mreža (engl. \textit{gr
 	\item{zabrati jedan čvor da se spoji s nekim novim.}
 \end{itemize}
 Drugačiji poredak struktura označava različite odluke.
-Za graf se koristi tzv. vektor ugradnje čvorova (engl. \textit{node embedding vector}). Računaju se “skrivena stanja” iz ulaza čvorova i propagiraju se grafom za dobivanje informacije lokalnog susjedstva. Vektor poruke računa se za svaku vezu (pomoću potpuno povezane neuronske mreže, GRU ili LSTM) pa svaki čvor dobiva tu informaciju i osvježava svoj prikaz \citep{ct3}.
+Za graf se koristi tzv. vektor ugradnje čvorova (engl. \textit{node embedding vector}). Računaju se “skrivena stanja” iz ulaza čvorova i propagiraju se grafom za dobivanje informacije lokalnog susjedstva. Vektor poruke računa se za svaku vezu (pomoću potpuno povezane neuronske mreže, GRU ili LSTM) pa svaki čvor dobiva tu informaciju i osvježava svoj prikaz \citep{dgm}.
 Spominje se i mogućnost uključivanja uvjetne informacije za proces generiranja. Kao i u prethodnom primjeru, autori ne objavljuju sve potrebne informacije. Oblik vektora ostaje nepoznat, kao i način izračuna "skrivenih stanja" za vektor ugradnje.\newline
 \newline
 \subsection{Graph RNN}
-Autoregresivni model. Autoregresivni modeli su sekvencijalni modeli, ali i s unaprijednom propagacijom; generativni, ali i pod nadzorom. Imaju velik potencijal kao alternativa povratnim neuronskim mrežama i GAN-ovima, generativnim suparničkim mrežama (engl. \textit{generative adversarial newtorks}) za obavljanje generiranja \cite{ct4}. Izlaz su im prediktivne uvjetne vjerojatnosti $P(x_{t+1} | x_1, …, x_t)$. Uvjetovanje je moguće samo na podatcima (ne npr. na šumu kao kod GAN-ova).
+Autoregresivni model. Autoregresivni modeli su sekvencijalni modeli, ali i s unaprijednom propagacijom; generativni, ali i pod nadzorom. Imaju velik potencijal kao alternativa povratnim neuronskim mrežama i GAN-ovima, generativnim suparničkim mrežama (engl. \textit{generative adversarial newtorks}) za obavljanje generiranja \cite{dagm}. Izlaz su im prediktivne uvjetne vjerojatnosti $P(x_{t+1} | x_1, …, x_t)$. Uvjetovanje je moguće samo na podatcima (ne npr. na šumu kao kod GAN-ova).
 Konkretno, kod Graph RNN dijelovi matrice susjedstva generiraju se sekvencijalno (npr. jedan po jedan stupac) pomoću RNN.
 Daljnijm proučavanjem prepoznati su mnogi nedostaci ovog modela. Složenost je O($N^2$), gdje je $N$ broj čvorova. Nadalje, zbog sekvencionalnosti, dva bliska čvora grafa mogu biti jako udaljeni u procesu generiranja u RNN što otežava performanse. Prilično je bitno osigurati invarijantnost na permutacije u čvorovima zbog izračuna vjerodostojnosti. Jedan od nedostataka pristupa svakako je i korištenje BFS algoritma (engl. \textit{breadth-first search}) za redanje čvorova u grafu; vrlo efikasnog računski, ali neoptimalnog.\newline
 \newline
 \section{Graph Recurrent Attention Networks}
 \subsection{Općenito o GRAN-ovima}
-Istraživanjem rada \citep{ct5} otkriveno je da gradi graf blok po blok. Mijenjanjem veličine blokova moguće je balansirati između kvalitete i efikasnosti. Blokovi predstavljaju određen broj redaka (stupaca) u matrici susjedstva (zadano je 2). Koriste se GNN koje bolje shvaćaju autoregresivnu povezanost (u odnosu na RNN) već generiranih dijelova grafa i onih koje još treba generirati.\newline
+Istraživanjem rada \citep{gran} otkriveno je da gradi graf blok po blok. Mijenjanjem veličine blokova moguće je balansirati između kvalitete i efikasnosti. Blokovi predstavljaju određen broj redaka (stupaca) u matrici susjedstva (zadano je 2). Koriste se GNN koje bolje shvaćaju autoregresivnu povezanost (u odnosu na RNN) već generiranih dijelova grafa i onih koje još treba generirati.\newline
 Izlazna distribucija parametrizirana je korištenjem Bernoullijevih mješavina (korelacije generiranih veza unutar bloka).\newline
 %samo ako će trebati detaljnije
 %Detaljnije, K označava broj komponenata mješavina. Kada je K = 1, distribucija degenerira u Bernoullijevu koja pretpostavlja neovisnost svake potencijalne veze uvjetovane postojećim grafom. To je jaka pretpostavka i može ugroziti kapacitet modela. Kada je K > 1, generiranje individualnih veza nije neovisno zbog mještavine latentnih komponenata. Prema tome, model mješavina osigurava jednostavan način za hvatanje ovisnosti u izlaznoj distribuciji.} \newline
@@ -57,8 +57,8 @@ Nije odgovarala činjenica da je prikaz molekula proteina zapravo neusmjereni gr
 \section{Latent Skill Embedding (Lentil)}
 \subsection{Općenito o Lentil-u}
 %izvještaj prvog tjedna
-Početno je istražen i opisan u {\color{red}Izvještaju prvog tjedna, staviti poveznicu na gornji dio teksta} \citep{6}. Daljnjim istraživanjem pokazuje velik potencijal. Metoda je upravljana podacima, uči reprezentaciju sadržaja koja ne zahtijeva \textit{a priori} znanje preslikavanja \textit{content-to-concept}. Proširuje ideje \textit{sparse factor analysis} (SPARFA) i multidimenzionalne Item Response Theory.\newline
-Model uči prikaz korisničkog znanja, kao i edukacijski sadržaj kako bi se prikazale preporuke, personalizirane upute o učenju. Probabilistički je model. Problem je formuliran kao regularizirani \textit{maximum-likelihood embedding} korisnika, nastavnih cjelina (lekcija) i procjena znanja (ispita) u zajednički semantički prostor iz skupa podataka o prošlosti interakcije korisnik-sadržaj (\textit{access traces}). Nastavne cjeline i procjene znanja su moduli sadržaja. Fiksni su, a korisnici imaju putanje latentnim prostorom vještina. Stvara se multidimenzionalno okružje - studentsko znanje “leži” u kontinuiranom prostoru stanja, a preduvjeti lekcija moduliraju dobitke znanja lekcijskih modula. Ugradnja u taj prostor ne koristi simetrične udaljenosti komponenata, već se bilježi prirodni napredak težine procjene znanja i rasta korisničkog znanja.\newline
+Pronađen je i istražen gotovo na samom početku prakse. Daljnjim istraživanjem pokazuje velik potencijal \citep{lentil}. Sažeto ga je moguće definirati kao sustav za personaliziranu preporuku nastavnih cjelina. Metoda je upravljana podacima, uči reprezentaciju sadržaja koja ne zahtijeva \textit{a priori} znanje preslikavanja \textit{content-to-concept}. Proširuje ideje \textit{sparse factor analysis} (SPARFA) i multidimenzionalne Item Response Theory.\newline
+Model uči prikaz korisničkog znanja, kao i edukacijski sadržaj kako bi se prikazale preporuke, personalizirane upute o učenju. Probabilistički je model. Problem je formuliran kao regularizirani \textit{maximum-likelihood embedding} korisnika, nastavnih cjelina (lekcija) i procjena znanja (ispita) u zajednički semantički prostor (latentni prostor vještina) iz skupa podataka o prošlosti interakcije korisnik-sadržaj (\textit{access traces}). Nastavne cjeline i procjene znanja su moduli sadržaja. Fiksni su, a korisnici imaju putanje latentnim prostorom vještina. Stvara se multidimenzionalno okružje - studentsko znanje “leži” u kontinuiranom prostoru stanja, a preduvjeti lekcija moduliraju dobitke znanja lekcijskih modula. Ugradnja u taj prostor ne koristi simetrične udaljenosti komponenata, već se bilježi prirodni napredak težine procjene znanja i rasta korisničkog znanja.\newline
 Korisnik je prikazan kao skup latentnih vještina, nastavna cjelina kao vektor dobitaka vještina i skupa preduvjeta, a procjena znanja kao skup potrebnih vještina. Korisniku se procjenjuje znanje nekog modula (ne zna ili zna, 0 ili 1), a vjerojatnost da će proći je veća ako korisnik ima visoku razinu vještine koja nadmašuje potrebne vještine za procjenu. Korisnik može poboljšati vještinu vremenom (koje je diskretizirano). Naglašava se da bi za poboljšanje vještine trebalo gledati korisničko predznanje (ovisno o predznanju podešavati težine u jednadžbi modela). 
 
 \subsection{Ideje}
@@ -116,12 +116,12 @@ Nakon početnog ispravljanja grešaka u kodu, dobiven je string koji označuje p
 \end{figure}
 
 \noindent Nakon ovakvog prikaza moguće je bilo zaključiti prednosti i nedostatke pojedine vrste prikaza.\newline
-Graf veza mnogo je manje intuirivan i manje pregledan od grafa tijeka. Za daljnje eksperimentiranje, kao prikladniji graf uzet je graf tijeka zbog veće preglednosti i veće prilagođenosti našem problemu. No, iako je preglednost znatno bolja nego kod grafa veza, svejedno nije u potpunosti zadovoljen kriterij preglednosti. Zadaci različitih korisnika nisu obojeni različitim bojama, a ni pristup samim zadacima nije kronološki.\newline
+Graf veza mnogo je manje intuitivan i manje pregledan od grafa tijeka. Za daljnje eksperimentiranje, kao prikladniji graf uzet je graf tijeka zbog veće preglednosti i veće prilagođenosti našem problemu. No, iako je preglednost znatno bolja nego kod grafa veza, svejedno nije u potpunosti zadovoljen kriterij preglednosti. Zadaci različitih korisnika nisu obojeni različitim bojama, a ni pristup samim zadacima nije kronološki.\newline
 Za intuitivniju vizualizaciju putanja dodane su oznake pojedinih korisnika između čvorova, što je vidljivo na slici ~\ref{fig:dot3}. Ideja je poboljšati dodavanjem različitih boja svakom korisniku. 
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=1]{dot3.jpg}
+\includegraphics[scale=1.6]{dot3.jpg}
 \caption{"dot" graf tijeka s podacima smanjenog Assistment dataseta uz dodane oznake korisnika}
 \label{fig:dot3}
 \end{figure}
@@ -144,7 +144,7 @@ Prvo je istražena mogućnost vizualnog grupiranja zadataka u okviru Lentil koda
 
 \noindent Isti rezultat dobiven eksperimentom s drugačijim pristupom (izračunom matrice prijelaza između stanja (čvorova) Markovljevog modela). Grupiranje zadataka je identično kao na slici ~\ref{fig:clust1}, ali je prikaz manje interpretabilan jer u ovoj fazi ne prikazuje oznake korisnika. Vidljiv je na slici ~\ref{fig:clust2}.\newline
 Konkretno, koristi se provjera različitosti pojedinih pitanja. Svaki zadatak teorijski je modeliran kao stanje Markovljevog procesa (diskretni stohastički proces je Markovljev proces ako vjerojatnost prijelaza u određenom diskretnom trenutku ovisi o stanjima u svim trenutcima prije). Stvara se matrica prijelaza između stanja (čvorova koji predstavljaju pitanja). Na osnovi takve matrice crta se graf. Kasnije se računa matrica vjerojatnosti prijelaza stanja pa stacionarna distribucija (vjerojatnosna distribucija koja se ne mijenja u Markovljevom lancu kako vrijeme prolazi). \newline
-Ponovno čitanje rada \citep{6} inspiriralo je za ideju korištenja izračuna entropije za određivanje koncepata. Entropija se računa kao negativni skalarni produkt stacionarne distribucije i $Plog(P)$, gdje $P$ predstavlja matricu vjerojatnosti prijelaza među stanjima. Sama korist izračuna entropije još nije prikazana. Entropija inače predstavlja “porast informacije u podatcima”. Potencijalno, ideja je da, s obzirom da se računa za svaku matricu vjerojatnosti prijelaza, za svaku putanju različitih korisnika računati entropiju i utvrditi postoje li pravilnosti koje pomažu odrediti koncepte. 
+Ponovno čitanje rada \citep{lentil} inspiriralo je za ideju korištenja izračuna entropije za određivanje koncepata. Entropija se računa kao negativni skalarni produkt stacionarne distribucije i $Plog(P)$, gdje $P$ predstavlja matricu vjerojatnosti prijelaza među stanjima. Sama korist izračuna entropije još nije prikazana. Entropija inače predstavlja “porast informacije u podatcima”. Potencijalno, ideja je da, s obzirom da se računa za svaku matricu vjerojatnosti prijelaza, za svaku putanju različitih korisnika računati entropiju i utvrditi postoje li pravilnosti koje pomažu odrediti koncepte. 
 
 \begin{figure}[!htb]
 \centering
@@ -152,6 +152,7 @@ Ponovno čitanje rada \citep{6} inspiriralo je za ideju korištenja izračuna en
 \caption{Grupiranje zadataka smanjenog Assistments dataseta prema pripadnosti konceptima izračunom matrice prijelaza}
 \label{fig:clust2}
 \end{figure}
+\pagebreak
 
 \section{K-Medoids}
 Kao odvojeni pristup, napravljena je skripta koja radi clustering pomoću algoritma K-Medoids.\newline
@@ -166,7 +167,15 @@ Biologija dataset:\newline
 Za sad je algoritam isproban samo na datasetu Biologija (84 odgovora) jer je Assistments malo prevelik, ali sljedeći korak je testiranje i na Assistments.\newline
 Dataset ima 30 pitanja, znači imamo 30 ulaznih vektora. Algoritam je isproban na standandiziranim i nestandardiziranim podacima, te daje nešto malo bolje rezultate na nestandandiziranim, ali to može biti i do dataseta. 
 Rand index na nestandardiziranim podacima je 0.83, a adjusted rand index 0.41, za što kažu da spada u “srednje dobar rezultat”. NMI vrijednost je oko 0.58, a minimum koji se dobiva funkcijom za sumu greške jest 9 (od ukupno 30 pitanja). Lošiji rezultati mogu biti i do dataseta Biologija koji je svakako daleko od idealnog, jer ni koncepti nisu dobro definirani (npr. ispitanik možda ne zna živčanu stanicu, ali je čuo odgovor na par pitanja iz psihologije). 
-Korištenjem metode lakta za određivanje broja klasa dobije se 6 klasa, dok je pravi broj klasa 5.\newline
+Korištenjem metode lakta za određivanje broja klasa dobije se 6 klasa, što je vidljivo na slici ~\ref{fig:medoids_bio}, dok je pravi broj klasa 5.\newline
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=0.5]{medoids_bio.png}
+\caption{Prikaz određivanja klasa iz Biologija dataseta korištenjem metode lakta}
+\label{fig:medoids_bio}
+\end{figure}
+
 Assistments dataset:\newline
 Testiranje na Assistments u početku je okarakterizirano kao nemoguće jer K-Medoids algoritam zahtijeva da su svi vektori iste dimenzionalnosti odnosno da su svi ispitanici odgovorili na sva pitanja. To u Assistments nije zadovoljeno. Eventualno se može probati s nekakvom redukcijom dimentionalnosti vektora (npr. \textit{principal component analysis}, međutim budući da ima pitanja na koja je samo jedan student odgovorio, na kraju bismo trebali završiti s dimenzionalnošću 1 (što je puno premalo da bi obuhvaćalo potrebne informacije).\newline
 U nastavku rada na ovom pristupu, napravljena je prilagodba za učitavanje smanjenog Assistments dataseta (20 pitanja). No, početna pretpostavka da testiranje s Assistemntsom neće biti moguće pokazala se ispravnom. Isprobana je metoda grupiranja slična K-Medoids, K-Means, ali nije pokazala željenu funkcionalnost.
@@ -174,18 +183,18 @@ U nastavku rada na ovom pristupu, napravljena je prilagodba za učitavanje smanj
 \section{Ostatak istraživanja}
 Mnogi radovi pokazali su se u cjelovitosti ne toliko relevantnima da bismo ih mogli u potpunosti primijeniti na naš problem, ali su predstavili mnoge iskoristive koncepte i algoritme vrijedne spomena.\newline
 \newline
-U radu \citep{ct10} spominje se da je razumijevanje krajnjeg cilja svakog studenta praćeno pomoću posebne varijable mastery\_score koja se osvježava svaki puta kada se vrši procjena studentovog znanja. \newline
-Spominje se da identificiraju i vizualiziraju grupe povezanih koncepata. Točnije, \textit{spreading algorithm} pronalazi uzorak u povezanosti koncepata i dokumenata te dokumenata i koncepata. Analizirana je struktura \textit{spreading algorithma} \citep{ct11}.\newline
+U radu \citep{its} spominje se da je razumijevanje krajnjeg cilja svakog studenta praćeno pomoću posebne varijable mastery\_score koja se osvježava svaki puta kada se vrši procjena studentovog znanja. \newline
+Spominje se da identificiraju i vizualiziraju grupe povezanih koncepata. Točnije, \textit{spreading algorithm} pronalazi uzorak u povezanosti koncepata i dokumenata te dokumenata i koncepata. Analizirana je struktura \textit{spreading algorithma} \citep{spreading}.\newline
 Problem je što je potrebna neka vrsta reference, ekspertno određenog početnog grafa koji će se evaluirati tim algoritmom.\newline
 \newline
-U radu \citep{12} predstavljene su hijerarhijske veze pitanja i koncepata modelirane pomoću hinge loss skalarnog produkta ugrađenih koncepata i pitanja. Problem: povezanost koncepata i pitanja određena ekspertima i zapisana u matrici ugradnje, a eksperte želimo izbjeći. Korišten je t-distributed stochastic neighbor embedding (tSNE) algoritam.
-tSNE je algoritam strojnog učenja za vizualizaciju; nelinearna tehnika za redukciju dimenzionalnosti. Koristi se za ugradnju visokodimenzionalnih podataka za vizualizaciju u niskodimenzionalni prostor (2 ili 3 dimenzije). Slični objekti su s visokom vjerojatnosti modelirani točkama koje su blizu u prostoru, a različiti objekti udaljenim točkama \citep{13}.
+U radu \citep{dhkt} predstavljene su hijerarhijske veze pitanja i koncepata modelirane pomoću hinge loss skalarnog produkta ugrađenih koncepata i pitanja. Problem: povezanost koncepata i pitanja određena ekspertima i zapisana u matrici ugradnje, a eksperte želimo izbjeći. Korišten je t-distributed stochastic neighbor embedding (tSNE) algoritam.
+tSNE je algoritam strojnog učenja za vizualizaciju; nelinearna tehnika za redukciju dimenzionalnosti. Koristi se za ugradnju visokodimenzionalnih podataka za vizualizaciju u niskodimenzionalni prostor (2 ili 3 dimenzije). Slični objekti su s visokom vjerojatnosti modelirani točkama koje su blizu u prostoru, a različiti objekti udaljenim točkama \citep{tdsne}.
 Problem: velika osjetljivost algoritma na promjenu parametara.\newline
 \newline
-Rad \citep{14} primarno radi poveznicu između samih koncepata, ali i između koncepata i objekata učenja (zadataka, primjera, itd.) uz pretpostavke da je broj objekata učenja poznat. Glavni problem i razlog napuštanja ovakvog modela je što se \textit{preprocessing} objekata učenja radi se pomoću \textit{text-mininga}. Isto tako, rad pretpostavlja da je netko nekad označio povezanost koncepata i objekata učenja pa da može koristiti tu referencu. Nad tom referencom oblikuje se tzv. \textit{contextual network} koja sadrži više vrsta čvorova. Za izračunavanje sličnosti koncepata koriste se dva načina: već spomenuti \textit{spreading activation algorithm} i \textit{PageRank with Priors}.\textit{ PageRank with Priors} koristi se kao kvantitativna mjera sličnosti čvorova prema nekom drugom čvoru. Čestu primjenu ima u sustavima kategorizacije.
+Rad \citep{conc_rel} primarno radi poveznicu između samih koncepata, ali i između koncepata i objekata učenja (zadataka, primjera, itd.) uz pretpostavke da je broj objekata učenja poznat. Glavni problem i razlog napuštanja ovakvog modela je što se \textit{preprocessing} objekata učenja radi se pomoću \textit{text-mininga}. Isto tako, rad pretpostavlja da je netko nekad označio povezanost koncepata i objekata učenja pa da može koristiti tu referencu. Nad tom referencom oblikuje se tzv. \textit{contextual network} koja sadrži više vrsta čvorova. Za izračunavanje sličnosti koncepata koriste se dva načina: već spomenuti \textit{spreading activation algorithm} i \textit{PageRank with Priors}.\textit{ PageRank with Priors} koristi se kao kvantitativna mjera sličnosti čvorova prema nekom drugom čvoru. Čestu primjenu ima u sustavima kategorizacije.
 U konkretnom primjeru, propagiraju se stvarne karakteristike modela domene znanja u eksplicitne veze među konceptima.\newline
 \newline
-U radu \citep{15} veoma je izraženo shvaćenje da mnogi radovi poistovjećuju koncepte i zadatke i to pojednostavljenje uzrokuje probleme.\newline
+U radu \citep{trans} veoma je izraženo shvaćenje da mnogi radovi poistovjećuju koncepte i zadatke i to pojednostavljenje uzrokuje probleme.\newline
 Prepoznaju da grafovi znanja ciljaju da predstave znanje u obliku grafova tripleta; triju činjenica - (početni entitet, veza, završni entitet).\newline
 Razlikuju povezanost koncepta i zadataka, koncepata međusobno te zadataka međusobno. Ovisno o vrsti povezanosti, koriste različite funkcije gubitka.\newline
 Koncepte enkodiraju kao sfere, a zadatke kao vektore u istom semantičkom prostoru.\newline
@@ -198,8 +207,15 @@ Sve mogućnosti se rangiraju kao moguće upopunjavanje traženog praznog mjesta 
 \end{enumerate}
 Glavni problem, kao i u većini istraženih metoda: znaju koliko je koncepata.\newline
 \newline
-Rad \citep{16} slične vježbe grupira u koncepte naziva “problem schemas”. Koristi se hierarchical graph neural network. Konkretno, ovdje je mreža dvoslojna: donji je sloj zadataka (svaki čvor je jedan zadatak), gornji je sloj problemskih shema. Povezanost zadataka i problemskih shema modelira se \textit{assignment matrixom} koji se dobije pomoću \textit{hierarchical clustering analysis (HCA)}. HCA je metoda analize grupiranja bez nadzora korištenjem aglomerativnih ili divizivnih strategija za izgradnju hijerarhije grupa.
+Rad \citep{hgkt} slične vježbe grupira u koncepte naziva “problem schemas”. Koristi se hierarchical graph neural network. Konkretno, ovdje je mreža dvoslojna: donji je sloj zadataka (svaki čvor je jedan zadatak), gornji je sloj problemskih shema. Povezanost zadataka i problemskih shema modelira se \textit{assignment matrixom} koji se dobije pomoću \textit{hierarchical clustering analysis (HCA)}. HCA je metoda analize grupiranja bez nadzora korištenjem aglomerativnih ili divizivnih strategija za izgradnju hijerarhije grupa.
 Za konstrukciju hijerarhijskog grafa zadataka spominje se iskorištavanje semantičke informacije zadataka i shema, ali kasnije se  spominje treniranje mreže samo pomoću HCA pa je i to jedan od pristupa koji valja detaljnije istražiti.\newline
 \newline
-Istražen je i alat Ampligraph \citep{17, 18}. Površna analiza definirala ga je kao dosta moćan alat. Funkcionalnosti obuhvaćaju stvaranje grafa znanja, treniranje ugradbenog modela na tripletima, evaluaciju modela, vizualno grupiranje pojmova.
-Problem: s obzirom da koristi triplete (subjekt, predikat, objekt), potrebno je poznavati povezanost pitanja.
+Istražen je i alat Ampligraph \citep{ampl1, ampl2}. Površna analiza definirala ga je kao dosta moćan alat. Funkcionalnosti obuhvaćaju stvaranje grafa znanja, treniranje ugradbenog modela na tripletima, evaluaciju modela, vizualno grupiranje pojmova.
+Problem: s obzirom da koristi triplete (subjekt, predikat, objekt), potrebno je poznavati povezanost pitanja.\newline
+\newline
+Daljnja proučavanja vratila su nas na rad s početka, Deep Knowledge Tracing (DKT), \citep{dkt}. U njemu je spomenuto kako se DKT model može koristiti za zadatke otkrivanja latentne strukture ili koncepata u podacima. Problemu je pristupljeno na način da se utjecaj $J_{ij}$ dodijeli svakom usmjerenom paru zadataka $i$ i $j$, gdje je $y(i | j)$ vjerojatnost točnosti koju RNN dodjeljuje zadatku $j$ ako je učenik u prethodnom koraku točno odgovorio na zadatak $i$. Opisano je vidljivo u jednadžbi ~\ref{eq:dkt}.
+\begin{equation}
+J_{i j}=\frac{y(j \mid i)}{\sum_{k} y(j \mid k)}\label{eq:dkt}
+\end{equation}
+\newline
+Kao dodatni pristup prepoznat je i rad povezan s kasnije detaljno opisanim ExRec-om \citep{exrec}, Dynamic Key-Value Memory Network Knowledge Tracing (DKVMN) \citep{dkvmn}. U radu je spomenuto kako se bave otkrivanjem uzoraka (koncepata) zadataka pomoću korelacijskih težina. Korelacijske težine između zadataka i koncepata impliciraju snagu njihove povezanosti. Nije potrebno otkiriti ovisnosti među zadacima i onda definirati prag za grupiranje, kako je to obično u povezanim radovima. Svaki zadatak povezuje se s jednim konceptom prema najvećoj vrijednosti korelacijske težine. Spominje se i korištenje već spomenutog t-SNE algoritmna \citep{tdsne} za prikaz grafa projiciranjem multidimenzionalnih korelacijskih težina u 2d točke. Problem ovog pristupa je što nije jasno definirano kako stvaraju korelacijske težine. 
