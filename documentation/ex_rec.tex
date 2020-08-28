@@ -11,7 +11,7 @@ Koristi se i pristup određivanja ZPD-a (zona proksimalnog razvoja, engl. \texti
 SPARFA framework se koristi za procjenu znanja svakog učenika iz njihovih prethodnih rezultata. Zatim koristi te profile znanja kao kontekst i primjenjuje kontekstualni algoritam naoružanih razbojnika za preporuku zadataka kako bi se maksimizirao učenikov neposredan uspjeh, odnosno njegov uspjeh na sljedećem zadatku. Problem ovog algoritma je što uzima u obzir samo sljedeći korak (kratkoročna nagrada) stoga njegova izvedba ne mora biti optimalna.\newline
 \newline
 \section{Pozadina sustava i dataset}
-Originalni ExRec sustav kao dataset uzima uzorke studentskih interakcija iz IPS-a (engl. \textit{Intelligent practice System}.
+Originalni ExRec sustav kao dataset uzima uzorke studentskih interakcija iz IPS-a (engl. \textit{Intelligent practice System}).
 IPS je kineski online sustav za samostalno učenje. U IPS-u svaki tečaj ima na desetke gradiva, a student sam bira željeno gradivo. Svako gradivo ima 7 stadija iz kojeg je moguće izaći u bilo kojem trenutku (ili promijeniti gradivo):
 \begin{enumerate}
 \item vježbe za zagrijavanje prije nastave
@@ -36,14 +36,14 @@ Za svakog studenta rezervirana su 4 retka:
 DKVMN se generalno sastoji od statičke matrice (ključa) koji sprema latentne koncepte i dinamičke matrice (vrijednosti) koja sadrži razine savladnosti određenog koncepta. Model računa korelaciju vježbe i latentnog koncepta u ključu. Korelaciju koristi za čitanje studentovih razina savladanost koncepta i predviđa točnost ishoda rješavanja zadatka.\newline
 \subsection{Concept Aware struktura}
 DKVMN ExRec praćenja znanja poboljšan u aspektima memorijske strukture, težina koncepata znanja te procesa pisanja i čitanja. Osnovni DKVMN dizajn je modificiran tako da memorijska struktura ovisi o listi koncepata nekog tečaja. Na slici
-<> je prikazana struktura modela. $M^k_t$ je matrica ugrađenih koncepata veličine $M X N$ gdje je $N$ broj memorijskih lokacija, a $M$ je veličina vektora na svakoj lokaciji. $N$ se postavlja na broj koncepata znanja određenog tečaja. Pošto se u radu koristilo 1 koncept prve razine, 7 koncepata druge razine te 15 treće razine N=23. Nakon toga, na svakoj lokaciji koncepta znanja se sprema studentovo znanje.
+~\ref{fig:exrec1} prikazana je struktura modela. $M^k_t$ je matrica ugrađenih koncepata veličine $M X N$ gdje je $N$ broj memorijskih lokacija, a $M$ je veličina vektora na svakoj lokaciji. $N$ se postavlja na broj koncepata znanja određenog tečaja. Pošto se u radu koristio 1 koncept prve razine, 7 koncepata druge razine te 15 treće razine, N=23. Nakon toga, na svakoj lokaciji koncepta znanja se sprema studentovo znanje.
 
 
 	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.8]{exrec1.png}
 	\caption{}
-	\label{}
+	\label{fig:exrec1}
 \end{figure}
 
 
@@ -51,14 +51,14 @@ DKVMN ExRec praćenja znanja poboljšan u aspektima memorijske strukture, težin
 
 Pošto je studentovo stanje koncepta znanja spremljeno u memoriji, kada se pojavi novi zadatak dohvaćaju se i osvježavaju samo memorijske lokacije povezane s tom vježbom. Za svaki koncept znanja se računa težina, težine se koriste kako bi se izračunala težinska suma trenutnih stanja koncepata znanja korisnika kako bi se predvidio njegov rezultat na vježbi. Također će se koristiti kako bi se osvježio korisnikovo stanje znanja nakon primitka rezultata od zadatka.
 
-Prvo se dohvaćaju ugrađene vrijednosti od danog zadatka. Kao što se vidi na slici kada zadatak $q_t$ dođe u trenutku $t$ prvo se transformira u ugrađeni vektor $m_t$ kroz ugrađujuću matricu $A$, tada se KCW računa pomoću algoritma 1. Ukratko, DKVMN računa težinske veze između zadataka i skrivenih koncepata znanja, dok se u ovom kodu računaju samo veze između zadataka i poznatih povezanih koncepata, nepovezani koncepti se postavljaju na 0.
+Prvo se dohvaćaju ugrađene vrijednosti od danog zadatka. Kao što se vidi na slici ~\ref{fig:exrec1}, kada zadatak $q_t$ dođe u trenutku $t$ prvo se transformira u ugrađeni vektor $m_t$ kroz ugrađujuću matricu $A$. Tada se KCW računa pomoću algoritma 1 vidljivog na slici ~\ref{fig:exrec2}. Ukratko, DKVMN računa težinske veze između zadataka i skrivenih koncepata znanja, dok se u ovom kodu računaju samo veze između zadataka i poznatih povezanih koncepata, nepovezani koncepti se postavljaju na 0.
 
 
 	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.8]{exrec2.png}
 	\caption{}
-	\label{}
+	\label{fig:exrec2}
 \end{figure}
 
 
@@ -66,13 +66,12 @@ Prvo se dohvaćaju ugrađene vrijednosti od danog zadatka. Kao što se vidi na s
 \subsection{Proces čitanja}
 
 
-Nakon što se izračunati KCW iskoristi za izračun težinske sume stanja koncepata znanja određenog korisnika $r_t=\sum_{i=1}^{N}w_iM^v_t$, na tu sumu rt se nadodaju značajke težine zadatka i "stage feature" dt,gt. Rezultat se šalje u potpuno povezani sloj sa aktivacijskom funkcijom Tanh kako bi se dobio "summary" vektor koji sadrži sve informacije o studentovom znanju povezanom sa qt i značajkama zadatka.
+Nakon što se izračunati KCW iskoristi za izračun težinske sume stanja koncepata znanja određenog korisnika, $r_t=\sum_{i=1}^{N}w_iM^v_t$, na sumu $r_t$ nadodaju se značajke težine zadatka i "stage feature" $d_t$, $g_t$. Rezultat se šalje u potpuno povezani sloj sa aktivacijskom funkcijom Tanh kako bi se dobio "summary" vektor koji sadrži sve informacije o studentovom znanju povezanom s $q_t$ i značajkama zadatka.
 \begin{equation}
 	f_t=Tanh(W_0^T[r_t,d_t,g_t,m_t])
 \end{equation}
 
-Na kraju, ft prolazi kroz potpuno povezani sloj koji daje kao izlaz vjerojatnosti da bi student odradio
-zadatake qt točno.
+Na kraju, $f_t$ prolazi kroz potpuno povezani sloj koji daje kao izlaz vjerojatnosti da bi student odradio zadatake $q_t$ točno.
 \begin{equation}
 p=Sigmoid(W^T_1f_t)
 \end{equation}
@@ -81,9 +80,9 @@ p=Sigmoid(W^T_1f_t)
 \subsection{Proces ažuriranja}
 
 Proces ažuriranja mijenja vrijednosti matrice $M^v_t$ koja predstavlja trenutno stanje studentovog koncepta znanja \textit{k}.
-Ovaj model je drukčiji od DKVMN po tome da se razmatra i trajanje rješavanja. Prema povezanim radovima, trajanje rješavanja zadatka je povezano sa razinom znanja studenta. Pošto je vrijeme rješavanja kontinuirana varijabla ona se prvo diskretizira po njenoj distribuciji i unda se prikaže kao varijabla t te se koristi kako bi se ažurirala matrica $M$. Ostali procesi su isti kao i u DKVMN, sastoji se od podprocessa dodavanja i brisanja. Vektor brisanjas e dobije $e=Sigmoid(E^T[s_t,t])$ dok se vektor dodavanja dobije kao $a=Tanh(D^T[s_t,t])$ te se nova matrica M računa kao
+Ovaj model je drukčiji od DKVMN po tome da se razmatra i trajanje rješavanja. Prema povezanim radovima, trajanje rješavanja zadatka je povezano sa razinom znanja studenta. Pošto je vrijeme rješavanja kontinuirana varijabla, ona se prvo diskretizira po njenoj distribuciji i onda se prikaže kao varijabla $t$ te se koristi kako bi se ažurirala matrica $M$. Ostali procesi su isti kao i u DKVMN, sastoji se od podprocesa dodavanja i brisanja. Vektor brisanja dobije se kao $e=Sigmoid(E^T[s_t,t])$, dok se vektor dodavanja dobije kao $a=Tanh(D^T[s_t,t])$. Nova matrica M računa se kao
 \begin{equation}
-	M^v_{t+1}(i+1) =M^v_t (i)[1-w(i)e][1+w(i)]
+	M^v_{t+1}(i+1) =M^v_t (i)[1-w(i)e][1+w(i)].
 \end{equation}
 Parametri ovog modela se račuaju tako da se minimizira "cross-entropy loss" između pretpostavljenog studentovog
 dobvivenog i pretpostavljenog rezultata. 
@@ -145,9 +144,9 @@ Ponovno se preporučuje početni zadatak i stvar se ponavlja dok se ne riješi t
 
 \subsection{Rezultati i problemi}
  	\subsubsection{26.8.2020.}
- 		Prilagođena je skripta new\_kt kako bi davala parametre za biologiju (smanjen je seq\_len), napravljene su skripte koje stvaraju potrebne .pkl fileove bez da su putevi do datoteka hardkodirani. Također, napravljena je skripta koja dataset dijeli na dio za treniranje i dio za validaciju u formatu koji treba za pokretanje new\_kt.py. Nakon što su broj koncepata i jedinstvenih pitanja postavljeni da odgovaraju datasetu biologije new\_rs.py se može normalno pokrenuti.
+ 		Prilagođena je skripta new\_kt.py kako bi davala parametre za biologiju (smanjen je seq\_len), napravljene su skripte koje stvaraju potrebne .pkl fileove bez da su putevi do datoteka hardkodirani. Također, napravljena je skripta koja dataset dijeli na dio za treniranje i dio za validaciju u formatu koji treba za pokretanje new\_kt.py. Nakon što su broj koncepata i jedinstvenih pitanja postavljeni da odgovaraju datasetu biologije new\_rs.py se može normalno pokrenuti.
 \newline
-Za razliku od assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.507 te slabo osciliraju.
+Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.507 te slabo osciliraju.
  		\begin{figure}[!htb]
  			\centering
  			\includegraphics[scale=0.8]{exrec_bio1.png}
@@ -162,7 +161,7 @@ Za razliku od assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
  		\label{}
  	\end{figure}
  
- 	I dalje nije jasno koje vrijednosti hiperparametara poput seq\_len i veličina memorije bi se trebali koristiti te koje je pravo značenje "porasta/vrijednosti" znanja u svakom trenutku. Za iste parametre i dataset new\_rs.py uvijek daje drugačiji put preporuke što nije poželjno. Potrebno je i omogućiti izvedbu RS-a po chunkovima Assistmentsa koji nisu hardkodirani. Iz nekog razloga kada se koristi biologija trebaju se zakomentirati sve "isnan" funkcije, dok su iste potrebne kod assitmentsa.
+ 	I dalje nije jasno koje vrijednosti hiperparametara poput seq\_len i veličina memorije bi se trebali koristiti te koje je pravo značenje "porasta/vrijednosti" znanja u svakom trenutku. Za iste parametre i dataset new\_rs.py uvijek daje drugačiji put preporuke što nije poželjno. Potrebno je i omogućiti izvedbu RS-a po chunkovima Assistmentsa koji nisu hardkodirani. Iz nekog razloga kada se koristi biologija trebaju se zakomentirati sve "isnan" funkcije, dok su iste potrebne kod Assitmentsa.
 
 \section{Poveznice}
 \url{http://incompleteideas.net/book/first/ebook/node9.html}
