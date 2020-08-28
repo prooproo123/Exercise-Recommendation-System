@@ -1,0 +1,10 @@
+.idea
+/data/
+/venv/
+/data/
+.gz
+.aux
+.log
+.bbl
+.toc
+.out

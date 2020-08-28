@@ -7,7 +7,7 @@ import theano
 import itertools
 import numpy as np
 from rllab.misc.ext import sliced_fun
-from _ast import Num
+#from _ast import Num
 
 
 class PerlmutterHvp(Serializable):
