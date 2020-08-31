@@ -9,6 +9,7 @@ import types
 
 import subprocess
 import chunk_analysis_assist
+import assist_tempfile_creator
 
 import matplotlib.pyplot as plt
 import numpy as np
