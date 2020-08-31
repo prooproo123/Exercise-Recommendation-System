@@ -21,12 +21,12 @@ from  .. rllab.policies.categorical_gru_policy import CategoricalGRUPolicy
 class MyGymEnv(GymEnv):
     def __init__(self, env, record_video=False, video_schedule=None, log_dir=None, record_log=False,
                  force_reset=False):
-        if log_dir is None:
-            if logger.get_snapshot_dir() is None:
-                logger.log("Warning: skipping Gym environment monitoring since snapshot_dir not configured.")
-            else:
-                log_dir = os.path.join(logger.get_snapshot_dir(), "gym_log")
-        Serializable.quick_init(self, locals())
+        #if log_dir is None:
+           # if logger.get_snapshot_dir() is None:
+           #     logger.log("Warning: skipping Gym environment monitoring since snapshot_dir not configured.")
+           # else:
+            #    log_dir = os.path.join(logger.get_snapshot_dir(), "gym_log")
+        #Serializable.quick_init(self, locals())
 
         self.env = env
         self.env_id = ''
@@ -45,9 +45,9 @@ class MyGymEnv(GymEnv):
             self.monitoring = True
 
         self._observation_space = convert_gym_space(env.observation_space)
-        logger.log("observation space: {}".format(self._observation_space))
+       # logger.log("observation space: {}".format(self._observation_space))
         self._action_space = convert_gym_space(env.action_space)
-        logger.log("action space: {}".format(self._action_space))
+        #logger.log("action space: {}".format(self._action_space))
         self._horizon = self.env.n_steps
         self._log_dir = log_dir
         self._force_reset = force_reset
@@ -264,7 +264,7 @@ class DKVEnv(StudentEnv):
         """
         The average probability of doing all the test exercises correctly
         """
-        return np.array(list(map(self.predict, candidate_exercises)))
+        return np.array(list(map(self.predict, self.candidate_exercises)))
 
     def _update_model(self, item, outcome):
         """
@@ -353,7 +353,7 @@ class DummyTutor(Tutor):
 
 class RLTutor(Tutor):
 
-    def __init__(self, n_items, init_timestamp=0):
+    def __init__(self,env, n_items, init_timestamp=0):
         self.raw_policy = None
         self.curr_obs = None
         self.rl_env = MyGymEnv(make_rl_student_env(env))
@@ -484,7 +484,7 @@ def all_reset(agent):
     return agent
 
 
-def simulation(agent, trace, steps):
+def simulation(agent, trace, steps,candidate_exercises):
     """
     Simulate the recommendation given the student history exercise trace
     :param agent: recommendation policy
@@ -513,7 +513,7 @@ def simulation(agent, trace, steps):
     return recom_trace, res
 
 
-def evaluation(agent,student_traces):
+def evaluation(agent,student_traces,candidate_exercises):
     """
     Evaluate the policy when it recommend exercises to different student
     student_traces:[[(923, 1), (175, 0), (1010, 1), (857, 0), (447, 0)], [........], [.........]]
@@ -525,7 +525,7 @@ def evaluation(agent,student_traces):
     allre = [[] for i in range(50)]
     for trace in student_traces:
         agent = all_reset(agent)
-        t, res = simulation(agent, trace, 50)
+        t, res = simulation(agent, trace, 50,candidate_exercises)
         print("Preporuceni put: " + str(t))
         for j in range(50):
             allre[j].append(res[j])
@@ -566,13 +566,13 @@ def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,no_questions,no_co
 
     env = DKVEnv(e2c,params,no_questions,no_concepts,candidate_exercises,**env_kwargs, reward_func='likelihood')
     rl_env = make_rl_student_env(env)
-    agent = RLTutor(n_items)
+    agent = RLTutor(n_items,env)
     reward = agent.train(rl_env, n_eps=n_eps)
     print(evaluation(agent,student_traces))
     print('ok')
 
     print('knowledge growth')
-    outList = evaluation(agent)
+    outList = evaluation(agent,candidate_exercises)
     #outList.sort()
     plt.figure()
     i = range(50)
@@ -580,4 +580,4 @@ def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,no_questions,no_co
     plt.savefig('plot.png')
     #plt.show()
 
-    return outlist
+    return outList
