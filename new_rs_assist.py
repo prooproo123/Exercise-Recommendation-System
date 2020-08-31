@@ -7,8 +7,12 @@ import pickle
 import sys
 import types
 
+import subprocess
+import chunk_analysis_assist
+
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from gym import spaces
 
 from rllab.algos.trpo import TRPO
@@ -550,21 +554,12 @@ stu = [[(85829, 0),(85838, 1)]]
 with open('checkpoint/assist2009_updated_32batch_1epochs/kt_params', 'rb') as f:
     params = pickle.load(f)
 
-# Knowledge Concepts Corresponding to the exercise
-with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
-#with open('data/biology30/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
-    e2c = pickle.load(f)
-
-with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
-#with open('data/biology30/chunk_exercises_id_converter.pkl', 'rb') as f:
-    exercises_id_converter = pickle.load(f)
-
 #cands=[51424,51435,51444,51395,51481]
-cands=[85829,61089,85814,85838]
+#cands=[85829,61089,85814,85838]
 #cands=[1, 15, 16, 27]
 
-candidate_exercises=[exercises_id_converter[e] for e in cands]
-student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
+#candidate_exercises=[exercises_id_converter[e] for e in cands]
+#student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
 
 
 #current problems:
@@ -574,8 +569,25 @@ student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
 #NumQ = 30 # number of exercises
 #Concepts = 8  # number of concepts
 #NumQ = 1338 # number of exercises
-Concepts = 9  # number of concepts
-NumQ = 2446 # number of exercises
+
+#negdje odrediti koliko tocno zeli kandidata?
+NumQ, Concepts= chunk_analysis_assist.exer_conc()
+cands, stu = chunk_analysis_assist.cand_stu()
+
+subprocess.call("assist_tempfile_creator.py", shell=True)
+ 
+# Knowledge Concepts Corresponding to the exercise
+with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+#with open('data/biology30/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+    e2c = pickle.load(f)
+
+with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
+#with open('data/biology30/chunk_exercises_id_converter.pkl', 'rb') as f:
+    exercises_id_converter = pickle.load(f)
+
+candidate_exercises=[exercises_id_converter[e] for e in cands]
+student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
+
 # Concepts = 123  # number of concepts
 #NumQ = 17751 # number of exercises
 n_steps = 5  # number of steps of algorithm
@@ -601,8 +613,8 @@ env = DKVEnv(**env_kwargs, reward_func='likelihood')
 rl_env = make_rl_student_env(env)
 agent = RLTutor(n_items)
 reward = agent.train(rl_env, n_eps=n_eps)
-print(evaluation(agent))
-print('ok')
+#print(evaluation(agent))
+#print('ok')
 
 print('knowledge growth')
 outList = evaluation(agent)

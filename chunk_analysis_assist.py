@@ -5,6 +5,10 @@ import numpy as np
 from statistics import mean, median
 # DEBUGGING PKL FILES
 
+cands = []
+stu = []
+stu_list = []
+
 # sb09 = pd.read_csv('data/skill_builder/skill_builder_data.csv')
 sb09 = pd.read_csv('/content/gdrive/My Drive/data/skill_builder_data.csv',
                    dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
@@ -42,6 +46,30 @@ chunk = chunk[chunk['skill_id'].notna()]
 chunk['skill_id'] = chunk['skill_id'].astype(np.int64)
 chunk.to_csv('data/skill_builder/chunk.csv', columns=['user_id', 'problem_id', 'correct', 'skill_id'])
 
+#zasada identicno kao sto je bilo hardkodirano u originalnom fajlu
+#proba u df pa uzimanje po stupcima kandidata za cands
+df = pd.read_csv('data/skill_builder/chunk.csv')
+#print('chunk', df.head())
+for index, row in df.iterrows():
+        if index>3:
+          break
+        cands.append(row['problem_id'])
+
+for index, row in df.iterrows():
+        if index>3:
+          break
+        if index%2:
+          continue
+        stu.append((row['problem_id'],row['correct']))
+
+stu_list.append(stu)
+
+print('cands', cands)
+print('stu', stu)  
+print('stu list', stu_list)   
+
+#print('chunk problem id', chunk['problem_id'])
+
 for j in range(len(list_df)-2):
     print('For chunk '+str(j)+': \n')
 
@@ -77,4 +105,10 @@ for j in range(len(list_df)-2):
     print('Median exercises per concept: '+str(median([len(vals) for vals in concept_exercises_mapping.values()])))
     print('Median concepts per exercise: '+str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
     print()
+
+def exer_conc():
+  return len(exercises), len(concepts)
+
+def cand_stu():
+  return cands, stu_list
 
