@@ -23,4 +23,4 @@ params= kt.main(chunks[0],path)#za sada se train i valid citaju iz csv-a, trebal
 
 stu=[[(1, 0), (27, 1)]]
 cands=[1, 15, 16, 27]
-recommendation=rs.run_rs(stu,cands,params,exercise_concepts_mapping,exercises_id_converter)
+recommendation=rs.run_rs(stu,cands,params,exercise_concepts_mapping,exercises_id_converter,no_exercises,no_concepts)

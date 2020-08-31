@@ -55,7 +55,7 @@ class MyGymEnv(GymEnv):
 
 class StudentEnv(gym.Env):
 
-    def __init__(self, n_items=10, n_steps=100, discount=1., reward_func='likelihood'):
+    def __init__(self,candidate_exercises, n_items=10, n_steps=100, discount=1., reward_func='likelihood'):
 
         self.right = []
         self.curr_step = None
@@ -69,7 +69,7 @@ class StudentEnv(gym.Env):
         self.reward_func = reward_func
         self.action_space = spaces.Discrete(n_items)
         self.observation_space = spaces.Box(np.zeros(2), np.array([n_items - 1, 1]))
-
+        self.candidate_exercises=candidate_exercises
     def _recall_likelihoods(self):
         raise NotImplementedError
 
@@ -110,9 +110,9 @@ class StudentEnv(gym.Env):
 
         # student model do the exercise and update model
         self.curr_item = action
-        self.curr_outcome = 1 if np.random.random() < self.predict(candidate_exercises[action]) else 0
+        self.curr_outcome = 1 if np.random.random() < self.predict(self.candidate_exercises[action]) else 0
 
-        self._update_model(candidate_exercises[self.curr_item], self.curr_outcome)
+        self._update_model(self.candidate_exercises[self.curr_item], self.curr_outcome)
         self.curr_step += 1
 
         # if the exercise which student used to answer correctly, the reward is 0
@@ -132,7 +132,7 @@ class StudentEnv(gym.Env):
     def actualStep(self, action, answer):
         self.curr_item = action
         self.curr_outcome = answer
-        self._update_model(candidate_exercises[self.curr_item], self.curr_outcome)
+        self._update_model(self.candidate_exercises[self.curr_item], self.curr_outcome)
         obs = self._obs()
         return obs
 
@@ -147,9 +147,9 @@ class StudentEnv(gym.Env):
 
 
 class DKVEnv(StudentEnv):
-    def __init__(self,e2c,params,NumQ,Concepts,params, **kwargs):
+    def __init__(self,e2c,params,NumQ,Concepts,candidate_exercises, **kwargs):
 
-        super(DKVEnv, self).__init__(**kwargs)
+        super(DKVEnv, self).__init__(candidate_exercises,**kwargs)
 
         self._init_params(e2c,params)
         self.NumQ=NumQ
@@ -540,8 +540,8 @@ def run_eps(agent, env, n_eps=100):
         tot_rew.append(totalr)
     return tot_rew
 
-def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,n_steps = 5,
-           discount = 0.99, n_eps = 1,no_questions,no_concepts):
+def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,no_questions,no_concepts,n_steps = 5,
+           discount = 0.99, n_eps = 1):
 
     params=kt_parameters
     student_traces=stu
@@ -564,7 +564,7 @@ def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,n_steps = 5,
         'n_items': n_items, 'n_steps': n_steps, 'discount': discount
     }
 
-    env = DKVEnv(e2c,params,no_questions,no_concepts,**env_kwargs, reward_func='likelihood')
+    env = DKVEnv(e2c,params,no_questions,no_concepts,candidate_exercises,**env_kwargs, reward_func='likelihood')
     rl_env = make_rl_student_env(env)
     agent = RLTutor(n_items)
     reward = agent.train(rl_env, n_eps=n_eps)
