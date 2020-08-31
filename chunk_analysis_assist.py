@@ -34,7 +34,7 @@ sb09 = pd.read_csv('/content/gdrive/My Drive/data/skill_builder_data.csv',
 
 n = 40000  #chunk row size
 list_df = [sb09[i:i+n] for i in range(0,sb09.shape[0],n)]
-chunk=list_df[4]
+chunk=list_df[3]
 # with open('data/skill_builder/chunk.pkl', 'wb') as f:
 #     pickle.dump(d,f)
 chunk = chunk[chunk['skill_id'].notna()]
