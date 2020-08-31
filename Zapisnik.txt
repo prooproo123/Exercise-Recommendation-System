@@ -1,3 +1,0 @@
-policies.py LoggedTRPO - gdje je TRPO -dead end
-new_rs.py - kakve veze uopce imaju exercise_recommendations kad se u program samo salje velicina tog dicta,
-            odnosno od kud uopce programu znanje problem_id-a, cini se od samo uzima "neke" zadatke sa id-om range(len)

@@ -332,6 +332,7 @@ class Model():
         with open(os.path.join(self.args.checkpoint_dir, self.model_dir,'kt_params'), 'wb') as f:
             pickle.dump(params, f)
 
+        return params
     def save(self, global_step):
         model_name = 'DKVMN'
         checkpoint_dir = os.path.join(self.args.checkpoint_dir, self.model_dir)
