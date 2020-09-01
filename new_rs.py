@@ -151,43 +151,46 @@ class DKVEnv(StudentEnv):
 
         super(DKVEnv, self).__init__(candidate_exercises,**kwargs)
 
-        self._init_params(e2c,params)
+        self.e2c_default = e2c
+        self.params = params
+        self._init_params()
         self.NumQ=NumQ
         self.Concepts=Concepts
-    def _init_params(self,e2c,params):
+
+    def _init_params(self):
         """
         Init DKVMN-CA student model
         """
 
-        self.e2c=e2c
+        self.e2c=self.e2c_default
 
         # contains the exercise which has already been answered correctly
         self.right = []
 
         # shape=(50)
-        self.key_matrix = params['Memory/key:0']
+        self.key_matrix = self.params['Memory/key:0']
         # shape=()
-        self.value_matrix = params['Memory/value:0']
+        self.value_matrix =self.params['Memory/value:0']
         #shape=(numq+1,50)
-        self.q_embed_mtx = params['Embedding/q_embed:0']
+        self.q_embed_mtx = self.params['Embedding/q_embed:0']
         # shape=(2*numq+1,50)
-        self.qa_embed_mtx = params['Embedding/qa_embed:0']
+        self.qa_embed_mtx = self.params['Embedding/qa_embed:0']
         # shape=(,)
-        self.erase_w = params['DKVMN_value_matrix/Erase_Vector/weight:0']
+        self.erase_w = self.params['DKVMN_value_matrix/Erase_Vector/weight:0']
         # shape=(,)
-        self.erase_b = params['DKVMN_value_matrix/Erase_Vector/bias:0']
+        self.erase_b = self.params['DKVMN_value_matrix/Erase_Vector/bias:0']
         # shape=(,)
-        self.add_w = params['DKVMN_value_matrix/Add_Vector/weight:0']
+        self.add_w = self.params['DKVMN_value_matrix/Add_Vector/weight:0']
         # shape=(,)
-        self.add_b = params['DKVMN_value_matrix/Add_Vector/bias:0']
+        self.add_b = self.params['DKVMN_value_matrix/Add_Vector/bias:0']
         # shape=(2*numq+1,memory_key_state_dim)
-        self.summary_w = params['Summary_Vector/weight:0']
+        self.summary_w = self.params['Summary_Vector/weight:0']
         # shape=(,)
-        self.summary_b = params['Summary_Vector/bias:0']
+        self.summary_b = self.params['Summary_Vector/bias:0']
         # shape=(,)
-        self.predict_w = params['Prediction/weight:0']
+        self.predict_w = self.params['Prediction/weight:0']
         # shape=(,)
-        self.predict_b = params['Prediction/bias:0']
+        self.predict_b = self.params['Prediction/bias:0']
 
 
     def softmax(self, num):
@@ -195,7 +198,7 @@ class DKVEnv(StudentEnv):
 
     def cor_weight(self, embedded, q):
         """
-        Calculate the KCW of the exercise
+        Calculate the KCW of tparamshe exercise
         :param embedded: the embedding of exercise q
         :param q: exercise ID
         :return: the KCW of the exercise
@@ -564,9 +567,9 @@ def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,no_questions,no_co
         'n_items': n_items, 'n_steps': n_steps, 'discount': discount
     }
 
-    env = DKVEnv(e2c,params,no_questions,no_concepts,candidate_exercises,**env_kwargs, reward_func='likelihood')
+    env = DKVEnv(e2c,kt_parameters,no_questions,no_concepts,candidate_exercises,**env_kwargs, reward_func='likelihood')
     rl_env = make_rl_student_env(env)
-    agent = RLTutor(n_items,env)
+    agent = RLTutor(env,n_items)
     reward = agent.train(rl_env, n_eps=n_eps)
     print(evaluation(agent,student_traces))
     print('ok')
