@@ -162,7 +162,16 @@ Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
  	\end{figure}
  
  	I dalje nije jasno koje vrijednosti hiperparametara poput seq\_len i veličina memorije bi se trebali koristiti te koje je pravo značenje "porasta/vrijednosti" znanja u svakom trenutku. Za iste parametre i dataset new\_rs.py uvijek daje drugačiji put preporuke što nije poželjno. Potrebno je i omogućiti izvedbu RS-a po chunkovima Assistmentsa koji nisu hardkodirani. Iz nekog razloga kada se koristi biologija trebaju se zakomentirati sve "isnan" funkcije, dok su iste potrebne kod Assitmentsa.
-
+	
+	\subsubsection{01.09.2020.}
+		Napravljena je skripta koja automatizira pokretanje ExRec-a za jednostavne datasetove poput "Biologije". Trenutno je potrebno samo znati ime dataseta i put do direktorija u kojem je dataset. Ostalo je shvatiti kako prilagoditi model kt-a, generiranje train i validation dijelova dataseta kako se ne bi stvarali privremeni .csv fileovi. Također treba još proučiti shvatiti zašto kod učitavanja assistmentsa treba raditi dodatne provjere Nan-ova, dtype-a te imena stupaca, dok u isto vrijeme te iste provjere rade grešku kod dataseta "Biologija".
+		Trenutne ideje za potencijalne preporuke zadataka:
+		\begin{itemize}
+			\item svi zadaci- nedostatak je sto je jako sporo
+			\item svi ostali zadaci iz koncepata kojih se korisnik dotakao- brže, ali i dalje prepsoro
+			\item potencijalno korištenje clusteringa/BKT-a za preporuku manjeg skupa zadataka
+		\end{itemize}
+	
 \section{Poveznice}
 \url{http://incompleteideas.net/book/first/ebook/node9.html}
 \url{https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be}
