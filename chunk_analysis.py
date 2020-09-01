@@ -52,9 +52,9 @@ def get_info(list_df,index):
     sb09 = list_df[index]
 
     # removing rows with nan concept value
-    sb09 = sb09[sb09['skill_id'].notna()]
+   # sb09 = sb09[sb09['skill_id'].notna()]
 
-    sb09['skill_id'] = sb09['skill_id'].astype(np.int64)
+    #sb09['skill_id'] = sb09['skill_id'].astype(np.int64)
 
     users = sb09['user_id'].unique()
     exercises = sb09['problem_id'].unique()
