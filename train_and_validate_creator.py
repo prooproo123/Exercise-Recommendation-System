@@ -24,6 +24,7 @@ def make_csv(df,student_list,filename,path,train=True):
 
   f.close()
 
+
 def create(filename,path):
     #Udio training seta od cijelog dataseta
     TRAIN_PART=0.7
