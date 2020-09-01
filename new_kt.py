@@ -1,10 +1,10 @@
 import tensorflow as tf
-from best_data_loader import *
-from knowledge_tracing.model import Model
+from  best_data_loader import *
+from  knowledge_tracing.model import Model
 import os, argparse
 
 
-def main():
+def main(dataset,path):
     parser = argparse.ArgumentParser()
     parser.add_argument('--num_epochs', type=int, default=1)
     parser.add_argument('--train', type=str2bool, default='t')
@@ -18,7 +18,6 @@ def main():
     parser.add_argument('--momentum', type=float, default=0.9)
     parser.add_argument('--initial_lr', type=float, default=0.05)
     # synthetic / assist2009_updated / assist2015 / STATICS / biology30
-    dataset = 'biology30'
 
     if dataset == 'assist2009_updated':
         parser.add_argument('--batch_size', type=int, default=32)
@@ -99,8 +98,8 @@ def main():
         if args.train:
             if dataset == 'synthetic':
                 args.dataset = 'naive_c5_q50_s4000_v19'
-            train_data_path = os.path.join(data_directory, args.dataset + '_train1.csv')
-            valid_data_path = os.path.join(data_directory, args.dataset + '_valid1.csv')
+            train_data_path = os.path.join(path, args.dataset + '_train1.csv')
+            valid_data_path = os.path.join(path, args.dataset + '_valid1.csv')
 
             # train_data_path = 'data/skill_builder/stand_ex_ind_con_ind.csv'
             # valid_data_path = 'data/skill_builder/stand_ex_ind_con_ind.csv'
@@ -112,6 +111,7 @@ def main():
             print('Shape of train data : %s, valid data : %s' % (train_q_data.shape, valid_q_data.shape))
             print('Start training')
             dkvmn.train(train_q_data, train_qa_data, valid_q_data, valid_qa_data)
+            return dkvmn.getParams()
         # print('Best epoch %d' % (best_epoch))
         else:
             test_data_path = os.path.join(data_directory, args.dataset + '_test.csv')
