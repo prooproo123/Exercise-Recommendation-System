@@ -29,7 +29,7 @@ def create(filename,path):
     #Udio training seta od cijelog dataseta
     TRAIN_PART=0.7
 
-    df=pd.read_csv(path,index_col=None,delimiter='\t')
+    df=pd.read_csv(path+filename+'.csv',index_col=None,delimiter='\t')
 
     students=df.user_id.unique()
     random.shuffle(students)
