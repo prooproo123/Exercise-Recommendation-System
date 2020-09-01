@@ -571,11 +571,11 @@ def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,no_questions,no_co
     rl_env = make_rl_student_env(env)
     agent = RLTutor(env,n_items)
     reward = agent.train(rl_env, n_eps=n_eps)
-    print(evaluation(agent,student_traces))
+    print(evaluation(agent,student_traces,candidate_exercises))
     print('ok')
 
     print('knowledge growth')
-    outList = evaluation(agent,candidate_exercises)
+    outList = evaluation(agent,student_traces,candidate_exercises)
     #outList.sort()
     plt.figure()
     i = range(50)
