@@ -4,7 +4,7 @@ from  knowledge_tracing.model import Model
 import os, argparse
 
 
-def main(dataset,path):
+def main(dataset,path=None,fromVariable=False,variableTrain=None,variableValid=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--num_epochs', type=int, default=1)
     parser.add_argument('--train', type=str2bool, default='t')
@@ -98,18 +98,22 @@ def main(dataset,path):
         if args.train:
             if dataset == 'synthetic':
                 args.dataset = 'naive_c5_q50_s4000_v19'
-            train_data_path = os.path.join(path, args.dataset + '_train1.csv')
-            valid_data_path = os.path.join(path, args.dataset + '_valid1.csv')
+            if fromVariable:
+                train_q_data, train_qa_data = data.load_data2(variableTrain)
+                valid_q_data, valid_qa_data = data.load_data2(variableValid)
+            else:
+                train_data_path = os.path.join(path, args.dataset + '_train1.csv')
+                valid_data_path = os.path.join(path, args.dataset + '_valid1.csv')
 
-            # train_data_path = 'data/skill_builder/stand_ex_ind_con_ind.csv'
-            # valid_data_path = 'data/skill_builder/stand_ex_ind_con_ind.csv'
+                # train_data_path = 'data/skill_builder/stand_ex_ind_con_ind.csv'
+                # valid_data_path = 'data/skill_builder/stand_ex_ind_con_ind.csv'
 
-            train_q_data, train_qa_data = data.load_data(train_data_path)
-            print('Train data loaded')
-            valid_q_data, valid_qa_data = data.load_data(valid_data_path)
-            print('Valid data loaded')
-            print('Shape of train data : %s, valid data : %s' % (train_q_data.shape, valid_q_data.shape))
-            print('Start training')
+                train_q_data, train_qa_data = data.load_data(train_data_path)
+                print('Train data loaded')
+                valid_q_data, valid_qa_data = data.load_data(valid_data_path)
+                print('Valid data loaded')
+                print('Shape of train data : %s, valid data : %s' % (train_q_data.shape, valid_q_data.shape))
+                print('Start training')
             dkvmn.train(train_q_data, train_qa_data, valid_q_data, valid_qa_data)
             return dkvmn.getParams()
         # print('Best epoch %d' % (best_epoch))

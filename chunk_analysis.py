@@ -7,6 +7,67 @@ from statistics import mean, median
 
 # sb09 = pd.read_csv('/../data/skill_builder/skill_builder_data.csv')
 
+class ChunkInfo:
+
+    def __init__(self,chunk):
+     # removing rows with nan concept value
+        # chunk = chunk[chunk['skill_id'].notna()]
+
+        # chunk['skill_id'] = chunk['skill_id'].astype(np.int64)
+
+        self.users = chunk['user_id'].unique()
+        self.exercises = chunk['problem_id'].unique()
+        self.concepts = chunk['skill_id'].unique()
+
+        self.exercise_concepts_mapping = chunk.groupby('problem_id')['skill_id'].apply(set).apply(list).to_dict()
+        self.concept_exercises_mapping = chunk.groupby('skill_id')['problem_id'].apply(set).apply(list).to_dict()
+        self.user_exercises_mapping = chunk.groupby('user_id')['problem_id'].apply(set).apply(list).to_dict()
+        self.user_concepts_mapping = chunk.groupby('user_id')['skill_id'].apply(set).apply(list).to_dict()
+        '''
+        print('Number of students: ' + str(len(users)))
+        print('Number of exercises: ' + str(len(exercises)))
+        print('Number of concepts: ' + str(len(concepts)))
+        print()
+
+        print('Maximum exercises per student: ' + str(max([len(vals) for vals in user_exercises_mapping.values()])))
+        print('Maximum concepts per student: ' + str(max([len(vals) for vals in user_concepts_mapping.values()])))
+        print('Maximum exercises per concept: ' + str(max([len(vals) for vals in concept_exercises_mapping.values()])))
+        print('Maximum concepts per exercise: ' + str(max([len(vals) for vals in exercise_concepts_mapping.values()])))
+        print()
+
+        print('Median exercises per student: ' + str(median([len(vals) for vals in user_exercises_mapping.values()])))
+        print('Median concepts per student: ' + str(median([len(vals) for vals in user_concepts_mapping.values()])))
+        print(
+            'Median exercises per concept: ' + str(median([len(vals) for vals in concept_exercises_mapping.values()])))
+        print(
+            'Median concepts per exercise: ' + str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
+        print()
+        '''
+        self.no_exercises=len(self.exercises)
+        self.no_concepts=len(self.concepts)
+
+    def get_no_concepts(self):
+        return self.no_concepts
+
+    def get_no_exercises(self):
+        return self.no_exercises
+
+    def get_no_users(self):
+        return self.no_users
+
+    def get_exercise_concepts_mapping(self):
+        return self.exercise_concepts_mapping
+
+    def get_concept_exercises_mapping(self):
+        return self.concept_exercises_mapping
+
+    def get_user_exercises_mapping(self):
+        return self.user_exercises_mapping
+
+    def get_user_concepts_mapping(self):
+        return self.user_concepts_mapping
+
+
 def get_chunks(filepath,chunk_size=40000):
     sb09 = pd.read_csv(filepath,sep='\t',index_col=None)
     '''
@@ -47,39 +108,3 @@ def get_chunks(filepath,chunk_size=40000):
 
 
     return list_df
-
-def get_info(list_df,index):
-    sb09 = list_df[index]
-
-    # removing rows with nan concept value
-   # sb09 = sb09[sb09['skill_id'].notna()]
-
-    #sb09['skill_id'] = sb09['skill_id'].astype(np.int64)
-
-    users = sb09['user_id'].unique()
-    exercises = sb09['problem_id'].unique()
-    concepts = sb09['skill_id'].unique()
-
-    exercise_concepts_mapping = sb09.groupby('problem_id')['skill_id'].apply(set).apply(list).to_dict()
-    concept_exercises_mapping = sb09.groupby('skill_id')['problem_id'].apply(set).apply(list).to_dict()
-    user_exercises_mapping = sb09.groupby('user_id')['problem_id'].apply(set).apply(list).to_dict()
-    user_concepts_mapping = sb09.groupby('user_id')['skill_id'].apply(set).apply(list).to_dict()
-
-    print('Number of students: ' + str(len(users)))
-    print('Number of exercises: ' + str(len(exercises)))
-    print('Number of concepts: ' + str(len(concepts)))
-    print()
-
-    print('Maximum exercises per student: ' + str(max([len(vals) for vals in user_exercises_mapping.values()])))
-    print('Maximum concepts per student: ' + str(max([len(vals) for vals in user_concepts_mapping.values()])))
-    print('Maximum exercises per concept: ' + str(max([len(vals) for vals in concept_exercises_mapping.values()])))
-    print('Maximum concepts per exercise: ' + str(max([len(vals) for vals in exercise_concepts_mapping.values()])))
-    print()
-
-    print('Median exercises per student: ' + str(median([len(vals) for vals in user_exercises_mapping.values()])))
-    print('Median concepts per student: ' + str(median([len(vals) for vals in user_concepts_mapping.values()])))
-    print('Median exercises per concept: ' + str(median([len(vals) for vals in concept_exercises_mapping.values()])))
-    print('Median concepts per exercise: ' + str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
-    print()
-
-    return len(exercises),len(concepts)

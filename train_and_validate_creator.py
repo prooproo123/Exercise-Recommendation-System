@@ -24,8 +24,19 @@ def make_csv(df,student_list,filename,path,train=True):
 
   f.close()
 
+def make_variable(df,student_list,train=True):
+    variable=''
+    for student in student_list:
+        cond = df['user_id'] == student
+        temp_df = df[cond]
+        questions = temp_df['problem_id'].tolist()
+        answers = temp_df['correct'].tolist()
+        no_questions = len(questions)
+        variable += str(no_questions) +'\n'
+        variable += standard(questions) +'\n'
+        variable += standard(answers) +'\n'
 
-def create(filename,path):
+def create(filename,path,csv=True):
     #Udio training seta od cijelog dataseta
     TRAIN_PART=0.7
 
@@ -40,5 +51,8 @@ def create(filename,path):
     #print(len(train_students))
     validation_students=students[train_size:-1]
     #print(len(validation_students))
-    make_csv(df,train_students,filename,path)
-    make_csv(df,validation_students,filename,path,False)
+    if csv==True:
+        make_csv(df,train_students,filename,path)
+        make_csv(df,validation_students,filename,path,False)
+    else:
+        return make_variable(df,train_students), make_variable(df,validation_students,False)
