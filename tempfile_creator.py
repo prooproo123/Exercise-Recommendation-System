@@ -12,12 +12,14 @@ def standardCon(listt, di):
     listtt = [di[ex] for ex in listt]
     return str(list(map(int, listtt))).replace(" ", "").replace("[", "").replace("]", "")
 
+#def get_mappings(path_to_dir,chunk_filename):
 def get_mappings(chunk):
+    #chunk = pd.read_csv(path_to_dir+chunk_filename)
 
     # removing rows with nan concept value
-    #df = df[df['skill_id'].notna()]
+    chunk = chunk[chunk['skill_id'].notna()] #zasto ovo izbacuje gresku za biologiju
 
-    #df['skill_id'] = df['skill_id'].astype(np.int64)
+    chunk['skill_id'] = chunk['skill_id'].astype(np.int64)
 
     users = chunk['user_id'].unique()
     unique_exercises = chunk['problem_id'].unique()
@@ -63,4 +65,60 @@ def get_mappings(chunk):
     temp = [[] for i in range(len(users))]
     # t1=df.groupby('user_id')['problem_id','correct','skill_id']
 
-    return exercise_concepts_mapping,exercises_id_converter
+    max_exercises = 0
+    max_concepts = 0
+    l = []
+
+    for i, student in enumerate(users):
+      condition = chunk['user_id'] == student
+      studentData = chunk[condition]
+      exercises = studentData['problem_id'].values
+      answers = studentData['correct'].values
+      concepts = studentData['skill_id'].values
+      con = np.isnan(concepts)
+      concepts = concepts[~con]
+      exercises = exercises[~con]
+      # time = studentData['skill_id'].tolist()
+      # difficulty = studentData['skill_id'].tolist()
+      # gate = studentData['skill_id'].tolist()
+      exercises = exercises.tolist()
+      answers = answers.tolist()
+      concepts = concepts.tolist()
+
+      exercises = [exercises_id_converter[e] for e in exercises]
+      concepts = [concepts_id_converter[c] for c in concepts]
+
+      if len(exercises) > max_exercises:
+          max_exercises = len(exercises)
+
+      if len(concepts) > max_concepts:
+          max_concepts = len(concepts)
+
+      if len(exercises) != len(concepts):
+          print("razlika je" + str(len(exercises) - len(concepts)))
+
+      temp[i].append(exercises)
+
+      n_questions = len(unique_exercises)
+
+      temp[i].append([answers[j] * n_questions + exercises[j] for j in range(len(exercises))])
+
+      temp[i].append([[c] for c in concepts])
+      concept_onehots = [onehot_dict[c] for c in concepts]
+      temp[i].append(concept_onehots)
+      #concepts 9 or 5
+      # if len(exercises) < 1900:
+      l.append(len(exercises))
+      # outputFile.write(str(len(exercises)) + "\n")
+      # outputFile.write(standardCon(exercises, exercises_id_converter) + "\n")
+      # outputFile.write(standard(answers) + "\n")
+      # outputFile.write(standardCon(concepts, concepts_id_converter) + "\n")
+
+    l2 = sorted(l, reverse=True)
+
+  #with open('data/skill_builder/temp.pkl', 'wb') as f:
+      #pickle.dump(temp, f)
+
+  #outputFile.close()
+
+    return exercise_concepts_mapping,exercises_id_converter,temp

@@ -21,11 +21,11 @@ def main(dataset,path):
 
     if dataset == 'assist2009_updated':
         parser.add_argument('--batch_size', type=int, default=32)
-        parser.add_argument('--memory_size', type=int, default=20)
+        parser.add_argument('--memory_size', type=int, default=9)
         parser.add_argument('--memory_key_state_dim', type=int, default=50)
         parser.add_argument('--memory_value_state_dim', type=int, default=200)
         parser.add_argument('--final_fc_dim', type=int, default=50)
-        parser.add_argument('--n_questions', type=int, default=110)
+        parser.add_argument('--n_questions', type=int, default=2446)
         parser.add_argument('--seq_len', type=int, default=200)
 
     elif dataset == 'synthetic':

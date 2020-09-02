@@ -8,9 +8,8 @@ from statistics import mean, median
 # sb09 = pd.read_csv('/../data/skill_builder/skill_builder_data.csv')
 
 def get_chunks(filepath,chunk_size=40000):
-    sb09 = pd.read_csv(filepath,sep='\t',index_col=None)
-    '''
-                       dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
+    sb09 = pd.read_csv(filepath, sep=',',
+        dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
                               'problem_id': int,
                               'original': int, 'correct': int, 'attempt_count': int, 'ms_first_response': int,
                               'tutor_mode': 'string', 'answer_type': 'string', 'sequence_id': int,
@@ -23,7 +22,7 @@ def get_chunks(filepath,chunk_size=40000):
                               'first_action': int,
                               'bottom_hint': int, 'opportunity': int, 'opportunity_original': int
                               },
-                       usecols=['order_id', 'assignment_id', 'user_id', 'assistment_id', 'problem_id',
+        usecols=['order_id', 'assignment_id', 'user_id', 'assistment_id', 'problem_id',
                                 'original',
                                 'correct',
                                 'attempt_count', 'ms_first_response', 'tutor_mode', 'answer_type',
@@ -34,7 +33,6 @@ def get_chunks(filepath,chunk_size=40000):
                                 'template_id',
                                 'first_action', 'opportunity'])
 
-    '''
     n = 40000  #chunk row size
     list_df = [sb09[i:i+n] for i in range(0,sb09.shape[0],n)]
     #chunk=list_df[3]
@@ -48,9 +46,13 @@ def get_chunks(filepath,chunk_size=40000):
 
     return list_df
 
-def get_info(list_df,index):
+def get_info(filepath,list_df,index):
     sb09 = list_df[index]
+    sb09 = sb09[sb09['skill_id'].notna()]
 
+    sb09['skill_id'] = sb09['skill_id'].astype(np.int64)
+    chunk_filename = 'chunk.csv'
+    sb09.to_csv(filepath+chunk_filename, columns=['user_id', 'problem_id', 'correct', 'skill_id'])
     # removing rows with nan concept value
    # sb09 = sb09[sb09['skill_id'].notna()]
 
@@ -82,4 +84,4 @@ def get_info(list_df,index):
     print('Median concepts per exercise: ' + str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
     print()
 
-    return len(exercises),len(concepts)
+    return len(exercises),len(concepts),chunk_filename
