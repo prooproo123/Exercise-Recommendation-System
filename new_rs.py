@@ -505,18 +505,29 @@ def simulation(agent, trace, steps,candidate_exercises):
     for q, a in trace:
         obs = agent.raw_policy.env.env.vectorize_obs(q, a)
         recomq = agent.guide(obs)
-
+	
     res = []
-    for t in range(steps):
+	right = []
+    #for t in range(steps):
+	#zasad do len((candidate_exercises)) - nadogradnja u tijeku
+	for i in range(len(candidate_exercises)):
         prob = agent.raw_policy.env.env.predict(candidate_exercises[recomq])
         answer = 1 if np.random.random() < prob else 0
-
+		
+		if recomq in right:
+          continue
+        if answer == 1 and recomq not in right:
+          right.append(recomq)
+		  
         # obs = agent.raw_policy.env.env.vectorize_obs(recomq, answer)
         recom_trace.append((recomq, answer))
         obs = agent.raw_policy.env.env.actualStep(recomq, answer)
         res.append(np.mean(list(map(agent.raw_policy.env.env.predict, candidate_exercises))))
         recomq = agent.guide(obs)
-
+		
+		#print('len_res', len(res))
+        #print('res', res)
+		#print('len right' len(right)
     return recom_trace, res
 
 
@@ -529,15 +540,15 @@ def evaluation(agent,student_traces,candidate_exercises):
     """
     # with open('./好未来数据/student_traces.', 'rb') as f:
     #     student_traces = pickle.load(f)
-    allre = [[] for i in range(50)]
+    allre = [[] for i in range(len(candidate_exercises)]
     for trace in student_traces:
         agent = all_reset(agent)
         t, res = simulation(agent, trace, 50,candidate_exercises)
         print("Preporuceni put: " + str(t))
-        for j in range(50):
-            allre[j].append(res[j])
-    result = [np.mean(k) for k in allre]
-    return result
+        #for j in range(len(res):
+            #allre[j].append(res[j])
+    #result = [np.mean(k) for k in allre]
+    return res
 
 
 def run_eps(agent, env, n_eps=100):
@@ -582,7 +593,7 @@ def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,no_questions,no_co
     outList = evaluation(agent,student_traces,candidate_exercises)
     #outList.sort()
     plt.figure()
-    i = range(50)
+    i = range(len(outList))
     plt.plot(i, outList, '-bo')
     plt.savefig('plot.png')
     #plt.show()
