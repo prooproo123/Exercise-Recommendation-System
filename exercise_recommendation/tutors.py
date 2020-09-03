@@ -1,11 +1,5 @@
 from __future__ import division
 
-from exercise_recommendation.envs import MyGymEnv
-from exercise_recommendation.policies import LoggedTRPO
-from new_rs import env, make_rl_student_env, run_eps
-from rllab.baselines.linear_feature_baseline import LinearFeatureBaseline
-from rllab.policies.categorical_gru_policy import CategoricalGRUPolicy
-
 
 class Tutor(object):
 
@@ -19,14 +13,16 @@ class Tutor(object):
         raise NotImplementedError
 
     def act(self, obs):
-        self._update(*list(obs))
-        return self._next_item()
+        pass
+        # self._update(*list(obs))
+        # return self._next_item()
 
     def learn(self, r):
         pass
 
     def train(self, env, n_eps=10):
-        return run_eps(self, env, n_eps=n_eps)
+        pass
+        # return run_eps(self, env, n_eps=n_eps)
 
     def reset(self):
         raise NotImplementedError
@@ -45,34 +41,30 @@ class DummyTutor(Tutor):
 
 
 class RLTutor(Tutor):
-
-    def __init__(self, n_items, init_timestamp=0):
-        self.raw_policy = None
+#sta ce mu ,n_items, init_timestamp=0
+    def __init__(self, rl_env,raw_policy):
+        self.raw_policy = raw_policy
         self.curr_obs = None
-        self.rl_env = MyGymEnv(make_rl_student_env(env))
+        self.rl_env = rl_env
 
-    def train(self, gym_env, n_eps=10):
-        env = MyGymEnv(gym_env)
-        policy = CategoricalGRUPolicy(
-            env_spec=env.spec, hidden_dim=32,
-            state_include_action=False)
-        self.raw_policy = LoggedTRPO(
-            env=env,
-            policy=policy,
-            baseline=LinearFeatureBaseline(env_spec=env.spec),
-            batch_size=4000,
-            max_path_length=env.env.n_steps,
-            n_itr=n_eps,
-            discount=0.99,
-            step_size=0.01,
-            verbose=False
-        )
+    def train(self):
+        #self.rl_env = MyGymEnv(gym_env)
+
         self.raw_policy.train()
         return self.raw_policy.rew_chkpts
 
-    def guide(self, obs):
+    def guide(self, observations):
+        """
+        This method creates a DummyTutor agent using input observations that produce an action according
+        to RLTutor raw_policy. The DummyTutor then acts according to the observation and an action is returned.
+        Args:
+            observations: a list of observations
+
+        Returns:
+            A proposed action.
+        """
         agents = DummyTutor(lambda obs: self.raw_policy.policy.get_action(obs)[0])
-        action = agents.act(obs)
+        action = agents.act(observations)
         return action
 
     def getObs(self, action, answer):

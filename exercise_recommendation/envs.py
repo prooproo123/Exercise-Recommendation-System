@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 from gym import spaces
 
-from new_rs import Concepts, NumQ, candidate_exercises
+# from new_rs import self.num_concepts, self.num_questions, self.candidate_exercises
 from rllab.envs.gym_env import *
 
 
@@ -44,8 +44,11 @@ class MyGymEnv(GymEnv):
 
 class StudentEnv(gym.Env):
 
-    def __init__(self, n_items=10, n_steps=100, discount=1., reward_func='likelihood'):
+    def __init__(self, n_items=10, n_steps=100, discount=1., reward_func='likelihood', num_questions=0, num_concepts=0,
+                 candidate_exercises=None):
 
+        if candidate_exercises is None:
+            candidate_exercises = []
         self.curr_step = None
         self.n_steps = n_steps
         self.n_items = n_items
@@ -57,6 +60,15 @@ class StudentEnv(gym.Env):
         self.reward_func = reward_func
         self.action_space = spaces.Discrete(n_items)
         self.observation_space = spaces.Box(np.zeros(2), np.array([n_items - 1, 1]))
+
+        self.num_questions = num_questions
+        self.num_concepts = num_concepts
+        self.candidate_exercises = candidate_exercises
+
+    # def tempinit(self,num_questions,num_concepts,candidate_exercises):
+    #     self.num_questions=num_questions
+    #     self.num_concepts=num_concepts
+    #     self.candidate_exercises=candidate_exercises
 
     def _recall_likelihoods(self):
         raise NotImplementedError
@@ -90,9 +102,9 @@ class StudentEnv(gym.Env):
 
         # student model do the exercise and update model
         self.curr_item = action
-        self.curr_outcome = 1 if np.random.random() < self.predict(candidate_exercises[action]) else 0
+        self.curr_outcome = 1 if np.random.random() < self.predict(self.candidate_exercises[action]) else 0
 
-        self._update_model(candidate_exercises[self.curr_item], self.curr_outcome)
+        self._update_model(self.candidate_exercises[self.curr_item], self.curr_outcome)
         self.curr_step += 1
 
         # if the exercise which student used to answer correctly, the reward is 0
@@ -112,7 +124,7 @@ class StudentEnv(gym.Env):
     def actualStep(self, action, answer):
         self.curr_item = action
         self.curr_outcome = answer
-        self._update_model(candidate_exercises[self.curr_item], self.curr_outcome)
+        self._update_model(self.candidate_exercises[self.curr_item], self.curr_outcome)
         obs = self._obs()
         return obs
 
@@ -131,20 +143,24 @@ class DKVEnv(StudentEnv):
 
         super(DKVEnv, self).__init__(**kwargs)
 
-        self._init_params()
+        # self._init_params(params)
 
-    def _init_params(self):
+    def init_params(self):
         """
         Init DKVMN-CA student model
         """
 
         # the parameters of trained DKVMN-CA model
-        with open('../data/skill_builder/kt_params.pkl', 'rb') as f:
+        # with open('../data/skill_builder/kt_params.pkl', 'rb') as f:
+        #     params = pickle.load(f)
+
+        with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
             params = pickle.load(f)
 
+        # Knowledge self.num_concepts Corresponding to the exercise
         # Knowledge Concepts Corresponding to the exercise
-        with open('../data/skill_builder/old_e2c.pkl', 'rb') as f:
-            self.q2kg = pickle.load(f)
+        with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+            self.e2c = pickle.load(f)
 
         # contains the exercise which has already been answered correctly
         self.right = []
@@ -183,11 +199,11 @@ class DKVEnv(StudentEnv):
         :param q: exercise ID
         :return: the KCW of the exercise
         """
-        kg = self.q2kg[q]
-        corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in kg])
-        correlation = np.zeros(Concepts)
-        for j in range(3):
-            correlation[kg[j]] = corr[j]
+        concepts = self.e2c[q]
+        corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in concepts])
+        correlation = np.zeros(self.num_concepts)
+        for j in range(len(concepts)):
+            correlation[concepts[j]] = corr[j]
         return correlation
 
     def read(self, value_matrix, correlation_weight):
@@ -246,7 +262,7 @@ class DKVEnv(StudentEnv):
         """
         The average probability of doing all the test exercises correctly
         """
-        return np.array(list(map(self.predict, candidate_exercises)))
+        return np.array(list(map(self.predict, self.candidate_exercises)))
 
     def _update_model(self, item, outcome):
         """
@@ -254,7 +270,7 @@ class DKVEnv(StudentEnv):
         :param item: action(recommended exercise)
         :param outcome: answer result
         """
-        ans = NumQ * outcome + item
+        ans = self.num_questions * outcome + item
         cor = self.cor_weight(self.q_embed_mtx[item], item)
         self.value_matrix = self.write(cor, self.qa_embed_mtx[ans])
 
@@ -263,7 +279,7 @@ class DKVEnv(StudentEnv):
         Reset for training agent
         :return:
         """
-        self._init_params()
+        self.init_params()
         return super(DKVEnv, self).reset()
 
     def recomreset(self):
@@ -271,5 +287,5 @@ class DKVEnv(StudentEnv):
         Reset for recommendation(for example, agent recommend to a new student)
         :return:
         """
-        self._init_params()
+        self.init_params()
         return super(DKVEnv, self).recomreset()
