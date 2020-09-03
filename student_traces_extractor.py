@@ -20,3 +20,23 @@ def get_traces_from_gforms(path_to_file):
 
 #path='C:/Users/Admin/Downloads/GoogleFormsDataset.csv'
 
+#problem je sto u klasicnom obliku dataframea tracevi nisu nuzno poredani kronoloski
+def get_traces_from_dataframe(df):
+
+
+
+    return None
+    #vraca traceve za svakog studenta
+
+
+def convert_and_filter_traces_by_chunk(exercise_id_converter,traces):
+
+    keys=exercise_id_converter.keys()
+    new_traces=[]
+    for trace in traces:
+        if trace[0]  in keys: # ne uzima traceove koji se ne nalaze u chunku
+            new_traces.append((exercise_id_converter[trace[0]],trace[1]))
+    #treba maknuti iz tracesa zadatke koji se ne nalaze u chunku
+    #i pomocu konvertera pretvoriti prave exercise_id-ove u prilagodene
+
+    return new_traces

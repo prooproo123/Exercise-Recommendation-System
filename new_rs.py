@@ -221,8 +221,8 @@ class DKVEnv(StudentEnv):
         read_content = []
         for dim in range(value_matrix.shape[0]):
 
-            print(correlation_weight.shape)
-            print(value_matrix.shape)
+            #print(correlation_weight.shape)
+            #print(value_matrix.shape)
 
             r = np.multiply(correlation_weight[dim], value_matrix[dim])
             read_content.append(r)
