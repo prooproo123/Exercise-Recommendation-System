@@ -507,14 +507,14 @@ def simulation(agent, trace, steps,candidate_exercises):
         recomq = agent.guide(obs)
 	
     res = []
-	right = []
+    right = []
     #for t in range(steps):
-	#zasad do len((candidate_exercises)) - nadogradnja u tijeku
-	for i in range(len(candidate_exercises)):
+	  #zasad do len((candidate_exercises)) - nadogradnja u tijeku
+    for i in range(len(candidate_exercises)):
         prob = agent.raw_policy.env.env.predict(candidate_exercises[recomq])
         answer = 1 if np.random.random() < prob else 0
-		
-		if recomq in right:
+
+        if recomq in right:
           continue
         if answer == 1 and recomq not in right:
           right.append(recomq)
@@ -540,12 +540,12 @@ def evaluation(agent,student_traces,candidate_exercises):
     """
     # with open('./好未来数据/student_traces.', 'rb') as f:
     #     student_traces = pickle.load(f)
-    allre = [[] for i in range(len(candidate_exercises)]
+    allre = [[] for i in range(len(candidate_exercises))]
     for trace in student_traces:
         agent = all_reset(agent)
         t, res = simulation(agent, trace, 50,candidate_exercises)
         print("Preporuceni put: " + str(t))
-        for j in range(len(res):
+        for j in range(len(res)):
             allre[j].append(res[j])
     result = [np.mean(k) for k in allre]
     return result
