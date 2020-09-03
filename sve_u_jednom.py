@@ -33,7 +33,7 @@ print(no_concepts)
 tvc.create(filename,path_to_dir)
 filename='biology30'
 path_to_dir='data/biology30/'
-train_variable,valid_variable=tvc.create(filename,path_to_dir,False)
+train_variable,valid_variable=tvc.create_from_dataframe(filename,chunks[0],exercise_concepts_mapping,False)
 '''
 
 #kt
