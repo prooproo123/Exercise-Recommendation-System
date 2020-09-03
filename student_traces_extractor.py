@@ -27,7 +27,7 @@ def get_traces_from_dataframe(df):
     student_traces=[]
     for user in users:
         temp=df[df['user_id']==user]
-        student_traces.append(zip(temp['problem_id'].tolist(),temp['correct'].tolist()))
+        student_traces.append(list(zip(temp['problem_id'].tolist(),temp['correct'].tolist())))
     return student_traces
     #vraca traceve za svakog studenta
 
