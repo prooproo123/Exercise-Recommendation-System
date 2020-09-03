@@ -15,6 +15,7 @@ class ChunkInfo:
         self.exercises = chunk['problem_id'].unique()
         self.concepts = chunk['skill_id'].unique()
 
+        #Mozda nije tocno implementirano, za sada nema jos potrebe za tim vrijednostima
         self.concept_exercises_mapping = chunk.groupby('skill_id')['problem_id'].apply(set).apply(list).to_dict()
         self.user_exercises_mapping = chunk.groupby('user_id')['problem_id'].apply(set).apply(list).to_dict()
         self.user_concepts_mapping = chunk.groupby('user_id')['skill_id'].apply(set).apply(list).to_dict()

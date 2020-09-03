@@ -23,9 +23,12 @@ def get_traces_from_gforms(path_to_file):
 #problem je sto u klasicnom obliku dataframea tracevi nisu nuzno poredani kronoloski
 def get_traces_from_dataframe(df):
 
-
-
-    return None
+    users= df['user_id'].unique()
+    student_traces=[]
+    for user in users:
+        temp=df[df['user_id']==user]
+        student_traces.append(zip(temp['problem_id'].tolist(),temp.['correct'].tolist()))
+    return student_traces
     #vraca traceve za svakog studenta
 
 

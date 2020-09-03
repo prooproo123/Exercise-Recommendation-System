@@ -36,23 +36,25 @@ def make_variable(df,student_list,train=True):
         variable += standard(questions) +'\n'
         variable += standard(answers) +'\n'
 
-def create(filename,path,csv=True):
+def create_from_file(filename,path,csv=True,train_part=0.7):
     #Udio training seta od cijelog dataseta
-    TRAIN_PART=0.7
 
     df=pd.read_csv(path+filename+'.csv',index_col=None,delimiter='\t')
+    return create_from_dataframe(filename,df,csv,train_part,path)
 
-    students=df.user_id.unique()
+
+def create_from_dataframe(filename,df,csv=True,train_part=0.7,path=''):
+    students = df.user_id.unique()
     random.shuffle(students)
 
-    train_size=round(len(students)*TRAIN_PART)
-    #print(train_size)
-    train_students=students[:train_size]
-    #print(len(train_students))
-    validation_students=students[train_size:-1]
-    #print(len(validation_students))
-    if csv==True:
-        make_csv(df,train_students,filename,path)
-        make_csv(df,validation_students,filename,path,False)
+    train_size = round(len(students) * train_part)
+    # print(train_size)
+    train_students = students[:train_size]
+    # print(len(train_students))
+    validation_students = students[train_size:-1]
+    # print(len(validation_students))
+    if csv == True:
+        make_csv(df, train_students, filename, path)
+        make_csv(df, validation_students, filename, path, False)
     else:
-        return make_variable(df,train_students), make_variable(df,validation_students,False)
+        return make_variable(df, train_students), make_variable(df, validation_students, False)
