@@ -172,6 +172,14 @@ Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
 			\item potencijalno korištenje clusteringa/BKT-a za preporuku manjeg skupa zadataka
 		\end{itemize}
 
+\subsubsection{04.09.2020. - testiranje kt dijela}
+Provedeni su eksperimenti parametara, argumenata kt dijela - broja epoha, stope učenja, brzine smanjivanja stope učenja, momentuma koji ubrzava gradijentni spust, omjera rezanja tenzora kako gradijent ne bi eksplodirao te utjecaj \textit{batch sizea} dataseta.\newline
+Najznačaniji zaključak izveden je za broj epoha - povećanjem rastu iznosi izlaznih vjerojatnosti. Eksperimentirano je s vrijednostima 1, 5, 100 i 1000. Najznačaniji rezultati dobivaju se za 1000, no dugotrajnost treniranja je jako izražena. Stoga je većina sljedećih eksperimenata provođena sa 100 epoha. Ostali parametri većinom zahtijevaju neznatne izmjene u odnosu na originalno postavljene.\newline
+Isprobane su vrijednosti [0.005, 0.05, 0.5]. Stopa učenja ne smije imati prevelik iznos jer rezultat pokazuje sumnjivo previsoku izlaznu vjerojanost, blizu 1, što ukazuje na prenaučenost sustava. Potrebno je odgovarajuće intervalno smanjivanje stope učenja, koje ne smije biti preveliko jer prebrzo konvergira, niti premalo jer je vrijeme izvođenja tada presporo iako su rezultati intuitiviji. Ako je potrebno birati, bolje manja stopa učenja i sporiji interval promjene nego veća stopa i veće promjene.\newline
+Istražen je i momentum parametar. Sa samim stohastičnim gradijentnim spustom, SGD, ne računamo točnu derivaciju funkcije gubitka, već estimiramo na manjim \textit{batchevima}. Iz tog razloga, ne ide se uvijek u optimalnom smjeru jer takve derivacije zašumljene. Kod SGD-a su isto tako problem tjesnaci strmiji u jednoj dimenziji (česti su blizu lokalnih minimuma). SGD ih teško uočava. Dodavanje Momentum algoritma ubrazava njihove prelaske. Također, derivacije su glađe, manje zašumljene. Provedeni su eksperimenti s vrijednostima između 0.5 i 0.95. Što je parametar Momentuma manji, slijed podataka je više skokovit. Algoritam usrednjava na manjem broju podataka pa smo bliže zašumljenim podacima. Utvrđeno je da je najbolji momentum 0.9, što je vrijednost koja se često uzima u strojnom učenju.\newline
+Isprobane su i različite veličine maxgradnorm parametra. Naime, kako gradijenti ne bi eksplodirali tijekom treniranja, koriste se tehnike \textit{gradient clippinga}. Eksplodiranje gradijenta dogodi se kad je gradijent prevelik, što dovodi do akumuliranja pogrešnih gradijenata. Kao rezultat dobije se nestabilna mreža. Iz tog razloga, u TensorFlow-u koristi se naredba \textit{tf.clip\_by\_global\_norm()} - reže tenzore u treniranju u omjeru sume njihovih normi, a omjer definira upravo maxgradnorm argument. Povećanjem i smanjenjem vrijednosti [5, 100], otkriveno je da se rezultati ne mijenjaju značajno te je stoga najbolje ostaviti originalno (50). \newline
+Što se tiče \textit{batch sizea}, za "Biologiju" se pokazao boljim manji \textit{batch} [5, 15, 32 -> 5], prilagođeniji činjenici da je sam dataset malen. 
+
 \section{Upute za pokretanje}
 
 Za pokretanje ove verzije ExReca potrebno je imati dataset koji ima slijedeće stupce:
@@ -198,10 +206,16 @@ KT dio exreca računa parametre koji su potrebni za funkcioniranje Recommendatio
 Params se zajedno sa argumentima dobivenih iz chunk\_analysisa šalju u RS dio gdje se generira pretpostavljeni "put" odabira i
 točnosti korisnikovih zadataka te ujedno daje i procjenjenu razinu znanja u svakom trenutku.
 
+
+
 \section{Poveznice}
 \url{http://incompleteideas.net/book/first/ebook/node9.html}
 \url{https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be}
 \url{https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process}
 \url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9}
 \url{https://arxiv.org/abs/1502.05477}
+\url{https://towardsdatascience.com/stochastic-gradient-descent-with-momentum-a84097641a5d}
+\url{https://www.tensorflow.org/api_docs/python/tf/compat/v1/train/MomentumOptimizer}
+\url{https://deepai.org/machine-learning-glossary-and-terms/gradient-clipping}
+\url{https://stackoverflow.com/questions/49987839/how-to-handle-none-in-tf-clip-by-global-norm}
 
