@@ -171,7 +171,33 @@ Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
 			\item svi ostali zadaci iz koncepata kojih se korisnik dotakao- brže, ali i dalje prepsoro
 			\item potencijalno korištenje clusteringa/BKT-a za preporuku manjeg skupa zadataka
 		\end{itemize}
-	
+
+\section{Upute za pokretanje}
+
+Za pokretanje ove verzije ExReca potrebno je imati dataset koji ima slijedeće stupce:
+
+\begin{itemize}
+	 \item user\_id - identifikacijska oznaka korisnika
+	 \item problem\_id -identifikacijska oznaka zadatka
+	 \item skill\_id -identifikacijska oznaka koncepta
+	 \item correct - točnost rješenog zadataka (0 ili 1)
+\end{itemize}
+
+U skripti "sve\_u\_jednom.py" su napisane sve potrebne naredbe za pokretanje ExReca nad nekim datasetom.
+Prvo je potrebno dati putanju do .csv filea dataseta, zatim se u funkciji"get\_chunks(path)" skripte chunk\_analysis
+dataset dijeli na manje dijelove radi lakšeg pokretanja, ta funkcija ima i opcionalan argument chunk\_size s
+kojim se kontrolira veličina chunka. Ako je chunk\_size veći nego dataset, uzima se cijeli skup podataka. Funkcija
+vraća objekt tipa pandas dataframe. Dalje se željeni dataframe šalje u konstruktor klase ChunkInfo skripte chunk\_analysis
+gdje se obrađuju određena svojstva dataframea i pakiraju se varijable koji će se koristiti za pravilno funkcioniranje ExReca.
+
+Prvi dio ExReca je Knowledge Tracing dio i za njegovo funkcioniranje potrebno je podijeliti dataset na train i validation dio
+to rade create\_from\_dataframe i create\_from\_csv funkcije skripte train\_and\_validate\_creator. Ta funkcija ima opciju
+čitanja dataseta iz csv-a ili dataframea. Također ima opciju želi pisati nove datasetove kao .csv fileove ili da ih vraća
+kao dataframe varijable. Omjer train:valid je po defaultu stavljen na 7:3, ali postoji i argument funkcije kojim se i to može mijenjati.
+KT dio exreca računa parametre koji su potrebni za funkcioniranje Recommendation System dijela i vraća ih u varijablu params.
+Params se zajedno sa argumentima dobivenih iz chunk\_analysisa šalju u RS dio gdje se generira pretpostavljeni "put" odabira i
+točnosti korisnikovih zadataka te ujedno daje i procjenjenu razinu znanja u svakom trenutku.
+
 \section{Poveznice}
 \url{http://incompleteideas.net/book/first/ebook/node9.html}
 \url{https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be}
