@@ -44,8 +44,8 @@ file = open("data/biology30/kt_params",'rb')
 params = pickle.load(file)
 
 
-path_to_gform_traces=''
-all_student_traces= traces.get_traces_from_gforms(path_to_gform_traces)
+#path_to_gform_traces=''
+#all_student_traces= traces.get_traces_from_gforms(path_to_gform_traces)
 #u stu i cands trebaju ici id-ovi kako su originalno zapisani u datasetu...
 stu=[[(1, 0), (27, 1)]]
 cands=[1, 15, 16, 27]

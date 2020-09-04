@@ -10,6 +10,7 @@ import types
 import matplotlib.pyplot as plt
 import numpy as np
 from gym import spaces
+import random
 
 from   rllab.algos.trpo import TRPO
 from   rllab.baselines.linear_feature_baseline import LinearFeatureBaseline
@@ -110,7 +111,14 @@ class StudentEnv(gym.Env):
 
         # student model do the exercise and update model
         self.curr_item = action
+        #=====
+        #mu=0.5
+        #sigma=0.15
+        #random_gauss=random.gauss(mu,sigma)
+        #random_gauss= 0 if random_gauss < 0 else 1 if random_gauss > 1 else random_gauss
+        #=====
         self.curr_outcome = 1 if np.random.random() < self.predict(self.candidate_exercises[action]) else 0
+        #self.curr_outcome = 1 if random_gauss < self.predict(self.candidate_exercises[action]) else 0
 
         self._update_model(self.candidate_exercises[self.curr_item], self.curr_outcome)
         self.curr_step += 1
