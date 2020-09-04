@@ -491,7 +491,7 @@ def all_reset(agent):
     return agent
 
 
-def simulation(agent, trace, steps,candidate_exercises):
+def simulation(agent, trace, candidate_exercises):
     """
     Simulate the recommendation given the student history exercise trace
     :param agent: recommendation policy
@@ -505,16 +505,16 @@ def simulation(agent, trace, steps,candidate_exercises):
     for q, a in trace:
         obs = agent.raw_policy.env.env.vectorize_obs(q, a)
         recomq = agent.guide(obs)
-	
+
     res = []
-	right = []
+    right = []
     #for t in range(steps):
-	#zasad do len((candidate_exercises)) - nadogradnja u tijeku
-	for i in range(len(candidate_exercises)):
+	  #zasad do len((candidate_exercises)) - nadogradnja u tijeku
+    for i in range(len(candidate_exercises)):
         prob = agent.raw_policy.env.env.predict(candidate_exercises[recomq])
         answer = 1 if np.random.random() < prob else 0
 		
-		if recomq in right:
+        if recomq in right:
           continue
         if answer == 1 and recomq not in right:
           right.append(recomq)
@@ -540,15 +540,15 @@ def evaluation(agent,student_traces,candidate_exercises):
     """
     # with open('./好未来数据/student_traces.', 'rb') as f:
     #     student_traces = pickle.load(f)
-    allre = [[] for i in range(len(candidate_exercises)]
+    allre = [[] for i in range(len(candidate_exercises))]
     for trace in student_traces:
         agent = all_reset(agent)
-        t, res = simulation(agent, trace, 50,candidate_exercises)
+        t, res = simulation(agent, trace, candidate_exercises)
         print("Preporuceni put: " + str(t))
-        #for j in range(len(res):
-            #allre[j].append(res[j])
-    #result = [np.mean(k) for k in allre]
-    return res
+        for j in range(len(res)):
+            allre[j].append(res[j])
+    result = [np.mean(k) for k in allre]
+    return result
 
 
 def run_eps(agent, env, n_eps=100):
@@ -586,12 +586,15 @@ def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,no_questions,no_co
     rl_env = make_rl_student_env(env)
     agent = RLTutor(env,n_items)
     reward = agent.train(rl_env, n_eps=n_eps)
-    print(evaluation(agent,student_traces,candidate_exercises))
+    #print(evaluation(agent,student_traces,candidate_exercises))
     print('ok')
 
     print('knowledge growth')
     outList = evaluation(agent,student_traces,candidate_exercises)
     #outList.sort()
+    outList = np.array(outList)
+    outList = outList[~np.isnan(outList)]
+    print('outList', outList)
     plt.figure()
     i = range(len(outList))
     plt.plot(i, outList, '-bo')
