@@ -201,6 +201,34 @@ outList [0.59849751 0.59855151 0.59854913]\newline
 Preporuceni put: [(2, 1), (3, 1), (1, 1)]\newline
 outList [0.59207004 0.59207171 0.5922001 ]\newline
 
+\subsubsection{08.09.2020. - optimizatori}
+TRPO algoritam, već spomenut prilikom objašnjavanja pozadine funkcioniranja podržanog učenja u ExRec-u iterativni je pristup optimizaciji strategije sa zagarantiranim monotonim napretkom.\newline
+Koristi \textit{Natural Policy Gradient} prisup koji analitički rješava funkciju cilja. Problem je što se u izračunu koristi inverz Hesseove matrice drugih derivacija log vjerojatnosti strategije (Fisherove informacijske matrice), a on je jako kompliciran ako je strategija paramtrizirana brojnim parametrima. Također, inverz je često nestabilan. Kako se on ne bi morao eksplicitno tražiti, koristi se aproksimacija izraza u krnjoj verziji pristupa, \textit{Truncated Natural Policy Gradient}. Za optimizaciju tog izračuna koristi se metoda konjugatnih gradijenata. \newline
+Koncept je vrlo sličan gradijentnom uzdizanju, ali ga je moguće izvesti u manje iteracija. U gradijentnom usponu, uvijek se prati najstrmiji gradijent. Putanja od konačne do početne točke može biti neoptimalna, "cik-cak". Takvu neefikasnost moguće je izbjeći konjugatnim gradijentom (ako je funkcija cilja kvadratna). Ako model ima N parametara, moguće je naći optimalnu točku u najviše N uzdizanja. U prvom potezu slijedi se smjer najdubljeg gradijenta i definira se optimalna točka u tom smjeru. Sljedeći smjer mora biti ortogonalan prema nekoj transformacijskoj matrici A (konjugatan) svim prethodnim smjerovima. Takav izračun mnogo je manje zahtjevan od izračuna inverza Hesseove matrice.\newline
+Ideja je bila provjeriti kako TRPO funkcionira s ostalim optimizacijama, tj. različitim pristupima aproksimaciji. \newline
+Ako se koristi optimizator prvog reda, za originalne parametre, rs dio produljuje vrijeme izvođenja (s par sekundi na preko 2 min). Vrijednosti vrlo malo osciliraju oko 0.50. 
+Ako se, pak, parametri izmijene prema onima koji su generirali dobre rezultate prethodnih dana (u kt broj epoha 100, batch\_size = 5, u rs hidden\_dim = 5, batch\_size = 32, aktivacijska funkcija = elu), dobiju se zadovoljavajući rezultati.\newline
+Preporuceni put: [(0, 0), (2, 0), (0, 1)]\newline
+outList [0.57768267 0.68047982 0.70207518]\newline
+Preporuceni put: [(0, 1), (3, 1)]\newline
+outList [0.72096705 0.72513175]\newline
+No, dobri rezultati nisu uvijek slučaj. Literatura spominje da optimizatori prvog reda nisu točni u područjima zakrivljenosti. Naime, s derivacijama prvog reda često se površina kojom putuje prilikom traženja gradijenta aproksimira glatkom. Ako je vrlo zakrivljena, potezi su jako loši.\newline
+Preporuceni put: [(3, 1), (2, 0), (2, 0), (2, 0)]\newline
+outList [0.3331522  0.29257703 0.2808274  0.27639025] \newline
+Preporuceni put: [(2, 0), (3, 1), (2, 0), (0, 0)]\newline
+outList [0.52635247 0.487258   0.38557106 0.35406634]\newline
+Za kontroliranje stope učenja originalno je korištena Adam metoda. Eksperimentima s Adadeltom te SGD + Momentum metodama nije došlo do većih odstupanja u rezultatima. \newline
+Osim gradijenta prvog reda i konjugatnog gradijenta, proučen je i isproban LBFGS optimizator. Metoda je to optimizacije koja koristi derivacije drugog reda. Kvazi-Newtonova je metoda; metoda aproksimacije Hesseove matrice.\newline
+Jedna od najpopularnijih metoda aproksimacije Hesseove matrice je BFGS metoda temeljena na kompletnoj povijesti gradijenata. 
+LBFGS metoda (engl. \textit{limited memory BFGS}) je temeljena na zadnjih m gradijenata. Popularna je jer je potrebno zadržati samo tih zadnjih m gradijenata (obično 10 do 20) što doprinosi smanjenju skladišnog prostora. Za razliku od potpunog BFGS-a, LBFGS nikad eksplicitno ne formira ili sprema procjenu Hesseove matrice.\newline
+Iako u teoriji obećavajuće, u praksi se većinom primjećuje preporuka samo jednog zadatka ili je pak vidljiv trend pada koji nije u skladu s našim zahtjevima.
+Preporuceni put: [(0, 1), (2, 1)]\newline
+outList [0.60839105 0.60837907]\newline
+Preporuceni put: [(1, 0), (1, 1)]\newline
+outList [0.60479879 0.60473955]\newline
+Preporuceni put: [(1, 1)]\newline
+outList [0.59713161]\newline
+
 \section{Upute za pokretanje}
 
 Za pokretanje ove verzije ExReca potrebno je imati dataset koji ima slijedeće stupce:
@@ -230,16 +258,20 @@ točnosti korisnikovih zadataka te ujedno daje i procjenjenu razinu znanja u sva
 
 
 \section{Poveznice}
-\url{http://incompleteideas.net/book/first/ebook/node9.html}
-\url{https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be}
-\url{https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process}
-\url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9}
-\url{https://arxiv.org/abs/1502.05477}
-\url{https://towardsdatascience.com/stochastic-gradient-descent-with-momentum-a84097641a5d}
-\url{https://www.tensorflow.org/api_docs/python/tf/compat/v1/train/MomentumOptimizer}
-\url{https://deepai.org/machine-learning-glossary-and-terms/gradient-clipping}
-\url{https://stackoverflow.com/questions/49987839/how-to-handle-none-in-tf-clip-by-global-norm}
-\url{https://lasagne.readthedocs.io/en/latest/modules/nonlinearities.html}
-\url{https://garage.readthedocs.io/en/v2020.06.0/_apidoc/garage.tf.policies.categorical_gru_policy.html}
-\url{https://nervanasystems.github.io/coach/components/exploration_policies/index.html}
+\url{http://incompleteideas.net/book/first/ebook/node9.html}\newline
+\url{https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be}\newline
+\url{https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process}\newline
+\url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9}\newline
+\url{https://arxiv.org/abs/1502.05477}\newline
+\url{https://towardsdatascience.com/stochastic-gradient-descent-with-momentum-a84097641a5d}\newline
+\url{https://www.tensorflow.org/api_docs/python/tf/compat/v1/train/MomentumOptimizer}\newline
+\url{https://deepai.org/machine-learning-glossary-and-terms/gradient-clipping}\newline
+\url{https://stackoverflow.com/questions/49987839/how-to-handle-none-in-tf-clip-by-global-norm}\newline
+\url{https://lasagne.readthedocs.io/en/latest/modules/nonlinearities.html}\newline
+\url{https://garage.readthedocs.io/en/v2020.06.0/_apidoc/garage.tf.policies.categorical_gru_policy.html}\newline
+\url{https://nervanasystems.github.io/coach/components/exploration_policies/index.html}\newline
+\url{https://stable-baselines.readthedocs.io/en/master/modules/trpo.html}\newline
+\url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-part-2-f51e3b2e373a}\newline
+\url{https://stats.stackexchange.com/questions/284712/how-does-the-l-bfgs-work/285106}
+
 
