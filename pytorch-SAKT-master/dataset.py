@@ -8,11 +8,27 @@ from wordtest import WordTestResource
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 from prefetch_generator import BackgroundGenerator
+import alternative_loader as al
+import chunk_analysis as ca
 
 opt = DefaultConfig()
 
 class Data(Dataset):
-    def __init__(self, train=True):
+    def __init__(self,path_to_csv='',train=True,sep='\t',standard_load=True,is_dataframe=False,df=None):
+        if standard_load:
+            self.init1(train=train)
+        else:
+            self.init2(path_to_csv,sep,is_dataframe,df)
+
+    def init2(self,path_to_csv,sep,is_dataframe,df):
+
+        if is_dataframe:
+            analysis=ca.ChunkInfo(df)
+            self.max_skill_num, self.numq, self.students = al.extract_students_from_df(df,analysis.get_exercises_id_converter())
+        else:
+            self.max_skill_num,self.numq,self.students= al.extract_students_from_csv(path_to_csv,sep=sep)
+
+    def init1(self,train=True):
         start_time = time.time()
         if train:
             fileName = opt.train_data

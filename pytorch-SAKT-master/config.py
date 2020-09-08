@@ -1,7 +1,7 @@
 class DefaultConfig(object):
     model = 'SAKT'
-    train_data = ""  # train_data_path
-    test_data = ""
+    train_data = '../data/skill_builder/skill_builder_data_sakt_train.csv' # train_data_path
+    test_data = "../data/skill_builder/skill_builder_data_sakt_test.csv'"
     batch_size = 256
     state_size = 200
     num_heads = 5

@@ -6,12 +6,18 @@ from dataset import DataLoaderX
 from config import DefaultConfig
 from student_model import student_model
 from run import run_epoch
+import chunk_analysis as ca
 
 opt = DefaultConfig()
 
+path_to_train='../data/skill_builder/skill_builder_data_sakt_train.csv'
+path_to_test='../data/skill_builder/skill_builder_data_sakt_test.csv'
+
 if __name__ == '__main__':
-    train_dataset = Data(train=True)
-    test_dataset = Data(train=False)
+    #sad se u dataset mogu slati datframe ili csv
+
+    train_dataset = Data(path_to_csv=path_to_train,train=True,standard_load=False,sep=',')
+    test_dataset = Data(path_to_csv=path_to_test,train=False,standard_load=False,sep=',')
     train_loader = DataLoaderX(train_dataset, batch_size=opt.batch_size, num_workers=4, pin_memory=True, shuffle=True)
     test_loader = DataLoaderX(test_dataset, batch_size=opt.batch_size, num_workers=4, pin_memory=True)
     num_skills = train_dataset.max_skill_num + 1
