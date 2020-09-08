@@ -63,12 +63,19 @@ class student_model(nn.Module):
         pe = self.position_embedding(torch.arange(x.size(1)).unsqueeze(0).cuda())
         x += pe
         # x = self.position_embedding(x)
+        '''
+        A simple lookup table that stores embeddings of a fixed dictionary and size.
+        This module is often used to store word embeddings and retrieve them using indices. 
+        The input to the module is a list of indices, and the output is the corresponding word embeddings.
+        '''
         problems = self.problem_embedding(problems)
         # self.key_masks = self.key_masks.type_as(x)
         # self.problem_masks = self.problem_masks.type_as(problems)
         # x *= self.key_masks
         # problems *= self.problem_masks
         x = self.dropout(x)
+        #Ovo bi trebala biti attention matrica povezanosti zadataka, poziva se funkcija attention
+        "Compute 'Scaled Dot Product Attention'"
         res = self.multi_attn(query=self.layernorm(problems), key=x, value=x,
                               key_masks=None, query_masks=None, future_masks=None)
         outputs = F.relu(self.feedforward1(res))
@@ -82,3 +89,4 @@ class student_model(nn.Module):
         logits = logits.contiguous().view(-1)
         selected_logits = torch.gather(logits, 0, torch.LongTensor(target_index).cuda())
         return selected_logits
+        #treba skuziti kakvu tocno informaciju output daje

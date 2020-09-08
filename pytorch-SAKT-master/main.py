@@ -11,6 +11,7 @@ import chunk_analysis as ca
 opt = DefaultConfig()
 
 path_to_train='../data/skill_builder/skill_builder_data_sakt_train.csv'
+
 path_to_test='../data/skill_builder/skill_builder_data_sakt_test.csv'
 
 if __name__ == '__main__':
