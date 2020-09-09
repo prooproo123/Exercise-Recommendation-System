@@ -1,6 +1,6 @@
 import pandas as pd
 
-def split(path,train_part=0.8):
+def split(path,train_part=0.8,sep=','):
 
     TRAIN_PART=train_part
     TEST_PART=1-TRAIN_PART
@@ -15,7 +15,7 @@ def split(path,train_part=0.8):
                                 'problem_id',
                                 'correct',
                                 'skill_id',
-                                ])
+                                ],sep=sep)
 
     new_name=path.replace('.csv', '_')
 
