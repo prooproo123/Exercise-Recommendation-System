@@ -75,6 +75,7 @@ class Data(Dataset):
         student = self.students[index]
         problems = student[1]
         correct = student[2]
+        print(correct)
         x = np.zeros(opt.max_len - 1)
         x = problems[:-1]
         # we assume max_skill_num + 1 = num_skills because skill index starts from 0 to max_skill_num
