@@ -20,6 +20,9 @@ def attention(query, key, value, key_masks=None, query_masks=None, future_masks=
     # scores shape = [nbatches, h, T_q, T_k]  == p_attn shape
     scores = torch.matmul(query, key.transpose(-2, -1)) \
              / math.sqrt(d_k)
+    print("Scores je")
+    print(scores.type())
+    print(scores)
     # if key_masks is not None:
     #     scores = scores.masked_fill(key_masks.unsqueeze(1).cuda() == 0, -1e9)
     if future_masks is not None:
@@ -27,6 +30,9 @@ def attention(query, key, value, key_masks=None, query_masks=None, future_masks=
 
 
     p_attn = F.softmax(scores, dim=-1)
+    print("p_attn je")
+    print(p_attn.type())
+    print(p_attn)
     outputs = p_attn
     # if query_masks is not None:
     #     outputs = outputs * query_masks.unsqueeze(1)
@@ -36,7 +42,7 @@ def attention(query, key, value, key_masks=None, query_masks=None, future_masks=
 
     outputs += query
     return layernorm(outputs), p_attn
-
+    #normirani + dropout output, output je scores * value |  softmax od scores, score je tensor umnozak upita i key matrice
 
 class MultiHeadedAttention(nn.Module):
     def __init__(self, h, d_model, dropout=0.2, infer=False):

@@ -88,5 +88,9 @@ class student_model(nn.Module):
         logits = logits.contiguous().view(logits.size(0) * opt.max_len - 1, -1)
         logits = logits.contiguous().view(-1)
         selected_logits = torch.gather(logits, 0, torch.LongTensor(target_index).cuda())
+
+        print ("Selected logits je")
+        print(selected_logits.type())
+        print(selected_logits)
         return selected_logits
         #treba skuziti kakvu tocno informaciju output daje

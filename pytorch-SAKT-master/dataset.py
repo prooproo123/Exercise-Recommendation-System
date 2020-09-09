@@ -21,12 +21,12 @@ class Data(Dataset):
             self.init2(path_to_csv,sep,is_dataframe,df)
 
     def init2(self,path_to_csv,sep,is_dataframe,df):
-
+        #OVDJE SU SKILL I QUESTION sinonimi za razliku od Exreca gdje je skill koncept a question(pitanje) je exercise
         if is_dataframe:
             analysis=ca.ChunkInfo(df)
-            self.max_skill_num, self.numq, self.students = al.extract_students_from_df(df,analysis.get_exercises_id_converter())
+            self.max_skill_num, self.students = al.extract_students_from_df(df,analysis.get_exercises_id_converter())
         else:
-            self.max_skill_num,self.numq,self.students= al.extract_students_from_csv(path_to_csv,sep=sep)
+            self.max_skill_num, self.students= al.extract_students_from_csv(path_to_csv,sep=sep)
 
     def init1(self,train=True):
         start_time = time.time()

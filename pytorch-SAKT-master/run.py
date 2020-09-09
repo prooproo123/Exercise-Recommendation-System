@@ -14,6 +14,7 @@ opt = DefaultConfig()
 def run_epoch(m, dataloader, optimizer, scheduler, criterion, num_skills,
                   epoch_id=None, writer=None, is_training=True):
     epoch_start_time = time.time()
+    #m je student model
     if is_training:
         m.train()
     else:
@@ -34,6 +35,7 @@ def run_epoch(m, dataloader, optimizer, scheduler, criterion, num_skills,
             problems = problems.long()
             correctness = correctness.view(-1).float()
 
+            #Kako su zapravo korisnici odgovarali
             actual_labels += list(np.array(correctness))
             offset = 0
             helper = np.array(problems.cpu()).reshape(-1)
@@ -42,6 +44,7 @@ def run_epoch(m, dataloader, optimizer, scheduler, criterion, num_skills,
                     target_index.append((offset + helper[i * problems.size(1) + j + 1]))
                     offset += num_skills
             logits = m(x, problems, target_index, correctness)
+            #predikcije se dobivaju iz logits
             pred = torch.sigmoid(logits)
             loss = criterion(pred, correctness.cuda())
             optimizer.zero_grad()

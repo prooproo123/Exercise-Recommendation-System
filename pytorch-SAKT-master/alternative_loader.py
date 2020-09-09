@@ -34,4 +34,4 @@ def extract_students_from_df(df,exercises_id_converter):
         answers = temp_df['correct'].tolist()
         student_tuples.append((len(answers),questions,answers))
     #-1 zbog max_skill_num je najveci index
-    return len(df.skill_id.unique())-1,len(df.problem_id.unique()),student_tuples
+    return len(df.problem_id.unique()),student_tuples
