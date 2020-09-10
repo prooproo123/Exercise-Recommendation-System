@@ -108,10 +108,13 @@ def evaluation(agent):
     for trace in student_traces:
         agent = all_reset(agent)
         t, res = simulation(agent, trace, 50)
+
         print("Preporuceni put: " + str(t))
+        logging.info("Preporuceni put: " + str(t))
         for j in range(50):
             allre[j].append(res[j])
     result = [np.mean(k) for k in allre]
+    logging.info(result)
     return result
 
 
@@ -121,6 +124,14 @@ def evaluation(agent):
 #         totalr, _ = run_ep(agent, env)
 #         tot_rew.append(totalr)
 #     return tot_rew
+
+import logging
+
+logging.basicConfig(filename="rs_logs.txt",
+                level=logging.DEBUG,
+                format='%(levelname)s: %(asctime)s %(message)s',
+                datefmt='%m/%d/%Y %I:%M:%S')
+
 
 
 # student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
@@ -144,6 +155,7 @@ cands = [85829, 61089, 85814, 85838]
 candidate_exercises = [exercises_id_converter[e] for e in cands]
 student_traces = [[(exercises_id_converter[e], a) for e, a in t] for t in stu]
 
+
 # current problems:
 # key error?
 
@@ -151,11 +163,11 @@ Concepts = 9  # number of concepts
 NumQ = 2446  # number of exercises
 # Concepts = 123  # number of concepts
 # NumQ = 17751 # number of exercises
-n_steps = 5  # number of steps of algorithm
+n_steps = 50  # number of steps of algorithm
 n_items = len(candidate_exercises)  # number of candidate exercises
 # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
 discount = 0.99
-n_eps = 1  # number of epochs in algorithm
+n_eps = 5  # number of epochs in algorithm
 
 reward_funcs = ['likelihood']
 envs = [
@@ -170,6 +182,12 @@ env_kwargs = {
     'n_items': n_items, 'n_steps': n_steps, 'discount': discount, 'num_questions': NumQ, 'num_concepts': Concepts,
     'candidate_exercises': candidate_exercises
 }
+
+logging.info("")
+logging.info("Broj vjezbi kandidata: "+str(len(candidate_exercises)))
+logging.info("Broj epoha: "+str(n_eps))
+logging.info("Broj koraka: "+str(n_steps))
+
 
 env = DKVEnv(**env_kwargs, reward_func='likelihood')
 
