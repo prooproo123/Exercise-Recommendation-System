@@ -22,7 +22,7 @@ def main(path_to_train,path_to_test,sep=','):
     test_dataset = Data(path_to_csv=path_to_test,train=False,standard_load=False,sep=sep)
     train_loader = DataLoaderX(train_dataset, batch_size=opt.batch_size, num_workers=4, pin_memory=True, shuffle=True)
     test_loader = DataLoaderX(test_dataset, batch_size=opt.batch_size, num_workers=4, pin_memory=True)
-    num_skills = train_dataset.max_skill_num + 1
+    num_skills = train_dataset.skill_num
 
     m = student_model(num_skills=num_skills, state_size=opt.state_size,
                       num_heads=opt.num_heads, dropout=opt.dropout, infer=False)
