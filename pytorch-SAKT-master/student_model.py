@@ -39,14 +39,23 @@ class student_model(nn.Module):
         self.num_skills = num_skills
         self.state_size = state_size
         # we use the (num_skills * 2 + 1) as key padding_index
-        self.embedding = nn.Embedding(num_embeddings=num_skills*2+1,
-                                      embedding_dim=state_size)
+        '''
+        Embedding- drugi argument je maksimalna duljina tensora, prvi argument je broj tensora
+            ako je num_embeddings velicina dictionariya onda bi mozda trebao biti velicine num_skills?
+            
+            (10,3) 10- broj razlicitih elemenata, 3-u koliko se dimenzija embeddaju elementi
+            
+            posto je 10 broj elemenata, najveci element moze biti 9, znaci num moze biti len(ex_id_converter ako indeksi pocinju od 0)
+            state size je po defaultu 200, s tim bi se moglo igrati
+        '''
+        self.embedding = nn.Embedding(num_embeddings=num_skills*2, #promijenjen s a *2+1 na +2, ovaj embedding sadrzi pitanja i appendane odgovore duljina je 2n
+                                      embedding_dim=state_size)       #je li ispravno stavljati indekse pitanja i odgovore tocno netocno u isti embedding?
                                       # padding_idx=num_skills*2
         # self.position_embedding = PositionalEncoding(state_size)
-        self.position_embedding = nn.Embedding(num_embeddings=opt.max_len-1,
+        self.position_embedding = nn.Embedding(num_embeddings=opt.max_len, #max len je najveci broj exercisea s kojim moze raditi, maknut je -1
                                                embedding_dim=state_size)
         # we use the (num_skills + 1) as query padding_index
-        self.problem_embedding = nn.Embedding(num_embeddings=num_skills+1,
+        self.problem_embedding = nn.Embedding(num_embeddings=num_skills, #maknut +1
                                       embedding_dim=state_size)
                                       # padding_idx=num_skills)
         self.multi_attn = MultiHeadedAttention(h=num_heads, d_model=state_size, dropout=dropout, infer=self.infer)
@@ -60,8 +69,8 @@ class student_model(nn.Module):
         # self.key_masks = torch.unsqueeze( (x!=self.num_skills*2).int(), -1)
         # self.problem_masks = torch.unsqueeze( (problems!=self.num_skills).int(), -1)
         x = self.embedding(x)
-        pe = self.position_embedding(torch.arange(x.size(1)).unsqueeze(0).cuda())
-        x += pe
+        pe = self.position_embedding(torch.arange(x.size(1)).unsqueeze(0).cuda()) #Sto tocno radi position embedding
+        x += pe  #interactional embedding + positional embedding
         # x = self.position_embedding(x)
         '''
         A simple lookup table that stores embeddings of a fixed dictionary and size.
@@ -76,6 +85,7 @@ class student_model(nn.Module):
         x = self.dropout(x)
         #Ovo bi trebala biti attention matrica povezanosti zadataka, poziva se funkcija attention
         "Compute 'Scaled Dot Product Attention'"
+        #Zasto su key i value ista varijabla, query je normiran problems
         res = self.multi_attn(query=self.layernorm(problems), key=x, value=x,
                               key_masks=None, query_masks=None, future_masks=None)
         outputs = F.relu(self.feedforward1(res))

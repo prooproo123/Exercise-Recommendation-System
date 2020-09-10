@@ -12,7 +12,7 @@ import alternative_loader as al
 import chunk_analysis as ca
 
 opt = DefaultConfig()
-
+#max_skill_num -> skill_num - broj vjezbi a ne najveci indeks vjezbe
 class Data(Dataset):
     def __init__(self,path_to_csv='',train=True,sep='\t',standard_load=True,is_dataframe=False,df=None):
         if standard_load:
@@ -24,10 +24,12 @@ class Data(Dataset):
         #OVDJE SU SKILL I QUESTION sinonimi za razliku od Exreca gdje je skill koncept a question(pitanje) je exercise
         if is_dataframe:
             analysis=ca.ChunkInfo(df)
-            self.max_skill_num, self.students = al.extract_students_from_df(df,analysis.get_exercises_id_converter())
+            self.skill_num, self.students = al.extract_students_from_df(df,analysis.get_exercises_id_converter())
         else:
-            self.max_skill_num, self.students= al.extract_students_from_csv(path_to_csv,sep=sep)
+            self.skill_num, self.students= al.extract_students_from_csv(path_to_csv,sep=sep)
 
+
+    #originalan init, treba prouciti sto je pisac htio reci i je li pisac krivo rekao
     def init1(self,train=True):
         start_time = time.time()
         if train:
@@ -70,18 +72,19 @@ class Data(Dataset):
                     correct[-left_num_ques:] = ans[start_idx:]
                     tup = (left_num_ques, problems, correct)
                     self.students.append(tup)
-
+    #promijenjeno kopiranje lista iz [1:] i [:-1] u [:]
     def __getitem__(self, index):
         student = self.students[index]
         problems = student[1]
         correct = student[2]
         print(correct)
-        x = np.zeros(opt.max_len - 1)
-        x = problems[:-1]
+        #x = np.zeros(opt.max_len)
+        x = problems[:]
+
         # we assume max_skill_num + 1 = num_skills because skill index starts from 0 to max_skill_num
-        x += (correct[:-1] == 1) * (self.max_skill_num + 1)
-        problems = problems[1:]
-        correct = correct[1:]
+        x += correct * (self.skill_num) #maknuto pretvaranje u true/False i mnozenje sa self.skill_num
+       # problems = problems[:]
+       # correct = correct[:]
         return x, problems, correct
 
     def __len__(self):
