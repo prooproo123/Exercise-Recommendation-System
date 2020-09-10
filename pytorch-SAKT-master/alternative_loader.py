@@ -32,6 +32,7 @@ def extract_students_from_df(df,exercises_id_converter):
         # print(len(temp_df))
         questions = [exercises_id_converter[i] for i in temp_df['problem_id'].tolist()]
         answers = temp_df['correct'].tolist()
+        print("STUDENT IMA "+str(len(answers))+" odgovora")
         student_tuples.append((len(answers),questions,answers))
 
     return len(df.problem_id.unique()),student_tuples
