@@ -78,8 +78,8 @@ class Data(Dataset):
         student = self.students[index]
         problems = student[1]
         correct = student[2]
-        print("CORRECT")
-        print(correct)
+        #print("CORRECT")
+       # print(correct)
         #x = np.zeros(opt.max_len)
         x = problems[:]
 

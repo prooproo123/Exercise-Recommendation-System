@@ -26,7 +26,7 @@ def run_epoch(m, dataloader, optimizer, scheduler, criterion, num_skills,
     prefetcher = DataPrefetcher(dataloader, device='cuda')
     batch = prefetcher.next()
     k = 0
-
+    print("DOSAO JE DO RUN_EPOCH PRIJE WHILE PETLJE")
     if is_training:
         while batch is not None:
             target_index = []
