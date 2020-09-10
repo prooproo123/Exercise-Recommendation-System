@@ -10,6 +10,7 @@ from torch.utils.data import DataLoader
 from prefetch_generator import BackgroundGenerator
 import alternative_loader as al
 import chunk_analysis as ca
+import numpy as np
 
 opt = DefaultConfig()
 #max_skill_num -> skill_num - broj vjezbi a ne najveci indeks vjezbe
@@ -117,6 +118,7 @@ class DataPrefetcher():
             return
         with torch.cuda.stream(self.stream):
             for k in range(len(self.batch)):
+                self.batch[k]= torch.from_numpy(np.asarray(self.batch[k]))
                 self.batch[k] = self.batch[k].to(device=self.device, non_blocking=True)
 
             # With Amp, it isn't necessary to manually convert data to half.
