@@ -95,7 +95,7 @@ class student_model(nn.Module):
         outputs += self.layernorm(res)
         outputs = self.layernorm(outputs)
         logits = self.pred_layer(outputs)
-        logits = logits.contiguous().view(logits.size(0) * opt.max_len - 1, -1)
+        logits = logits.contiguous().view(logits.size(0) * opt.max_len, -1)
         logits = logits.contiguous().view(-1)
         selected_logits = torch.gather(logits, 0, torch.LongTensor(target_index).cuda())
 

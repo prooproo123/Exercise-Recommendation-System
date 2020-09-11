@@ -30,6 +30,20 @@ Debagiranje preko colaba
 -kada se self.batch[k] pretvori u tensor pomocu self.batch[k]=torch.cat(self.batch[k] prolazi i dode do run_epoch
 - daje gresku: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
 -i dalje zeza print debug
--pokusat ce se pretvaranje batcha sa batch = batch.cpu().data.numpy()
+-pokusat ce se pretvaranje batcha sa .cpu()- rjeseno (problems.cpu() )
 
+-greska : Dimension out of range (expected to be in range of [-1, 0], but got 1)
+-prije toga je bilo obavljeno   helper = np.array(problems.cpu()).reshape(-1)
+
+-ako se stavi -1 umjesto 1 greska, cini se greska u petlji dodavanje u target_index tako da se iterira 
+-zakomentirana je druga petlja i dodavan je sa offsetom, stavljen je samo da appenda jednu listu na drugu
+
+-greska u student model kod x+= pe output with shape [50400, 200] doesn't match the broadcast shape [1, 50400, 200]
+-mice se unsqueeze(0) i stavljen je size 0 umjesto size 1
+
+-greska u nekom retku CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle), navodno embedding layer dobiva krive indexe
+-pada na ovoj liniji    res = self.multi_attn(query=self.layernorm(problems), key=x, value=x,
+                              key_masks=None, query_masks=None, future_masks=None) --> DEAD END vjerojatno je neki out of range
+                              
+-kako pronaci rjesenje i da li odsutati od sakta?
 '''

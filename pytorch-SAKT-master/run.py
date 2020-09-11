@@ -39,7 +39,7 @@ def run_epoch(m, dataloader, optimizer, scheduler, criterion, num_skills,
             correctness = correctness.view(-1).float()
 
             #Kako su zapravo korisnici odgovarali
-            actual_labels += list(np.array(correctness))
+            actual_labels += list(np.array(correctness.cpu()))
             offset = 0
             helper = np.array(problems.cpu()).reshape(-1)
             for i in range(problems.size(0)):
