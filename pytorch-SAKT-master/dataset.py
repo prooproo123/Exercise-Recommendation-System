@@ -117,8 +117,11 @@ class DataPrefetcher():
             self.batch = None
             return
         with torch.cuda.stream(self.stream):
+            print("WITH CUDA STREAM")
             for k in range(len(self.batch)):
-                self.batch[k]= torch.from_numpy(np.asarray(self.batch[k]))
+                self.batch[k]=torch.cat(self.batch[k])
+               # print(self.batch[k].type())
+                #self.batch[k]= torch.from_numpy(np.asarray(self.batch[k]))
                 self.batch[k] = self.batch[k].to(device=self.device, non_blocking=True)
 
             # With Amp, it isn't necessary to manually convert data to half.

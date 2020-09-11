@@ -1,13 +1,11 @@
-a=[1,1,2,3,3]
-
-b=[]
-print(b)
-#b+=(a[:]==1) *3
-b+=[True if i ==1 else False for i in a] *3
-
-print(b)
+import main
+import split_dataset
 
 
+split_dataset.split('../data/biology30/biology30.csv',sep='\t')
+#main.main('../data/skill_builder/skill_builder_data_sakt_train.csv','../data/skill_builder/skill_builder_data_sakt_test.csv',sep='\t')
+
+main.main(r'C:\Z_Sucic\Exercise-Recommendation-System\data\biology30\biology30_sakt_train.csv',r'C:\Z_Sucic\Exercise-Recommendation-System\data\biology30\biology30_sakt_test.csv',sep=',')
 
 
 '''
@@ -22,5 +20,16 @@ dataset.py - zasto uzimanje do predzadnjeg i od drugog clana, zar ne bi trebali 
 
 KAD SE USPIJE POKRETATI
 -isprobati razne optimizere
+
+'''
+
+
+'''
+Debagiranje preko colaba
+
+-kada se self.batch[k] pretvori u tensor pomocu self.batch[k]=torch.cat(self.batch[k] prolazi i dode do run_epoch
+- daje gresku: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
+-i dalje zeza print debug
+-pokusat ce se pretvaranje batcha sa batch = batch.cpu().data.numpy()
 
 '''
