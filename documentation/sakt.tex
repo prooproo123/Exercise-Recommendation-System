@@ -1,3 +1,38 @@
 
 \chapter{Self-attentive knowledge tracing}
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.8]{sakt1.png}
+		\caption{}
+		\label{}
+	\end{figure}
 	Pronađen je rad koji istražuje novi smjer knowledge tracinga. Predloženi model SAKT prvo identificira relevantne koncepte znanja iz prošlih interakcija te predviđa korisnikove performanse na tim konceptima. SAKT daje težinske vrijednosti prethodno odogovorenim pitanjima. U radu se tvrdi da je prema AUC bolji u za 4.43\% od state-of-art metoda uprosječeno po svim korištenim skupovima podataka. Također, glavna komponenta (self-attention) se može paralelizirati što daje znatnu prednost po brzini naspram modela temeljenih na RNN-ovima.
+
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{sakt2.png}
+		\caption{Izračunata matrica relevantnosti između zadataka}
+		\label{}
+	\end{figure}
+	\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.8]{sakt3.png}
+	\caption{Pronađeni latentni koncepti}
+	\label{}
+\end{figure}
+	\section{Problemi sa SAKT-om}
+	Za vrijeme pručavanja i prilagođavanja SAKT-a našim potrebama naišli smo na puno grešaka i nejasnih linija koda. Najveći problem je slaba dokumentacija koda, nedostatak originalnog dataseta te manjak iskustva sa PyTorchom.
+	Na kraju smo odlučili odustati od SAKT-a zbog manjka vremena. Imali smo i problem što kod zahtjeva grafičke kartice koje naši laptopi nemaju, a debug mode ne postoji na Google Colabu, također dosta često Colab ne ispisuje print() funckije koje dolaze prije exceptiona tako da nismo ni na taj način mogli tražiti greške. U sljedećem podpoglavlju su nabrojane greške,neodumice i kako smo ih ispravljali ako će netko u budućnosti opet proučavati taj kod.
+	\subsection{Greške i ispravci}
+	
+		U funkciji getitem skripte dataset.py se kod uzimanja listi nekad izbacuju prvi/ zadnji članovi ([1:],[:-1]), pošto to nema logike izmjena je takva da se uzima cijela lista ([:]). U datasetu se uzima num\_skill kao najveći index u listi zadataka te se kasnije svugdje u programu stavljalo +1, to je izmijenjeno tako da se gleda broj zadataka te je maknut +1. U dodavanju podataka u varijablu 'x' su se dodavale True /False vrijednosti što je bacalo grešku te je sada 1/0. Također nije jasno zašto se na 'x' appendaju točnosti problema onoliko puta koliko i postoji različitih zadataka. U klasi DataPrefetcher dolazilo je do greške gdje objekt lista nema metodu .to(device=self.device, non\_blocking=True). Pronađeno je da se takva metoda može pozivati nad objektom Tensor te je iskorištena metoda torch.cat().
+		
+		Nadalje se javlja greška u skripti run.py, funkciji run\_epoch - "can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.". Tamo je potrebno sve varijable čije su memorijske lokacije na grafičkoj kartici zbog CUDA operacija vratiti na procesor (npr. problems.cpu())
+		
+		Daljnje greške nisu mogle biti ispravljene zbog nepoznavanja što bi ti dijelovi koda trebali raditi. Primjerice u istoj metodi kod ugniježdenih petlji ima pozivanja size(1) koji je zapravo nepostojeći te se dobiva greška da se očekuje 0 ili -1, također prema izgledu petlje čini se kako bi dodavanje offseta kroz neko vrijeme dovelo do indeksa koji su veći od maksimalnog za dana polja/tensore. Kako bi se to izbjeglo, zakomentirane su originalne linije pristupanja elementima te se umjesto iteriranja po listi i dodavanja ta ista lista appenda na drugu.
+		
+		Sljedeća greška se događala u student\_modelu gdje se zbrajaju dva tensora različitih veličina - "output with shape [50400, 200] doesn't match the broadcast shape [1, 50400, 200]", kako bi se maknula dimenzija "1" nad tim objektom je napravljena operacije unsqueeze(0).
+		
+		Greška koju nismo uspijeli ispraviti je "CUDA error: CUBLAS\_STATUS\_ALLOC\_FAILED when calling `cublasCreate(handle)",te dolazi u
+		retku" res = self.multi\_attn(query=self.layernorm(problems), key=x, value=x,key\_masks=None, query\_masks=None, future\_masks=None)" ono što smo uspijeli saznati je da to vrlo vjerojatno dolazi kada embedding layer dobiva krive indekse i izađe izvan intervala legalnih indeksa.
+		

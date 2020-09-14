@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.18)  1 SEP 2020 16:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.8.18)  14 SEP 2020 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -562,6 +562,10 @@ LaTeX Warning: Label `' multiply defined.
 
 LaTeX Warning: Label `' multiply defined.
 
+) (./sakt.aux
+
+LaTeX Warning: Label `' multiply defined.
+
 
 LaTeX Warning: Label `' multiply defined.
 
@@ -571,23 +575,23 @@ LaTeX Warning: Label `' multiply defined.
 ) (./literatura.aux))
 \openout1 = `projektna-dokumentacija.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 22
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 23
 .
  (c:/texlive/2020/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -653,7 +657,7 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box56
-Package hyperref Info: Link coloring OFF on input line 22.
+Package hyperref Info: Link coloring OFF on input line 23.
 
 (c:/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -666,34 +670,34 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count317
 )
-LaTeX Info: Redefining \ref on input line 22.
-LaTeX Info: Redefining \pageref on input line 22.
-LaTeX Info: Redefining \nameref on input line 22.
+LaTeX Info: Redefining \ref on input line 23.
+LaTeX Info: Redefining \pageref on input line 23.
+LaTeX Info: Redefining \nameref on input line 23.
 
 (./projektna-dokumentacija.out) (./projektna-dokumentacija.out)
 \@outlinefile=\write3
 \openout3 = `projektna-dokumentacija.out'.
 
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 38
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 39
 .
 
 (c:/texlive/2020/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 39.
 
 
 (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 39.
 
 
 (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <14.4> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 38.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 39.
 
 
 LaTeX Warning: Voditelj nije naveden. Koristi \voditelj za definiranje.
@@ -730,17 +734,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
 Poglavlje 3.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 29--39
+Underfull \hbox (badness 10000) in paragraph at lines 29--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--39
+Underfull \hbox (badness 1852) in paragraph at lines 29--40
+\T1/ptm/m/n/12 Mežu pr-vima pro-na-žena je i pro-u£ena plat-forma adap-tiv-nog 
+u£e-nja Knewton
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--39
+Underfull \hbox (badness 2150) in paragraph at lines 29--40
+\T1/ptm/m/n/12 Izazovnim po-dru-£jem pra-¢e-nja zna-nja (engl. \T1/ptm/m/it/12 
+knowledge tra-cing\T1/ptm/m/n/12 ) mo-gu¢e je
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--40
 
  []
 
@@ -810,7 +826,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--39
 
  []
 
-<figures/Bayes_kod.png, id=438, 451.6875pt x 51.94406pt>
+<figures/Bayes_kod.png, id=459, 451.6875pt x 51.94406pt>
 File: figures/Bayes_kod.png Graphic file (type png)
 <use figures/Bayes_kod.png>
 Package pdftex.def Info: figures/Bayes_kod.png  used on input line 48.
@@ -825,12 +841,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 67--68
 
  []
 
-<figures/Bayes_graf2.png, id=445, 312.41719pt x 202.50656pt>
+<figures/Bayes_graf2.png, id=465, 312.41719pt x 202.50656pt>
 File: figures/Bayes_graf2.png Graphic file (type png)
 <use figures/Bayes_graf2.png>
 Package pdftex.def Info: figures/Bayes_graf2.png  used on input line 81.
 (pdftex.def)             Requested size: 312.41641pt x 202.50604pt.
-<figures/Bayes_graf9.png, id=447, 504.38437pt x 269.50688pt>
+<figures/Bayes_graf9.png, id=467, 504.38437pt x 269.50688pt>
 File: figures/Bayes_graf9.png Graphic file (type png)
 <use figures/Bayes_graf9.png>
 Package pdftex.def Info: figures/Bayes_graf9.png  used on input line 88.
@@ -841,18 +857,18 @@ Overfull \hbox (91.81816pt too wide) in paragraph at lines 88--89
  []
 
 [13] [14 <./figures/Bayes_graf2.png> <./figures/Bayes_graf9.png>]
-<figures/Bayes_graf3.png, id=459, 339.51843pt x 220.57407pt>
+<figures/Bayes_graf3.png, id=479, 339.51843pt x 220.57407pt>
 File: figures/Bayes_graf3.png Graphic file (type png)
 <use figures/Bayes_graf3.png>
 Package pdftex.def Info: figures/Bayes_graf3.png  used on input line 111.
 (pdftex.def)             Requested size: 339.5176pt x 220.57352pt.
  [15]
-<figures/Bayes_graf4.png, id=465, 252.945pt x 167.12437pt>
+<figures/Bayes_graf4.png, id=485, 252.945pt x 167.12437pt>
 File: figures/Bayes_graf4.png Graphic file (type png)
 <use figures/Bayes_graf4.png>
 Package pdftex.def Info: figures/Bayes_graf4.png  used on input line 136.
 (pdftex.def)             Requested size: 252.94438pt x 167.12395pt.
-<figures/Bayes_graf6.png, id=466, 344.78813pt x 280.79906pt>
+<figures/Bayes_graf6.png, id=486, 344.78813pt x 280.79906pt>
 File: figures/Bayes_graf6.png Graphic file (type png)
 <use figures/Bayes_graf6.png>
 Package pdftex.def Info: figures/Bayes_graf6.png  used on input line 152.
@@ -869,9 +885,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--157
 
 [16 <./figures/Bayes_graf3.png>] [17 <./figures/Bayes_graf4.png>] [18 <./figure
 s/Bayes_graf6.png>] [19]
-Overfull \hbox (2.42685pt too wide) in paragraph at lines 187--188
-\T1/ptm/m/n/12 malo vi²e stan-dar-di-zi-rale ko-nven-cije ime-no-va-nja i os-ta
-la uljep-²a-va-nja koda.Napravljena
+Underfull \hbox (badness 1454) in paragraph at lines 187--188
+\T1/ptm/m/n/12 Preba£ene su skripte iz co-laba u .py fi-le-ove na git, oba-va-l
+jeno re-fak-to-ri-ra-nje
  []
 
 ) [20]
@@ -883,6 +899,12 @@ Poglavlje 6.
 Package hyperref Warning: Composite letter `\textasciicaron+c'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 7.
+
+
+Underfull \hbox (badness 1622) in paragraph at lines 8--10
+\T1/ptm/m/n/12 ide-jom na-²eg pro-jekta, pre-ve-like ma-te-ma-ti£ke kom-pli-ci-
+ra-nosti ili kom-plek-nosti
+ []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 8--10
@@ -946,6 +968,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--34
  []
 
 [22]
+Underfull \hbox (badness 1990) in paragraph at lines 36--43
+\T1/ptm/m/n/12 Obe¢avaju¢a pred-nost ovog mo-dela je ²to rje-²ava neke pro-blem
+e spo-me-nu-tih
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 36--43
 
  []
@@ -966,7 +994,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--46
  []
 
 [23]
-<figures/protein.jpg, id=528, 77.088pt x 57.816pt>
+<figures/protein.jpg, id=548, 77.088pt x 57.816pt>
 File: figures/protein.jpg Graphic file (type jpg)
 <use figures/protein.jpg>
 Package pdftex.def Info: figures/protein.jpg  used on input line 51.
@@ -975,53 +1003,45 @@ Package pdftex.def Info: figures/protein.jpg  used on input line 51.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
             Default family used instead on input line 66.
-
-
-LaTeX Warning: Reference `fig:bubbles' on page 25 undefined on input line 66.
-
-[25]
-<figures/bubbles.PNG, id=540, 341.77687pt x 197.98969pt>
+ [25]
+<figures/bubbles.PNG, id=562, 341.77687pt x 197.98969pt>
 File: figures/bubbles.PNG Graphic file (type png)
 <use figures/bubbles.PNG>
 Package pdftex.def Info: figures/bubbles.PNG  used on input line 70.
 (pdftex.def)             Requested size: 341.77603pt x 197.9892pt.
-
-
-LaTeX Warning: Reference `fig:lentil' on page 26 undefined on input line 78.
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 76--79
 
  []
 
 [26 <./figures/bubbles.PNG>]
-<figures/lentil.PNG, id=550, 375.65344pt x 268.75406pt>
+<figures/lentil.PNG, id=573, 375.65344pt x 268.75406pt>
 File: figures/lentil.PNG Graphic file (type png)
 <use figures/lentil.PNG>
 Package pdftex.def Info: figures/lentil.PNG  used on input line 82.
 (pdftex.def)             Requested size: 375.65251pt x 268.7534pt.
  [27 <./figures/lentil.PNG>]
-<figures/dot1.jpg, id=564, 361.35pt x 554.3109pt>
+<figures/dot1.jpg, id=586, 361.35pt x 554.3109pt>
 File: figures/dot1.jpg Graphic file (type jpg)
 <use figures/dot1.jpg>
 Package pdftex.def Info: figures/dot1.jpg  used on input line 96.
 (pdftex.def)             Requested size: 180.67456pt x 277.15477pt.
-<figures/circo1.jpg, id=567, 361.35pt x 323.7696pt>
+<figures/circo1.jpg, id=589, 361.35pt x 323.7696pt>
 File: figures/circo1.jpg Graphic file (type jpg)
 <use figures/circo1.jpg>
 Package pdftex.def Info: figures/circo1.jpg  used on input line 106.
 (pdftex.def)             Requested size: 144.53743pt x 129.50554pt.
-<figures/sfdp1.jpg, id=568, 168.63pt x 138.9993pt>
+<figures/sfdp1.jpg, id=590, 168.63pt x 138.9993pt>
 File: figures/sfdp1.jpg Graphic file (type jpg)
 <use figures/sfdp1.jpg>
 Package pdftex.def Info: figures/sfdp1.jpg  used on input line 113.
 (pdftex.def)             Requested size: 219.21896pt x 180.69905pt.
-<figures/dot2.png, id=569, 933.4875pt x 235.88126pt>
+<figures/dot2.png, id=591, 933.4875pt x 235.88126pt>
 File: figures/dot2.png Graphic file (type png)
 <use figures/dot2.png>
 Package pdftex.def Info: figures/dot2.png  used on input line 120.
 (pdftex.def)             Requested size: 326.72552pt x 82.55966pt.
-<figures/sfdp2.jpg, id=570, 154.176pt x 94.1919pt>
+<figures/sfdp2.jpg, id=592, 154.176pt x 94.1919pt>
 File: figures/sfdp2.jpg Graphic file (type jpg)
 <use figures/sfdp2.jpg>
 Package pdftex.def Info: figures/sfdp2.jpg  used on input line 127.
@@ -1032,7 +1052,7 @@ Overfull \vbox (21.27953pt too high) has occurred while \output is active []
 
 [29 <./figures/circo1.jpg> <./figures/sfdp1.jpg> <./figures/dot2.png (PNG copy)
 > <./figures/sfdp2.jpg>]
-<figures/dot3.jpg, id=585, 96.36pt x 185.7339pt>
+<figures/dot3.jpg, id=607, 96.36pt x 185.7339pt>
 File: figures/dot3.jpg Graphic file (type jpg)
 <use figures/dot3.jpg>
 Package pdftex.def Info: figures/dot3.jpg  used on input line 138.
@@ -1040,7 +1060,7 @@ Package pdftex.def Info: figures/dot3.jpg  used on input line 138.
 
 Poglavlje 7.
 [30 <./figures/dot3.jpg>] [31]
-<figures/clust1.png, id=596, 966.61125pt x 1097.09875pt>
+<figures/clust1.png, id=619, 966.61125pt x 1097.09875pt>
 File: figures/clust1.png Graphic file (type png)
 <use figures/clust1.png>
 Package pdftex.def Info: figures/clust1.png  used on input line 154.
@@ -1050,7 +1070,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
 
-<figures/clust2.png, id=599, 482.80376pt x 323.2075pt>
+<figures/clust2.png, id=622, 482.80376pt x 323.2075pt>
 File: figures/clust2.png Graphic file (type png)
 <use figures/clust2.png>
 Package pdftex.def Info: figures/clust2.png  used on input line 163.
@@ -1061,7 +1081,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 173--186
  []
 
 [33]
-<figures/medoids_bio.png, id=615, 451.6875pt x 288.07625pt>
+<figures/medoids_bio.png, id=637, 451.6875pt x 288.07625pt>
 File: figures/medoids_bio.png Graphic file (type png)
 <use figures/medoids_bio.png>
 Package pdftex.def Info: figures/medoids_bio.png  used on input line 189.
@@ -1094,6 +1114,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 223--232
 
 Underfull \hbox (badness 10000) in paragraph at lines 223--232
 
+ []
+
+
+Underfull \hbox (badness 1163) in paragraph at lines 223--232
+\T1/ptm/m/n/12 Istraºen je i alat Am-pli-graph ([]; []). Po-vr-²na ana-liza de-
+fi-ni-rala ga je kao
  []
 
 
@@ -1144,10 +1170,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--37
 
  []
 
-
-LaTeX Warning: Reference `fig:exrec1' on page 40 undefined on input line 39.
-
-<figures/exrec1.png, id=680, 517.935pt x 520.19344pt>
+<figures/exrec1.png, id=703, 517.935pt x 520.19344pt>
 File: figures/exrec1.png Graphic file (type png)
 <use figures/exrec1.png>
 Package pdftex.def Info: figures/exrec1.png  used on input line 44.
@@ -1157,15 +1180,8 @@ Overfull \hbox (1.78357pt too wide) in paragraph at lines 44--45
  [][] 
  []
 
-[40]
-
-LaTeX Warning: Reference `fig:exrec1' on page 41 undefined on input line 54.
-
-
-LaTeX Warning: Reference `fig:exrec2' on page 41 undefined on input line 54.
-
-[41 <./figures/exrec1.png>]
-<figures/exrec2.png, id=690, 464.4853pt x 449.42906pt>
+[40] [41 <./figures/exrec1.png>]
+<figures/exrec2.png, id=716, 464.4853pt x 449.42906pt>
 File: figures/exrec2.png Graphic file (type png)
 <use figures/exrec2.png>
 Package pdftex.def Info: figures/exrec2.png  used on input line 59.
@@ -1193,8 +1209,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--111
  []
 
 
+Underfull \hbox (badness 2310) in paragraph at lines 100--111
+\T1/ptm/m/n/12 U ovom radu oko-lina se iz-gra-žuje si-mu-la-to-rom te-me-lje-ni
+m na DKVMN-CA
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 100--111
 
+ []
+
+
+Underfull \hbox (badness 2035) in paragraph at lines 100--111
+\T1/ptm/m/n/12 vid-lji-vim sta-njima (POMDP). POMDP je ge-ne-ra-li-za-cija Mar-
+kov-lje-vog pro-cesa
  []
 
 
@@ -1218,10 +1246,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 116--120
  []
 
 
-Overfull \hbox (10.98164pt too wide) in paragraph at lines 116--120
+Underfull \hbox (badness 3138) in paragraph at lines 116--120
 \T1/ptm/m/n/12 Krajnji cilj je mak-si-mi-zi-rati na-gradu odre-žene stra-te-gij
-e gdje su tra-jek-to-rije $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 s[]; o[]; a[]; :::
-\OT1/cmr/m/n/12 )$
+e gdje su tra-jek-to-rije
  []
 
 
@@ -1240,7 +1267,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 122--126
  []
 
 [45]
-<figures/exrec_bio1.png, id=720, 545.78906pt x 140.77594pt>
+<figures/exrec_bio1.png, id=745, 545.78906pt x 140.77594pt>
 File: figures/exrec_bio1.png Graphic file (type png)
 <use figures/exrec_bio1.png>
 Package pdftex.def Info: figures/exrec_bio1.png  used on input line 152.
@@ -1251,48 +1278,107 @@ Overfull \hbox (24.06686pt too wide) in paragraph at lines 152--153
  []
 
 [46]
-<figures/exrec_bio2.png, id=725, 462.528pt x 346.896pt>
+<figures/exrec_bio2.png, id=750, 462.528pt x 346.896pt>
 File: figures/exrec_bio2.png Graphic file (type png)
 <use figures/exrec_bio2.png>
 Package pdftex.def Info: figures/exrec_bio2.png  used on input line 159.
 (pdftex.def)             Requested size: 370.02289pt x 277.51717pt.
- [47 <./figures/exrec_bio1.png> <./figures/exrec_bio2.png>]) [48]
+ [47 <./figures/exrec_bio1.png> <./figures/exrec_bio2.png>] [48]
+Underfull \hbox (badness 4569) in paragraph at lines 184--203
+\T1/ptm/m/n/12 Variranjem kt pa-ra-me-tara \T1/ptm/m/it/12 me-mory_key_state_di
+m, me-mory_value_state_dim \T1/ptm/m/n/12 te
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 184--203
+\T1/ptm/m/n/12 Uz spo-me-nutu stra-te-giju, naj-vi²e obe-¢a-va-ju-¢om po-ka-zal
+a se Ca-te-go-ri-cal MLP
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--203
+
+ []
+
+[49] [50]
+Underfull \hbox (badness 10000) in paragraph at lines 205--231
+
+ []
+
+[51] [52] [53]) [54]
+\openout2 = `sakt.aux'.
+
+ (./sakt.tex
+Poglavlje 9.
+<figures/sakt1.png, id=818, 363.60844pt x 303.38344pt>
+File: figures/sakt1.png Graphic file (type png)
+<use figures/sakt1.png>
+Package pdftex.def Info: figures/sakt1.png  used on input line 5.
+(pdftex.def)             Requested size: 290.88713pt x 242.70708pt.
+<figures/sakt2.png, id=819, 399.74344pt x 356.83313pt>
+File: figures/sakt2.png Graphic file (type png)
+<use figures/sakt2.png>
+Package pdftex.def Info: figures/sakt2.png  used on input line 13.
+(pdftex.def)             Requested size: 319.79517pt x 285.46687pt.
+<figures/sakt3.png, id=820, 373.395pt x 189.70876pt>
+File: figures/sakt3.png Graphic file (type png)
+<use figures/sakt3.png>
+Package pdftex.def Info: figures/sakt3.png  used on input line 19.
+(pdftex.def)             Requested size: 298.7164pt x 151.7672pt.
+[55
+
+
+ <./figures/sakt1.png>] [56 <./figures/sakt2.png> <./figures/sakt3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 36--38
+[]\T1/ptm/m/n/12 Gre²ka koju ni-smo us-pi-jeli is-pra-viti je "CUDA er-ror: CU-
+
+ []
+
+
+Underfull \hbox (badness 7273) in paragraph at lines 36--38
+\T1/ptm/m/n/12 BLAS_STATUS_ALLOC_FAILED when cal-ling `cu-blas-Cre-ate(handle)"
+,te do-
+ []
+
+
+Underfull \hbox (badness 2057) in paragraph at lines 36--38
+\T1/ptm/m/n/12 lazi u retku" res = self.multi_attn(query=self.layernorm(problem
+s), key=x, va-
+ []
+
+[57]) [58]
 \openout2 = `literatura.aux'.
 
+ (./literatura.tex
+Poglavlje 10.
+[59
 
-(./literatura.tex
-Poglavlje 9.
-[49
 
-
-]) [50]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 45.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 45.
+]) [60]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 47.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 47.
  (./projektna-dokumentacija.aux (./uvod.aux) (./BKT.aux)
-(./Bayes_graph.aux) (./stvaranje-grafa-content.aux) (./ex_rec.aux)
+(./Bayes_graph.aux) (./stvaranje-grafa-content.aux) (./ex_rec.aux) (./sakt.aux)
 (./literatura.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 45.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 45.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 47.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 47.
 Package rerunfilecheck Info: File `projektna-dokumentacija.out' has not changed
 .
-(rerunfilecheck)             Checksum: 9DAF6F5442682DF4D3F43174B5624BCF;4068.
-
-
-LaTeX Warning: There were undefined references.
+(rerunfilecheck)             Checksum: 1ED866B3C19073BFDE37F8F9C284E2D3;4343.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 45.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 47.
  ) 
 Here is how much of TeX's memory you used:
- 13156 strings out of 480893
- 197311 string characters out of 5911972
- 530733 words of memory out of 5000000
- 28212 multiletter control sequences out of 15000+600000
+ 13206 strings out of 480893
+ 197937 string characters out of 5911972
+ 539498 words of memory out of 5000000
+ 28235 multiletter control sequences out of 15000+600000
  588917 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,8n,81p,1438b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,8n,81p,1438b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{c:/tex
 live/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2020/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2020/texmf-dist/fonts/type1
@@ -1309,10 +1395,10 @@ tic/uhvb8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 20/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2020/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb><c:/texlive/2020/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on projektna-dokumentacija.pdf (54 pages, 1035192 bytes).
+Output written on projektna-dokumentacija.pdf (64 pages, 1188289 bytes).
 PDF statistics:
- 902 PDF objects out of 1000 (max. 8388607)
- 791 compressed objects within 8 object streams
- 183 named destinations out of 1000 (max. 500000)
- 599 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1000 PDF objects out of 1000 (max. 8388607)
+ 875 compressed objects within 9 object streams
+ 200 named destinations out of 1000 (max. 500000)
+ 646 words of extra memory for PDF output out of 10000 (max. 10000000)
 
