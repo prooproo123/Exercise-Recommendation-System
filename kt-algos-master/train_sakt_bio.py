@@ -65,8 +65,14 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
                 # tensor=torch.mean(tensor,0)
                 print(tensor.size())
                 print(tensor)
-                print(tensor.cpu().detach().numpy())
-        
+                print(tensor.cpu().detach().numpy()) -matrica za biologiju ima elemente vece od 1 samo na dijagonali
+                mat=tensor.cpu().detach().numpy()
+                -ideja: normalizirati brojeve u matricama i onda uz neki prag napraviti odrediti candidate exercise iz toga
+            
+            -softmax ne jer ce mapirati sve elemente da daju zbroj 1 i onda fiksni prag nema pretjeranog smisla, za to bi mozda mogao biti percentil?
+            -normaliranje tako da se dijeli najvecim elementom- nije dobro jer bi onda najveci uvijek bio preporucen makar je mozda magnituda releventnosti mala
+                
+            mat=mat-
         '''
 
         # Validation
