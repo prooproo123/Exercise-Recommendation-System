@@ -1,7 +1,7 @@
 import os
 import argparse
 import pandas as pd
-
+import torch
 import torch.nn as nn
 from torch.optim import Adam
 
@@ -58,7 +58,17 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
                          for name, param in model.named_parameters() if param.grad is not None}
                 logger.log_histograms(weights, step)
                 logger.log_histograms(grads, step)
-            
+        '''
+         tensor = model.attn.prob_attn
+                tensor = torch.mean(tensor, 0)
+                tensor = torch.mean(tensor, 0)
+                # tensor=torch.mean(tensor,0)
+                print(tensor.size())
+                print(tensor)
+                print(tensor.cpu().detach().numpy())
+        
+        '''
+
         # Validation
         model.eval()
         for inputs, item_ids, labels in val_batches:

@@ -15,7 +15,7 @@ def future_mask(seq_length):
 def clone(module, num):
     return nn.ModuleList([copy.deepcopy(module) for _ in range(num)])
 
-
+#ovo bi mogla biti attention matrica koju trazimo
 def attention(query, key, value, mask=None, dropout=None):
     """Compute scaled dot product attention. 
     """
@@ -27,13 +27,13 @@ def attention(query, key, value, mask=None, dropout=None):
         prob_attn = dropout(prob_attn)
     return torch.matmul(prob_attn, value), prob_attn
 
-
+#pe- positional encoding
 def positional_encoding(seq_length, embed_size):
     """Create sinusoidal positional encoding to be added to embedding, each dimension is a sine
     wave with a different frequency and offset.
     """
-    pe = torch.zeros(seq_length, embed_size, dtype=torch.float)
-    position = torch.arange(seq_length).unsqueeze(1).float()
+    pe = torch.zeros(seq_length, embed_size, dtype=torch.float)#positional encoding velicine seq_len *embed_size
+    position = torch.arange(seq_length).unsqueeze(1).float() #treba provjeriti sto tocno radi unsqueeze(1)
     div_term = torch.exp(torch.arange(0, embed_size, 2).float() * -(math.log(1e4) / embed_size))
     pe[:, 0::2] = torch.sin(position * div_term)
     pe[:, 1::2] = torch.cos(position * div_term)
