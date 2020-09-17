@@ -134,17 +134,29 @@ def colab_run():
     parser.add_argument('--num_epochs', type=int, default=1)
     args = parser.parse_args()
 
+    dataset='biology30'
+    embed_inputs='store_true'
+    embed_size=200
+    hid_size=200
+    num_heads=4
+    encode_pos='store_pos'
+    drop_prob=0.5
+    batch_size=10
+    num_epochs=1
+    logdir='runs/sakt'
+    lr=1e-3
+
     # df = pd.read_csv(os.path.join('data', args.dataset, 'preprocessed_data.csv'), sep="\t")
     # df = pd.read_csv('/content/gdrive/My Drive/data/preprocessed_data.csv', sep=',')
     df = pd.read_csv('/content/gdrive/My Drive/data/preprocessed_data_bio.csv', sep='\t')
 
     num_items = int(df["item_id"].max() + 1)
-    model = SAKT(num_items, args.embed_inputs, args.embed_size, args.hid_size,
-                 args.num_heads, args.encode_pos, args.drop_prob).cuda()
-    optimizer = Adam(model.parameters(), lr=args.lr)
+    model = SAKT(num_items, embed_inputs, embed_size, hid_size,
+                 num_heads, encode_pos, drop_prob).cuda()
+    optimizer = Adam(model.parameters(), lr=lr)
 
-    param_str = (f'{args.dataset}, embed={args.embed_inputs}, dropout={args.drop_prob}, batch_size={args.batch_size} '
-                 f'embed_size={args.embed_size}, hid_size={args.hid_size}, encode_pos={args.encode_pos}')
-    logger = Logger(os.path.join(args.logdir, param_str))
+    param_str = (f'{dataset}, embed={embed_inputs}, dropout={drop_prob}, batch_size={batch_size} '
+                 f'embed_size={embed_size}, hid_size={hid_size}, encode_pos={encode_pos}')
+    logger = Logger(os.path.join(logdir, param_str))
 
-    return train(df, model, optimizer, logger, args.num_epochs, args.batch_size)
+    return train(df, model, optimizer, logger, num_epochs, batch_size)
