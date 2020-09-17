@@ -6,7 +6,7 @@
 		\caption{}
 		\label{}
 	\end{figure}
-	Pronađen je rad koji istražuje novi smjer knowledge tracinga. Predloženi model SAKT prvo identificira relevantne koncepte znanja iz prošlih interakcija te predviđa korisnikove performanse na tim konceptima. SAKT daje težinske vrijednosti prethodno odogovorenim pitanjima. U radu se tvrdi da je prema AUC bolji u za 4.43\% od state-of-art metoda uprosječeno po svim korištenim skupovima podataka. Također, glavna komponenta (self-attention) se može paralelizirati što daje znatnu prednost po brzini naspram modela temeljenih na RNN-ovima.
+	Pronađen je rad koji istražuje novi smjer knowledge tracinga \url{https://github.com/TianHongZXY/pytorch-SAKT}. Predloženi model SAKT prvo identificira relevantne koncepte znanja iz prošlih interakcija te predviđa korisnikove performanse na tim konceptima. SAKT daje težinske vrijednosti prethodno odogovorenim pitanjima. U radu se tvrdi da je prema AUC bolji u za 4.43\% od state-of-art metoda uprosječeno po svim korištenim skupovima podataka. Također, glavna komponenta (self-attention) se može paralelizirati što daje znatnu prednost po brzini naspram modela temeljenih na RNN-ovima.
 
 		\begin{figure}[H]
 		\centering
@@ -35,4 +35,10 @@
 		
 		Greška koju nismo uspijeli ispraviti je "CUDA error: CUBLAS\_STATUS\_ALLOC\_FAILED when calling `cublasCreate(handle)",te dolazi u
 		retku" res = self.multi\_attn(query=self.layernorm(problems), key=x, value=x,key\_masks=None, query\_masks=None, future\_masks=None)" ono što smo uspijeli saznati je da to vrlo vjerojatno dolazi kada embedding layer dobiva krive indekse i izađe izvan intervala legalnih indeksa.
+		
+	\section{Sakt #2}
+		Pronađen je još jedan github repozitorij \url{https://github.com/thosgt/kt-algos} koji u sebi ima implementaciju SAKTA-a. Također uz to ima implementaciju DKT-a i još neke pomoćne skripte. SAKT dio je prilagođen da se može pokretati za assistments i biologiju na Google Colabu. Za assistments se dobivaju velike vrijednosti AUC za vrijeme treniranja što je se poklapa sa prethodnim radom. Trenutno još nije sigurno kako bi se predikcije iz SAKT-a mogle iskoristiti za preporuku sadržaja.
+	
+		\subsection{Generiranje candidate-exercises}
+		Dio SAKT-a za vrijeme učenja razvija tako zvanu attention matricu. Ona modelu daje neku mjeru "relevantnosti" između pojedinih zadataka. Ideja je izvuči tu matricu iz modela i iskoristiti njene vrijednosti za uzimanje dijela zadtaka kao potencijalnu preporuku u ExRec-u. Napravljena je klasa koja prima attention matricu, funkciju normalizacije, funkciju praga te vrijednost praga. Funkcija normalizacije služi kako bi se svaki redak matrice normalizirao po nekom pravilu i onda kasnije uz pomoć funkcije praga odredili zadaci za preporuku. Klasa je napravljena tako da neće preporučiti zadatke koji su već bili. Potrebno je još ispitivanja i isprobavanja raznih kombinacija funkcija i pragova.
 		
