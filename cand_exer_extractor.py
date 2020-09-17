@@ -6,12 +6,15 @@ Treshold function je funkcija koja prima redak i po nekom uvjetu vraca samo inde
 
 Normalize function se obavlja nakon svakog izvlacenja kandidata iz retka,
 npr. treshold-percentile, normalization-softmax
+
 '''
 
 class PersonalCandidates:
 
     def __init__(self, attention_matrix,treshold_function,treshold,normalization_function):
         self.relevancy_matrix=attention_matrix
+        self.relevancy_matrix+=self.relevancy_matrix.transpose()
+        print(self.relevancy_matrix)
         self.treshold_function=treshold_function
         self.normalization_function=normalization_function
         self.treshold=treshold
@@ -44,6 +47,7 @@ class PersonalCandidates:
         #for i in range(len(self.relevancy_matrix)):
           #  self.relevancy_matrix[i]=self.normalization_function(self.relevancy_matrix[i])
         return self.normalization_function(row)
+
 
 #Normalizacije
 def softmax(x):
@@ -85,8 +89,8 @@ def constant_treshold(row,treshold=0.5):
     return new
 
 def min_number_of_exercises(row,treshold=1):
-    if len(row <= min):
-        return row
+    if len(row) <= min:
+        return [i for i in range(len(row)) if i != 0]
     srtd=sorted(row)
     srtd.reverse()
     srtd=srtd[:min]
@@ -108,3 +112,9 @@ attention= np.array([[0.5,0,0],[0.3,0.2,0.0],[0.15,0.17,0.2]])
 treshold=0.4
 personal=PersonalCandidates(attention,constant_treshold,treshold,selective_softmax)
 print(personal.get_candidates([1,2]))
+
+'''
+Ideja je da svaki korisnik ima svojeg candidates exercisesa,
+problemi- sto ako se zeli staviti novi relevancy_matrix - jednostavnije samo se sve resetira (ne uzimaju se u obzir prosli tracevi)
+        -
+'''
