@@ -117,10 +117,11 @@ def no_treshold(row):
 '''
 Proba
 attention= np.array([[0.5,0,0],[0.3,0.2,0],[0.15,0.17,0.2]])
-'''
-
 attention= np.array([[0.5,0,0,0],[0.3,0.2,0.0,0],[0.15,0.17,0.2,0],[0.772,0.51,0.22,0.11]])
 treshold=2
 personal=PersonalCandidates(attention,max_number_of_exercises,treshold,selective_softmax)
 print(personal.get_candidates([1,2]))
+'''
+
+
 

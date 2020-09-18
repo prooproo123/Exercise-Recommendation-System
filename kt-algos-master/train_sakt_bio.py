@@ -59,15 +59,15 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
                 logger.log_histograms(weights, step)
                 logger.log_histograms(grads, step)
 
-         tensor = model.attn.prob_attn
-                tensor = torch.mean(tensor, 0)
-                tensor = torch.mean(tensor, 0)
+        tensor = model.attn.prob_attn
+        tensor = torch.mean(tensor, 0)
+        tensor = torch.mean(tensor, 0)
                 # tensor=torch.mean(tensor,0)
         #        print(tensor.size())
          #       print(tensor)
           #      print(tensor.cpu().detach().numpy()) -matrica za biologiju ima elemente vece od 1 samo na dijagonali
-                mat=tensor.cpu().detach().numpy()
-                return mat
+        mat=tensor.cpu().detach().numpy()
+        return mat
         '''
                 -ideja: normalizirati brojeve u matricama i onda uz neki prag napraviti odrediti candidate exercise iz toga
             
