@@ -58,15 +58,17 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
                          for name, param in model.named_parameters() if param.grad is not None}
                 logger.log_histograms(weights, step)
                 logger.log_histograms(grads, step)
-        '''
+
          tensor = model.attn.prob_attn
                 tensor = torch.mean(tensor, 0)
                 tensor = torch.mean(tensor, 0)
                 # tensor=torch.mean(tensor,0)
-                print(tensor.size())
-                print(tensor)
-                print(tensor.cpu().detach().numpy()) -matrica za biologiju ima elemente vece od 1 samo na dijagonali
+        #        print(tensor.size())
+         #       print(tensor)
+          #      print(tensor.cpu().detach().numpy()) -matrica za biologiju ima elemente vece od 1 samo na dijagonali
                 mat=tensor.cpu().detach().numpy()
+                return mat
+        '''
                 -ideja: normalizirati brojeve u matricama i onda uz neki prag napraviti odrediti candidate exercise iz toga
             
             -softmax ne jer ce mapirati sve elemente da daju zbroj 1 i onda fiksni prag nema pretjeranog smisla, za to bi mozda mogao biti percentil?
@@ -74,7 +76,7 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
                 
             mat=mat-
         '''
-
+        #Za colab se preskace validacija
         # Validation
         model.eval()
         for inputs, item_ids, labels in val_batches:
@@ -120,20 +122,6 @@ if __name__ == "__main__":
     logger.close()
 
 def colab_run():
-    parser = argparse.ArgumentParser(description='Train SAKT.')
-    parser.add_argument('--dataset', type=str)
-    parser.add_argument('--logdir', type=str, default='runs/sakt')
-    parser.add_argument('--embed_inputs', action='store_true')
-    parser.add_argument('--embed_size', type=int, default=200)
-    parser.add_argument('--hid_size', type=int, default=200)
-    parser.add_argument('--num_heads', type=int, default=4)
-    parser.add_argument('--encode_pos', action='store_true')
-    parser.add_argument('--drop_prob', type=float, default=0.5)
-    parser.add_argument('--batch_size', type=int, default=10)
-    parser.add_argument('--lr', type=float, default=1e-3)
-    parser.add_argument('--num_epochs', type=int, default=1)
-    args = parser.parse_args()
-
     dataset='biology30'
     embed_inputs='store_true'
     embed_size=200

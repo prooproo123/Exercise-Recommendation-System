@@ -28,14 +28,13 @@ class PersonalCandidates:
             # Sve elemente matrice ciji su indeksi tracevi zadataka koji su odradeni treba postaviti u nulu
             assert isinstance(trace, int)
             row = self.relevancy_matrix[trace]
-            row = self.normalize(row)
             row = [row[i] if i not in student_traces else 0 for i in range(len(row))]
-
-           # print(row)
+          #  print(row)
+            row = self.normalize(row)
            # print(row)
             self.relevancy_matrix[trace] = row
             app=self.treshold_function(self.relevancy_matrix[trace],treshold=self.treshold)
-            print(app)
+          #  print(app)
             candidates=candidates | set(app)
 #           candidates.add(app)
         if len(candidates) == 0: #nema vise za preporuciti
@@ -63,9 +62,17 @@ def selective_softmax(x):
    # print(non_zero_values)
     non_zero_values=softmax(non_zero_values)
    # print(non_zero_values)
-    non_zero_values=[non_zero_values[i] if i in non_zero_indices else 0 for i in range(len(x))]
+   # non_zero_values=[non_zero_values.pop(0) if i in non_zero_indices else 0 for i in range(len(x))] ndarray nema pop
+    for i in range(len(x)):
+        if i in non_zero_indices:
+            if len(non_zero_values)==1:
+                x[i]=non_zero_values[0]
+            else:
+                x[i],non_zero_values=non_zero_values[0],non_zero_values[1:]
+        else:
+            x[i]=0
    # print(non_zero_values)
-    return non_zero_values
+    return x
 
 def divide_by_largest(x):
     return x / max(x)
@@ -88,15 +95,19 @@ def constant_treshold(row,treshold=0.5):
    # print(new)
     return new
 
-def min_number_of_exercises(row,treshold=1):
-    if len(row) <= min:
-        return [i for i in range(len(row)) if i != 0]
+def max_number_of_exercises(row,treshold=0.9):
+    if len(row) <= treshold:
+        return [i for i in range(len(row)) if row[i] != 0]
     srtd=sorted(row)
+    #print(row)
     srtd.reverse()
-    srtd=srtd[:min]
+    #print(srtd)
+    #print(list(enumerate(row)))
+    srtd=srtd[:treshold]
+    #print(srtd)
     exercises=[]
     for index,element in enumerate(row):
-        if(element in srtd):
+        if(element in srtd and element != 0):
             exercises.append(index)
     return exercises
 
@@ -108,13 +119,8 @@ Proba
 attention= np.array([[0.5,0,0],[0.3,0.2,0],[0.15,0.17,0.2]])
 '''
 
-attention= np.array([[0.5,0,0],[0.3,0.2,0.0],[0.15,0.17,0.2]])
-treshold=0.4
-personal=PersonalCandidates(attention,constant_treshold,treshold,selective_softmax)
+attention= np.array([[0.5,0,0,0],[0.3,0.2,0.0,0],[0.15,0.17,0.2,0],[0.772,0.51,0.22,0.11]])
+treshold=2
+personal=PersonalCandidates(attention,max_number_of_exercises,treshold,selective_softmax)
 print(personal.get_candidates([1,2]))
 
-'''
-Ideja je da svaki korisnik ima svojeg candidates exercisesa,
-problemi- sto ako se zeli staviti novi relevancy_matrix - jednostavnije samo se sve resetira (ne uzimaju se u obzir prosli tracevi)
-        -
-'''
