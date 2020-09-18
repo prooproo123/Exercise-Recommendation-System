@@ -54,6 +54,6 @@ def run_all(path_to_dir,dataset_name):
     #all_student_traces= traces.get_traces_from_gforms(path_to_gform_traces)
     #u stu i cands trebaju ici id-ovi kako su originalno zapisani u datasetu...
     stu=[[(1, 0), (27, 1)]]
-    stu_only_ids=[el[0] for el in stu]
+    stu_only_ids=[el[0] for el in stu if el[1] == 1] #ako je netko krivo rijesio zadatak on bi i dalje trebao ostati u poolu mogucih zadataka
     cands=personal.get_candidates(stu_only_ids)
     recommendation=rs.run_rs(stu,cands,params,exercise_concepts_mapping,exercises_id_converter,no_exercises,no_concepts)

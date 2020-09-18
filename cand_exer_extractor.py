@@ -7,6 +7,9 @@ Treshold function je funkcija koja prima redak i po nekom uvjetu vraca samo inde
 Normalize function se obavlja nakon svakog izvlacenja kandidata iz retka,
 npr. treshold-percentile, normalization-softmax
 
+RUBNI SLUCAJ- sto ako je student traces prazan?
+            -ako se nema sto za preporuciti vraca se -1?
+
 '''
 
 class PersonalCandidates:
@@ -21,8 +24,8 @@ class PersonalCandidates:
 
     #Primaju se zadaci koje je korisnik prethodno radio
     def get_candidates(self,student_traces):
-        candidates=set()
 
+        candidates=set()
         #Prodi sve retke i izvuci kandidate s obzirom na treshold funkciju
         for index in range(len(self.relevancy_matrix[0])):
             # Sve elemente matrice ciji su indeksi tracevi zadataka koji su odradeni treba postaviti u nulu
@@ -124,6 +127,3 @@ treshold=2
 personal=PersonalCandidates(attention,max_number_of_exercises,treshold,selective_softmax)
 print(personal.get_candidates([1,2]))
 '''
-
-
-
