@@ -14,7 +14,7 @@ class PersonalCandidates:
     def __init__(self, attention_matrix,treshold_function,treshold,normalization_function):
         self.relevancy_matrix=attention_matrix
         self.relevancy_matrix+=self.relevancy_matrix.transpose()
-        print(self.relevancy_matrix)
+      #  print(self.relevancy_matrix)
         self.treshold_function=treshold_function
         self.normalization_function=normalization_function
         self.treshold=treshold
@@ -24,19 +24,20 @@ class PersonalCandidates:
         candidates=set()
 
         #Prodi sve retke i izvuci kandidate s obzirom na treshold funkciju
-        for trace in student_traces:
+        for index in range(len(self.relevancy_matrix[0])):
             # Sve elemente matrice ciji su indeksi tracevi zadataka koji su odradeni treba postaviti u nulu
-            assert isinstance(trace, int)
-            row = self.relevancy_matrix[trace]
+            assert isinstance(index, int)
+            row = self.relevancy_matrix[index]
             row = [row[i] if i not in student_traces else 0 for i in range(len(row))]
-          #  print(row)
-            row = self.normalize(row)
-           # print(row)
-            self.relevancy_matrix[trace] = row
-            app=self.treshold_function(self.relevancy_matrix[trace],treshold=self.treshold)
-          #  print(app)
-            candidates=candidates | set(app)
-#           candidates.add(app)
+            if index in student_traces:
+              #  print(row)
+                row = self.normalize(row)
+               # print(row)
+                self.relevancy_matrix[index] = row
+                app=self.treshold_function(self.relevancy_matrix[index],treshold=self.treshold)
+              #  print(app)
+                candidates=candidates | set(app)
+    #           candidates.add(app)
         if len(candidates) == 0: #nema vise za preporuciti
             return -1
         return list(candidates)
@@ -95,7 +96,8 @@ def constant_treshold(row,treshold=0.5):
    # print(new)
     return new
 
-def max_number_of_exercises(row,treshold=0.9):
+#maksimalni broj preporucenih zadataka po jednom rijesenom zadataku, za ovo ne treba nikakva normalizacija
+def max_number_of_exercises(row,treshold=1):
     if len(row) <= treshold:
         return [i for i in range(len(row)) if row[i] != 0]
     srtd=sorted(row)
@@ -112,7 +114,7 @@ def max_number_of_exercises(row,treshold=0.9):
     return exercises
 
 def no_treshold(row):
-    return [i for i in range(len(row))]
+    return [i for i in range(len(row)) if row[i] != 0]
 
 '''
 Proba

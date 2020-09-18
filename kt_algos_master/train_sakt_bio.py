@@ -121,22 +121,11 @@ if __name__ == "__main__":
     
     logger.close()
 
-def colab_run():
-    dataset='biology30'
-    embed_inputs='store_true'
-    embed_size=200
-    hid_size=200
-    num_heads=4
-    encode_pos='store_pos'
-    drop_prob=0.5
-    batch_size=10
-    num_epochs=1
-    logdir='runs/sakt'
-    lr=1e-3
+def colab_run(dataset='biology30', embed_inputs='store_true',embed_size=200,hid_size=200,
+              num_heads=4,encode_pos='store_pos',drop_prob=0.5,batch_size=10,num_epochs=1,
+              logdir='runs/sakt',lr=1e-3,sep='\t',path='/content/gdrive/My Drive/data/preprocessed_data_bio.csv'):
 
-    # df = pd.read_csv(os.path.join('data', args.dataset, 'preprocessed_data.csv'), sep="\t")
-    # df = pd.read_csv('/content/gdrive/My Drive/data/preprocessed_data.csv', sep=',')
-    df = pd.read_csv('/content/gdrive/My Drive/data/preprocessed_data_bio.csv', sep='\t')
+    df = pd.read_csv(path, sep=sep)
 
     num_items = int(df["item_id"].max() + 1)
     model = SAKT(num_items, embed_inputs, embed_size, hid_size,
