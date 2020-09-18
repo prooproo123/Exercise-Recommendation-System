@@ -1,0 +1,36 @@
+\chapter{Aplikacija}
+
+	Aplikacija je skup alata razvijenih za praćenje znanja, clusteriranje zadataka u koncepte, preporuke zadataka s obizrom na povijest rješavanih zadataka, izgradnje grafova koji pokazuju odnos koncepata i pitanja.
+	
+	
+	\begin{comment}
+		Knowledge tracing
+		- bayesian knowledge tracing- input su dataset za određeni "ispit",pragovi za cutoff,gauss,bkt -potencijalno slideri sa listenerima pa se prema tome mijenja graf?
+			-output: graf koji pokazuje odnos koncepata (usmjereni graf)
+			-prvo treba proci vrijeme dok se izracunaju parametri za bkt -bilo bi dobro imati mogucnost sejvanja generiranih parametara u neki pikl?
+			-kod procesuiranja google formsa u dataset treba dati pravilan redoslijed naziva koncepata
+		OGRANIČENJA- u datasetu svi korisnici moraju rijesiti sve zadatke i to istim redoslijedom
+		
+		ExRec-
+		KT dio- moguce izvrsiti samo jednom za neki dataset i onda spremiti parametre u neki pikl koji se moze kasnije kako bi bilo brze
+		Izracun matrice relevantnosti preko SAKT-a se isto moze jednom izvrsiti i onda se objekt klase "PersonalCandidates" ili sama matrica mogu spremiti kao pikl i koristiti kasnije, mozda bolje matrica jer za PersonalCandidates postoje varijabilni argumenti
+		PersonalCandidates- ima mogucnost razlicith normalizacijskih funkcija i funkcija praga te same vrijednosti praga
+
+		Recommmendation system ima ulaz parametre dobivene iz kt dijela, student traces (tu bi moglo staviti da se upisu zadaci i tocno/netocno ili da se ucita iz nekog fajla pa da se onda da preporuku i opciju da li da se radi samo sakt preporuka ili sakt + rs)
+		
+		Clustering
+		-k-mediods - uz input min,max broj koncepata i ulazni dataset daje procjenu koliko zapravo koncepata ima
+					-uz dani broj koncepata clusterira pitanja u različite koncepte
+					-ograničenja su jednaka kao za bkt
+					
+		-zvonimir
+		
+		-bkt izgradnja grafa gdje se pitanja gledaju kao koncepti (to bi vjerojatno trebalo preraditi i trebalo bi se igrati sa parametrima)
+			-trenutno se za izgradnju prima googleforms file, treba generalizirati za opceniti dataset
+			-treba promijena funkcija get_student_concept_mastery
+		-pomocne skripte- obrada google formsa, generiranje umjetnog dataseta
+		
+	\end{comment}
+	 
+	
+	
