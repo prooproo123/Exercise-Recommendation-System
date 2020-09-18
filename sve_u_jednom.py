@@ -10,6 +10,7 @@ import new_rs as rs
 import cand_exer_extractor as cand
 import kt_algos_master.train_sakt_bio as bio
 import student_traces_extractor as traces
+import matplotlib.pyplot as plt
 
 def run_all(path_to_dir,dataset_name):
    # path='data/biology30/biology30.csv'
@@ -47,6 +48,8 @@ def run_all(path_to_dir,dataset_name):
     #params = pickle.load(file)
 
     relevancy_matrix=bio.colab_run()
+    plt.imshow(relevancy_matrix)
+    plt.show()
     treshold=10 #najveci broj kandidata
     personal=cand.PersonalCandidates(relevancy_matrix,cand.max_number_of_exercises(),treshold,cand.no_normalization())
 
