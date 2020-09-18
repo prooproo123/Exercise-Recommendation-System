@@ -22,15 +22,28 @@
 \end{figure}
 
 	\section{Općenito o funkcioniranju attention modela}
+
 	Bit mehanizama pažnje (engl. \textit{attention mechanism}) je što su oni imitacija mehanizma ljudskog vida. Kad vid detektira objekt, tipično ne skenira cijelu scenu nego se fokusira na određeni dio koji odgovara osobnim potrebama promatrača. Kad osoba primijeti da se željeni objekt tipično pojavljuje u određenom dijelu scene, naučit će se u budućnosti fokusirati na takve dijelove.
 
-	Ovakvi mehanizmi najčešće su korišteni u obradi prirodnog jezika. Izračunavanje pažnje u računalnom smislu može se opisati kao mapiranje upita (engl. {query}) i skupova parova ključ-vrijednost (engl. {key-value}) izlazu. Prvo se uzmu upit i svaki ključ te se računa sličnost među njima kako bi se dobila težina. Kao funkcija sličnosti najčešće je korišten skalarni produkt. Drugi korak je provođenje normalizacije tih težina, najčešće softmax funkcijom. Potrebno je povezati težine s odgovarajućim vrijednostima. Rezultat je konačna pažnja. 
+	Ovakvi mehanizmi najčešće su korišteni u obradi prirodnog jezika. Najpoznatiji model korišten u obradi prirodnog jezika poznat je kao transformer. Transformeri su \textit{sequence-to-sequence} arhitektura, tj. neuronska mreža koja pretvara određeni slijed elemenata, kao što je slijed riječi u rečenici, u neki drugi slijed. Takvi modeli sastoje se od enkodera i dekodera. Enkoder uzima ulazni slijed i mapira u višedimenzionalni prostor. Takav apstraktni vektor odlazi dekoderu koji ga pretvara u izlazni slijed. Tipično su u mehanizmima pažnje enkoder i dekoder LSTM-ovi, no kod transformera to nije slučaj.
 
-	Modeli pažnje u potpunosti zamjenjuju RNN. Koristi se Multi-head Attention Mechanism. Postoje i slojevi s unaprijednom propagacijom te rezidualni sloj za bolju optimizaciju (koristi Add\&Norm).
+	Izračunavanje pažnje u računalnom smislu može se opisati kao mapiranje upita (engl. {query}) i skupova parova ključ-vrijednost (engl. {key-value}) izlazu. Prvo se uzmu upit i svaki ključ te se računa sličnost među njima kako bi se dobila težina. Kao funkcija sličnosti najčešće je korišten skalarni produkt. Drugi korak je provođenje normalizacije tih težina, najčešće softmax funkcijom. Potrebno je povezati težine s odgovarajućim vrijednostima. Rezultat je konačna pažnja. 
+
+	Svaki input u model mora imati tri reprezentacije: ključ, upit i vrijednost. Kako bi se dobile te reprezentacije, svaki input mora biti pomnožen sa skupom težina za ključeve, upite i vrijednosti. Mehanizam pažnje za svaki input prvog LSTM-a (enkodera) uzima u obzir istovremeno različite inpute dodjeljujući im različite težine. Dekoder onda kao input uzima enkodiranu rečenicu i težine. Težine definiraju koliko svaki element slijeda utječe na ostale. Softmax se primjenjuje na težinama kako bi se stisnule u interval [0, 1]. 
+Mehanizam pažnje ponavlja se nekoliko puta s linearnim projekcijama upita, ključeva i vrijednosti. Sustav tako uči različite reprezentacije upita, ključeva i vrijednosti. Linearne reprezentacije su zapravo umnošci upita, ključeva i vrijednosti s matricom težina W. 
+
+	Upiti, ključevi i vrijednosti su drugačiji ovisno o poziciji modula pažnje u strukturi - jesu li u enkoderu, dekoderu ili između njih. Multi-head attention modul koji povezuje enkoder i dekoder osigurava da enkoderov ulazni slijed bude uzet u obzir s dekoderovim ulaznim slijedom u određenoj poziciji. Nakon opisanog slijedi unaprijedni sloj koji ima iste parametre za svaku poziciju i može biti opisan kao odvojena, identična linearna transformacija svakog elementa danog slijeda.
+
+	Transformeri ne koristi RNN-ove, već se za izvlačenje globalnih ovisnosti inputa i outputa koriste samo self-attention mehanizmima. Self-attention mehanizmi dopuštaju inputu da međudjeluje s ostalima (self) i otkrije kome da posveti više pažnje.
+Enkoder i dekoder su sastavljeni od modula koji se mogu nadograđivati jedan na drugog nekoliko puta. Moduli se sastoje od Multi-Head Attention i unaprijednih slojeva. Koristi se i rezidualni sloj za bolju optimizaciju (koristi Add\&Norm). Ulaz i izlaz prvo su ugrađeni u n-dimenzionalni prostor.
+
+	Budući da ne postoje RNN-ovi u modelu, potrebno je nekako pamtiti slijedi koji se daje modelu; svakom dijelu slijeda dati relativnu poziciju u odnosu na red elementa - pozicijsko enkodiranje. Te pozicije dodane su ugradbenoj reprezentaciji (n-dimenzionalnom vektoru) svakog dijela slijeda. U treniranju je bitan shift slijeda dekodera. Ako se ne provodi, model nauči samo kopirati input dekodera. U slučaju shifta, model predviđa što će biti idući element. Osim shifta, transformer koristi masku na ulazu kako bi se izbjeglo viđenje potencijalnih budućih slijednih elemenata. To se mora provoditi zbog nedostatka RNN-ova.
 
 	Koncept pažnje skaliranog skalarnog produkta (engl. \textit{Scaled Dot-Product Attention}) za račun sličnosti koristi skalarni produkt, kao što je spomenuto u prijašnjem tekstu. Ima dodatnu dimenziju za prilagodbu koja onemogućava da unutarnji produkt postane prevelik.
 
-	Kod Multi-Head Attention strukture upit, ključ i vrijednost prvo prolaze linearnu transformaciju i onda u račun pažnje skaliranog skalarnog produkta. Pažnja se računa $h$ puta, otuda naziv Multi-Headed.  Svaki put kada upit, ključ i vrijednost prolaze linearnu transformaciju, mijenja se parametar W, koji predstavlja težine. Rezultait $h$ iteracija skaliranog skalarnog-produkta spajaju se na kraju.
+	Kod Multi-Head Attention strukture upit, ključ i vrijednost prvo prolaze linearnu transformaciju i onda ulaze u račun pažnje skaliranog skalarnog produkta. Pažnja se računa $h$ puta, otuda naziv Multi-Headed.  Svaki put kada upit, ključ i vrijednost prolaze linearnu transformaciju, mijenja se parametar W, koji predstavlja težine. Rezultati $h$ iteracija skaliranog skalarnog-produkta spajaju se na kraju.
+
+	Ako se ne radi s nizovima riječi u obradi prirodnog jezika, potrebne su manje izmjene arhitekture, npr. moguće je maknuti embedding sloj ako podaci već jesu brojčane vrijednosti. Umjesto njega, moguće je primjeniti neku linearnu transformaciju.
 
 
 	\section{Problemi sa SAKT-om}
@@ -57,9 +70,29 @@
 
 		Eksperimentirano je s vremenom uzimanja vrijednosti attention matrice. Uzimanje je postavljeno nakon svakog \textit{train\_batcha} i na kraju faze treniranja. Problem je što bi se, zbog korištenja softmax normalizacije pri preporučivanju, vrijednosti u pojedinim retcima trebale postaviti unutar intervala [0, 1], no to nije slučaj. Trenutno razmišljanje je da je to zbog izbacivanja nepotrebnih dimenzija tenzora. Zbog manjeg poznavanja PyTorch funkcionalnosti i načina ophođenja s visokodimenzionalnim tenzorima, moguće je da dimenzije okarakterizirane kao nepotrebne zapravo to nisu.
 
-		Softmax je inače preporučen kao funkcija koja se koristi pri problemima multinomijalne klasifikacije (u više od dvaju klasa), a kod binarne klasifikacije češće je korištena sigmoida. Potrebno je još ispitivanja i isprobavanja raznih kombinacija funkcija i pragova.
+		Softmax je inače preporučen kao funkcija koja se koristi pri problemima multinomijalne klasifikacije (u više od dvaju klasa), a kod binarne klasifikacije češće je korištena sigmoida. Eksperimentiranje s aktivacijskim funkcijama dovelo je do zaključka da je uz korištenje softmaxa potrebno upotrebljavati niži prag kako bi se dobile smislene preporuke - zadaci. Potrebno je još ispitivanja i isprobavanja raznih kombinacija funkcija i pragova.
+
+		\subsection{Usporedba SAKT-a i DKT-a}
+
+		DKT koristi BPTT algoritam (engl. \textit{backpropagation through time}). BPTT je gradijentna tehnika za treniranje nekih vrsta RNN-ova. Standardni BPTT zahtijeva kompletnu povijest aktivacija i inputa u unaprijednom prolazu kako bi ih korisito za izračun gradijenta u povratnom prolazu. Takav pristup je računalno skup i zahtjevan za memoriju.
+
+		Kod krnjeg BPTT algoritma (engl. \textit{truncated backpropagation through time}), ulazi su podnizovi fiksnih duljina. Za unaprijedni prolaz, skriveno stanje prethodnog podniza prosljeđuje se kao ulaz sljedećem. Kod izračuna gradijenta, vrijednosti su odbačene na kraju svakog podniza u povratku. Ovakav pristup smanjuje računske i memorijske zahtjeve.
+
+		Kod DKT se ne koristi Multi-Head Attention Mechanism, već LSTM. RNN-ovi su prilično dobar način za obuhvaćanje vremenskih ovisnosti u nizovima.
+
+		Sličnost implementacije KT modela DKT i SAKT veoma je uočljiva. Modeli dijele identičnost početka embedding sloja. U daljnjem postupku DKT koristi LSTM, dok SAKT Multi-Head Attention Mechanism. Za obilježavanje slijeda, SAKT mora koristiti pozicijsko enkodiranje, dok LSTM kod DKT-a takav posao obavlja implicitno u svojoj arhitekturi.
+	
+		Primjećeno je da je gubitak treniranja DKT-a većeg iznosa nego kod SAKT-a i kod Biologije i kod Assistmentsa (oko 1 u prvih 240-700 koraka uz DKT, dok je uza SAKT oko 0.6). 
+
+		Treniranje DKT-a na Assistentsu traje otprilike minutu po epohi, dok Biologija treba par sekundi po epohi.
+		Treniranje SAKT-a po epohi traje nešto malo više od minute po epohi, dok je za Biologiju potrebno i manje od sekunde po epohi.
+
+		Za SAKT je potrebno puno više korištenja CUDA arhitekture nego za DKT.
 		
 	\section{Poveznice}
 \url{https://medium.com/@Alibaba_Cloud/self-attention-mechanisms-in-natural-language-processing-9f28315ff905}
 \url{https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a}
 \url{https://www.geeksforgeeks.org/activation-functions-neural-networks/}
+\url{https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04}
+
+
