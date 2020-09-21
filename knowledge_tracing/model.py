@@ -163,10 +163,10 @@ class Model():
         training_step = train_q_data.shape[0] // self.batch_size
         self.sess.run(tf.global_variables_initializer())
 
-        if self.show:
+       # if self.show:
             # from rllab.utils import ProgressBar
             # bar = ProgressBar(label, max=training_step)
-            bar = pyprind.ProgBar(training_step)
+         #   bar = pyprind.ProgBar(training_step)
 
         self.train_count = 0
         if self.init_from:
@@ -186,8 +186,8 @@ class Model():
 
         # Training
         for epoch in range(0, self.num_epochs):
-            if self.show:
-                bar.next()
+          #  if self.show:
+            #    bar.next()
 
             pred_list = list()
             target_list = list()
@@ -227,8 +227,8 @@ class Model():
                 epoch_loss += loss_
             # print('Epoch %d/%d, steps %d/%d, loss : %3.5f' % (epoch+1, self.args.num_epochs, steps+1, training_step, loss_))
 
-            if self.show:
-                bar.finish()
+          #  if self.show:
+           #     bar.finish()
 
             all_pred = np.concatenate(pred_list, axis=0)
             all_target = np.concatenate(target_list, axis=0)
