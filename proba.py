@@ -42,3 +42,9 @@ if len(assistments) - len(df1) == len(df2):
 biologiji ne smetaju .notnull(), .notna() varijable 
 
 '''
+'''
+Dodavanje kt_algos_master u path, za prepare bio dodati import "as"
+Staviti  fromVariable u new_kt
+'''
+
+

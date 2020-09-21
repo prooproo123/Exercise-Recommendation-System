@@ -42,12 +42,12 @@ def run_all(path_to_dir,dataset_name,sep='\t'):
 
     train_variable,valid_variable=tvc.create_from_dataframe(chunks[0],exercises_id_converter,csv=False)
 
-
+    print("TVC RADI")
     #kt
-    params= kt.main(dataset_name,path_to_dir)#za sada se train i valid citaju iz csv-a, trebalo bi skuziti kako ih dobiti ko datafreameove iz skripte za stvaranje
+    params= kt.main(dataset_name,fromVariable=True,variableTrain=train_variable,variableValid=valid_variable)#za sada se train i valid citaju iz csv-a, trebalo bi skuziti kako ih dobiti ko datafreameove iz skripte za stvaranje
    # file = open("data/biology30/kt_params",'rb')
     #params = pickle.load(file)
-
+    print("KT RADI")
     relevancy_matrix=bio.colab_run()
     plt.imshow(relevancy_matrix)
     plt.show()
