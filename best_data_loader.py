@@ -24,7 +24,7 @@ class Data_Loader():
     def load_data2(self,data):
         q_data = list()
         qa_data = list()
-        print(data)
+        #print()
         for lineid, line in enumerate(data.split('\n')[:-1]):
             # strip
             line = line.strip()
@@ -37,7 +37,7 @@ class Data_Loader():
 
             # Answer
             elif lineid % 3 == 2:
-                print(', Answers')
+                #print(', Answers')
                 answer_list = line.split(self.seperate_char)
 
                 # Divide case by seq_len
@@ -47,7 +47,7 @@ class Data_Loader():
                         n_split += 1
                 else:
                     n_split = 1
-                print('Number of split : %d' % n_split)
+                #print('Number of split : %d' % n_split)
 
                 # Contain as many as seq_len, then contain remainder
                 for k in range(n_split):
@@ -63,7 +63,7 @@ class Data_Loader():
                         qa_values = int(q_tag_list[i]) + int(answer_list[i]) * self.n_questions
                         q_container.append(int(q_tag_list[i]))
                         qa_container.append(qa_values)
-                        print('Question tag : %s, Answer : %s, QA : %s' % (q_tag_list[i], answer_list[i], qa_values))
+                        #print('Question tag : %s, Answer : %s, QA : %s' % (q_tag_list[i], answer_list[i], qa_values))
                     # List of list(seq_len, seq_len, seq_len, less than seq_len, seq_len, seq_len...
                     q_data.append(q_container)
                     qa_data.append(qa_container)
