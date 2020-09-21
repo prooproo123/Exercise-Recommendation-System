@@ -42,7 +42,7 @@ DKVMN ExRec praćenja znanja poboljšan u aspektima memorijske strukture, težin
 	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.8]{exrec1.png}
-	\caption{}
+	\caption{Struktura ExRec modela}
 	\label{fig:exrec1}
 \end{figure}
 
@@ -57,7 +57,7 @@ Prvo se dohvaćaju ugrađene vrijednosti od danog zadatka. Kao što se vidi na s
 	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.8]{exrec2.png}
-	\caption{}
+	\caption{Algoritam računa KCW-a}
 	\label{fig:exrec2}
 \end{figure}
 
@@ -167,7 +167,7 @@ Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
 		Napravljena je skripta koja automatizira pokretanje ExRec-a za jednostavne datasetove poput "Biologije". Trenutno je potrebno samo znati ime dataseta i put do direktorija u kojem je dataset. Ostalo je shvatiti kako prilagoditi model kt-a, generiranje train i validation dijelova dataseta kako se ne bi stvarali privremeni .csv fileovi. Također treba još proučiti shvatiti zašto kod učitavanja assistmentsa treba raditi dodatne provjere Nan-ova, dtype-a te imena stupaca, dok u isto vrijeme te iste provjere rade grešku kod dataseta "Biologija".
 		Trenutne ideje za potencijalne preporuke zadataka:
 		\begin{itemize}
-			\item svi zadaci- nedostatak je sto je jako sporo
+			\item svi zadaci- nedostatak je što je jako sporo
 			\item svi ostali zadaci iz koncepata kojih se korisnik dotakao- brže, ali i dalje prepsoro
 			\item potencijalno korištenje clusteringa/BKT-a za preporuku manjeg skupa zadataka
 		\end{itemize}
@@ -176,7 +176,7 @@ Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
 Provedeni su eksperimenti parametara, argumenata kt dijela - broja epoha, stope učenja, brzine smanjivanja stope učenja, momentuma koji ubrzava gradijentni spust, omjera rezanja tenzora kako gradijent ne bi eksplodirao te utjecaj \textit{batch sizea} dataseta.\newline
 Najznačaniji zaključak izveden je za broj epoha - povećanjem rastu iznosi izlaznih vjerojatnosti. Eksperimentirano je s vrijednostima 1, 5, 100 i 1000. Najznačaniji rezultati dobivaju se za 1000, no dugotrajnost treniranja je jako izražena. Stoga je većina sljedećih eksperimenata provođena sa 100 epoha. Ostali parametri većinom zahtijevaju neznatne izmjene u odnosu na originalno postavljene.\newline
 Isprobane su vrijednosti [0.005, 0.05, 0.5]. Stopa učenja ne smije imati prevelik iznos jer rezultat pokazuje sumnjivo previsoku izlaznu vjerojanost, blizu 1, što ukazuje na prenaučenost sustava. Potrebno je odgovarajuće intervalno smanjivanje stope učenja, koje ne smije biti preveliko jer prebrzo konvergira, niti premalo jer je vrijeme izvođenja tada presporo iako su rezultati intuitiviji. Ako je potrebno birati, bolje manja stopa učenja i sporiji interval promjene nego veća stopa i veće promjene.\newline
-Istražen je i momentum parametar. Sa samim stohastičnim gradijentnim spustom, SGD, ne računamo točnu derivaciju funkcije gubitka, već estimiramo na manjim \textit{batchevima}. Iz tog razloga, ne ide se uvijek u optimalnom smjeru jer takve derivacije zašumljene. Kod SGD-a su isto tako problem tjesnaci strmiji u jednoj dimenziji (česti su blizu lokalnih minimuma). SGD ih teško uočava. Dodavanje Momentum algoritma ubrazava njihove prelaske. Također, derivacije su glađe, manje zašumljene. Provedeni su eksperimenti s vrijednostima između 0.5 i 0.95. Što je parametar Momentuma manji, slijed podataka je više skokovit. Algoritam usrednjava na manjem broju podataka pa smo bliže zašumljenim podacima. Utvrđeno je da je najbolji momentum 0.9, što je vrijednost koja se često uzima u strojnom učenju.\newline
+Istražen je i momentum parametar. Sa samim stohastičnim gradijentnim spustom, SGD, ne računamo točnu derivaciju funkcije gubitka, već estimiramo na manjim \textit{batchevima}. Iz tog razloga, ne ide se uvijek u optimalnom smjeru jer su takve derivacije zašumljene. Kod SGD-a su isto tako problem tjesnaci strmiji u jednoj dimenziji (česti su blizu lokalnih minimuma). SGD ih teško uočava. Dodavanje Momentum algoritma ubrazava njihove prelaske. Također, derivacije su glađe, manje zašumljene. Provedeni su eksperimenti s vrijednostima između 0.5 i 0.95. Što je parametar Momentuma manji, slijed podataka je više skokovit. Algoritam usrednjava na manjem broju podataka pa smo bliže zašumljenim podacima. Utvrđeno je da je najbolji momentum 0.9, što je vrijednost koja se često uzima u strojnom učenju.\newline
 Isprobane su i različite veličine maxgradnorm parametra. Naime, kako gradijenti ne bi eksplodirali tijekom treniranja, koriste se tehnike \textit{gradient clippinga}. Eksplodiranje gradijenta dogodi se kad je gradijent prevelik, što dovodi do akumuliranja pogrešnih gradijenata. Kao rezultat dobije se nestabilna mreža. Iz tog razloga, u TensorFlow-u koristi se naredba \textit{tf.clip\_by\_global\_norm()} - reže tenzore u treniranju u omjeru sume njihovih normi, a omjer definira upravo maxgradnorm argument. Povećanjem i smanjenjem vrijednosti [5, 100], otkriveno je da se rezultati ne mijenjaju značajno te je stoga najbolje ostaviti originalno (50). \newline
 Što se tiče \textit{batch sizea}, za "Biologiju" se pokazao boljim manji \textit{batch} [5, 15, 32 -> 5], prilagođeniji činjenici da je sam dataset malen. 
 
@@ -192,7 +192,7 @@ Preporuceni put: [(2, 1), (1, 1), (3, 1)]\newline
 outList [0.75084096 0.79288167 0.797158 ].\newline
 Eksperimentirano je i s vrijednostima \textit{discounta} (između 0.5 i 0.99) u \textit{Logged TRPO} i \textit{n\_steps} (2, 5, 10, 50) u definiciji okoline. Zaključeno je kako nije moguće definirati pravilnosti jer su rezultati previše skokoviti, previše osciliraju.\newline
 Provođene su i provjere ponašanja različitih strategija. Strategija je smatrana najvažnijim aspektom podržanog učenja agenta i zahtijeva određeni dugotrajniji \textit{tuning}. U ExRec-u je originalno korištena strategija Categorical GRU koja sadrži GRU koji predviđa na temelju kategoričke distribucije. Kategoričke strategije su namijenjene diskretnim akcijskim prostorima. Očekuju da akcijske vrijednosti predstavljaju vjerojatnosnu distribuciju prema akciji. Iz takve distribucije svaka je akcija uzorkovana. \newline
-Uz spomenutu strategiju, najviše obećavajućom pokazala se Categorical MLP strategija koja sadrži MLP (engl. \textit{multi-layer perceptron} koji predviđa na temelju kategoričke distribucije. Uz zanemarivanje originalnih vrijednosti i postav \textit{hidden\_size = (5, 5)} dolazi do stalnog rasta izlaza, ali preporuka često uključuje isti zadatak koji korisnik nikako da točno riješi.\newline
+Uz spomenutu strategiju, najviše obećavajućom pokazala se Categorical MLP strategija koja sadrži MLP (engl. \textit{multi-layer perceptron}) koji predviđa na temelju kategoričke distribucije. Uz zanemarivanje originalnih vrijednosti i postav \textit{hidden\_size = (5, 5)} dolazi do stalnog rasta izlaza, ali preporuka često uključuje isti zadatak koji korisnik nikako da točno riješi.\newline
 Preporuceni put: [(0, 1), (3, 0), (3, 0), (3, 0)]\newline
 outList [0.59386724 0.5939555  0.5939993  0.5940211 ]\newline
 Ako se koristi Categorical MLP uz \textit{hidden\_size = (5, 5)} i elu aktivacijsku funkciju, dolazi do veće stabilnosti uz trend rasta izlaznih vrijednosti. Naime, prilikom različtih pokretanja, sustav preporučuje često preporučuje isti put za isti prijeđeni \textit{trace}, što dosad nije bio slučaj.\newline
@@ -221,7 +221,7 @@ Za kontroliranje stope učenja originalno je korištena Adam metoda. Eksperiment
 Osim gradijenta prvog reda i konjugatnog gradijenta, proučen je i isproban LBFGS optimizator. Metoda je to optimizacije koja koristi derivacije drugog reda. Kvazi-Newtonova je metoda; metoda aproksimacije Hesseove matrice.\newline
 Jedna od najpopularnijih metoda aproksimacije Hesseove matrice je BFGS metoda temeljena na kompletnoj povijesti gradijenata. 
 LBFGS metoda (engl. \textit{limited memory BFGS}) je temeljena na zadnjih m gradijenata. Popularna je jer je potrebno zadržati samo tih zadnjih m gradijenata (obično 10 do 20) što doprinosi smanjenju skladišnog prostora. Za razliku od potpunog BFGS-a, LBFGS nikad eksplicitno ne formira ili sprema procjenu Hesseove matrice.\newline
-Iako u teoriji obećavajuće, u praksi se većinom primjećuje preporuka samo jednog zadatka ili je pak vidljiv trend pada koji nije u skladu s našim zahtjevima.
+Iako u teoriji obećavajuće, u praksi se većinom primjećuje preporuka samo jednog zadatka ili je pak vidljiv trend pada koji nije u skladu s našim zahtjevima.\newline
 Preporuceni put: [(0, 1), (2, 1)]\newline
 outList [0.60839105 0.60837907]\newline
 Preporuceni put: [(1, 0), (1, 1)]\newline
