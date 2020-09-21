@@ -30,7 +30,7 @@ class Model():
         self.memory_key_state_dim=memory_key_state_dim
         self.memory_value_state_dim=memory_value_state_dim
         self.final_fc_dim=final_fc_dim
-        self.maxgrandnorm=maxgradnorm
+        self.maxgradnorm=maxgradnorm
         self.momentum=momentum
         self.checkpoint_dir=checkpoint_dir
         self.log_dir=log_dir
