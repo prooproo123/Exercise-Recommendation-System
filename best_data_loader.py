@@ -24,6 +24,7 @@ class Data_Loader():
     def load_data2(self,data):
         q_data = list()
         qa_data = list()
+        print(data)
         for lineid, line in enumerate(data.split('\n')[:-1]):
             # strip
             line = line.strip()

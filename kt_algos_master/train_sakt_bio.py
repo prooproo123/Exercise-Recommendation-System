@@ -5,12 +5,12 @@ import torch
 import torch.nn as nn
 from torch.optim import Adam
 
-from sakt_bio import SAKT
-from utils.logger import Logger
-from utils.metrics import Metrics
-from utils.misc import *
+from kt_algos_master.sakt_bio import SAKT
+from kt_algos_master.utils.logger import Logger
+from kt_algos_master.utils.metrics import Metrics
+from kt_algos_master.utils.misc import *
 
-import prepare_data_bio
+import kt_algos_master.prepare_data_bio as prepare_data_bio
 
 #prepare_data.prepare_assistments("assistments09", 10, True)
 prepare_data_bio.prepare_biology("biology30")

@@ -5,6 +5,7 @@ import os, argparse
 
 
 def main(dataset,path=None,fromVariable=False,variableTrain=None,variableValid=None):
+    print("ZAPOCEO KT MAIN")
     parser = argparse.ArgumentParser()
     parser.add_argument('--num_epochs', type=int, default=1)
     parser.add_argument('--train', type=str2bool, default='t')
@@ -99,6 +100,7 @@ def main(dataset,path=None,fromVariable=False,variableTrain=None,variableValid=N
             if dataset == 'synthetic':
                 args.dataset = 'naive_c5_q50_s4000_v19'
             if fromVariable:
+                print("ZAPOCEO LOADANJE2")
                 train_q_data, train_qa_data = data.load_data2(variableTrain)
                 valid_q_data, valid_qa_data = data.load_data2(variableValid)
             else:
@@ -115,6 +117,7 @@ def main(dataset,path=None,fromVariable=False,variableTrain=None,variableValid=N
                 print('Shape of train data : %s, valid data : %s' % (train_q_data.shape, valid_q_data.shape))
                 print('Start training')
             dkvmn.train(train_q_data, train_qa_data, valid_q_data, valid_qa_data)
+            print("VRACAJU SE PARAMETRI")
             return dkvmn.getParams()
         # print('Best epoch %d' % (best_epoch))
         else:
