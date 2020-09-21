@@ -52,7 +52,7 @@ def run_all(path_to_dir,dataset_name,sep='\t'):
     plt.imshow(relevancy_matrix)
     plt.show()
     treshold=10 #najveci broj kandidata
-    personal=cand.PersonalCandidates(relevancy_matrix,cand.max_number_of_exercises(),treshold,cand.no_normalization())
+    personal=cand.PersonalCandidates(relevancy_matrix,cand.max_number_of_exercises,treshold,cand.no_normalization)
 
     #path_to_gform_traces=''
     #all_student_traces= traces.get_traces_from_gforms(path_to_gform_traces)
