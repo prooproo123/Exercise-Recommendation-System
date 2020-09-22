@@ -42,7 +42,7 @@ class PersonalCandidates:
                 candidates=candidates | set(app)
     #           candidates.add(app)
         if len(candidates) == 0: #nema vise za preporuciti
-            return -1
+            return []
         return list(candidates)
 
     #poziva se na pocetku i nakon svakog preporucivanja/ stavljanja nove matrice

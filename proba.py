@@ -1,6 +1,6 @@
 import pandas as pd
 
-
+'''
 biologija=pd.read_csv('C:/Users/Admin/Downloads/Dataset.csv',sep='\t',index_col=None,
                       dtype={'user_id': int,
                              'problem_id': int,
@@ -38,13 +38,23 @@ if len(assistments) - len(df1) == len(df2):
     print('success')
 
 
-'''
+
 biologiji ne smetaju .notnull(), .notna() varijable 
 
 '''
 '''
 Dodavanje kt_algos_master u path, za prepare bio dodati import "as"
 Staviti  fromVariable u new_kt
+
+
+trace=[(1, 0), (27, 1)]
+candidate_exercises=[3, 7, 9, 13, 15, 17, 18, 25, 26, 29]
+a2i = dict(zip(candidate_exercises, range(len(candidate_exercises))))
+trace = [(a2i[i[0]], i[1]) for i in trace]
+print(a2i)
 '''
+import pickle as pl
 
-
+f=open(r'C:\Users\Admin\Downloads\arms.pkl','rb')
+piklano=pl.load(f)
+print(piklano)
