@@ -6,7 +6,7 @@ import os, argparse
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--num_epochs', type=int, default=1)
+    parser.add_argument('--num_epochs', type=int, default=2)
     parser.add_argument('--train', type=str2bool, default='t')
     parser.add_argument('--init_from', type=str2bool, default='t')
     parser.add_argument('--show', type=str2bool, default='f')
@@ -20,13 +20,22 @@ def main():
     # synthetic / assist2009_updated / assist2015 / STATICS / biology30
     dataset = 'assist2009_updated'
 
+    # if dataset == 'assist2009_updated':
+    #     parser.add_argument('--batch_size', type=int, default=32)
+    #     parser.add_argument('--memory_size', type=int, default=9)
+    #     parser.add_argument('--memory_key_state_dim', type=int, default=50)
+    #     parser.add_argument('--memory_value_state_dim', type=int, default=200)
+    #     parser.add_argument('--final_fc_dim', type=int, default=50)
+    #     parser.add_argument('--n_questions', type=int, default=2446)
+    #     parser.add_argument('--seq_len', type=int, default=200)
+
     if dataset == 'assist2009_updated':
         parser.add_argument('--batch_size', type=int, default=32)
-        parser.add_argument('--memory_size', type=int, default=9)
+        parser.add_argument('--memory_size', type=int, default=20)
         parser.add_argument('--memory_key_state_dim', type=int, default=50)
         parser.add_argument('--memory_value_state_dim', type=int, default=200)
         parser.add_argument('--final_fc_dim', type=int, default=50)
-        parser.add_argument('--n_questions', type=int, default=2446)
+        parser.add_argument('--n_questions', type=int, default=110)
         parser.add_argument('--seq_len', type=int, default=200)
 
     elif dataset == 'synthetic':

@@ -5,7 +5,7 @@ from sklearn_extra.cluster import KMedoids
 from sklearn.metrics import silhouette_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
-from google.colab import files
+#from google.colab import files
 import io
 import pandas as pd
 from collections import Counter
