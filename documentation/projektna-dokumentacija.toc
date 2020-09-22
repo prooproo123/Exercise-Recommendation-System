@@ -61,13 +61,19 @@
 \contentsline {subsubsection}{Evaluacija preporuka}{46}{subsection.8.5.1}%
 \contentsline {subsection}{\numberline {8.5.2}Rezultati i problemi}{46}{subsection.8.5.2}%
 \contentsline {subsubsection}{26.8.2020.}{46}{subsection.8.5.2}%
-\contentsline {subsubsection}{01.09.2020.}{48}{figure.caption.23}%
-\contentsline {subsubsection}{04.09.2020. - eksperimentiranje s parametrima kt dijela}{48}{figure.caption.23}%
-\contentsline {subsubsection}{07.09.2020. - eksperimentiranje s parametrima kt i rs dijela}{49}{figure.caption.23}%
-\contentsline {subsubsection}{08.09.2020. - optimizatori}{51}{figure.caption.23}%
+\contentsline {subsubsection}{01.09.2020.}{48}{figure.caption.24}%
+\contentsline {subsubsection}{04.09.2020. - eksperimentiranje s parametrima kt dijela}{48}{figure.caption.24}%
+\contentsline {subsubsection}{07.09.2020. - eksperimentiranje s parametrima kt i rs dijela}{49}{figure.caption.24}%
+\contentsline {subsubsection}{08.09.2020. - optimizatori}{51}{figure.caption.24}%
 \contentsline {section}{\numberline {8.6}Upute za pokretanje}{53}{section.8.6}%
 \contentsline {section}{\numberline {8.7}Poveznice}{53}{section.8.7}%
 \contentsline {chapter}{\numberline {9}Self-attentive knowledge tracing}{55}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Problemi sa SAKT-om}{56}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}Greške i ispravci}{57}{subsection.9.1.1}%
-\contentsline {chapter}{\numberline {10}Literatura}{59}{chapter.10}%
+\contentsline {section}{\numberline {9.1}Općenito o funkcioniranju attention modela}{56}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Konkretna izvedba SAKT-a}{59}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Problemi sa SAKT-om}{60}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Greške i ispravci}{60}{subsection.9.3.1}%
+\contentsline {section}{\numberline {9.4}Sakt \#2}{61}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Generiranje candidate-exercises}{61}{subsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.4.2}Usporedba SAKT-a i DKT-a}{62}{subsection.9.4.2}%
+\contentsline {section}{\numberline {9.5}Poveznice}{64}{section.9.5}%
+\contentsline {chapter}{\numberline {10}Literatura}{65}{chapter.10}%
