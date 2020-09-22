@@ -16,7 +16,7 @@ biologija=pd.read_csv('C:/Users/Admin/Downloads/Dataset.csv',sep='\t',index_col=
 biologija=biologija[biologija['skill_id'].notnull()]
 biologija=biologija[biologija['skill_id'].notna()]
 
-
+'''
 assistments=pd.read_csv('data/skill_builder/skill_builder_data.csv',index_col=None,
                         dtype={'user_id': int,
                               'problem_id': int,
@@ -38,7 +38,7 @@ if len(assistments) - len(df1) == len(df2):
     print('success')
 
 
-
+'''
 biologiji ne smetaju .notnull(), .notna() varijable 
 
 '''
@@ -53,8 +53,7 @@ a2i = dict(zip(candidate_exercises, range(len(candidate_exercises))))
 trace = [(a2i[i[0]], i[1]) for i in trace]
 print(a2i)
 '''
-import pickle as pl
 
-f=open(r'C:\Users\Admin\Downloads\arms.pkl','rb')
-piklano=pl.load(f)
-print(piklano)
+a=[1,1,1,2,4,6,8,8]
+a=list(set(a))
+print(a)

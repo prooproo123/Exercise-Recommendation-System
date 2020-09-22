@@ -60,7 +60,7 @@ def run_all(path_to_dir,dataset_name,sep='\t'):
     stu=[[(1, 0), (27, 1)]]
     stu_only_ids=[el[0] for el in stu[0] if el[1] == 1] #ako je netko krivo rijesio zadatak on bi i dalje trebao ostati u poolu mogucih zadataka
     cands=personal.get_candidates(stu_only_ids)
-    cands.append([el[0] for el in stu[0]])# zbog rs-a u kandidatima moraju biti i traceovi
+    cands.extend([el[0] for el in stu[0]])# zbog rs-a u kandidatima moraju biti i traceovi
     cands=list(set(cands))
     print("SAKT preporuka "+str(cands))
     recommendation=rs.run_rs(stu,cands,params,exercise_concepts_mapping,exercises_id_converter,no_exercises,no_concepts)
