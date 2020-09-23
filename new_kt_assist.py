@@ -6,7 +6,7 @@ import os, argparse
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--num_epochs', type=int, default=2)
+    parser.add_argument('--num_epochs', type=int, default=3)
     parser.add_argument('--train', type=str2bool, default='t')
     parser.add_argument('--init_from', type=str2bool, default='t')
     parser.add_argument('--show', type=str2bool, default='f')
@@ -31,7 +31,7 @@ def main():
 
     if dataset == 'assist2009_updated':
         parser.add_argument('--batch_size', type=int, default=32)
-        parser.add_argument('--memory_size', type=int, default=20)
+        parser.add_argument('--memory_size', type=int, default=10)
         parser.add_argument('--memory_key_state_dim', type=int, default=50)
         parser.add_argument('--memory_value_state_dim', type=int, default=200)
         parser.add_argument('--final_fc_dim', type=int, default=50)

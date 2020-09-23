@@ -10,16 +10,7 @@ def softmax(num):
 
 
 def cor_weight(embedded, q):
-    """
-    Calculate the KCW of the exercise
-    :param embedded: the embedding of exercise q
-    :param q: exercise ID
-    :return: the KCW of the exercise
-    """
     concepts = e2c[q]
-
-    #keymatrix num_concepts*
-
     corr = softmax([np.dot(embedded, key_matrix[i]) for i in concepts])
     correlation = np.zeros(Concepts)
     for j in range(len(concepts)):
@@ -30,8 +21,7 @@ def cor_weight(embedded, q):
 with open('checkpoint/biology30_32batch_1epochs/kt_params', 'rb') as f:
     params = pickle.load(f)
 
-# Knowledge Concepts Corresponding to the exercise
-# with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+
 with open('data/biology30/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
     e2c = pickle.load(f)
 
@@ -59,17 +49,6 @@ Concepts = 5
 
 key_matrix = params['Memory/key:0']
 
-# with gzip.open("data/macosko_2015.pkl.gz", "rb") as f:
-#     data = pickle.load(f)
-#
-# # with open("data/retinas", "r") as f:
-# #     pickle.dump(data,f)
-# #
-# # with open("data/retinas", "r") as f:
-# #     data = pickle.load(f)
-#
-# x = data["pca_50"]
-# y = data["CellType1"].astype(str)
 
 qs = data["problem_id"]
 q_embed_mtx = params['Embedding/q_embed:0']
@@ -89,19 +68,9 @@ y=np.argmax(x,axis=1)
 #y = data["skill_id"].astype(str).values
 y2=[concepts_id_name[ind] for ind in y]
 
-# with open("data/skill_builder/chunk.pkl", "rb") as f:
-#     data = pickle.load(f)
-#
-# x = data["problem_id"]
-# y = data["skill_id"]
 
-# print("Data set contains %d samples with %d features" % x.shape)
 from openTSNE import TSNE
 
 embedding = TSNE().fit(x)
 
-# sns.set(rc={'figure.figsize':(11.7,8.27)})
-# palette = sns.color_palette("bright",10)
-# sns.scatterplot(x=embedding[:,0], y=embedding[:,1], hue=y, legend='full')
-# sns.scatterplot(x=embedding[:,0], y=embedding[:,1], hue=y, legend='full')
 utils.plot(embedding, y=y2, colors=utils.BIOLOGY_COLORS)

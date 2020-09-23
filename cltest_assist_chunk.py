@@ -2,7 +2,7 @@ import pickle
 
 import numpy as np
 
-import plotutils as utils
+from clustering import plotutils as utils
 import pandas as pd
 
 
