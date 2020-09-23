@@ -171,11 +171,75 @@ Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
 			\item svi ostali zadaci iz koncepata kojih se korisnik dotakao- brže, ali i dalje prepsoro
 			\item potencijalno korištenje clusteringa/BKT-a za preporuku manjeg skupa zadataka
 		\end{itemize}
-	
+
+\subsubsection{04.09.2020. - eksperimentiranje s parametrima kt dijela}
+Provedeni su eksperimenti parametara, argumenata kt dijela - broja epoha, stope učenja, brzine smanjivanja stope učenja, momentuma koji ubrzava gradijentni spust, omjera rezanja tenzora kako gradijent ne bi eksplodirao te utjecaj \textit{batch sizea} dataseta.\newline
+Najznačaniji zaključak izveden je za broj epoha - povećanjem rastu iznosi izlaznih vjerojatnosti. Eksperimentirano je s vrijednostima 1, 5, 100 i 1000. Najznačaniji rezultati dobivaju se za 1000, no dugotrajnost treniranja je jako izražena. Stoga je većina sljedećih eksperimenata provođena sa 100 epoha. Ostali parametri većinom zahtijevaju neznatne izmjene u odnosu na originalno postavljene.\newline
+Isprobane su vrijednosti [0.005, 0.05, 0.5]. Stopa učenja ne smije imati prevelik iznos jer rezultat pokazuje sumnjivo previsoku izlaznu vjerojanost, blizu 1, što ukazuje na prenaučenost sustava. Potrebno je odgovarajuće intervalno smanjivanje stope učenja, koje ne smije biti preveliko jer prebrzo konvergira, niti premalo jer je vrijeme izvođenja tada presporo iako su rezultati intuitiviji. Ako je potrebno birati, bolje manja stopa učenja i sporiji interval promjene nego veća stopa i veće promjene.\newline
+Istražen je i momentum parametar. Sa samim stohastičnim gradijentnim spustom, SGD, ne računamo točnu derivaciju funkcije gubitka, već estimiramo na manjim \textit{batchevima}. Iz tog razloga, ne ide se uvijek u optimalnom smjeru jer takve derivacije zašumljene. Kod SGD-a su isto tako problem tjesnaci strmiji u jednoj dimenziji (česti su blizu lokalnih minimuma). SGD ih teško uočava. Dodavanje Momentum algoritma ubrazava njihove prelaske. Također, derivacije su glađe, manje zašumljene. Provedeni su eksperimenti s vrijednostima između 0.5 i 0.95. Što je parametar Momentuma manji, slijed podataka je više skokovit. Algoritam usrednjava na manjem broju podataka pa smo bliže zašumljenim podacima. Utvrđeno je da je najbolji momentum 0.9, što je vrijednost koja se često uzima u strojnom učenju.\newline
+Isprobane su i različite veličine maxgradnorm parametra. Naime, kako gradijenti ne bi eksplodirali tijekom treniranja, koriste se tehnike \textit{gradient clippinga}. Eksplodiranje gradijenta dogodi se kad je gradijent prevelik, što dovodi do akumuliranja pogrešnih gradijenata. Kao rezultat dobije se nestabilna mreža. Iz tog razloga, u TensorFlow-u koristi se naredba \textit{tf.clip\_by\_global\_norm()} - reže tenzore u treniranju u omjeru sume njihovih normi, a omjer definira upravo maxgradnorm argument. Povećanjem i smanjenjem vrijednosti [5, 100], otkriveno je da se rezultati ne mijenjaju značajno te je stoga najbolje ostaviti originalno (50). \newline
+Što se tiče \textit{batch sizea}, za "Biologiju" se pokazao boljim manji \textit{batch} [5, 15, 32 -> 5], prilagođeniji činjenici da je sam dataset malen. 
+
+\subsubsection{07.09.2020. - eksperimentiranje s parametrima kt i rs dijela}
+Variranjem kt parametara \textit{memory\_key\_state\_dim, memory\_value\_state\_dim} te \textit{final\_fc\_dim} zaključeno je da njihova veličina ne utječe na izlazne vrijednosti, već samo doprinosi brzini treniranja (ako manja veličina, brže se trenira). Već je prije zaključeno i opet potvrđeno kako paramteri \textit{memory\_size, n\_questions} i \textit{seq\_len} moraju točno odgovarati vrijednostima dataseta: broju koncepata, broju pitanja te duljini niza treniranja.  \newline
+U rs dijelu, dosadašnji eksperimenti većinom su izvođeni s jednom epohom treniranja RLTutora. Variranjem epoha na 10 i 100, nije došlo do značajnijih poboljšanja (ni povećanja ni stabilnosti) u rezultatu izlaza. \newline
+S druge strane, ako se parametar \textit{hidden\_dim} podesi na "Biologiji" prikaldnijih 5, s obzirom na postojanje 5 koncepata u datasetu (u odnosu na originalno postavljenih 32) zajedno s \textit{batch\_sizeom}, dobije se porast izlaza. Ipak, prilikom različitih pokretanja, izlazi imaju trend pada.\newline
+Ako se \textit{batch\_size raw\_policyja LoggedTRPO} smanji s originalnih 4000 na prihvatljivijih 32, uz parametar \textit{batch\_size} kt-a i {hidden\_dim} rs-a postavljen na 5, dobije se veća stabilnost. Ako se pritom broj epoha treniranja kt dijela poveća s 1 na 100, dobiju se znatno veće vrijednosti izlaza u odnosu na prethodna razmatranja (npr. \newline outList [0.7687031   0.8171221  0.83575428] \newline umjesto dosadašnjih \newline outList [0.5994091  0.59953147 0.59946656].\newline
+U Categorical GRU strategiji podržanog učenja (originalno postavljenoj), napravljeni su eksperimenti s postavljanjem različitih aktivacijskih funkcija koje u treniranje uvode nelinearnosti. Originalno je postavljen tanh. Postav sigmoide većinom povećava izlazne vrijednosti i njihov razmak, ali uvodi trend pada. Softmax ne pokazuje zadovoljavajuće rezultate; smanjuje izlazne vrijednosti i njihov razmak. Rectify (linear rectifier) aktivacijska funkcija preporučuje stalno isti zadatak u putanji, ali ne uspijeva se doći do točnog rješenja. Leaky\_rectify se ponaša previše nepredvidljivo; vrijednosti skaču i padaju. Selu i linear aktivacijske funkcije ne pokazuju pravilnosti pri izvođenju. Elu (engl. \textit{exponential linear unit}) pokazuje dosta dobra svojstva. Smanjuje \textit{bias} (pristranost pomaka) u odnosu na rectify  odmicanjem srednje aktivacije prema 0. Brže konvergira nuli i proizvodi točniji rezultat (jer nema negativan gradijent za negativne vrijednosti). Primjeri rješenja za "Biologiju":\newline
+Preporuceni put: [(1, 1), (0, 1), (2, 0)]\newline
+outList [0.68188673 0.68203878 0.77824879]\newline
+Preporuceni put: [(2, 1), (1, 1), (3, 1)]\newline
+outList [0.75084096 0.79288167 0.797158 ].\newline
+Eksperimentirano je i s vrijednostima \textit{discounta} (između 0.5 i 0.99) u \textit{Logged TRPO} i \textit{n\_steps} (2, 5, 10, 50) u definiciji okoline. Zaključeno je kako nije moguće definirati pravilnosti jer su rezultati previše skokoviti, previše osciliraju.\newline
+Provođene su i provjere ponašanja različitih strategija. Strategija je smatrana najvažnijim aspektom podržanog učenja agenta i zahtijeva određeni dugotrajniji \textit{tuning}. U ExRec-u je originalno korištena strategija Categorical GRU koja sadrži GRU koji predviđa na temelju kategoričke distribucije. Kategoričke strategije su namijenjene diskretnim akcijskim prostorima. Očekuju da akcijske vrijednosti predstavljaju vjerojatnosnu distribuciju prema akciji. Iz takve distribucije svaka je akcija uzorkovana. \newline
+Uz spomenutu strategiju, najviše obećavajućom pokazala se Categorical MLP strategija koja sadrži MLP (engl. \textit{multi-layer perceptron} koji predviđa na temelju kategoričke distribucije. Uz zanemarivanje originalnih vrijednosti i postav \textit{hidden\_size = (5, 5)} dolazi do stalnog rasta izlaza, ali preporuka često uključuje isti zadatak koji korisnik nikako da točno riješi.\newline
+Preporuceni put: [(0, 1), (3, 0), (3, 0), (3, 0)]\newline
+outList [0.59386724 0.5939555  0.5939993  0.5940211 ]\newline
+Ako se koristi Categorical MLP uz \textit{hidden\_size = (5, 5)} i elu aktivacijsku funkciju, dolazi do veće stabilnosti uz trend rasta izlaznih vrijednosti. Naime, prilikom različtih pokretanja, sustav preporučuje često preporučuje isti put za isti prijeđeni \textit{trace}, što dosad nije bio slučaj.\newline
+Preporuceni put: [(3, 1), (2, 1), (1, 1)]\newline
+outList [0.59849751 0.59855151 0.59854913]\newline
+Preporuceni put: [(2, 1), (3, 1), (1, 1)]\newline
+outList [0.59207004 0.59207171 0.5922001 ]\newline
+
+\section{Upute za pokretanje}
+
+Za pokretanje ove verzije ExReca potrebno je imati dataset koji ima slijedeće stupce:
+
+\begin{itemize}
+	 \item user\_id - identifikacijska oznaka korisnika
+	 \item problem\_id -identifikacijska oznaka zadatka
+	 \item skill\_id -identifikacijska oznaka koncepta
+	 \item correct - točnost rješenog zadataka (0 ili 1)
+\end{itemize}
+
+U skripti "sve\_u\_jednom.py" su napisane sve potrebne naredbe za pokretanje ExReca nad nekim datasetom.
+Prvo je potrebno dati putanju do .csv filea dataseta, zatim se u funkciji"get\_chunks(path)" skripte chunk\_analysis
+dataset dijeli na manje dijelove radi lakšeg pokretanja, ta funkcija ima i opcionalan argument chunk\_size s
+kojim se kontrolira veličina chunka. Ako je chunk\_size veći nego dataset, uzima se cijeli skup podataka. Funkcija
+vraća objekt tipa pandas dataframe. Dalje se željeni dataframe šalje u konstruktor klase ChunkInfo skripte chunk\_analysis
+gdje se obrađuju određena svojstva dataframea i pakiraju se varijable koji će se koristiti za pravilno funkcioniranje ExReca.
+
+Prvi dio ExReca je Knowledge Tracing dio i za njegovo funkcioniranje potrebno je podijeliti dataset na train i validation dio
+to rade create\_from\_dataframe i create\_from\_csv funkcije skripte train\_and\_validate\_creator. Ta funkcija ima opciju
+čitanja dataseta iz csv-a ili dataframea. Također ima opciju želi pisati nove datasetove kao .csv fileove ili da ih vraća
+kao dataframe varijable. Omjer train:valid je po defaultu stavljen na 7:3, ali postoji i argument funkcije kojim se i to može mijenjati.
+KT dio exreca računa parametre koji su potrebni za funkcioniranje Recommendation System dijela i vraća ih u varijablu params.
+Params se zajedno sa argumentima dobivenih iz chunk\_analysisa šalju u RS dio gdje se generira pretpostavljeni "put" odabira i
+točnosti korisnikovih zadataka te ujedno daje i procjenjenu razinu znanja u svakom trenutku.
+
+
+
 \section{Poveznice}
 \url{http://incompleteideas.net/book/first/ebook/node9.html}
 \url{https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be}
 \url{https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process}
 \url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9}
 \url{https://arxiv.org/abs/1502.05477}
+\url{https://towardsdatascience.com/stochastic-gradient-descent-with-momentum-a84097641a5d}
+\url{https://www.tensorflow.org/api_docs/python/tf/compat/v1/train/MomentumOptimizer}
+\url{https://deepai.org/machine-learning-glossary-and-terms/gradient-clipping}
+\url{https://stackoverflow.com/questions/49987839/how-to-handle-none-in-tf-clip-by-global-norm}
+\url{https://lasagne.readthedocs.io/en/latest/modules/nonlinearities.html}
+\url{https://garage.readthedocs.io/en/v2020.06.0/_apidoc/garage.tf.policies.categorical_gru_policy.html}
+\url{https://nervanasystems.github.io/coach/components/exploration_policies/index.html}
 

@@ -5,12 +5,12 @@ import gym.spaces
 import traceback
 import logging
 
-try:
-    from gym.wrappers.monitoring import logger as monitor_logger
+#try:
+ #   from gym.wrappers.monitoring import logger as monitor_logger
 
-    monitor_logger.setLevel(logging.WARNING)
-except Exception as e:
-    traceback.print_exc()
+   # monitor_logger.setLevel(logging.WARNING)
+#except Exception as e:
+  #  traceback.print_exc()
 
 import os
 import os.path as osp

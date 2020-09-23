@@ -12,64 +12,87 @@ from knowledge_tracing.memory import DKVMN
 
 
 class Model():
-    def __init__(self, args, sess, name='KT'):
-        self.args = args
+    def __init__(self,memory_size,batch_size,seq_len,n_questions,memory_key_state_dim,
+                     memory_value_state_dim,final_fc_dim,momentum,maxgradnorm,
+                     show,init_from,checkpoint_dir,log_dir,dataset,inital_lr,num_epochs,
+                    anneal_interval,
+                 sess, name='KT'):
+        self.num_epochs=num_epochs
+        self.checkpoint_dir = None
         self.name = name
         self.sess = sess
+        self.show = show
+        self.init_from = init_from
+        self.batch_size = batch_size
+        self.memory_size=memory_size
+        self.seq_len=seq_len
+        self.n_questions=n_questions
+        self.memory_key_state_dim=memory_key_state_dim
+        self.memory_value_state_dim=memory_value_state_dim
+        self.final_fc_dim=final_fc_dim
+        self.maxgradnorm=maxgradnorm
+        self.momentum=momentum
+        self.checkpoint_dir=checkpoint_dir
+        self.log_dir=log_dir
+        self.dataset=dataset
+        self.initial_lr=inital_lr
+        self.anneal_interval=anneal_interval
+
+
 
         self.create_model()
 
     def create_model(self):
         # 'seq_len' means question sequences
-        self.q_data = tf.placeholder(tf.int32, [self.args.batch_size, self.args.seq_len], name='q_data')
-        self.qa_data = tf.placeholder(tf.int32, [self.args.batch_size, self.args.seq_len], name='qa_data')
-        self.target = tf.placeholder(tf.float32, [self.args.batch_size, self.args.seq_len], name='target')
+        self.q_data = tf.placeholder(tf.int32, [self.batch_size, self.seq_len], name='q_data')
+        self.qa_data = tf.placeholder(tf.int32, [self.batch_size, self.seq_len], name='qa_data')
+        self.target = tf.placeholder(tf.float32, [self.batch_size, self.seq_len], name='target')
 
         # Initialize Memory
         with tf.variable_scope('Memory'):
-            init_memory_key = tf.get_variable('key', [self.args.memory_size, self.args.memory_key_state_dim], \
+            init_memory_key = tf.get_variable('key', [self.memory_size, self.memory_key_state_dim], \
                                               initializer=tf.truncated_normal_initializer(stddev=0.1))
-            init_memory_value = tf.get_variable('value', [self.args.memory_size, self.args.memory_value_state_dim], \
+            init_memory_value = tf.get_variable('value', [self.memory_size, self.memory_value_state_dim], \
                                                 initializer=tf.truncated_normal_initializer(stddev=0.1))
         # Broadcast memory value tensor to match [batch size, memory size, memory state dim]
         # First expand dim at axis 0 so that makes 'batch size' axis and tile it along 'batch size' axis
         # tf.tile(inputs, multiples) : multiples length must be thes saame as the number of dimensions in input
         # tf.stack takes a list and convert each element to a tensor
-        init_memory_value = tf.tile(tf.expand_dims(init_memory_value, 0), tf.stack([self.args.batch_size, 1, 1]))
+        init_memory_value = tf.tile(tf.expand_dims(init_memory_value, 0), tf.stack([self.batch_size, 1, 1]))
         print(init_memory_value.get_shape())
 
-        self.memory = DKVMN(self.args.memory_size, self.args.memory_key_state_dim, \
-                            self.args.memory_value_state_dim, init_memory_key=init_memory_key,
+        self.memory = DKVMN(self.memory_size, self.memory_key_state_dim, \
+                            self.memory_value_state_dim, init_memory_key=init_memory_key,
                             init_memory_value=init_memory_value, name='DKVMN')
         # init_memory_value=init_memory_value, name='DKVMN',batch_size=self.args.batch_size)
 
         # Embedding to [batch size, seq_len, memory_state_dim(d_k or d_v)]
         with tf.variable_scope('Embedding'):
             # A
-            q_embed_mtx = tf.get_variable('q_embed', [self.args.n_questions + 1, self.args.memory_key_state_dim], \
+            q_embed_mtx = tf.get_variable('q_embed', [self.n_questions + 1, self.memory_key_state_dim], \
                                           initializer=tf.truncated_normal_initializer(stddev=0.1))
             # B
             qa_embed_mtx = tf.get_variable('qa_embed',
-                                           [2 * self.args.n_questions + 1, self.args.memory_value_state_dim],
+                                           [2 * self.n_questions + 1, self.memory_value_state_dim],
                                            initializer=tf.truncated_normal_initializer(stddev=0.1))
 
         # Embedding to [batch size, seq_len, memory key state dim]
         q_embed_data = tf.nn.embedding_lookup(q_embed_mtx, self.q_data)
         # List of [batch size, 1, memory key state dim] with 'seq_len' elements
         # print('Q_embedding shape : %s' % q_embed_data.get_shape())
-        slice_q_embed_data = tf.split(q_embed_data, self.args.seq_len, 1)
+        slice_q_embed_data = tf.split(q_embed_data, self.seq_len, 1)
         # print(len(slice_q_embed_data), type(slice_q_embed_data), slice_q_embed_data[0].get_shape())
         # Embedding to [batch size, seq_len, memory value state dim]
         qa_embed_data = tf.nn.embedding_lookup(qa_embed_mtx, self.qa_data)
         # print('QA_embedding shape: %s' % qa_embed_data.get_shape())
         # List of [batch size, 1, memory value state dim] with 'seq_len' elements
-        slice_qa_embed_data = tf.split(qa_embed_data, self.args.seq_len, 1)
+        slice_qa_embed_data = tf.split(qa_embed_data, self.seq_len, 1)
 
         prediction = list()
         reuse_flag = False
 
         # Logics
-        for i in range(self.args.seq_len):
+        for i in range(self.seq_len):
             # To reuse linear vectors
             if i != 0:
                 reuse_flag = True
@@ -90,7 +113,7 @@ class Model():
             mastery_level_prior_difficulty = tf.concat([self.read_content, q], 1)
             # f_t
             summary_vector = tf.tanh(
-                operations.linear(mastery_level_prior_difficulty, self.args.final_fc_dim, name='Summary_Vector',
+                operations.linear(mastery_level_prior_difficulty, self.final_fc_dim, name='Summary_Vector',
                                   reuse=reuse_flag))
             # p_t
             pred_logits = operations.linear(summary_vector, 1, name='Prediction', reuse=reuse_flag)
@@ -99,7 +122,7 @@ class Model():
 
         # 'prediction' : seq_len length list of [batch size ,1], make it [batch size, seq_len] tensor
         # tf.stack convert to [batch size, seq_len, 1]
-        self.pred_logits = tf.reshape(tf.stack(prediction, axis=1), [self.args.batch_size, self.args.seq_len])
+        self.pred_logits = tf.reshape(tf.stack(prediction, axis=1), [self.batch_size, self.seq_len])
 
         # Define loss : standard cross entropy loss, need to ignore '-1' label example
         # Make target/label 1-d array
@@ -118,9 +141,9 @@ class Model():
         self.lr = tf.placeholder(tf.float32, [], name='learning_rate')
         #		self.lr_decay = tf.train.exponential_decay(self.args.initial_lr, global_step=global_step, decay_steps=10000, decay_rate=0.667, staircase=True)
         #		self.learning_rate = tf.maximum(lr, self.args.lr_lowerbound)
-        optimizer = tf.train.MomentumOptimizer(self.lr, self.args.momentum)
+        optimizer = tf.train.MomentumOptimizer(self.lr, self.momentum)
         grads, vrbs = zip(*optimizer.compute_gradients(self.loss))
-        grad, _ = tf.clip_by_global_norm(grads, self.args.maxgradnorm)
+        grad, _ = tf.clip_by_global_norm(grads, self.maxgradnorm)
         self.train_op = optimizer.apply_gradients(zip(grad, vrbs), global_step=self.global_step)
         #		grad_clip = [(tf.clip_by_value(grad, -self.args.maxgradnorm, self.args.maxgradnorm), var) for grad, var in grads]
         #TODO
@@ -137,58 +160,58 @@ class Model():
         q_data_shuffled = train_q_data[shuffle_index]
         qa_data_shuffled = train_qa_data[shuffle_index]
 
-        training_step = train_q_data.shape[0] // self.args.batch_size
+        training_step = train_q_data.shape[0] // self.batch_size
         self.sess.run(tf.global_variables_initializer())
 
-        if self.args.show:
+       # if self.show:
             # from rllab.utils import ProgressBar
             # bar = ProgressBar(label, max=training_step)
-            bar = pyprind.ProgBar(training_step)
+         #   bar = pyprind.ProgBar(training_step)
 
         self.train_count = 0
-        if self.args.init_from:
+        if self.init_from:
             if self.load():
                 print('Checkpoint_loaded')
             else:
                 print('No checkpoint')
         else:
-            if os.path.exists(os.path.join(self.args.checkpoint_dir, self.model_dir)):
+            if os.path.exists(os.path.join(self.checkpoint_dir, self.model_dir)):
                 try:
-                    shutil.rmtree(os.path.join(self.args.checkpoint_dir, self.model_dir))
-                    shutil.rmtree(os.path.join(self.args.log_dir, self.mode_dir + '.csv'))
+                    shutil.rmtree(os.path.join(self.checkpoint_dir, self.model_dir))
+                    shutil.rmtree(os.path.join(self.log_dir, self.mode_dir + '.csv'))
                 except(FileNotFoundError, IOError) as e:
                     print('[Delete Error] %s - %s' % (e.filename, e.strerror))
 
         best_valid_auc = 0
 
         # Training
-        for epoch in range(0, self.args.num_epochs):
-            if self.args.show:
-                bar.next()
+        for epoch in range(0, self.num_epochs):
+          #  if self.show:
+            #    bar.next()
 
             pred_list = list()
             target_list = list()
             epoch_loss = 0
-            learning_rate = tf.train.exponential_decay(self.args.initial_lr, global_step=self.global_step,
-                                                       decay_steps=self.args.anneal_interval * training_step,
+            learning_rate = tf.train.exponential_decay(self.initial_lr, global_step=self.global_step,
+                                                       decay_steps=self.anneal_interval * training_step,
                                                        decay_rate=0.667, staircase=True)
 
             # print('Epoch %d starts with learning rate : %3.5f' % (epoch+1, self.sess.run(learning_rate)))
             for steps in range(training_step):
                 # [batch size, seq_len]
-                q_batch_seq = q_data_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size, :]
-                qa_batch_seq = qa_data_shuffled[steps * self.args.batch_size:(steps + 1) * self.args.batch_size, :]
+                q_batch_seq = q_data_shuffled[steps * self.batch_size:(steps + 1) * self.batch_size, :]
+                qa_batch_seq = qa_data_shuffled[steps * self.batch_size:(steps + 1) * self.batch_size, :]
 
                 # qa : exercise index + answer(0 or 1)*exercies_number
                 # right : 1, wrong : 0, padding : -1
                 target = qa_batch_seq[:, :]
                 # Make integer type to calculate target
                 target = target.astype(np.int)
-                target_batch = (target - 1) // self.args.n_questions
+                target_batch = (target - 1) // self.n_questions
                 target_batch = target_batch.astype(np.float)
 
                 feed_dict = {self.q_data: q_batch_seq, self.qa_data: qa_batch_seq, self.target: target_batch,
-                             self.lr: self.args.initial_lr}
+                             self.lr: self.initial_lr}
                 # self.lr:self.sess.run(learning_rate)
                 loss_, pred_, _, = self.sess.run([self.loss, self.pred, self.train_op], feed_dict=feed_dict)
                 # Get right answer index
@@ -204,8 +227,8 @@ class Model():
                 epoch_loss += loss_
             # print('Epoch %d/%d, steps %d/%d, loss : %3.5f' % (epoch+1, self.args.num_epochs, steps+1, training_step, loss_))
 
-            if self.args.show:
-                bar.finish()
+          #  if self.show:
+           #     bar.finish()
 
             all_pred = np.concatenate(pred_list, axis=0)
             all_target = np.concatenate(target_list, axis=0)
@@ -221,18 +244,18 @@ class Model():
 
             epoch_loss = epoch_loss / training_step
             print('Epoch %d/%d, loss : %3.5f, auc : %3.5f, accuracy : %3.5f' % (
-                epoch + 1, self.args.num_epochs, epoch_loss, self.auc, self.accuracy))
+                epoch + 1, self.num_epochs, epoch_loss, self.auc, self.accuracy))
             self.write_log(epoch=epoch + 1, auc=self.auc, accuracy=self.accuracy, loss=epoch_loss, name='training_')
 
-            valid_steps = valid_q_data.shape[0] // self.args.batch_size
+            valid_steps = valid_q_data.shape[0] // self.batch_size
             valid_pred_list = list()
             valid_target_list = list()
             for s in range(valid_steps):
                 # Validation
-                valid_q = valid_q_data[s * self.args.batch_size:(s + 1) * self.args.batch_size, :]
-                valid_qa = valid_qa_data[s * self.args.batch_size:(s + 1) * self.args.batch_size, :]
+                valid_q = valid_q_data[s * self.batch_size:(s + 1) * self.batch_size, :]
+                valid_qa = valid_qa_data[s * self.batch_size:(s + 1) * self.batch_size, :]
                 # right : 1, wrong : 0, padding : -1
-                valid_target = (valid_qa - 1) // self.args.n_questions
+                valid_target = (valid_qa - 1) // self.n_questions
                 valid_feed_dict = {self.q_data: valid_q, self.qa_data: valid_qa, self.target: valid_target}
                 valid_loss, valid_pred = self.sess.run([self.loss, self.pred], feed_dict=valid_feed_dict)
                 # Same with training set
@@ -251,7 +274,7 @@ class Model():
             all_valid_pred[all_valid_pred <= 0.5] = 0
             valid_accuracy = metrics.accuracy_score(all_valid_target, all_valid_pred)
             print('Epoch %d/%d, valid auc : %3.5f, valid accuracy : %3.5f' % (
-                epoch + 1, self.args.num_epochs, valid_auc, valid_accuracy))
+                epoch + 1, self.num_epochs, valid_auc, valid_accuracy))
             # Valid log
             self.write_log(epoch=epoch + 1, auc=valid_auc, accuracy=valid_accuracy, loss=valid_loss, name='valid_')
             if valid_auc > best_valid_auc:
@@ -263,7 +286,7 @@ class Model():
         return best_epoch
 
     def test(self, test_q, test_qa):
-        steps = test_q.shape[0] // self.args.batch_size
+        steps = test_q.shape[0] // self.batch_size
         self.sess.run(tf.global_variables_initializer())
         if self.load():
             print('CKPT Loaded')
@@ -274,11 +297,11 @@ class Model():
         target_list = list()
 
         for s in range(steps):
-            test_q_batch = test_q[s * self.args.batch_size:(s + 1) * self.args.batch_size, :]
-            test_qa_batch = test_qa[s * self.args.batch_size:(s + 1) * self.args.batch_size, :]
+            test_q_batch = test_q[s * self.batch_size:(s + 1) * self.batch_size, :]
+            test_qa_batch = test_qa[s * self.batch_size:(s + 1) * self.batch_size, :]
             target = test_qa_batch[:, :]
             target = target.astype(np.int)
-            target_batch = (target - 1) // self.args.n_questions
+            target_batch = (target - 1) // self.n_questions
             target_batch = target_batch.astype(np.float)
             feed_dict = {self.q_data: test_q_batch, self.qa_data: test_qa_batch, self.target: target_batch}
             loss_, pred_ = self.sess.run([self.loss, self.pred], feed_dict=feed_dict)
@@ -309,7 +332,7 @@ class Model():
 
     @property
     def model_dir(self):
-        return '{}_{}batch_{}epochs'.format(self.args.dataset, self.args.batch_size, self.args.num_epochs)
+        return '{}_{}batch_{}epochs'.format(self.dataset, self.batch_size, self.num_epochs)
 
     def load(self):
         # checkpoint_dir = os.path.join(self.args.checkpoint_dir, self.model_dir)
@@ -329,13 +352,13 @@ class Model():
         :return:
         """
         params = self.sess.run(self.params)
-        with open(os.path.join(self.args.checkpoint_dir, self.model_dir,'kt_params'), 'wb') as f:
+        with open(os.path.join(self.checkpoint_dir, self.model_dir,'kt_params'), 'wb') as f:
             pickle.dump(params, f)
 
         return params
     def save(self, global_step):
         model_name = 'DKVMN'
-        checkpoint_dir = os.path.join(self.args.checkpoint_dir, self.model_dir)
+        checkpoint_dir = os.path.join(self.checkpoint_dir, self.model_dir)
         if not os.path.exists(checkpoint_dir):
             os.mkdir(checkpoint_dir)
         self.getParams()
@@ -344,7 +367,7 @@ class Model():
 
     # Log file
     def write_log(self, auc, accuracy, loss, epoch, name='training_'):
-        log_path = os.path.join(self.args.log_dir, name + self.model_dir + '.csv')
+        log_path = os.path.join(self.log_dir, name + self.model_dir + '.csv')
         if not os.path.exists(log_path):
             self.log_file = open(log_path, 'w')
             self.log_file.write('Epoch\tAuc\tAccuracy\tloss\n')

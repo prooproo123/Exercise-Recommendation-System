@@ -1,0 +1,8 @@
+.*
+*.ipynb
+*.sh
+!/.gitignore
+__pycache__
+run.sh
+data
+runs
