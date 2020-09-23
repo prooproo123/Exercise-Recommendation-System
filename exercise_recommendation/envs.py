@@ -49,6 +49,9 @@ class StudentEnv(gym.Env):
 
         if candidate_exercises is None:
             candidate_exercises = []
+
+        self.right = []
+
         self.curr_step = None
         self.n_steps = n_steps
         self.n_items = n_items
@@ -93,7 +96,7 @@ class StudentEnv(gym.Env):
         else:
             raise ValueError
 
-    def step(self, action):
+    def step(self, action: int):
         if self.curr_step is None or self.curr_step >= self.n_steps:
             raise ValueError
 
@@ -194,10 +197,13 @@ class DKVEnv(StudentEnv):
 
     def cor_weight(self, embedded, q):
         """
-        Calculate the KCW of the exercise
-        :param embedded: the embedding of exercise q
-        :param q: exercise ID
-        :return: the KCW of the exercise
+            Calculate the KCW of the exercise
+        Args:
+            embedded: the embedding of exercise q
+            q: exercise ID
+
+        Returns:
+            the KCW of the exercise
         """
         concepts = self.e2c[q]
         corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in concepts])
@@ -208,10 +214,13 @@ class DKVEnv(StudentEnv):
 
     def read(self, value_matrix, correlation_weight):
         """
-        Calculate master level of concepts related to the exercise
-        :param value_matrix: master level of different knowledge concepts
-        :param correlation_weight: KCW of exercise
-        :return: master level of concepts related to the exercise
+            Calculate master level of concepts related to the exercise
+        Args:
+            value_matrix: master level of different knowledge concepts
+            correlation_weight: KCW of exercise
+
+        Returns:
+            master level of concepts related to the exercise
         """
         read_content = []
         for dim in range(value_matrix.shape[0]):
@@ -228,9 +237,12 @@ class DKVEnv(StudentEnv):
 
     def predict(self, q):
         """
-        Probability of answer exercise q correctly
-        :param q: Exercise ID
-        :return:Probability
+            Probability of answer exercise q correctly
+        Args:
+            q: Exercise ID
+
+        Returns:
+            Probability
         """
         cor = self.cor_weight(self.q_embed_mtx[q], q)
         read_content = self.read(self.value_matrix, cor)
@@ -243,10 +255,13 @@ class DKVEnv(StudentEnv):
 
     def write(self, correlation_weight, qa_embed):
         """
-        Update the Value_matrix
-        :param correlation_weight: KCW of exercise
-        :param qa_embed: the embedding of answering result
-        :return: new Value_matrix
+            Update the Value_matrix
+        Args:
+            correlation_weight: KCW of exercise
+            qa_embed: the embedding of answering result
+
+        Returns:
+            new Value_matrix
         """
         erase_vector = self.linear_op(self.erase_w, self.erase_b, qa_embed)
         erase_signal = self.sigmoid(erase_vector)

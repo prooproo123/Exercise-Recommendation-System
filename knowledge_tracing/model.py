@@ -91,15 +91,21 @@ class Model():
         prediction = list()
         reuse_flag = False
 
+        #self.clustering_x=np.ndarray(shape=(self.args.n_questions,self.args.memory_size))
+        self.clustering_x=[]
+
         # Logics
         for i in range(self.seq_len):
             # To reuse linear vectors
             if i != 0:
                 reuse_flag = True
             # k_t : [batch size, memory key state dim]
+            # q size= batch soze, seq len, memory key
             q = tf.squeeze(slice_q_embed_data[i], 1)
-            # Attention, [batch size, memory size]
+            # Attention, [batch size, memory size/concepts num]
             self.correlation_weight = self.memory.attention(q)
+
+
 
             # Read process, [batch size, memory value state dim]
             self.read_content = self.memory.read(self.correlation_weight)
