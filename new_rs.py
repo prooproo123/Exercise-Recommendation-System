@@ -567,7 +567,7 @@ def run_eps(agent, env, n_eps=100):
     return tot_rew
 
 def run_rs(stu,cands,kt_parameters,e2c,exercises_id_converter,no_questions,no_concepts,n_steps = 5,
-           discount = 0.99, n_eps = 1):
+           discount = 0.99, n_eps = 10):
 
     params=kt_parameters
     student_traces=stu

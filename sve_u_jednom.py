@@ -51,13 +51,13 @@ def run_all(path_to_dir,dataset_name,sep='\t'):
     relevancy_matrix=bio.colab_run()
     plt.imshow(relevancy_matrix)
     plt.show()
-    treshold=10 #najveci broj kandidata
+    treshold=15 #najveci broj kandidata
     personal=cand.PersonalCandidates(relevancy_matrix,cand.max_number_of_exercises,treshold,cand.no_normalization)
 
     #path_to_gform_traces=''
     #all_student_traces= traces.get_traces_from_gforms(path_to_gform_traces)
     #u stu i cands trebaju ici id-ovi kako su originalno zapisani u datasetu...
-    stu=[[(1, 0), (27, 1)]]
+    stu=[[(1, 0), (27, 1),(3, 1),(4,0),(5, 1)]]
     stu_only_ids=[el[0] for el in stu[0] if el[1] == 1] #ako je netko krivo rijesio zadatak on bi i dalje trebao ostati u poolu mogucih zadataka
     cands=personal.get_candidates(stu_only_ids)
     cands.extend([el[0] for el in stu[0]])# zbog rs-a u kandidatima moraju biti i traceovi
