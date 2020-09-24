@@ -51,7 +51,7 @@ def run_all(path_to_dir,dataset_name,sep='\t'):
     relevancy_matrix=bio.colab_run()
     plt.imshow(relevancy_matrix)
     plt.show()
-    treshold=15 #najveci broj kandidata
+    treshold=30 #najveci broj kandidata
     personal=cand.PersonalCandidates(relevancy_matrix,cand.max_number_of_exercises,treshold,cand.no_normalization)
 
     #path_to_gform_traces=''

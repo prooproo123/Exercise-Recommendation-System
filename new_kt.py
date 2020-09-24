@@ -10,7 +10,7 @@ def main(dataset,path=None,fromVariable=False,variableTrain=None,variableValid=N
 
 
 
-    num_epochs=1
+    num_epochs=10
     train='t'
     init_from='t'
     show='f'
