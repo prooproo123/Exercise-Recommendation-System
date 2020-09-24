@@ -1,0 +1,133 @@
+
+\chapter{Self-attentive knowledge tracing}
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.8]{sakt1.png}
+		\caption{}
+		\label{}
+	\end{figure}
+	Pronađen je rad \citep{sakt} koji istražuje novi smjer knowledge tracinga \url{https://github.com/TianHongZXY/pytorch-SAKT}. Predloženi model SAKT prvo identificira relevantne koncepte znanja iz prošlih interakcija te predviđa korisnikove performanse na tim konceptima. SAKT daje težinske vrijednosti prethodno odgovorenim pitanjima (pitanja su poistovjećena s konceptima) istovremeno predviđajući rezultate studenta na određenom pitanju. U radu se tvrdi da je prema AUC bolji za 4.43\% od state-of-the-art metoda uprosječeno po svim korištenim skupovima podataka. Napomenuto je da DKT i DKVMN ne generaliziraju dobro u slučaju rijetkih, raspršenih podataka (kao što je slučaj s podacima interakcije studenata s nekoliko koncepata znanja stvarnog svijeta). Također, glavna komponenta (self-attention) se može paralelizirati što daje znatnu prednost po brzini naspram modela temeljenih na RNN-ovima.
+
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{sakt2.png}
+		\caption{Izračunata matrica relevantnosti između zadataka}
+		\label{}
+	\end{figure}
+	\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.8]{sakt3.png}
+	\caption{Pronađeni latentni koncepti}
+	\label{}
+\end{figure}
+
+	\section{Općenito o funkcioniranju attention modela}
+
+	Bit mehanizama pažnje (engl. \textit{attention mechanism}) je što su oni imitacija mehanizma ljudskog vida. Kad vid detektira objekt, tipično ne skenira cijelu scenu nego se fokusira na određeni dio koji odgovara osobnim potrebama promatrača. Kad osoba primijeti da se željeni objekt tipično pojavljuje u određenom dijelu scene, naučit će se u budućnosti fokusirati na takve dijelove.
+
+	Ovakvi mehanizmi najčešće su korišteni u obradi prirodnog jezika. Najpoznatiji model korišten u obradi prirodnog jezika poznat je kao transformer (slika ~\ref{fig:transf}). Transformeri su \textit{sequence-to-sequence} arhitektura, tj. neuronska mreža koja pretvara određeni slijed elemenata, kao što je slijed riječi u rečenici, u neki drugi slijed. Takvi modeli sastoje se od enkodera i dekodera. Enkoder uzima ulazni slijed i mapira u višedimenzionalni prostor. Takav apstraktni vektor odlazi dekoderu koji ga pretvara u izlazni slijed. Tipično su u mehanizmima pažnje enkoder i dekoder LSTM-ovi, no kod transformera to nije slučaj.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.2]{transformer.png}
+	\caption{Arhitektura transformera}
+	\label{fig:transf}
+\end{figure}
+
+	Izračunavanje pažnje u računalnom smislu može se opisati kao mapiranje upita (engl. \textit{query}) i skupova parova ključ-vrijednost (engl. \textit{key-value}) izlazu. Prvo se uzmu upit i svaki ključ te se računa sličnost među njima kako bi se dobila težina. Kao funkcija sličnosti najčešće je korišten skalarni produkt. Drugi korak je provođenje normalizacije tih težina, najčešće softmax funkcijom. Potrebno je povezati težine s odgovarajućim vrijednostima. Rezultat je konačna pažnja. 
+
+	Svaki input u model mora imati tri reprezentacije: ključ, upit i vrijednost. Kako bi se dobile te reprezentacije, svaki input mora biti pomnožen sa skupom težina za ključeve, upite i vrijednosti. Mehanizam pažnje za svaki input prvog LSTM-a (enkodera) uzima u obzir istovremeno različite inpute dodjeljujući im različite težine. Dekoder onda kao input uzima enkodiranu rečenicu i težine. Težine definiraju koliko svaki element slijeda utječe na ostale. Softmax se primjenjuje na težinama kako bi se stisnule u interval [0, 1]. 
+Mehanizam pažnje ponavlja se nekoliko puta s linearnim projekcijama upita, ključeva i vrijednosti. Sustav tako uči različite reprezentacije upita, ključeva i vrijednosti. Linearne reprezentacije su zapravo umnošci upita, ključeva i vrijednosti s matricom težina W. 
+
+	Upiti, ključevi i vrijednosti su drugačiji ovisno o poziciji modula pažnje u strukturi - jesu li u enkoderu, dekoderu ili između njih. Multi-head attention modul koji povezuje enkoder i dekoder osigurava da enkoderov ulazni slijed bude uzet u obzir s dekoderovim ulaznim slijedom u određenoj poziciji. Nakon opisanog slijedi unaprijedni sloj koji ima iste parametre za svaku poziciju i može biti opisan kao odvojena, identična linearna transformacija svakog elementa danog slijeda.
+
+	Transformeri ne koriste RNN-ove, već se za izvlačenje globalnih ovisnosti inputa i outputa koriste samo self-attention mehanizmima. Self-attention mehanizmi dopuštaju inputu da međudjeluje s ostalima (self) i otkrije kome da posveti više pažnje.
+Enkoder i dekoder su sastavljeni od modula koji se mogu nadograđivati jedan na drugog nekoliko puta. Moduli se sastoje od Multi-Head Attention Mechanism i unaprijednih slojeva. Koristi se i rezidualni sloj za bolju optimizaciju (Add\&Norm). Ulaz i izlaz prvo su ugrađeni u n-dimenzionalni prostor.
+
+	Budući da ne postoje RNN-ovi u modelu, potrebno je nekako pamtiti slijed koji se daje modelu; svakom dijelu slijeda dati relativnu poziciju u odnosu na red elementa - pozicijsko enkodiranje. Te pozicije dodane su ugradbenoj reprezentaciji (n-dimenzionalnom vektoru) svakog dijela slijeda. U treniranju je bitan shift slijeda dekodera. Ako se ne provodi, model nauči samo kopirati input dekodera. U slučaju shifta, model predviđa što će biti idući element. Osim shifta, transformer koristi masku na ulazu kako bi se izbjeglo viđenje potencijalnih budućih slijednih elemenata. To se mora provoditi zbog nedostatka RNN-ova.
+
+	Koncept pažnje skaliranog skalarnog produkta (engl. \textit{Scaled Dot-Product Attention}) za račun sličnosti koristi skalarni produkt, kao što je spomenuto u prijašnjem tekstu. Ima dodatnu dimenziju za prilagodbu koja onemogućava da unutarnji produkt postane prevelik.
+
+	Kod Multi-Head Attention strukture upit, ključ i vrijednost prvo prolaze linearnu transformaciju i onda ulaze u račun pažnje skaliranog skalarnog produkta. Pažnja se računa $h$ puta, otuda naziv Multi-Headed.  Svaki put kada upit, ključ i vrijednost prolaze linearnu transformaciju, mijenja se parametar W, koji predstavlja težine. Rezultati $h$ iteracija skaliranog skalarnog produkta spajaju se na kraju.
+
+	Ako se ne radi s nizovima riječi u obradi prirodnog jezika, potrebne su manje izmjene arhitekture, npr. moguće je maknuti embedding sloj ako podaci već jesu brojčane vrijednosti. Umjesto njega, moguće je primjeniti neku linearnu transformaciju.
+
+	\section{Konkretna izvedba SAKT-a}	
+	Konkretna izvedba sustava predviđa hoće li korisnik moći odgovoriti na sljedeće pitanje ovisno o odgovorima na prethodna pitanja. Inputi su parovi (pitanje, točnost), konkretno: $x_1, x_2, ..., x{t-1}$, kao i slijed pitanja jednu poziciju naprijed, $e_2, e_3, ... e_t$, a izlaz su točnosti odgovarajućih pitanja: $r_2, r_3, ... r_t$. $x_t$ je ugrađen u model kao $y_t = e_t + r_t$ x $E$, gdje je $E$ ukupan broj pitanja. Takav slijed, $y = y_1, ..., y_t$, transformira se u $s = s_1, ... s_n$, gdje je $n$ maksimalna duljina koju model može koristiti. Ako je $t<n$, izvršava se \textit{padding}, a ako je $t>n$, slijed se rastavlja u podnizove duljine $n$. \newline
+	Za određivanje redoslijeda koristi se pozicijsko enkodiranja (bitno jer znanje korisnika napreduje polako vremenom). Implementira se kao vrijednost dodana svakom elementu interakcijskog vektora ugradnje (čije je stvaranje opisano iznad) prilikom treniranja. Izlaz sloja ugradnje je ulazna matrica ugradnje, kao i matrica ugradnje pitanja.\newline
+	Self-attention sloj računa skalirani skalarni produkt - računa relativne težine prema točnosti riješenosti prethodnih pitanja kako bi se predvidjela točnost trenutnog pitanja. Računaju se upiti (upit = sljedeće pitanje) i parovi ključ-vrijednost te linearne projekcije istih u različite vektorske prostore pomoću projekcijskih matrica W. Relevantnost svake od prijašnjih interakcija s trenutnim pitanjem računa se pomoću skalarnog produkta upita i ključeva (ključevi = težine između elemenata prethodnih interakcija). Kako bi se informaciji pristupilo iz različitih potprostora, vrše se linearne projekcije upita, ključeva i vrijednosti $h$ puta korištenjem različitih projekcijskih matrica (\textit{multiple heads}).\newline
+	Svi dosadašnji izračuni su još uvijek linearna kombinacija vrijednosti prethodnih interakcija. Za uvođenje nelinearnosti i uzimanja u obzir interakcija između različitih latentnih dimenzija, koristi se unaprijedni sloj (i ReLU aktivacijska funkcija).\newline
+	Rezidualne veze koriste se za propagiranje značajki nižih slojeva višim slojevima. Dakle, ako su značajke nižih slojeva značajne za predikciju, rezidualne veze će pomoći njihovom propagiranju završnim slojevima gdje se predikcija i obavlja. U \textit{knowledge tracingu}, korisnik pristupa nekom pitanju kako bi ojačao određeni koncept. Rezidualna veza pomaže propagiranju ugradnje nedavno riješenih pitanja završnom sloju. \newline
+	Normalizacija ulaza stabilizira i ubrzava neuronske mreže. \newline
+	Za predviđanje performansi studenata, koristi se potpuno povezan sloj sa sigmoidalnom aktivacijskom funkcijom.
+
+
+	\section{Problemi sa SAKT-om}
+	Za vrijeme pručavanja i prilagođavanja SAKT-a našim potrebama naišli smo na puno grešaka i nejasnih linija koda. Najveći problem je slaba dokumentacija koda, nedostatak originalnog dataseta te manjak iskustva sa PyTorchom.
+	Na kraju smo odlučili odustati od SAKT-a zbog manjka vremena. PyTorch na različite načine izvršava operacije s CPU i CUDA tenzorima. Gradijenti treniranja na CUDI mogu se prosljeđivati slojevima samo za operacije s tenzorima, ali ne s ostalim tipovima podataka. Imali smo problem što kod zahtijeva grafičke kartice (GPU CUDA) koje naši laptopi nemaju, a debug mode ne postoji na Google Colabu. Također, dosta često Colab ne ispisuje print() funkcije koje dolaze prije exceptiona tako da nismo ni na taj način mogli tražiti greške. U sljedećem potpoglavlju su nabrojane greške, neodumice i kako smo ih ispravljali ako će netko u budućnosti opet proučavati taj kod.
+	\subsection{Greške i ispravci}
+	
+		U funkciji getitem skripte dataset.py se kod uzimanja listi nekad izbacuju prvi/ zadnji članovi ([1:],[:-1]), pošto to nema logike izmjena je takva da se uzima cijela lista ([:]). U datasetu se uzima num\_skill kao najveći index u listi zadataka te se kasnije svugdje u programu stavljalo +1, to je izmijenjeno tako da se gleda broj zadataka te je maknut +1. U dodavanju podataka u varijablu 'x' su se dodavale True /False vrijednosti što je bacalo grešku te je sada 1/0. Također nije jasno zašto se na 'x' appendaju točnosti problema onoliko puta koliko i postoji različitih zadataka. U klasi DataPrefetcher dolazilo je do greške gdje objekt liste nema metodu .to(device=self.device, non\_blocking=True). Pronađeno je da se takva metoda može pozivati nad objektom Tensor te je iskorištena metoda torch.cat().
+		
+		Nadalje se javlja greška u skripti run.py, funkciji run\_epoch - "can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.". Tamo je potrebno sve varijable čije su memorijske lokacije na grafičkoj kartici zbog CUDA operacija vratiti na procesor (npr. problems.cpu()).
+		
+		Daljnje greške nisu mogle biti ispravljene zbog nepoznavanja što bi ti dijelovi koda trebali raditi. Primjerice u istoj metodi kod ugniježdenih petlji ima pozivanja size(1) koji je zapravo nepostojeći te se dobiva greška da se očekuje 0 ili -1. Također, prema izgledu petlje čini se kako bi dodavanje offseta kroz neko vrijeme dovelo do indeksa koji su veći od maksimalnog za dana polja/tensore. Kako bi se to izbjeglo, zakomentirane su originalne linije pristupanja elementima te se umjesto iteriranja po listi i dodavanja ta ista lista appenda na drugu.
+		
+		Sljedeća greška se događala u student\_modelu gdje se zbrajaju dva tensora različitih veličina - "output with shape [50400, 200] doesn't match the broadcast shape [1, 50400, 200]", kako bi se maknula dimenzija "1" nad tim objektom je napravljena operacije unsqueeze(0).
+		
+		Greška koju nismo uspijeli ispraviti je "CUDA error: CUBLAS\_STATUS\_ALLOC\_FAILED when calling `cublasCreate(handle)",te dolazi u
+		retku" res = self.multi\_attn(query=self.layernorm(problems), key=x, value=x,key\_masks=None, query\_masks=None, future\_masks=None)". Ono što smo uspjeli saznati je da to vrlo vjerojatno dolazi kada embedding layer dobiva krive indekse i izađe izvan intervala legalnih indeksa, odnosno, moguće je da postoji nekonzistentnost između broja oznaka i broja izlaznih jedinica sloja.
+		
+	\section{Sakt \#2}
+		Pronađen je još jedan github repozitorij \url{https://github.com/thosgt/kt-algos} koji u sebi ima implementaciju SAKTA-a. Također uz to ima implementaciju DKT-a i još neke pomoćne skripte. SAKT dio je prilagođen da se može pokretati za assistments i biologiju na Google Colabu. Za assistments se dobivaju velike vrijednosti AUC za vrijeme treniranja što se poklapa s prethodnim radom. Trenutno još nije sigurno kako bi se predikcije iz SAKT-a mogle iskoristiti za preporuku sadržaja.
+	
+		\subsection{Generiranje candidate-exercises}
+		
+		Dio SAKT-a za vrijeme učenja razvija tzv. \textit{attention matricu}. Ona modelu daje neku mjeru "relevantnosti" između pojedinih zadataka. Ideja je izvuči tu matricu iz modela i iskoristiti njene vrijednosti za uzimanje dijela zadtaka kao potencijalnu preporuku u ExRec-u. Napravljena je klasa koja prima attention matricu, funkciju normalizacije, funkciju praga te vrijednost praga. Funkcija normalizacije služi kako bi se svaki redak matrice normalizirao po nekom pravilu i onda kasnije uz pomoć funkcije praga odredili zadaci za preporuku. Klasa je napravljena tako da neće preporučiti zadatke koji su već bili. Recommendation system dio ExRec-a uzima u obzir točnost riješenih zadataka te je vremenski zahtjevan. Alternativa tome je koristiti razvijenu klasu tako da je njen izlaz konkretna preporuka zadataka umjesto skup potencijalnih zadataka koje Recommendation System još treba obraditi. 
+
+		Eksperimentirano je s vremenom uzimanja vrijednosti attention matrice. Uzimanje je postavljeno nakon svakog \textit{train\_batcha} i na kraju faze treniranja. Problem je što bi se, zbog korištenja softmax normalizacije pri preporučivanju, vrijednosti u pojedinim retcima trebale postaviti unutar intervala [0, 1], no to nije slučaj. Trenutno razmišljanje je da je to zbog izbacivanja nepotrebnih dimenzija tenzora. Zbog manjeg poznavanja PyTorch funkcionalnosti i načina ophođenja s visokodimenzionalnim tenzorima, moguće je da dimenzije okarakterizirane kao nepotrebne zapravo to nisu.
+
+		Softmax je inače preporučen kao funkcija koja se koristi pri problemima multinomijalne klasifikacije (u više od dviju klasa), a kod binarne klasifikacije češće je korištena sigmoida. Eksperimentiranje s aktivacijskim funkcijama dovelo je do zaključka da je uz korištenje softmaxa potrebno upotrebljavati niži prag kako bi se dobile smislene preporuke - zadaci. Potrebno je još ispitivanja i isprobavanja raznih kombinacija funkcija i pragova.
+
+		\subsection{Usporedba SAKT-a i DKT-a}
+
+		DKT koristi BPTT algoritam (engl. \textit{backpropagation through time}). BPTT je gradijentna tehnika za treniranje nekih vrsta RNN-ova. Standardni BPTT zahtijeva kompletnu povijest aktivacija i inputa u unaprijednom prolazu kako bi ih koristio za izračun gradijenta u povratnom prolazu. Takav pristup je računalno skup i zahtjevan za memoriju.
+
+		Kod krnjeg BPTT algoritma (engl. \textit{truncated backpropagation through time}), ulazi su podnizovi fiksnih duljina. Za unaprijedni prolaz, skriveno stanje prethodnog podniza prosljeđuje se kao ulaz sljedećem. Kod izračuna gradijenta, vrijednosti su odbačene na kraju svakog podniza u povratku. Ovakav pristup smanjuje računske i memorijske zahtjeve.
+
+		Kod DKT-a se ne koristi Multi-Head Attention Mechanism (slika ~\ref{fig:mha}), već LSTM (slika ~\ref{fig:lstm}). RNN-ovi su prilično dobar način za obuhvaćanje vremenskih ovisnosti u nizovima.
+\pagebreak
+
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.2]{mha.png}
+		\caption{Multi-Head Attention Mechanism}
+		\label{fig:mha}
+	\end{figure}
+
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.8]{lstm.png}
+		\caption{LSTM}
+		\label{fig:lstm}
+	\end{figure}
+
+		Sličnost implementacije KT modela DKT i SAKT veoma je uočljiva. Modeli dijele identičnost početka embedding sloja. U daljnjem postupku DKT koristi LSTM, dok SAKT Multi-Head Attention Mechanism. Za obilježavanje slijeda, SAKT mora koristiti pozicijsko enkodiranje, dok LSTM kod DKT-a takav posao obavlja implicitno u svojoj arhitekturi.
+	
+		Primjećeno je da je gubitak treniranja DKT-a većeg iznosa nego kod SAKT-a i kod Biologije i kod Assistmentsa (oko 1 u prvih 240-700 koraka uz DKT, dok je uza SAKT oko 0.6). 
+
+		Treniranje DKT-a na Assistentsu traje otprilike minutu po epohi, dok Biologija treba par sekundi po epohi.
+		Treniranje SAKT-a po epohi traje nešto malo više od minute po epohi, dok je za Biologiju potrebno i manje od sekunde po epohi.
+
+		Za SAKT je potrebno puno više korištenja CUDA arhitekture nego za DKT.
+
+		
+	\section{Poveznice}
+\url{https://medium.com/@Alibaba_Cloud/self-attention-mechanisms-in-natural-language-processing-9f28315ff905}\newline
+\url{https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a}\newline
+\url{https://www.geeksforgeeks.org/activation-functions-neural-networks/}\newline
+\url{https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04}\newline
+\url{https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html}\newline
+\url{http://colah.github.io/posts/2015-08-Understanding-LSTMs/}\newline
+
+
