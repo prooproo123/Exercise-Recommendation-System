@@ -42,7 +42,7 @@ DKVMN ExRec praćenja znanja poboljšan u aspektima memorijske strukture, težin
 	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.8]{exrec1.png}
-	\caption{}
+	\caption{Struktura ExRec modela}
 	\label{fig:exrec1}
 \end{figure}
 
@@ -57,7 +57,7 @@ Prvo se dohvaćaju ugrađene vrijednosti od danog zadatka. Kao što se vidi na s
 	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.8]{exrec2.png}
-	\caption{}
+	\caption{Algoritam računa KCW-a}
 	\label{fig:exrec2}
 \end{figure}
 
@@ -167,7 +167,7 @@ Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
 		Napravljena je skripta koja automatizira pokretanje ExRec-a za jednostavne datasetove poput "Biologije". Trenutno je potrebno samo znati ime dataseta i put do direktorija u kojem je dataset. Ostalo je shvatiti kako prilagoditi model kt-a, generiranje train i validation dijelova dataseta kako se ne bi stvarali privremeni .csv fileovi. Također treba još proučiti shvatiti zašto kod učitavanja assistmentsa treba raditi dodatne provjere Nan-ova, dtype-a te imena stupaca, dok u isto vrijeme te iste provjere rade grešku kod dataseta "Biologija".
 		Trenutne ideje za potencijalne preporuke zadataka:
 		\begin{itemize}
-			\item svi zadaci- nedostatak je sto je jako sporo
+			\item svi zadaci- nedostatak je što je jako sporo
 			\item svi ostali zadaci iz koncepata kojih se korisnik dotakao- brže, ali i dalje prepsoro
 			\item potencijalno korištenje clusteringa/BKT-a za preporuku manjeg skupa zadataka
 		\end{itemize}
@@ -176,7 +176,7 @@ Za razliku od Assistmentsa vrijednosti porasta znanja u svakom koraku su oko 0.5
 Provedeni su eksperimenti parametara, argumenata kt dijela - broja epoha, stope učenja, brzine smanjivanja stope učenja, momentuma koji ubrzava gradijentni spust, omjera rezanja tenzora kako gradijent ne bi eksplodirao te utjecaj \textit{batch sizea} dataseta.\newline
 Najznačaniji zaključak izveden je za broj epoha - povećanjem rastu iznosi izlaznih vjerojatnosti. Eksperimentirano je s vrijednostima 1, 5, 100 i 1000. Najznačaniji rezultati dobivaju se za 1000, no dugotrajnost treniranja je jako izražena. Stoga je većina sljedećih eksperimenata provođena sa 100 epoha. Ostali parametri većinom zahtijevaju neznatne izmjene u odnosu na originalno postavljene.\newline
 Isprobane su vrijednosti [0.005, 0.05, 0.5]. Stopa učenja ne smije imati prevelik iznos jer rezultat pokazuje sumnjivo previsoku izlaznu vjerojanost, blizu 1, što ukazuje na prenaučenost sustava. Potrebno je odgovarajuće intervalno smanjivanje stope učenja, koje ne smije biti preveliko jer prebrzo konvergira, niti premalo jer je vrijeme izvođenja tada presporo iako su rezultati intuitiviji. Ako je potrebno birati, bolje manja stopa učenja i sporiji interval promjene nego veća stopa i veće promjene.\newline
-Istražen je i momentum parametar. Sa samim stohastičnim gradijentnim spustom, SGD, ne računamo točnu derivaciju funkcije gubitka, već estimiramo na manjim \textit{batchevima}. Iz tog razloga, ne ide se uvijek u optimalnom smjeru jer takve derivacije zašumljene. Kod SGD-a su isto tako problem tjesnaci strmiji u jednoj dimenziji (česti su blizu lokalnih minimuma). SGD ih teško uočava. Dodavanje Momentum algoritma ubrazava njihove prelaske. Također, derivacije su glađe, manje zašumljene. Provedeni su eksperimenti s vrijednostima između 0.5 i 0.95. Što je parametar Momentuma manji, slijed podataka je više skokovit. Algoritam usrednjava na manjem broju podataka pa smo bliže zašumljenim podacima. Utvrđeno je da je najbolji momentum 0.9, što je vrijednost koja se često uzima u strojnom učenju.\newline
+Istražen je i momentum parametar. Sa samim stohastičnim gradijentnim spustom, SGD, ne računamo točnu derivaciju funkcije gubitka, već estimiramo na manjim \textit{batchevima}. Iz tog razloga, ne ide se uvijek u optimalnom smjeru jer su takve derivacije zašumljene. Kod SGD-a su isto tako problem tjesnaci strmiji u jednoj dimenziji (česti su blizu lokalnih minimuma). SGD ih teško uočava. Dodavanje Momentum algoritma ubrazava njihove prelaske. Također, derivacije su glađe, manje zašumljene. Provedeni su eksperimenti s vrijednostima između 0.5 i 0.95. Što je parametar Momentuma manji, slijed podataka je više skokovit. Algoritam usrednjava na manjem broju podataka pa smo bliže zašumljenim podacima. Utvrđeno je da je najbolji momentum 0.9, što je vrijednost koja se često uzima u strojnom učenju.\newline
 Isprobane su i različite veličine maxgradnorm parametra. Naime, kako gradijenti ne bi eksplodirali tijekom treniranja, koriste se tehnike \textit{gradient clippinga}. Eksplodiranje gradijenta dogodi se kad je gradijent prevelik, što dovodi do akumuliranja pogrešnih gradijenata. Kao rezultat dobije se nestabilna mreža. Iz tog razloga, u TensorFlow-u koristi se naredba \textit{tf.clip\_by\_global\_norm()} - reže tenzore u treniranju u omjeru sume njihovih normi, a omjer definira upravo maxgradnorm argument. Povećanjem i smanjenjem vrijednosti [5, 100], otkriveno je da se rezultati ne mijenjaju značajno te je stoga najbolje ostaviti originalno (50). \newline
 Što se tiče \textit{batch sizea}, za "Biologiju" se pokazao boljim manji \textit{batch} [5, 15, 32 -> 5], prilagođeniji činjenici da je sam dataset malen. 
 
@@ -192,7 +192,7 @@ Preporuceni put: [(2, 1), (1, 1), (3, 1)]\newline
 outList [0.75084096 0.79288167 0.797158 ].\newline
 Eksperimentirano je i s vrijednostima \textit{discounta} (između 0.5 i 0.99) u \textit{Logged TRPO} i \textit{n\_steps} (2, 5, 10, 50) u definiciji okoline. Zaključeno je kako nije moguće definirati pravilnosti jer su rezultati previše skokoviti, previše osciliraju.\newline
 Provođene su i provjere ponašanja različitih strategija. Strategija je smatrana najvažnijim aspektom podržanog učenja agenta i zahtijeva određeni dugotrajniji \textit{tuning}. U ExRec-u je originalno korištena strategija Categorical GRU koja sadrži GRU koji predviđa na temelju kategoričke distribucije. Kategoričke strategije su namijenjene diskretnim akcijskim prostorima. Očekuju da akcijske vrijednosti predstavljaju vjerojatnosnu distribuciju prema akciji. Iz takve distribucije svaka je akcija uzorkovana. \newline
-Uz spomenutu strategiju, najviše obećavajućom pokazala se Categorical MLP strategija koja sadrži MLP (engl. \textit{multi-layer perceptron} koji predviđa na temelju kategoričke distribucije. Uz zanemarivanje originalnih vrijednosti i postav \textit{hidden\_size = (5, 5)} dolazi do stalnog rasta izlaza, ali preporuka često uključuje isti zadatak koji korisnik nikako da točno riješi.\newline
+Uz spomenutu strategiju, najviše obećavajućom pokazala se Categorical MLP strategija koja sadrži MLP (engl. \textit{multi-layer perceptron}) koji predviđa na temelju kategoričke distribucije. Uz zanemarivanje originalnih vrijednosti i postav \textit{hidden\_size = (5, 5)} dolazi do stalnog rasta izlaza, ali preporuka često uključuje isti zadatak koji korisnik nikako da točno riješi.\newline
 Preporuceni put: [(0, 1), (3, 0), (3, 0), (3, 0)]\newline
 outList [0.59386724 0.5939555  0.5939993  0.5940211 ]\newline
 Ako se koristi Categorical MLP uz \textit{hidden\_size = (5, 5)} i elu aktivacijsku funkciju, dolazi do veće stabilnosti uz trend rasta izlaznih vrijednosti. Naime, prilikom različtih pokretanja, sustav preporučuje često preporučuje isti put za isti prijeđeni \textit{trace}, što dosad nije bio slučaj.\newline
@@ -200,6 +200,34 @@ Preporuceni put: [(3, 1), (2, 1), (1, 1)]\newline
 outList [0.59849751 0.59855151 0.59854913]\newline
 Preporuceni put: [(2, 1), (3, 1), (1, 1)]\newline
 outList [0.59207004 0.59207171 0.5922001 ]\newline
+
+\subsubsection{08.09.2020. - optimizatori}
+TRPO algoritam, već spomenut prilikom objašnjavanja pozadine funkcioniranja podržanog učenja u ExRec-u iterativni je pristup optimizaciji strategije sa zagarantiranim monotonim napretkom.\newline
+Koristi \textit{Natural Policy Gradient} prisup koji analitički rješava funkciju cilja. Problem je što se u izračunu koristi inverz Hesseove matrice drugih derivacija log vjerojatnosti strategije (Fisherove informacijske matrice), a on je jako kompliciran ako je strategija paramtrizirana brojnim parametrima. Također, inverz je često nestabilan. Kako se on ne bi morao eksplicitno tražiti, koristi se aproksimacija izraza u krnjoj verziji pristupa, \textit{Truncated Natural Policy Gradient}. Za optimizaciju tog izračuna koristi se metoda konjugatnih gradijenata. \newline
+Koncept je vrlo sličan gradijentnom uzdizanju, ali ga je moguće izvesti u manje iteracija. U gradijentnom usponu, uvijek se prati najstrmiji gradijent. Putanja od konačne do početne točke može biti neoptimalna, "cik-cak". Takvu neefikasnost moguće je izbjeći konjugatnim gradijentom (ako je funkcija cilja kvadratna). Ako model ima N parametara, moguće je naći optimalnu točku u najviše N uzdizanja. U prvom potezu slijedi se smjer najdubljeg gradijenta i definira se optimalna točka u tom smjeru. Sljedeći smjer mora biti ortogonalan prema nekoj transformacijskoj matrici A (konjugatan) svim prethodnim smjerovima. Takav izračun mnogo je manje zahtjevan od izračuna inverza Hesseove matrice.\newline
+Ideja je bila provjeriti kako TRPO funkcionira s ostalim optimizacijama, tj. različitim pristupima aproksimaciji. \newline
+Ako se koristi optimizator prvog reda, za originalne parametre, rs dio produljuje vrijeme izvođenja (s par sekundi na preko 2 min). Vrijednosti vrlo malo osciliraju oko 0.50. 
+Ako se, pak, parametri izmijene prema onima koji su generirali dobre rezultate prethodnih dana (u kt broj epoha 100, batch\_size = 5, u rs hidden\_dim = 5, batch\_size = 32, aktivacijska funkcija = elu), dobiju se zadovoljavajući rezultati.\newline
+Preporuceni put: [(0, 0), (2, 0), (0, 1)]\newline
+outList [0.57768267 0.68047982 0.70207518]\newline
+Preporuceni put: [(0, 1), (3, 1)]\newline
+outList [0.72096705 0.72513175]\newline
+No, dobri rezultati nisu uvijek slučaj. Literatura spominje da optimizatori prvog reda nisu točni u područjima zakrivljenosti. Naime, s derivacijama prvog reda često se površina kojom putuje prilikom traženja gradijenta aproksimira glatkom. Ako je vrlo zakrivljena, potezi su jako loši.\newline
+Preporuceni put: [(3, 1), (2, 0), (2, 0), (2, 0)]\newline
+outList [0.3331522  0.29257703 0.2808274  0.27639025] \newline
+Preporuceni put: [(2, 0), (3, 1), (2, 0), (0, 0)]\newline
+outList [0.52635247 0.487258   0.38557106 0.35406634]\newline
+Za kontroliranje stope učenja originalno je korištena Adam metoda. Eksperimentima s Adadeltom te SGD + Momentum metodama nije došlo do većih odstupanja u rezultatima. \newline
+Osim gradijenta prvog reda i konjugatnog gradijenta, proučen je i isproban LBFGS optimizator. Metoda je to optimizacije koja koristi derivacije drugog reda. Kvazi-Newtonova je metoda; metoda aproksimacije Hesseove matrice.\newline
+Jedna od najpopularnijih metoda aproksimacije Hesseove matrice je BFGS metoda temeljena na kompletnoj povijesti gradijenata. 
+LBFGS metoda (engl. \textit{limited memory BFGS}) je temeljena na zadnjih m gradijenata. Popularna je jer je potrebno zadržati samo tih zadnjih m gradijenata (obično 10 do 20) što doprinosi smanjenju skladišnog prostora. Za razliku od potpunog BFGS-a, LBFGS nikad eksplicitno ne formira ili sprema procjenu Hesseove matrice.\newline
+Iako u teoriji obećavajuće, u praksi se većinom primjećuje preporuka samo jednog zadatka ili je pak vidljiv trend pada koji nije u skladu s našim zahtjevima.\newline
+Preporuceni put: [(0, 1), (2, 1)]\newline
+outList [0.60839105 0.60837907]\newline
+Preporuceni put: [(1, 0), (1, 1)]\newline
+outList [0.60479879 0.60473955]\newline
+Preporuceni put: [(1, 1)]\newline
+outList [0.59713161]\newline
 
 \section{Upute za pokretanje}
 
@@ -230,16 +258,20 @@ točnosti korisnikovih zadataka te ujedno daje i procjenjenu razinu znanja u sva
 
 
 \section{Poveznice}
-\url{http://incompleteideas.net/book/first/ebook/node9.html}
-\url{https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be}
-\url{https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process}
-\url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9}
-\url{https://arxiv.org/abs/1502.05477}
-\url{https://towardsdatascience.com/stochastic-gradient-descent-with-momentum-a84097641a5d}
-\url{https://www.tensorflow.org/api_docs/python/tf/compat/v1/train/MomentumOptimizer}
-\url{https://deepai.org/machine-learning-glossary-and-terms/gradient-clipping}
-\url{https://stackoverflow.com/questions/49987839/how-to-handle-none-in-tf-clip-by-global-norm}
-\url{https://lasagne.readthedocs.io/en/latest/modules/nonlinearities.html}
-\url{https://garage.readthedocs.io/en/v2020.06.0/_apidoc/garage.tf.policies.categorical_gru_policy.html}
-\url{https://nervanasystems.github.io/coach/components/exploration_policies/index.html}
+\url{http://incompleteideas.net/book/first/ebook/node9.html}\newline
+\url{https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be}\newline
+\url{https://en.wikipedia.org/wiki/Partially_observable_Markov_decision_process}\newline
+\url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-explained-a6ee04eeeee9}\newline
+\url{https://arxiv.org/abs/1502.05477}\newline
+\url{https://towardsdatascience.com/stochastic-gradient-descent-with-momentum-a84097641a5d}\newline
+\url{https://www.tensorflow.org/api_docs/python/tf/compat/v1/train/MomentumOptimizer}\newline
+\url{https://deepai.org/machine-learning-glossary-and-terms/gradient-clipping}\newline
+\url{https://stackoverflow.com/questions/49987839/how-to-handle-none-in-tf-clip-by-global-norm}\newline
+\url{https://lasagne.readthedocs.io/en/latest/modules/nonlinearities.html}\newline
+\url{https://garage.readthedocs.io/en/v2020.06.0/_apidoc/garage.tf.policies.categorical_gru_policy.html}\newline
+\url{https://nervanasystems.github.io/coach/components/exploration_policies/index.html}\newline
+\url{https://stable-baselines.readthedocs.io/en/master/modules/trpo.html}\newline
+\url{https://medium.com/@jonathan_hui/rl-trust-region-policy-optimization-trpo-part-2-f51e3b2e373a}\newline
+\url{https://stats.stackexchange.com/questions/284712/how-does-the-l-bfgs-work/285106}
+
 
