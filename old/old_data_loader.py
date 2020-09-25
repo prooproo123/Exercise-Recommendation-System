@@ -1,22 +1,20 @@
 import numpy as np
-import pandas as pd
 
 
 class DATA_LOADER():
-    def __init__(self, number_AllConcepts, number_concepts, seqlen,n_questions):
+    def __init__(self, number_AllConcepts, number_concepts, seqlen, n_questions):
         """
         Preprocessing data
         :param number_AllConcepts: the number of all unique knowledge concepts
         :param number_concepts: the number of knowledge concepts for an exercise
         :param seqlen: exercises sequence length
         """
-        #123,1, cca 1900
+        # 123,1, cca 1900
         self.number_AllConcepts = number_AllConcepts
         self.number_concepts = number_concepts
         self.seq_len = seqlen
-        self.seperate_char=','
-        self.n_questions=n_questions
-
+        self.seperate_char = ','
+        self.n_questions = n_questions
 
     def load_data(self, path):
         f_data = open(path, 'r')
@@ -95,7 +93,7 @@ class DATA_LOADER():
             # if kg_data[i] less than seq_len, remainder would be 0
             kg_data_array[i, :len(data)] = data
 
-        return q_data_array,qa_data_array, kg_data_array
+        return q_data_array, qa_data_array, kg_data_array
 
     def load_dataes(self, q_data, qa_data, kc_onehots, kcs):
 
@@ -117,8 +115,8 @@ class DATA_LOADER():
             if len(data) > self.seq_len: continue
             kg_data_array[i, :len(data)] = data
 
-        kgnum_data_array = np.zeros((len(kcs), self.seq_len,self.number_concepts))
-        #kgnum_data_array = np.zeros((len(kcs), self.seq_len, self.number_concepts))
+        kgnum_data_array = np.zeros((len(kcs), self.seq_len, self.number_concepts))
+        # kgnum_data_array = np.zeros((len(kcs), self.seq_len, self.number_concepts))
         for i in range(len(kcs)):
             data = np.array(kcs[i])
             if len(data) > self.seq_len: continue

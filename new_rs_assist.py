@@ -4,18 +4,15 @@ from __future__ import division
 
 import copy
 import pickle
+import subprocess
 import sys
 import types
 
-import subprocess
-import chunk_analysis_assist
-import assist_tempfile_creator
-
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 from gym import spaces
 
+import chunk_analysis_assist
 from rllab.algos.trpo import TRPO
 from rllab.baselines.linear_feature_baseline import LinearFeatureBaseline
 from rllab.envs.gym_env import *
@@ -98,7 +95,7 @@ class StudentEnv(gym.Env):
         else:
             raise ValueError
 
-    def step(self, action:int):
+    def step(self, action: int):
         """
 
         Args:
@@ -163,7 +160,7 @@ class DKVEnv(StudentEnv):
         Init DKVMN-CA student model
         """
 
-        self.e2c=e2c
+        self.e2c = e2c
 
         # contains the exercise which has already been answered correctly
         self.right = []
@@ -172,7 +169,7 @@ class DKVEnv(StudentEnv):
         self.key_matrix = params['Memory/key:0']
         # shape=()
         self.value_matrix = params['Memory/value:0']
-        #shape=(numq+1,50)
+        # shape=(numq+1,50)
         self.q_embed_mtx = params['Embedding/q_embed:0']
         # shape=(2*numq+1,50)
         self.qa_embed_mtx = params['Embedding/qa_embed:0']
@@ -192,7 +189,6 @@ class DKVEnv(StudentEnv):
         self.predict_w = params['Prediction/weight:0']
         # shape=(,)
         self.predict_b = params['Prediction/bias:0']
-
 
     def softmax(self, num):
         return np.exp(num) / np.sum(np.exp(num), axis=0)
@@ -544,53 +540,54 @@ def run_eps(agent, env, n_eps=100):
         tot_rew.append(totalr)
     return tot_rew
 
-#student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
-#stu = [[(51424, 0), (51435, 1),(51444, 1)]]
-stu = [[(85829, 0),(85838, 1)]]
-#za biologiju
-#stu = [[(1, 0), (27, 1)]]
+
+# student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
+# stu = [[(51424, 0), (51435, 1),(51444, 1)]]
+stu = [[(85829, 0), (85838, 1)]]
+# za biologiju
+# stu = [[(1, 0), (27, 1)]]
 
 # the parameters of trained DKVMN-CA model
-#with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
+# with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
 with open('checkpoint/assist2009_updated_32batch_1epochs/kt_params', 'rb') as f:
     params = pickle.load(f)
 
-#cands=[51424,51435,51444,51395,51481]
-#cands=[85829,61089,85814,85838]
-#cands=[1, 15, 16, 27]
+# cands=[51424,51435,51444,51395,51481]
+# cands=[85829,61089,85814,85838]
+# cands=[1, 15, 16, 27]
 
-#candidate_exercises=[exercises_id_converter[e] for e in cands]
-#student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
+# candidate_exercises=[exercises_id_converter[e] for e in cands]
+# student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
 
 
-#current problems:
-#key error?
+# current problems:
+# key error?
 
-#Concepts = 5  # number of concepts
-#NumQ = 30 # number of exercises
-#Concepts = 8  # number of concepts
-#NumQ = 1338 # number of exercises
+# Concepts = 5  # number of concepts
+# NumQ = 30 # number of exercises
+# Concepts = 8  # number of concepts
+# NumQ = 1338 # number of exercises
 
-#negdje odrediti koliko tocno zeli kandidata?
-NumQ, Concepts= chunk_analysis_assist.exer_conc()
+# negdje odrediti koliko tocno zeli kandidata?
+NumQ, Concepts = chunk_analysis_assist.exer_conc()
 cands, stu = chunk_analysis_assist.cand_stu()
 
 subprocess.call("assist_tempfile_creator.py", shell=True)
- 
+
 # Knowledge Concepts Corresponding to the exercise
 with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
-#with open('data/biology30/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+    # with open('data/biology30/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
     e2c = pickle.load(f)
 
 with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
-#with open('data/biology30/chunk_exercises_id_converter.pkl', 'rb') as f:
+    # with open('data/biology30/chunk_exercises_id_converter.pkl', 'rb') as f:
     exercises_id_converter = pickle.load(f)
 
-candidate_exercises=[exercises_id_converter[e] for e in cands]
-student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
+candidate_exercises = [exercises_id_converter[e] for e in cands]
+student_traces = [[(exercises_id_converter[e], a) for e, a in t] for t in stu]
 
 # Concepts = 123  # number of concepts
-#NumQ = 17751 # number of exercises
+# NumQ = 17751 # number of exercises
 n_steps = 5  # number of steps of algorithm
 n_items = len(candidate_exercises)  # number of candidate exercises
 # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
@@ -614,14 +611,14 @@ env = DKVEnv(**env_kwargs, reward_func='likelihood')
 rl_env = make_rl_student_env(env)
 agent = RLTutor(n_items)
 reward = agent.train(rl_env, n_eps=n_eps)
-#print(evaluation(agent))
-#print('ok')
+# print(evaluation(agent))
+# print('ok')
 
 print('knowledge growth')
 outList = evaluation(agent)
-#outList.sort()
+# outList.sort()
 plt.figure()
 i = range(50)
 plt.plot(i, outList, '-bo')
 plt.savefig('plot.png')
-#plt.show()
+# plt.show()

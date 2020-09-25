@@ -1,4 +1,5 @@
 import tensorflow as tf
+
 from knowledge_tracing import operations
 
 
@@ -30,7 +31,6 @@ class DKVMN_Memory():
         kms = tf.multiply(key_matrixes, mask)
         embedded = tf.reshape(embedded, [self.batch_size, 1, self.memory_state_dim])
 
-
         embedding_result = tf.matmul(embedded, tf.matrix_transpose(kms))
 
         embedding_result = tf.squeeze(embedding_result)
@@ -54,7 +54,6 @@ class DKVMN_Memory():
 		'''
         # Reshaping
         # [batch size * memory size, memory state dim(d_v)]
-
 
         vmtx_reshaped = tf.reshape(value_matrix, [-1, self.memory_state_dim])
         # [batch size * memory size, 1]
@@ -97,14 +96,15 @@ class DKVMN_Memory():
 
         new_memory = erase + add_mul
         # [batch size, memory size, memory value staet dim]
-        #je li ovo potrebno?
+        # je li ovo potrebno?
         print('Memory shape : %s' % (new_memory.get_shape()))
         return new_memory
 
 
 # This class construct key matrix and value matrix
 class DKVMN():
-    def __init__(self, memory_size, memory_key_state_dim, memory_value_state_dim, init_memory_key, init_memory_value, batch_size,
+    def __init__(self, memory_size, memory_key_state_dim, memory_value_state_dim, init_memory_key, init_memory_value,
+                 batch_size,
                  name='DKVMN'):
         print('Initializing memory..')
 
@@ -114,13 +114,14 @@ class DKVMN():
         self.memory_value_state_dim = memory_value_state_dim
 
         self.key = DKVMN_Memory(self.memory_size, self.memory_key_state_dim, batch_size, name=self.name + '_key_matrix')
-        self.value = DKVMN_Memory(self.memory_size, self.memory_value_state_dim, batch_size, name=self.name + '_value_matrix')
+        self.value = DKVMN_Memory(self.memory_size, self.memory_value_state_dim, batch_size,
+                                  name=self.name + '_value_matrix')
 
         self.memory_key = init_memory_key
         self.memory_value = init_memory_value
 
     def attention(self, q_embedded, keys=None, mask=None):
-        correlation_weight = self.key.cor_weight(embedded=q_embedded, key_matrix=self.memory_key, keys = keys, mask=mask)
+        correlation_weight = self.key.cor_weight(embedded=q_embedded, key_matrix=self.memory_key, keys=keys, mask=mask)
         return correlation_weight
 
     def read(self, c_weight):
@@ -128,9 +129,6 @@ class DKVMN():
         return read_content
 
     def write(self, c_weight, qa_embedded, reuse):
-
         self.memory_value = self.value.write(value_matrix=self.memory_value, correlation_weight=c_weight,
                                              qa_embedded=qa_embedded, reuse=reuse)
         return self.memory_value
-
-

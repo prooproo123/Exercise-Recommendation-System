@@ -10,7 +10,7 @@ from old.old_mymodel_concat import Model
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--num_epochs', type=int, default=2)
+    parser.add_argument('--num_epochs', type=int, default=10)
     parser.add_argument('--train', type=str2bool, default='t')
     parser.add_argument('--init_from', type=str2bool, default='t')
     parser.add_argument('--show', type=str2bool, default='f')
@@ -57,7 +57,7 @@ def main():
 
         if args.train:
             print('Start training')
-            for i in range(50):
+            for i in range(1):
                 q_train, q_valid, qa_train, qa_valid, kg_hot_train, kg_hot_valid, kg_train, kg_valid = train_test_split(
                     q_datas, qa_datas, kg_hot, kgs, test_size=0.3)
 

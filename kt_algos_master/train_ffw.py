@@ -1,14 +1,13 @@
-import os
 import argparse
+import os
+
 import numpy as np
-from scipy.sparse import load_npz, csr_matrix
-
 import torch.nn as nn
+from ffw import FeedForward
+from scipy.sparse import csr_matrix, load_npz
 from torch.optim import Adam
-
 from utils.logger import Logger
 from utils.metrics import Metrics
-from ffw import FeedForward
 from utils.misc import *
 
 

@@ -1,21 +1,18 @@
-import pickle
-
 import pandas as pd
-import numpy as np
-from statistics import mean, median
+
+
 # DEBUGGING PKL FILES
 
 # sb09 = pd.read_csv('/../data/skill_builder/skill_builder_data.csv')
 
 class ChunkInfo:
 
-    def __init__(self,chunk):
-
+    def __init__(self, chunk):
         self.users = chunk['user_id'].unique()
         self.exercises = chunk['problem_id'].unique()
         self.concepts = chunk['skill_id'].unique()
 
-        #Mozda nije tocno implementirano, za sada nema jos potrebe za tim vrijednostima
+        # Mozda nije tocno implementirano, za sada nema jos potrebe za tim vrijednostima
         self.concept_exercises_mapping = chunk.groupby('skill_id')['problem_id'].apply(set).apply(list).to_dict()
         self.user_exercises_mapping = chunk.groupby('user_id')['problem_id'].apply(set).apply(list).to_dict()
         self.user_concepts_mapping = chunk.groupby('user_id')['skill_id'].apply(set).apply(list).to_dict()
@@ -29,10 +26,11 @@ class ChunkInfo:
 
         e = chunk.groupby('problem_id')['skill_id'].apply(set).apply(list).to_dict()
 
-        self.exercise_concepts_mapping = {self.exercises_id_converter[k]: [self.concepts_id_converter[c] for c in v] for k, v in
+        self.exercise_concepts_mapping = {self.exercises_id_converter[k]: [self.concepts_id_converter[c] for c in v] for
+                                          k, v in
                                           e.items()}
-        self.no_exercises=len(self.exercises)
-        self.no_concepts=len(self.concepts)
+        self.no_exercises = len(self.exercises)
+        self.no_concepts = len(self.concepts)
 
     def get_no_concepts(self):
         return self.no_concepts
@@ -67,21 +65,22 @@ class ChunkInfo:
     def get_id_exercise_converter(self):
         return self.id_exercises_converter
 
-def get_chunks(filepath,chunk_size=40000,sep='\t'):
-    dataset = pd.read_csv(filepath,sep=sep,index_col=None,
-                       dtype={'user_id': int,
-                              'problem_id': int,
-                              'correct': int,
-                              'skill_id': str,
-                              },
-                       usecols=['user_id',
-                                'problem_id',
-                                'correct',
-                                'skill_id',
-                                ])
 
-    dataset=dataset[dataset.notna().all(axis=1)]
-    list_df = [dataset[i:i+chunk_size] for i in range(0,dataset.shape[0],chunk_size)]
+def get_chunks(filepath, chunk_size=40000, sep='\t'):
+    dataset = pd.read_csv(filepath, sep=sep, index_col=None,
+                          dtype={'user_id': int,
+                                 'problem_id': int,
+                                 'correct': int,
+                                 'skill_id': str,
+                                 },
+                          usecols=['user_id',
+                                   'problem_id',
+                                   'correct',
+                                   'skill_id',
+                                   ])
+
+    dataset = dataset[dataset.notna().all(axis=1)]
+    list_df = [dataset[i:i + chunk_size] for i in range(0, dataset.shape[0], chunk_size)]
     return list_df
 
 

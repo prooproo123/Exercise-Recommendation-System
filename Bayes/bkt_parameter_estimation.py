@@ -1,6 +1,5 @@
-import random
 import math
-import sys
+import random
 
 
 class computeKTparams_SA:
@@ -184,9 +183,10 @@ class computeKTparams_SA:
 
         return params
 
+
 class BKTParams:
 
-    def __init__(self, copy = None, randStep = None, top = None, stepSize = None, minVal = None, init = None):
+    def __init__(self, copy=None, randStep=None, top=None, stepSize=None, minVal=None, init=None):
 
         if init is not None:
             if init < 0:
@@ -207,7 +207,7 @@ class BKTParams:
 
             if randStep:
                 randomChange = random.random()
-                thisStep = 2. * (random.random()-0.5) * stepSize
+                thisStep = 2. * (random.random() - 0.5) * stepSize
 
                 if randomChange <= 0.25:
                     self.L0 = max(min(self.L0 + thisStep, top['L0']), minVal)
@@ -223,10 +223,9 @@ class BKTParams:
 
 
 def estimate_parameters(data):
+    f = open("BKT_parameters.txt", "w")
+    model = computeKTparams_SA()
+    params = model.computelzerot(data, f)
 
-  f = open("BKT_parameters.txt", "w")
-  model = computeKTparams_SA()
-  params = model.computelzerot(data, f)
-
-#  print(params)
-  return params
+    #  print(params)
+    return params

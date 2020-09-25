@@ -1,11 +1,13 @@
-import numpy as np
 import os
-import tensorflow as tf
-from knowledge_tracing import operations
-import shutil
-from old.old_memory import DKVMN
-from sklearn import metrics
 import pickle
+import shutil
+
+import numpy as np
+import tensorflow as tf
+from sklearn import metrics
+
+from knowledge_tracing import operations
+from old.old_memory import DKVMN
 
 
 class Model():
@@ -31,8 +33,8 @@ class Model():
         self.exercise_answers = tf.placeholder(tf.int32, [self.args.batch_size, self.args.seq_len],
                                                name='exercise_answers')
         self.target = tf.placeholder(tf.float32, [self.args.batch_size, self.args.seq_len], name='target')
-        #TODO
-        self.knowledge_concept_ids = tf.placeholder(tf.int32, [self.args.batch_size, self.args.seq_len,1],
+        # TODO
+        self.knowledge_concept_ids = tf.placeholder(tf.int32, [self.args.batch_size, self.args.seq_len, 1],
                                                     name='knowledge_concept_ids')
         # ???
         self.knowledge_concept_onehots = tf.placeholder(tf.float32, [self.args.batch_size, self.args.seq_len,
@@ -194,7 +196,7 @@ class Model():
         :return:
         """
         params = self.sess.run(self.params)
-        with open(os.path.join(self.args.checkpoint_dir, self.model_dir,'kt_params'), 'wb') as f:
+        with open(os.path.join(self.args.checkpoint_dir, self.model_dir, 'kt_params'), 'wb') as f:
             pickle.dump(params, f)
 
     def train(self, train_q_data, train_qa_data, valid_q_data, valid_qa_data, train_kg_data,

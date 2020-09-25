@@ -4,7 +4,7 @@ import numpy as np
 import scipy.sparse as sp
 
 FILE_DIR = dirname(abspath(__file__))
-DATA_DIR = join(FILE_DIR, "data")
+DATA_DIR = join(FILE_DIR, "../data")
 
 BIOLOGY_COLORS = {
     "Stanica": "#C38A1F",
@@ -13,7 +13,6 @@ BIOLOGY_COLORS = {
     "Dioba stanice": "#8B006B",
     "DNA": "#8B006B",
 }
-
 
 MACOSKO_COLORS = {
     "Amacrine cells": "#A5C93D",
@@ -142,20 +141,20 @@ def pca(x, n_components=50):
 
 
 def select_genes(
-    data,
-    threshold=0,
-    atleast=10,
-    yoffset=0.02,
-    xoffset=5,
-    decay=1,
-    n=None,
-    plot=True,
-    markers=None,
-    genes=None,
-    figsize=(6, 3.5),
-    markeroffsets=None,
-    labelsize=10,
-    alpha=1,
+        data,
+        threshold=0,
+        atleast=10,
+        yoffset=0.02,
+        xoffset=5,
+        decay=1,
+        n=None,
+        plot=True,
+        markers=None,
+        genes=None,
+        figsize=(6, 3.5),
+        markeroffsets=None,
+        labelsize=10,
+        alpha=1,
 ):
     if sp.issparse(data):
         zeroRate = 1 - np.squeeze(np.array((data > threshold).mean(axis=0)))
@@ -164,7 +163,7 @@ def select_genes(
         meanExpr = np.zeros_like(zeroRate) * np.nan
         detected = zeroRate < 1
         meanExpr[detected] = np.squeeze(np.array(A[:, detected].mean(axis=0))) / (
-            1 - zeroRate[detected]
+                1 - zeroRate[detected]
         )
     else:
         zeroRate = 1 - np.mean(data > threshold, axis=0)
@@ -187,7 +186,7 @@ def select_genes(
             nonan = ~np.isnan(zeroRate)
             selected = np.zeros_like(zeroRate).astype(bool)
             selected[nonan] = (
-                zeroRate[nonan] > np.exp(-decay * (meanExpr[nonan] - xoffset)) + yoffset
+                    zeroRate[nonan] > np.exp(-decay * (meanExpr[nonan] - xoffset)) + yoffset
             )
             if np.sum(selected) == n:
                 break
@@ -202,7 +201,7 @@ def select_genes(
         nonan = ~np.isnan(zeroRate)
         selected = np.zeros_like(zeroRate).astype(bool)
         selected[nonan] = (
-            zeroRate[nonan] > np.exp(-decay * (meanExpr[nonan] - xoffset)) + yoffset
+                zeroRate[nonan] > np.exp(-decay * (meanExpr[nonan] - xoffset)) + yoffset
         )
 
     if plot:
@@ -278,17 +277,17 @@ def select_genes(
 
 
 def plot(
-    x,
-    y,
-    ax=None,
-    title=None,
-    draw_legend=True,
-    draw_centers=False,
-    draw_cluster_labels=False,
-    colors=None,
-    legend_kwargs=None,
-    label_order=None,
-    **kwargs
+        x,
+        y,
+        ax=None,
+        title=None,
+        draw_legend=True,
+        draw_centers=False,
+        draw_cluster_labels=False,
+        colors=None,
+        legend_kwargs=None,
+        label_order=None,
+        **kwargs
 ):
     import matplotlib
     import matplotlib.pyplot as plt
@@ -367,7 +366,7 @@ def plot(
 
 
 def evaluate_embedding(
-    embedding, labels, projection_embedding=None, projection_labels=None, sample=None
+        embedding, labels, projection_embedding=None, projection_labels=None, sample=None
 ):
     """Evaluate the embedding using Moran's I index.
 

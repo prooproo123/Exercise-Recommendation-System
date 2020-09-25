@@ -123,37 +123,35 @@ def evaluation(agent):
 #     return tot_rew
 
 
-#student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
-#stu = [[(51424, 0), (51435, 1),(51444, 1)]]
-stu = [[(85829, 0),(85838, 1)]]
+# student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
+# stu = [[(51424, 0), (51435, 1),(51444, 1)]]
+stu = [[(85829, 0), (85838, 1)]]
 
 # the parameters of trained DKVMN-CA model
 with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
-#with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
+    # with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
     params = pickle.load(f)
 
 # Knowledge Concepts Corresponding to the exercise
 with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
     e2c = pickle.load(f)
 
-
 with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
     exercises_id_converter = pickle.load(f)
 
-#cands=[51424,51435,51444,51395,51481]
-cands=[85829,61089,85814,85838]
+# cands=[51424,51435,51444,51395,51481]
+cands = [85829, 61089, 85814, 85838]
 
-candidate_exercises=[exercises_id_converter[e] for e in cands]
-student_traces=[[(exercises_id_converter[e],a) for e,a in t] for t in stu]
+candidate_exercises = [exercises_id_converter[e] for e in cands]
+student_traces = [[(exercises_id_converter[e], a) for e, a in t] for t in stu]
 
-
-#current problems:
-#key error?
+# current problems:
+# key error?
 
 Concepts = 9  # number of concepts
-NumQ = 2446 # number of exercises
+NumQ = 2446  # number of exercises
 # Concepts = 123  # number of concepts
-#NumQ = 17751 # number of exercises
+# NumQ = 17751 # number of exercises
 n_steps = 5  # number of steps of algorithm
 n_items = len(candidate_exercises)  # number of candidate exercises
 # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
@@ -203,7 +201,6 @@ agent = RLTutor(rl_env=rl_env, raw_policy=raw_policy)
 
 reward = agent.train()
 print(evaluation(agent))
-
 
 # # student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
 # # stu = [[(51424, 0), (51435, 1),(51444, 1)]]

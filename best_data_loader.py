@@ -1,10 +1,12 @@
-import pickle
-import pandas as pd
-import numpy as np
 import os
+import pickle
 
-#'/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
-PATH_TO_EXREC='/home/zvonimir/'
+import numpy as np
+import pandas as pd
+
+# '/home/zvonimir/Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+PATH_TO_EXREC = '/home/zvonimir/'
+
 
 class Data_Loader():
     def __init__(self, n_questions=100, seqlen=150, seperate_char=','):
@@ -13,7 +15,7 @@ class Data_Loader():
         self.seperate_char = seperate_char
         self.n_questions = n_questions
         self.seq_len = seqlen
-        self.data_path=os.path.curdir
+        self.data_path = os.path.curdir
 
     '''
     Data format a followed
@@ -21,10 +23,11 @@ class Data_Loader():
     2) Exercise tag
     3) Answers
     '''
-    def load_data2(self,data):
+
+    def load_data2(self, data):
         q_data = list()
         qa_data = list()
-        #print()
+        # print()
         for lineid, line in enumerate(data.split('\n')[:-1]):
             # strip
             line = line.strip()
@@ -37,7 +40,7 @@ class Data_Loader():
 
             # Answer
             elif lineid % 3 == 2:
-                #print(', Answers')
+                # print(', Answers')
                 answer_list = line.split(self.seperate_char)
 
                 # Divide case by seq_len
@@ -47,7 +50,7 @@ class Data_Loader():
                         n_split += 1
                 else:
                     n_split = 1
-                #print('Number of split : %d' % n_split)
+                # print('Number of split : %d' % n_split)
 
                 # Contain as many as seq_len, then contain remainder
                 for k in range(n_split):
@@ -63,7 +66,7 @@ class Data_Loader():
                         qa_values = int(q_tag_list[i]) + int(answer_list[i]) * self.n_questions
                         q_container.append(int(q_tag_list[i]))
                         qa_container.append(qa_values)
-                        #print('Question tag : %s, Answer : %s, QA : %s' % (q_tag_list[i], answer_list[i], qa_values))
+                        # print('Question tag : %s, Answer : %s, QA : %s' % (q_tag_list[i], answer_list[i], qa_values))
                     # List of list(seq_len, seq_len, seq_len, less than seq_len, seq_len, seq_len...
                     q_data.append(q_container)
                     qa_data.append(qa_container)
@@ -82,8 +85,6 @@ class Data_Loader():
             qa_data_array[i, :len(data)] = data
 
         return q_data_array, qa_data_array
-
-
 
     # path : data location
     def load_data(self, path):
@@ -152,7 +153,7 @@ class Data_Loader():
         return q_data_array, qa_data_array
 
     def pickle_candidates(self):
-        assistments_pickled = PATH_TO_EXREC+'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+        assistments_pickled = PATH_TO_EXREC + 'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
         with open(assistments_pickled, 'rb') as f:
             df = pickle.load(f)
@@ -198,11 +199,11 @@ class Data_Loader():
         return 0
 
     def load_ids(self):
-        pat = PATH_TO_EXREC+'Exercise-Recommendation-System/data/assist2015/assist2015_qname_qid'
+        pat = PATH_TO_EXREC + 'Exercise-Recommendation-System/data/assist2015/assist2015_qname_qid'
         with open(file=pat) as f:
             lines = f.readlines()
 
-        assistments_pickled = PATH_TO_EXREC+'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+        assistments_pickled = PATH_TO_EXREC + 'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
         with open(assistments_pickled, 'rb') as f:
             df = pickle.load(f)
 
@@ -217,10 +218,10 @@ class Data_Loader():
 
         return 0
 
-    def standard(self,listt):
+    def standard(self, listt):
         return str(listt).replace(" ", "").replace("[", "").replace("]", "")
 
-    def standardCon(self,listt, di):
+    def standardCon(self, listt, di):
         listtt = [di[ex] for ex in listt]
         return str(list(map(int, listtt))).replace(" ", "").replace("[", "").replace("]", "")
 
@@ -253,12 +254,12 @@ class Data_Loader():
                                   'template_id',
                                   'first_action', 'opportunity', ])
 
-        assistments_pickled = PATH_TO_EXREC+'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+        assistments_pickled = PATH_TO_EXREC + 'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
         students = df.user_id.unique()
 
-        outputFilePath = PATH_TO_EXREC+'Exercise-Recommendation-System/data/stan_con.csv'
-        self.for_students_write(self,outputFilePath,df)
+        outputFilePath = PATH_TO_EXREC + 'Exercise-Recommendation-System/data/stan_con.csv'
+        self.for_students_write(self, outputFilePath, df)
 
     def obradi_assistments2(self):
         assistments_data_path = '/data/skill_builder/skill_builder_data.csv'
@@ -288,21 +289,21 @@ class Data_Loader():
                                   'template_id',
                                   'first_action', 'opportunity', ])
 
-        assistments_pickled = PATH_TO_EXREC+'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
+        assistments_pickled = PATH_TO_EXREC + 'Exercise-Recommendation-System/data/skill_builder_pickle.pkl'
 
         students = df.user_id.unique()
 
-        outputFilePath = PATH_TO_EXREC+'Exercise-Recommendation-System/data/stand_exind_nocon.csv'
-        self.for_students_write(self,outputFilePath,df)
+        outputFilePath = PATH_TO_EXREC + 'Exercise-Recommendation-System/data/stand_exind_nocon.csv'
+        self.for_students_write(self, outputFilePath, df)
 
+    def preprocess_gforms(self, filename):
+        csv_path = PATH_TO_EXREC + 'Exercise-Recommendation-System/data/gforms_raw/' + filename
+        df = pd.read_csv(filepath_or_buffer=csv_path, delimiter='\t')
 
-    def preprocess_gforms(self,filename):
-        csv_path=PATH_TO_EXREC+'Exercise-Recommendation-System/data/gforms_raw/'+filename
-        df=pd.read_csv(filepath_or_buffer=csv_path,delimiter='\t')
+        self.for_students_write(
+            PATH_TO_EXREC + 'Exercise-Recommendation-System/data/gforms_raw/' + filename + 'processed.csv', df)
 
-        self.for_students_write(PATH_TO_EXREC+'Exercise-Recommendation-System/data/gforms_raw/'+filename+'processed.csv',df)
-
-    def for_students_write(self,path,df):
+    def for_students_write(self, path, df):
 
         outputFile = open(path, "w+")
         students = df.user_id.unique()

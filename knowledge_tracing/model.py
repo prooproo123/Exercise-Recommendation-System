@@ -3,7 +3,6 @@ import pickle
 import shutil
 
 import numpy as np
-import pyprind
 import tensorflow as tf
 from sklearn import metrics
 
@@ -12,33 +11,31 @@ from knowledge_tracing.memory import DKVMN
 
 
 class Model():
-    def __init__(self,memory_size,batch_size,seq_len,n_questions,memory_key_state_dim,
-                     memory_value_state_dim,final_fc_dim,momentum,maxgradnorm,
-                     show,init_from,checkpoint_dir,log_dir,dataset,inital_lr,num_epochs,
-                    anneal_interval,
+    def __init__(self, memory_size, batch_size, seq_len, n_questions, memory_key_state_dim,
+                 memory_value_state_dim, final_fc_dim, momentum, maxgradnorm,
+                 show, init_from, checkpoint_dir, log_dir, dataset, inital_lr, num_epochs,
+                 anneal_interval,
                  sess, name='KT'):
-        self.num_epochs=num_epochs
+        self.num_epochs = num_epochs
         self.checkpoint_dir = None
         self.name = name
         self.sess = sess
         self.show = show
         self.init_from = init_from
         self.batch_size = batch_size
-        self.memory_size=memory_size
-        self.seq_len=seq_len
-        self.n_questions=n_questions
-        self.memory_key_state_dim=memory_key_state_dim
-        self.memory_value_state_dim=memory_value_state_dim
-        self.final_fc_dim=final_fc_dim
-        self.maxgradnorm=maxgradnorm
-        self.momentum=momentum
-        self.checkpoint_dir=checkpoint_dir
-        self.log_dir=log_dir
-        self.dataset=dataset
-        self.initial_lr=inital_lr
-        self.anneal_interval=anneal_interval
-
-
+        self.memory_size = memory_size
+        self.seq_len = seq_len
+        self.n_questions = n_questions
+        self.memory_key_state_dim = memory_key_state_dim
+        self.memory_value_state_dim = memory_value_state_dim
+        self.final_fc_dim = final_fc_dim
+        self.maxgradnorm = maxgradnorm
+        self.momentum = momentum
+        self.checkpoint_dir = checkpoint_dir
+        self.log_dir = log_dir
+        self.dataset = dataset
+        self.initial_lr = inital_lr
+        self.anneal_interval = anneal_interval
 
         self.create_model()
 
@@ -91,8 +88,8 @@ class Model():
         prediction = list()
         reuse_flag = False
 
-        #self.clustering_x=np.ndarray(shape=(self.args.n_questions,self.args.memory_size))
-        self.clustering_x=[]
+        # self.clustering_x=np.ndarray(shape=(self.args.n_questions,self.args.memory_size))
+        self.clustering_x = []
 
         # Logics
         for i in range(self.seq_len):
@@ -104,8 +101,6 @@ class Model():
             q = tf.squeeze(slice_q_embed_data[i], 1)
             # Attention, [batch size, memory size/concepts num]
             self.correlation_weight = self.memory.attention(q)
-
-
 
             # Read process, [batch size, memory value state dim]
             self.read_content = self.memory.read(self.correlation_weight)
@@ -152,7 +147,7 @@ class Model():
         grad, _ = tf.clip_by_global_norm(grads, self.maxgradnorm)
         self.train_op = optimizer.apply_gradients(zip(grad, vrbs), global_step=self.global_step)
         #		grad_clip = [(tf.clip_by_value(grad, -self.args.maxgradnorm, self.args.maxgradnorm), var) for grad, var in grads]
-        #TODO
+        # TODO
         self.tr_vrbs = tf.trainable_variables()
         self.params = {}
         for i in self.tr_vrbs:
@@ -169,10 +164,10 @@ class Model():
         training_step = train_q_data.shape[0] // self.batch_size
         self.sess.run(tf.global_variables_initializer())
 
-       # if self.show:
-            # from rllab.utils import ProgressBar
-            # bar = ProgressBar(label, max=training_step)
-         #   bar = pyprind.ProgBar(training_step)
+        # if self.show:
+        # from rllab.utils import ProgressBar
+        # bar = ProgressBar(label, max=training_step)
+        #   bar = pyprind.ProgBar(training_step)
 
         self.train_count = 0
         if self.init_from:
@@ -192,7 +187,7 @@ class Model():
 
         # Training
         for epoch in range(0, self.num_epochs):
-          #  if self.show:
+            #  if self.show:
             #    bar.next()
 
             pred_list = list()
@@ -233,8 +228,8 @@ class Model():
                 epoch_loss += loss_
             # print('Epoch %d/%d, steps %d/%d, loss : %3.5f' % (epoch+1, self.args.num_epochs, steps+1, training_step, loss_))
 
-          #  if self.show:
-           #     bar.finish()
+            #  if self.show:
+            #     bar.finish()
 
             all_pred = np.concatenate(pred_list, axis=0)
             all_target = np.concatenate(target_list, axis=0)
@@ -358,10 +353,11 @@ class Model():
         :return:
         """
         params = self.sess.run(self.params)
-        with open(os.path.join(self.checkpoint_dir, self.model_dir,'kt_params'), 'wb') as f:
+        with open(os.path.join(self.checkpoint_dir, self.model_dir, 'kt_params'), 'wb') as f:
             pickle.dump(params, f)
 
         return params
+
     def save(self, global_step):
         model_name = 'DKVMN'
         checkpoint_dir = os.path.join(self.checkpoint_dir, self.model_dir)

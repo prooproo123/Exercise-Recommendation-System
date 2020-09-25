@@ -1,11 +1,10 @@
-import os
 import argparse
+import os
+
 import pandas as pd
-
 import torch.nn as nn
-from torch.optim import Adam
-
 from dkt import DKT
+from torch.optim import Adam
 from utils.logger import Logger
 from utils.metrics import Metrics
 from utils.misc import *
@@ -30,7 +29,7 @@ def train(df, model, optimizer, logger, num_epochs, bptt, batch_max_size, low_gp
     criterion = nn.BCEWithLogitsLoss(reduction="sum")
     metrics = Metrics()
     step = 0
-    
+
     for epoch in range(num_epochs):
         train_batches = prepare_batches(train_data, batch_max_size)
         val_batches = prepare_batches(val_data, batch_max_size)
@@ -47,7 +46,7 @@ def train(df, model, optimizer, logger, num_epochs, bptt, batch_max_size, low_gp
                 # Truncated backprop through time
                 for i in range(0, length, bptt):
                     inp = inputs[:, i:i + bptt].cuda()
-                    it_ids =  item_ids[:, i:i + bptt].cuda()
+                    it_ids = item_ids[:, i:i + bptt].cuda()
                     lab = labels[:, i:i + bptt].cuda()
 
                     if i == 0:
@@ -87,7 +86,7 @@ def train(df, model, optimizer, logger, num_epochs, bptt, batch_max_size, low_gp
             step += 1
             metrics.store({'loss/train': loss.item()})
             metrics.store({'auc/train': train_auc})
-            
+
             # Logging
             if step % 20 == 0:
                 logger.log_scalars(metrics.average(), step)
@@ -113,12 +112,12 @@ def train(df, model, optimizer, logger, num_epochs, bptt, batch_max_size, low_gp
                             hidden = model.repackage_hidden(hidden, inp.shape[1])
                             pred, hidden = model(inp, hidden)
                         preds[:, i:i + bptt] = torch.sigmoid(pred).cpu()
-                        
+
                 else:
                     inputs = inputs.cuda()
                     preds, _ = model(inputs)
                     preds = torch.sigmoid(preds).cpu()
-        
+
             val_auc = compute_auc(preds, item_ids, labels)
             metrics.store({'auc/val': val_auc})
         model.train()
@@ -139,18 +138,18 @@ if __name__ == "__main__":
     parser.add_argument('--bptt', type=int, default=50)
     parser.add_argument('--low_gpu_mem', action='store_true')
     args = parser.parse_args()
-    
+
     df = pd.read_csv(os.path.join('data', args.dataset, 'preprocessed_data.csv'), sep="\t")
 
     num_items = int(df["item_id"].max() + 1)
     model = DKT(num_items, args.embed_inputs, args.embed_size, args.hid_size,
                 args.num_hid_layers, args.drop_prob).cuda()
     optimizer = Adam(model.parameters(), lr=args.lr)
-    
+
     param_str = (f'{args.dataset}, embed={args.embed_inputs}, dropout={args.drop_prob}, batch_size={args.batch_size} '
                  f'embed_size={args.embed_size}, hid_size={args.hid_size}, num_hid_layers={args.num_hid_layers}')
     logger = Logger(os.path.join(args.logdir, param_str))
-    
+
     train(df, model, optimizer, logger, args.num_epochs, args.bptt, args.batch_size, args.low_gpu_mem)
-    
+
     logger.close()

@@ -1,24 +1,27 @@
-import numpy as np
-import pandas as pd
-from scipy import sparse
 import argparse
 import os
 
+import numpy as np
+import pandas as pd
+from scipy import sparse
+
+
 def prepare_biology(data_name):
-  df = pd.read_csv('/content/gdrive/My Drive/data/biology30.csv', sep='\t')
-  df = df.rename(columns={"problem_id": "item_id"})
+    df = pd.read_csv('/content/gdrive/My Drive/data/biology30.csv', sep='\t')
+    df = df.rename(columns={"problem_id": "item_id"})
 
-  df["user_id"] = np.unique(df["user_id"], return_inverse=True)[1]
-  df["item_id"] = np.unique(df["item_id"], return_inverse=True)[1]
-  df["skill_id"] = np.unique(df["skill_id"], return_inverse=True)[1]
+    df["user_id"] = np.unique(df["user_id"], return_inverse=True)[1]
+    df["item_id"] = np.unique(df["item_id"], return_inverse=True)[1]
+    df["skill_id"] = np.unique(df["skill_id"], return_inverse=True)[1]
 
-  Q_mat = np.zeros((len(df["item_id"].unique()), len(df["skill_id"].unique())))
-  for item_id, skill_id in df[["item_id", "skill_id"]].values:
-      Q_mat[item_id, skill_id] = 1
-  df = df[['user_id', 'item_id', 'correct']]
-  df.reset_index(inplace=True, drop=True)
-  sparse.save_npz('/content/gdrive/My Drive/data/q_mat_bio.npz', sparse.csr_matrix(Q_mat))
-  df.to_csv('/content/gdrive/My Drive/data/preprocessed_data_bio.csv', sep='\t', index=False)
+    Q_mat = np.zeros((len(df["item_id"].unique()), len(df["skill_id"].unique())))
+    for item_id, skill_id in df[["item_id", "skill_id"]].values:
+        Q_mat[item_id, skill_id] = 1
+    df = df[['user_id', 'item_id', 'correct']]
+    df.reset_index(inplace=True, drop=True)
+    sparse.save_npz('/content/gdrive/My Drive/data/q_mat_bio.npz', sparse.csr_matrix(Q_mat))
+    df.to_csv('/content/gdrive/My Drive/data/preprocessed_data_bio.csv', sep='\t', index=False)
+
 
 def prepare_assistments(data_name, min_interactions_per_user, remove_nan_skills):
     """Preprocess ASSISTments dataset.
@@ -34,7 +37,7 @@ def prepare_assistments(data_name, min_interactions_per_user, remove_nan_skills)
         Q_mat (item-skill relationships sparse array): corresponding q-matrix
     """
     data_path = os.path.join("data", data_name)
-    #df = pd.read_csv(os.path.join(data_path, "data.csv"), encoding="ISO-8859-1")
+    # df = pd.read_csv(os.path.join(data_path, "data.csv"), encoding="ISO-8859-1")
     df = pd.read_csv('/content/gdrive/My Drive/data/skill_builder_data.csv', sep=',', encoding='ISO-8859-1')
 
     # Only 2012 and 2017 versions have timestamps
@@ -97,11 +100,10 @@ def prepare_assistments(data_name, min_interactions_per_user, remove_nan_skills)
     df.reset_index(inplace=True, drop=True)
 
     # Save data
-    #sparse.save_npz(os.path.join(data_path, "q_mat.npz"), sparse.csr_matrix(Q_mat))
-    #df.to_csv(os.path.join(data_path, "preprocessed_data.csv"), sep="\t", index=False)
+    # sparse.save_npz(os.path.join(data_path, "q_mat.npz"), sparse.csr_matrix(Q_mat))
+    # df.to_csv(os.path.join(data_path, "preprocessed_data.csv"), sep="\t", index=False)
     sparse.save_npz('/content/gdrive/My Drive/data/q_mat.npz', sparse.csr_matrix(Q_mat))
     df.to_csv('/content/gdrive/My Drive/data/preprocessed_data.csv', sep=',', index=False)
-
 
 
 def prepare_kddcup10(data_name, min_interactions_per_user, kc_col_name, remove_nan_skills):
@@ -226,26 +228,29 @@ def prepare_squirrel_ai(min_interactions_per_user):
     train_df.to_csv(os.path.join(data_path, f"preprocessed_data.csv"), sep="\t", index=False)
     test_df.to_csv(os.path.join(data_path, f"preprocessed_data_test.csv"), sep="\t", index=False)
 
+
 def prepare_lalilo(min_interactions_per_user):
     data_path = os.path.join("data", "lalilo")
     df = pd.read_csv(os.path.join(data_path, "shorter_training.csv"))
+
     def add_exercise_code_level_lesson(df) -> pd.DataFrame:
         dataset = df.copy()
         dataset["exercise_code_level_lesson"] = (
-            dataset["exercise_code"].map(str)
-            + "_"
-            + dataset["level"].map(str)
-            + "_lesson_"
-            + dataset["lesson_id"].map(str)
+                dataset["exercise_code"].map(str)
+                + "_"
+                + dataset["level"].map(str)
+                + "_lesson_"
+                + dataset["lesson_id"].map(str)
         )
         return dataset
+
     df = add_exercise_code_level_lesson(df)
 
-    df = df.rename(columns={"user_id":"student_id", "created_at": "timestamp", "exercise_code": "skill_id", "exercise_code_level_lesson": "item_id", "correctness": "correct"})
+    df = df.rename(columns={"user_id": "student_id", "created_at": "timestamp", "exercise_code": "skill_id",
+                            "exercise_code_level_lesson": "item_id", "correctness": "correct"})
     df["timestamp"] = pd.to_datetime(df["timestamp"])
     df["timestamp"] = df["timestamp"] - df["timestamp"].min()
     df["timestamp"] = df["timestamp"].apply(lambda x: x.total_seconds()).astype(np.int64)
-
 
     # Filter too short sequences
     df = df.groupby("user_id").filter(lambda x: len(x) >= min_interactions_per_user)
@@ -253,7 +258,7 @@ def prepare_lalilo(min_interactions_per_user):
     # Remove continuous outcomes
     df = df[df["correct"].isin([0, 1])]
     df["correct"] = df["correct"].astype(np.int32)
-    
+
     # Maybe we want to store the correspondence with the original dataset somewhere
     df["user_id"] = np.unique(df["user_id"], return_inverse=True)[1]
     df["item_id"] = np.unique(df["item_id"], return_inverse=True)[1]
@@ -264,13 +269,13 @@ def prepare_lalilo(min_interactions_per_user):
     for item_id, skill_id in df[["item_id", "skill_id"]].values:
         Q_mat[item_id, skill_id] = 1
 
-
     df = df[['user_id', 'item_id', 'timestamp', 'correct']]
     df.reset_index(inplace=True, drop=True)
 
     # Save data
     sparse.save_npz(os.path.join(data_path, "q_mat.npz"), sparse.csr_matrix(Q_mat))
     df.to_csv(os.path.join(data_path, "preprocessed_data.csv"), sep="\t", index=False)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Prepare datasets.')

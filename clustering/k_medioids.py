@@ -1,17 +1,14 @@
-import matplotlib.pyplot as plt
-from kneed import KneeLocator
-from sklearn.cluster import KMeans
-from sklearn_extra.cluster import KMedoids
-from sklearn.metrics import silhouette_score
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
-#from google.colab import files
-import io
-import pandas as pd
-from collections import Counter
-import math
 import itertools as it
+from collections import Counter
+
+import matplotlib.pyplot as plt
 import numpy as np
+# from google.colab import files
+import pandas as pd
+from kneed import KneeLocator
+from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
+from sklearn.preprocessing import StandardScaler
+from sklearn_extra.cluster import KMedoids
 
 
 def read_student_answers(df, skills):
@@ -42,11 +39,11 @@ def distance_function(x, y):
 
 
 def adjusted_rand_index(real_classes, result):
-  return adjusted_rand_score(real_classes, result)
+    return adjusted_rand_score(real_classes, result)
 
 
 def rand_index(y_true, y_predict):
-    indeksi = list(range(0, len(y_true),1))
+    indeksi = list(range(0, len(y_true), 1))
     kombinacije = list(it.combinations(indeksi, 2))
     a = 0
     b = 0
@@ -57,11 +54,11 @@ def rand_index(y_true, y_predict):
         else:
             if (y_true[komba[0]] != y_true[komba[1]] and y_predict[komba[0]] != y_predict[komba[1]]):
                 b += 1
-    return (a+b)/len(kombinacije)
+    return (a + b) / len(kombinacije)
 
 
 def mutual_info_score(real_classes, result):
-  return normalized_mutual_info_score(real_classes, result)
+    return normalized_mutual_info_score(real_classes, result)
 
 
 def sum_error(real_classes, result):
@@ -79,63 +76,63 @@ def sum_error(real_classes, result):
 
 
 def scale(answers):
-  scaler = StandardScaler()
-  scaled_answers = scaler.fit_transform(answers)
-  #print(scaler.mean_)
-  #print(scaled_answers)
-  return scaled_answers
+    scaler = StandardScaler()
+    scaled_answers = scaler.fit_transform(answers)
+    # print(scaler.mean_)
+    # print(scaled_answers)
+    return scaled_answers
 
 
 def define_k(answers):
-  kmeans_kwargs = {
-          "init": "random",
-          "n_init": 10,
-          "max_iter": 300,
-          "random_state": None,
-          }
-  sse = []
-  for k in range(1, 11):
-      kmeans = KMedoids(n_clusters=k, metric=distance_function, random_state=None).fit(answers)
-      kmeans.fit(scaled_answers)
-      sse.append(kmeans.inertia_)
+    kmeans_kwargs = {
+        "init": "random",
+        "n_init": 10,
+        "max_iter": 300,
+        "random_state": None,
+    }
+    sse = []
+    for k in range(1, 11):
+        kmeans = KMedoids(n_clusters=k, metric=distance_function, random_state=None).fit(answers)
+        kmeans.fit(scaled_answers)
+        sse.append(kmeans.inertia_)
 
-  plt.style.use("fivethirtyeight")
-  plt.plot(range(1, 11), sse)
-  plt.xticks(range(1, 11))
-  plt.xlabel("Number of Clusters")
-  plt.ylabel("SSE")
-  plt.show()
-  kl = KneeLocator(range(1, 11), sse, curve="convex", direction="decreasing")
-  kl.elbow
-  return kl.elbow
+    plt.style.use("fivethirtyeight")
+    plt.plot(range(1, 11), sse)
+    plt.xticks(range(1, 11))
+    plt.xlabel("Number of Clusters")
+    plt.ylabel("SSE")
+    plt.show()
+    kl = KneeLocator(range(1, 11), sse, curve="convex", direction="decreasing")
+    kl.elbow
+    return kl.elbow
 
 
 def calculate_clusters(answers, real_classes):
-  kmedoids1 = KMedoids(n_clusters=5, metric=distance_function, random_state=None).fit(answers)
-  print(kmedoids1.labels_)
+    kmedoids1 = KMedoids(n_clusters=5, metric=distance_function, random_state=None).fit(answers)
+    print(kmedoids1.labels_)
 
-  kmedoids2 = KMedoids(n_clusters=5, metric=distance_function, random_state=None).fit(scale(answers))
-  print(kmedoids2.labels_)
+    kmedoids2 = KMedoids(n_clusters=5, metric=distance_function, random_state=None).fit(scale(answers))
+    print(kmedoids2.labels_)
 
-  print("Rand index:")
-  print(rand_index(real_classes, kmedoids1.labels_))
-  print(rand_index(real_classes, kmedoids2.labels_))
+    print("Rand index:")
+    print(rand_index(real_classes, kmedoids1.labels_))
+    print(rand_index(real_classes, kmedoids2.labels_))
 
-  print("Adjusted rand index:")
-  print(adjusted_rand_index(real_classes, kmedoids1.labels_))
-  print(adjusted_rand_index(real_classes, kmedoids2.labels_))
+    print("Adjusted rand index:")
+    print(adjusted_rand_index(real_classes, kmedoids1.labels_))
+    print(adjusted_rand_index(real_classes, kmedoids2.labels_))
 
-  print("Sum error:")
-  print(sum_error(real_classes, kmedoids1.labels_))
-  print(sum_error(real_classes, kmedoids2.labels_))
+    print("Sum error:")
+    print(sum_error(real_classes, kmedoids1.labels_))
+    print(sum_error(real_classes, kmedoids2.labels_))
 
-  print("NMI:")
-  print(mutual_info_score(real_classes, kmedoids1.labels_))
-  print(mutual_info_score(real_classes, kmedoids2.labels_))
+    print("NMI:")
+    print(mutual_info_score(real_classes, kmedoids1.labels_))
+    print(mutual_info_score(real_classes, kmedoids2.labels_))
+
 
 def cluster(path_to_dataset):
-
-    df = pd.read_csv(path_to_dataset,delimiter='\t')
+    df = pd.read_csv(path_to_dataset, delimiter='\t')
 
     skills = list(set(df['skill_id'].tolist()))
     answers, real_classes = read_student_answers(df, skills)

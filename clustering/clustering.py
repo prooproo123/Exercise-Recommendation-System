@@ -1,10 +1,10 @@
 import pickle
 
 import numpy as np
-
-import plotutils as utils
 import pandas as pd
 from openTSNE import TSNE
+
+import plotutils as utils
 
 
 def softmax(num):
@@ -25,11 +25,11 @@ def cor_weight_all(embedded):
     return corr
 
 
-path_params = 'checkpoint/assist2009_updated_32batch_3epochs/kt_params'
-path_e2c = 'data/skill_builder/exercise_concepts_mapping.pkl'
-path_exercises_id_converter = 'data/skill_builder/concepts_id_converter.pkl'
-path_skill_mapping = 'data/assist2009_updated/assist2009_updated_skill_mapping.txt'
-path_data = 'data/skill_builder/skill_builder_data.csv'
+path_params = '../checkpoint/assist2009_updated_32batch_3epochs/kt_params'
+path_e2c = '../data/skill_builder/exercise_concepts_mapping.pkl'
+path_exercises_id_converter = '../data/skill_builder/concepts_id_converter.pkl'
+path_skill_mapping = '../data/assist2009_updated/assist2009_updated_skill_mapping.txt'
+path_data = '../data/skill_builder/skill_builder_data.csv'
 data = pd.read_csv(path_data,
                    usecols=[
                        'user_id',
@@ -80,16 +80,16 @@ q_embed_mtx = params['Embedding/q_embed:0']
 n_questions = len(q_embed_mtx) - 1
 n_concepts = key_matrix.shape[0]
 
-#concepts_id_name = {i:"NNNNNAAAAAA" for i in range(n_questions) }
+# concepts_id_name = {i:"NNNNNAAAAAA" for i in range(n_questions) }
 concepts_id_name = {}
 
 for line in lines:
     concepts_id_name[int(line.split(maxsplit=1)[0])] = line.split(maxsplit=1)[1]
 
-c_names_set=set(concepts_id_name.keys())
-c_artif=set(i for i in range(n_questions))
-diff1=c_names_set.difference(c_artif)
-diff2=c_artif.difference(c_names_set)
+c_names_set = set(concepts_id_name.keys())
+c_artif = set(i for i in range(n_questions))
+diff1 = c_names_set.difference(c_artif)
+diff2 = c_artif.difference(c_names_set)
 
 x = np.ndarray(shape=(n_questions, n_concepts))
 
@@ -98,18 +98,17 @@ for i in range(n_questions):
 
 y = np.argmax(x, axis=1)
 
+clusters = {cl: [] for cl in np.unique(y)}
 
-clusters={cl:[] for cl in np.unique(y)}
-
-true_n_concepts=len(concepts_id_name.keys())
+true_n_concepts = len(concepts_id_name.keys())
 
 for i in range(true_n_concepts):
     clusters[y[i]].append(i)
 
-for cl,list in clusters.items():
-    print("Cluster: "+str(cl))
+for cl, list in clusters.items():
+    print("Cluster: " + str(cl))
     for q in list:
-        print("For q: "+str(q)+" with name "+concepts_id_name[q])
+        print("For q: " + str(q) + " with name " + concepts_id_name[q])
 
 embedding = TSNE(perplexity=30).fit(x)
 

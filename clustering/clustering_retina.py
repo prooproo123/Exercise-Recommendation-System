@@ -1,16 +1,14 @@
-from openTSNE import TSNE
-from openTSNE.callbacks import ErrorLogger
-
-import plotutils as utils
-
-from sklearn.model_selection import train_test_split
-
-import matplotlib.pyplot as plt
-
 import gzip
 import pickle
 
-with gzip.open("data/macosko_2015.pkl.gz", "rb") as f:
+import matplotlib.pyplot as plt
+from openTSNE import TSNE
+from openTSNE.callbacks import ErrorLogger
+from sklearn.model_selection import train_test_split
+
+import plotutils as utils
+
+with gzip.open("../data/macosko_2015.pkl.gz", "rb") as f:
     data = pickle.load(f)
 
 x = data["pca_50"]
@@ -35,5 +33,5 @@ tsne = TSNE(
 embedding_test = tsne.fit(x_test)
 
 fig, ax = plt.subplots(figsize=(8, 8))
-#utils.plot(embedding_train, y_train, colors=utils.MACOSKO_COLORS, alpha=0.25, ax=ax)
+# utils.plot(embedding_train, y_train, colors=utils.MACOSKO_COLORS, alpha=0.25, ax=ax)
 utils.plot(embedding_test, y_test, colors=utils.MACOSKO_COLORS, alpha=0.75, ax=ax)

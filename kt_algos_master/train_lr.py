@@ -1,9 +1,10 @@
-from sklearn.metrics import roc_auc_score, accuracy_score, log_loss
-from sklearn.linear_model import LogisticRegression
-from scipy.sparse import load_npz, csr_matrix
 import argparse
-import numpy as np
 import os
+
+import numpy as np
+from scipy.sparse import csr_matrix, load_npz
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, log_loss, roc_auc_score
 
 
 def compute_metrics(y_pred, y):
@@ -19,31 +20,31 @@ if __name__ == "__main__":
     parser.add_argument('--dataset', type=str)
     parser.add_argument('--iter', type=int, default=1000)
     args = parser.parse_args()
-    
+
     data_path = os.path.join('data', args.dataset)
     features_suffix = (args.X_file.split("-")[-1]).split(".")[0]
 
     # Load sparse dataset and q-matrix
     X = csr_matrix(load_npz(args.X_file))
     Q_mat = load_npz(os.path.join(data_path, "q_mat.npz"))
-    
+
     # Student-level train-val split
     user_ids = X[:, 0].toarray().flatten()
     users = np.unique(user_ids)
     np.random.shuffle(users)
     split = int(0.8 * len(users))
     users_train, users_val = users[:split], users[split:]
-    
+
     train = X[np.where(np.isin(user_ids, users_train))]
     val = X[np.where(np.isin(user_ids, users_val))]
-    
+
     # First 4 columns are the original dataset including correct in column 3
     X_train, y_train = train[:, 4:], train[:, 3].toarray().flatten()
     X_val, y_val = val[:, 4:], val[:, 3].toarray().flatten()
-    
+
     model = LogisticRegression(solver="lbfgs", max_iter=args.iter)
     model.fit(X_train, y_train)
-    
+
     # Compute metrics
     y_pred_train = model.predict_proba(X_train)[:, 1]
     y_pred_val = model.predict_proba(X_val)[:, 1]

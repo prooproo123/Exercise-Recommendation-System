@@ -41,14 +41,14 @@ class DummyTutor(Tutor):
 
 
 class RLTutor(Tutor):
-    #sta ce mu ,n_items, init_timestamp=0
-    def __init__(self, rl_env,raw_policy):
+    # sta ce mu ,n_items, init_timestamp=0
+    def __init__(self, rl_env, raw_policy):
         self.raw_policy = raw_policy
         self.curr_obs = None
         self.rl_env = rl_env
 
     def train(self):
-        #self.rl_env = MyGymEnv(gym_env)
+        # self.rl_env = MyGymEnv(gym_env)
 
         self.raw_policy.train()
         return self.raw_policy.rew_chkpts

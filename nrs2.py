@@ -128,11 +128,9 @@ def evaluation(agent):
 import logging
 
 logging.basicConfig(filename="rs_logs.txt",
-                level=logging.DEBUG,
-                format='%(levelname)s: %(asctime)s %(message)s',
-                datefmt='%m/%d/%Y %I:%M:%S')
-
-
+                    level=logging.DEBUG,
+                    format='%(levelname)s: %(asctime)s %(message)s',
+                    datefmt='%m/%d/%Y %I:%M:%S')
 
 # student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
 # stu = [[(51424, 0), (51435, 1),(51444, 1)]]
@@ -155,9 +153,10 @@ cands = [85829, 61089, 85814, 85838]
 candidate_exercises = [exercises_id_converter[e] for e in cands]
 student_traces = [[(exercises_id_converter[e], a) for e, a in t] for t in stu]
 
-
 # current problems:
 # key error?
+
+# very bad results
 
 Concepts = 9  # number of concepts
 NumQ = 2446  # number of exercises
@@ -184,10 +183,9 @@ env_kwargs = {
 }
 
 logging.info("")
-logging.info("Broj vjezbi kandidata: "+str(len(candidate_exercises)))
-logging.info("Broj epoha: "+str(n_eps))
-logging.info("Broj koraka: "+str(n_steps))
-
+logging.info("Broj vjezbi kandidata: " + str(len(candidate_exercises)))
+logging.info("Broj epoha: " + str(n_eps))
+logging.info("Broj koraka: " + str(n_steps))
 
 env = DKVEnv(**env_kwargs, reward_func='likelihood')
 

@@ -1,9 +1,7 @@
-import numpy as np
-import pandas as pd
-import networkx as nx
 import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
 from scipy.stats import percentileofscore
-import io
 
 
 class BKT:
@@ -116,57 +114,64 @@ def get_skill_mastery_probability(skills, students, skill_student_success_dict):
     #  print(pX)
     return px
 
+
 # BKT parametri svih vještina
 
 def get_skill_params(bkt_param_df):
-  skill_params={}
-  for i in range(len(bkt_param_df)):
-    row=bkt_param_df.iloc[i].tolist()
-    skill_params[row[0]]=row[1:]
-  return skill_params
+    skill_params = {}
+    for i in range(len(bkt_param_df)):
+        row = bkt_param_df.iloc[i].tolist()
+        skill_params[row[0]] = row[1:]
+    return skill_params
+
 
 # Stvaranje bkt-a za svaki skill i spremanje u dict
 
-def get_bkt_dict(skills,skill_params,bkt_threshold):
-  BKT_dict={}
-  for skill in skills:
-    BKT_dict[skill]=BKT(skill_params[skill], skill, bkt_threshold) #inicijalizirati novi bkt sa parametrima iz nekog filea
-  return BKT_dict
+def get_bkt_dict(skills, skill_params, bkt_threshold):
+    BKT_dict = {}
+    for skill in skills:
+        BKT_dict[skill] = BKT(skill_params[skill], skill,
+                              bkt_threshold)  # inicijalizirati novi bkt sa parametrima iz nekog filea
+    return BKT_dict
+
 
 # Stvaranje gaussa za svaki skill i spremanje u dict
 
-def get_gauss_dict(skills,students,student_answers,gauss_threshold):
-  Gauss_dict={}
-  for skill in skills:
-    all_answers = []
-    for student in students:
-      if (student,skill) in student_answers:
-        all_answers.append(student_answers[(student,skill)])
+def get_gauss_dict(skills, students, student_answers, gauss_threshold):
+    Gauss_dict = {}
+    for skill in skills:
+        all_answers = []
+        for student in students:
+            if (student, skill) in student_answers:
+                all_answers.append(student_answers[(student, skill)])
 
-    Gauss_dict[skill]=Gauss(all_answers, gauss_threshold) #inicijalizirati novi gauss
-  return Gauss_dict
+        Gauss_dict[skill] = Gauss(all_answers, gauss_threshold)  # inicijalizirati novi gauss
+    return Gauss_dict
 
 
 # Ubaciti u bkt svakog studenta
 # U dictionary čiji je key tuple (student,vještina) ubaci 0 ili 1 ovisno o tome je li student položio npr. skill_student_success_dict
 # Vjerojatnost prolaska ove vještine je suma jedinica iz skill_student_success_dict / len(skill_student_success_dict)
 
-def get_student_success(students,skills,BKT_dict,Gauss_dict,student_answers):
-  skill_student_success_dict = dict()
+def get_student_success(students, skills, BKT_dict, Gauss_dict, student_answers):
+    skill_student_success_dict = dict()
 
-  for student in students:
-    for skill in skills:
-      if (student,skill) in student_answers:
-        bkt=BKT_dict[skill]
-        gauss=Gauss_dict[skill]
-        skill_student_success_dict[(student,skill)] = gauss_plus_bkt_pass_condition(bkt,gauss,student_answers[(student,skill)])
-        bkt.reset()
-        #bkt = BKT_dict[skill].copy()
-      # bkt.estimate_pL(student_answers[(student,skill)])
-        #skill_student_success_dict[(student,skill)] = bkt.passed()
-  return skill_student_success_dict
+    for student in students:
+        for skill in skills:
+            if (student, skill) in student_answers:
+                bkt = BKT_dict[skill]
+                gauss = Gauss_dict[skill]
+                skill_student_success_dict[(student, skill)] = gauss_plus_bkt_pass_condition(bkt, gauss,
+                                                                                             student_answers[
+                                                                                                 (student, skill)])
+                bkt.reset()
+                # bkt = BKT_dict[skill].copy()
+            # bkt.estimate_pL(student_answers[(student,skill)])
+            # skill_student_success_dict[(student,skill)] = bkt.passed()
+    return skill_student_success_dict
 
-#je li bolje raditi copy ili resetirati bkt na L0 svaki put?
+
+# je li bolje raditi copy ili resetirati bkt na L0 svaki put?
 
 # Ovaj dio koda treba uz pomoć bkt-a i gaussa odrediti je li student položio ili pao
 
@@ -189,9 +194,9 @@ def gauss_plus_bkt_pass_condition(bkt, gauss, answers):
     gauss_percentile = gauss.get_percentile(answers)
 
     bkt_certainty = (bkt_pL - bkt_threshold) / (1 - bkt_threshold) if bkt_pass == 1 else -1 * (
-                bkt_threshold - bkt_pL) / (bkt_threshold)
+            bkt_threshold - bkt_pL) / (bkt_threshold)
     gauss_certainty = (gauss_percentile - gauss_threshold) / (1 - gauss_threshold) if gauss_pass == 1 else -1 * (
-                gauss_threshold - gauss_percentile) / (gauss_threshold)
+            gauss_threshold - gauss_percentile) / (gauss_threshold)
 
     #  print(bkt_certainty,gauss_certainty)
     return 1 if bkt_certainty + gauss_certainty > 0 else 0
@@ -245,52 +250,52 @@ def get_dependency_matrix(joint_probability, px):
             dependency_matrix[i, j] /= px[i]
     return dependency_matrix
 
-#Crtanje grafa
+
+# Crtanje grafa
 
 def draw_graph(edges):
-  G = nx.DiGraph()
-  G.add_edges_from(edges)
+    G = nx.DiGraph()
+    G.add_edges_from(edges)
 
-  pos = nx.spring_layout(G)
-  nx.draw_networkx_nodes(G, pos, cmap=plt.get_cmap('jet'), node_size = 500)
-  nx.draw_networkx_labels(G, pos)
-  nx.draw_networkx_edges(G, pos, edgelist=edges, arrows=True)
-  plt.show()
-
-#Cutoff i micanje dijagonale
-
-def do_cutoff(dependency_matrix,cutoff_threshold):
-  dim= len(dependency_matrix)
-  dependency_matrix = np.subtract(dependency_matrix, np.identity(dim))
-
-  edges = []
-  for i in range(dim):
-    for j in range(dim):
-      if dependency_matrix[i,j] >= cutoff_threshold:
-        edges.append((i,j))
-
-  return edges
-
-def build_graph(skill_params, df, cutoff = 0.8, bkt_threshold = 0.95, gauss_threshold = 0.9):
-
-  skills = list(set(df['skill'].tolist()))
-  students = list(set(df['student'].tolist()))
-  student_answers = read_student_answers(df, students, skills)
-  bkt_dict = get_bkt_dict(skills,skill_params,bkt_threshold)
-  gauss_dict = get_gauss_dict(skills,students,student_answers,gauss_threshold)
-  skill_student_success_dict = get_student_success(students,skills,bkt_dict,gauss_dict,student_answers)
-  px = get_skill_mastery_probability(skills,students,skill_student_success_dict)
-  joint_probability = get_joint_probability_matrix(skills,students,skill_student_success_dict)
-#  print("joint")
-#  print(joint_probability)
-  dependency_matrix = get_dependency_matrix(joint_probability,px)
-#  print("dependency")
-#  print(dependency_matrix)
-
- # CUTOFF_THRESHOLD=0.5
-
-  edges = do_cutoff(dependency_matrix, cutoff)
-  print(skills)
-  draw_graph(edges)
+    pos = nx.spring_layout(G)
+    nx.draw_networkx_nodes(G, pos, cmap=plt.get_cmap('jet'), node_size=500)
+    nx.draw_networkx_labels(G, pos)
+    nx.draw_networkx_edges(G, pos, edgelist=edges, arrows=True)
+    plt.show()
 
 
+# Cutoff i micanje dijagonale
+
+def do_cutoff(dependency_matrix, cutoff_threshold):
+    dim = len(dependency_matrix)
+    dependency_matrix = np.subtract(dependency_matrix, np.identity(dim))
+
+    edges = []
+    for i in range(dim):
+        for j in range(dim):
+            if dependency_matrix[i, j] >= cutoff_threshold:
+                edges.append((i, j))
+
+    return edges
+
+
+def build_graph(skill_params, df, cutoff=0.8, bkt_threshold=0.95, gauss_threshold=0.9):
+    skills = list(set(df['skill'].tolist()))
+    students = list(set(df['student'].tolist()))
+    student_answers = read_student_answers(df, students, skills)
+    bkt_dict = get_bkt_dict(skills, skill_params, bkt_threshold)
+    gauss_dict = get_gauss_dict(skills, students, student_answers, gauss_threshold)
+    skill_student_success_dict = get_student_success(students, skills, bkt_dict, gauss_dict, student_answers)
+    px = get_skill_mastery_probability(skills, students, skill_student_success_dict)
+    joint_probability = get_joint_probability_matrix(skills, students, skill_student_success_dict)
+    #  print("joint")
+    #  print(joint_probability)
+    dependency_matrix = get_dependency_matrix(joint_probability, px)
+    #  print("dependency")
+    #  print(dependency_matrix)
+
+    # CUTOFF_THRESHOLD=0.5
+
+    edges = do_cutoff(dependency_matrix, cutoff)
+    print(skills)
+    draw_graph(edges)

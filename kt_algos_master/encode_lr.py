@@ -1,11 +1,11 @@
-import numpy as np
-import pandas as pd
-from sklearn.preprocessing import OneHotEncoder
-from collections import defaultdict
-from scipy import sparse
 import argparse
 import os
+from collections import defaultdict
 
+import numpy as np
+import pandas as pd
+from scipy import sparse
+from sklearn.preprocessing import OneHotEncoder
 from utils.queue import TimeWindowQueue
 
 

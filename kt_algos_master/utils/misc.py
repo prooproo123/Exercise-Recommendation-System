@@ -1,8 +1,8 @@
 import random
 from random import shuffle
-from sklearn.metrics import roc_auc_score, accuracy_score
 
 import torch
+from sklearn.metrics import accuracy_score, roc_auc_score
 from torch.nn.utils.rnn import pad_sequence
 
 
@@ -10,8 +10,8 @@ def set_random_seeds(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     random.seed(seed)
-    
-    
+
+
 def get_data(df, train_split=0.8):
     num_items = df["item_id"].nunique()
     data = [(torch.tensor(u_df["item_id"].values, dtype=torch.long),
@@ -44,12 +44,12 @@ def prepare_batches(data, batch_size):
         batch = data[k:k + batch_size]
         inputs, item_ids, labels = zip(*batch)
 
-        inputs = pad_sequence(inputs, batch_first=True, padding_value=0)     # Pad with 0
-        item_ids = pad_sequence(item_ids, batch_first=True, padding_value=0) # Don't care
-        labels = pad_sequence(labels, batch_first=True, padding_value=-1)    # Pad with -1
+        inputs = pad_sequence(inputs, batch_first=True, padding_value=0)  # Pad with 0
+        item_ids = pad_sequence(item_ids, batch_first=True, padding_value=0)  # Don't care
+        labels = pad_sequence(labels, batch_first=True, padding_value=-1)  # Pad with -1
 
         batches.append([inputs, item_ids, labels])
-        
+
     return batches
 
 
@@ -60,7 +60,7 @@ def compute_auc(preds, item_ids, labels):
     preds = preds[torch.arange(preds.shape[0]), item_ids]
     labels = labels[labels >= 0].float()
 
-    if len(torch.unique(labels)) == 1: # Only one class
+    if len(torch.unique(labels)) == 1:  # Only one class
         auc = accuracy_score(labels, preds.round())
     else:
         auc = roc_auc_score(labels, preds)

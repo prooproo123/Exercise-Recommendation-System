@@ -24,7 +24,7 @@ class DKT(nn.Module):
             self.lstm = nn.LSTM(embed_size, hid_size, num_hid_layers)
         else:
             self.lstm = nn.LSTM(2 * num_items + 1, hid_size, num_hid_layers)
-        
+
         self.dropout = nn.Dropout(p=drop_prob)
         self.out = nn.Linear(hid_size, num_items)
 
@@ -33,10 +33,10 @@ class DKT(nn.Module):
             embeds = self.input_embeds(inputs)
         else:
             embeds = F.one_hot(inputs, 2 * self.num_items + 1).float()
-            
+
         out, hidden = self.lstm(embeds, hx=hidden)
         return self.out(self.dropout(out)), hidden
-    
+
     def repackage_hidden(self, hidden, length):
         # Return detached hidden of given length for TBPTT
         return tuple((v[:, -length:].detach().contiguous() for v in hidden))

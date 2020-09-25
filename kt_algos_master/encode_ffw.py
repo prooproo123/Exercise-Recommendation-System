@@ -1,5 +1,6 @@
-import os
 import argparse
+import os
+
 import numpy as np
 import pandas as pd
 from scipy import sparse
@@ -49,7 +50,7 @@ def df_to_sparse(df, Q_mat, active_features, num_prev_interactions):
             prev_interactions = np.zeros((num_items_user, num_prev_interactions))
             encodings = (item_ids + labels * num_items).flatten()
             for i in range(num_prev_interactions):
-                prev_interactions[i+1:, i] = encodings[:-i-1]
+                prev_interactions[i + 1:, i] = encodings[:-i - 1]
 
         # Past attempts for each item and total
         counts = accumulate(item_ids_onehot)

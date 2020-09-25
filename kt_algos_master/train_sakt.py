@@ -1,11 +1,10 @@
-import os
 import argparse
+import os
+
 import pandas as pd
-
 import torch.nn as nn
-from torch.optim import Adam
-
 from sakt import SAKT
+from torch.optim import Adam
 from utils.logger import Logger
 from utils.metrics import Metrics
 from utils.misc import *
@@ -27,7 +26,7 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
     criterion = nn.BCEWithLogitsLoss()
     metrics = Metrics()
     step = 0
-    
+
     for epoch in range(num_epochs):
         train_batches = prepare_batches(train_data, batch_size)
         val_batches = prepare_batches(val_data, batch_size)
@@ -37,7 +36,7 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
             inputs = inputs.cuda()
             preds = model(inputs)
             loss = compute_loss(preds, item_ids.cuda(), labels.cuda(), criterion)
-            #loss = compute_loss(preds, item_ids, labels, criterion)
+            # loss = compute_loss(preds, item_ids, labels, criterion)
             train_auc = compute_auc(preds.detach().cpu(), item_ids, labels)
 
             model.zero_grad()
@@ -46,7 +45,7 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
             step += 1
             metrics.store({'loss/train': loss.item()})
             metrics.store({'auc/train': train_auc})
-            
+
             # Logging
             if step % 20 == 0:
                 logger.log_scalars(metrics.average(), step)
@@ -55,7 +54,7 @@ def train(df, model, optimizer, logger, num_epochs, batch_size):
                          for name, param in model.named_parameters() if param.grad is not None}
                 logger.log_histograms(weights, step)
                 logger.log_histograms(grads, step)
-            
+
         # Validation
         model.eval()
         for inputs, item_ids, labels in val_batches:
@@ -81,18 +80,18 @@ if __name__ == "__main__":
     parser.add_argument('--lr', type=float, default=1e-3)
     parser.add_argument('--num_epochs', type=int, default=25)
     args = parser.parse_args()
-    
+
     df = pd.read_csv(os.path.join('data', args.dataset, 'preprocessed_data.csv'), sep="\t")
 
     num_items = int(df["item_id"].max() + 1)
     model = SAKT(num_items, args.embed_inputs, args.embed_size, args.hid_size,
                  args.num_heads, args.encode_pos, args.drop_prob).cuda()
     optimizer = Adam(model.parameters(), lr=args.lr)
-    
+
     param_str = (f'{args.dataset}, embed={args.embed_inputs}, dropout={args.drop_prob}, batch_size={args.batch_size} '
                  f'embed_size={args.embed_size}, hid_size={args.hid_size}, encode_pos={args.encode_pos}')
     logger = Logger(os.path.join(args.logdir, param_str))
-    
+
     train(df, model, optimizer, logger, args.num_epochs, args.batch_size)
-    
+
     logger.close()

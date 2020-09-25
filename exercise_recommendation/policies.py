@@ -11,7 +11,7 @@ class LoggedTRPO(TRPO):
         super(LoggedTRPO, self).__init__(*args, **kwargs)
         self.rew_chkpts = []
 
-    def run_ep(self,agent, env):
+    def run_ep(self, agent, env):
         """
 
         Args:

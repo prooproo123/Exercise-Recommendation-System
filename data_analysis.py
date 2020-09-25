@@ -1,14 +1,14 @@
 import pickle
+from statistics import median
 
-import pandas as pd
 import numpy as np
-from statistics import mean, median
+import pandas as pd
+
 # DEBUGGING PKL FILES
 
 # zadaci kandidati za preporuku
 with open('data/skill_builder/kt_params.pkl', 'rb') as f:
     a = pickle.load(f)
-
 
 with open('data/skill_builder/old_cand_ex.pkl', 'rb') as f:
     x = pickle.load(f)
@@ -79,25 +79,25 @@ sb09 = pd.read_csv('data/skill_builder/skill_builder_data.csv',
 # removing rows with nan concept value
 sb09 = sb09[sb09['skill_id'].notna()]
 
-sb09['skill_id']=sb09['skill_id'].astype(np.int64)
+sb09['skill_id'] = sb09['skill_id'].astype(np.int64)
 
 users = sb09['user_id'].unique()
 exercises = sb09['problem_id'].unique()
 concepts = sb09['skill_id'].unique()
 
-concepts_id_converter={c:i for i,c in enumerate(concepts)}
-id_concepts_converter={i:c for i,c in enumerate(concepts)}
+concepts_id_converter = {c: i for i, c in enumerate(concepts)}
+id_concepts_converter = {i: c for i, c in enumerate(concepts)}
 
-exercises_concepts_converter={e:i for i,e in enumerate(exercises)}
-id_exercises_converter={i:e for i,e in enumerate(exercises)}
+exercises_concepts_converter = {e: i for i, e in enumerate(exercises)}
+id_exercises_converter = {i: e for i, e in enumerate(exercises)}
 
-exercise_concepts_mapping=sb09.groupby('problem_id')['skill_id'].apply(set).apply(list).to_dict()
-concept_exercises_mapping=sb09.groupby('skill_id')['problem_id'].apply(set).apply(list).to_dict()
-user_exercises_mapping=sb09.groupby('user_id')['problem_id'].apply(set).apply(list).to_dict()
-user_concepts_mapping=sb09.groupby('user_id')['skill_id'].apply(set).apply(list).to_dict()
+exercise_concepts_mapping = sb09.groupby('problem_id')['skill_id'].apply(set).apply(list).to_dict()
+concept_exercises_mapping = sb09.groupby('skill_id')['problem_id'].apply(set).apply(list).to_dict()
+user_exercises_mapping = sb09.groupby('user_id')['problem_id'].apply(set).apply(list).to_dict()
+user_concepts_mapping = sb09.groupby('user_id')['skill_id'].apply(set).apply(list).to_dict()
 
 with open('data/skill_builder/e2c.pkl', 'wb') as f:
-    pickle.dump(exercise_concepts_mapping,f)
+    pickle.dump(exercise_concepts_mapping, f)
 
 print('Skill builder 2009 dataset:')
 print('Number of students: ' + str(len(users)))
@@ -105,14 +105,14 @@ print('Number of exercises: ' + str(len(exercises)))
 print('Number of concepts: ' + str(len(concepts)))
 print()
 
-print('Maximum exercises per student: '+str(max([len(vals) for vals in user_exercises_mapping.values()])))
-print('Maximum concepts per student: '+str(max([len(vals) for vals in user_concepts_mapping.values()])))
-print('Maximum exercises per concept: '+str(max([len(vals) for vals in concept_exercises_mapping.values()])))
-print('Maximum concepts per exercise: '+str(max([len(vals) for vals in exercise_concepts_mapping.values()])))
+print('Maximum exercises per student: ' + str(max([len(vals) for vals in user_exercises_mapping.values()])))
+print('Maximum concepts per student: ' + str(max([len(vals) for vals in user_concepts_mapping.values()])))
+print('Maximum exercises per concept: ' + str(max([len(vals) for vals in concept_exercises_mapping.values()])))
+print('Maximum concepts per exercise: ' + str(max([len(vals) for vals in exercise_concepts_mapping.values()])))
 print()
 
-print('Median exercises per student: '+str(median([len(vals) for vals in user_exercises_mapping.values()])))
-print('Median concepts per student: '+str(median([len(vals) for vals in user_concepts_mapping.values()])))
-print('Median exercises per concept: '+str(median([len(vals) for vals in concept_exercises_mapping.values()])))
-print('Median concepts per exercise: '+str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
+print('Median exercises per student: ' + str(median([len(vals) for vals in user_exercises_mapping.values()])))
+print('Median concepts per student: ' + str(median([len(vals) for vals in user_concepts_mapping.values()])))
+print('Median exercises per concept: ' + str(median([len(vals) for vals in concept_exercises_mapping.values()])))
+print('Median concepts per exercise: ' + str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
 print()

@@ -5,6 +5,7 @@ class TimeWindowQueue:
 
     From JJ's KTM repository: https://github.com/jilljenn/ktm.
     """
+
     def __init__(self, window_lengths):
         self.queue = []
         self.window_lengths = window_lengths

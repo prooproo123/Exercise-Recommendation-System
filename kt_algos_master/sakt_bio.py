@@ -1,7 +1,7 @@
 import copy
 import math
-import numpy as np
 
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -38,8 +38,8 @@ def positional_encoding(seq_length, embed_size):
     pe[:, 0::2] = torch.sin(position * div_term)
     pe[:, 1::2] = torch.cos(position * div_term)
     return pe
-    
-    
+
+
 class MultiHeadedAttention(nn.Module):
     def __init__(self, input_size, output_size, num_heads, drop_prob):
         super(MultiHeadedAttention, self).__init__()
@@ -50,22 +50,22 @@ class MultiHeadedAttention(nn.Module):
         self.input_linears = clone(nn.Linear(input_size, output_size), 3)
         self.output_linear = nn.Linear(output_size, output_size)
         self.dropout = nn.Dropout(p=drop_prob)
-        
+
     def forward(self, query, key, value, mask=None):
         batch_size, seq_length = query.size()[:2]
-        
+
         # Apply mask to all heads
         if mask is not None:
             mask = mask.unsqueeze(1)
-            
+
         # Project inputs
         query, key, value = [l(x).view(batch_size, seq_length, self.num_heads, self.head_size).transpose(1, 2)
                              for l, x in zip(self.input_linears, (query, key, value))]
-        
+
         # Apply attention 
         out, self.prob_attn = attention(query, key, value, mask=mask, dropout=self.dropout)
         out = out.transpose(1, 2).contiguous().view(batch_size, seq_length, self.output_size)
-        
+
         # Apply non-linearity
         out = self.dropout(F.relu(self.output_linear(out)))
         return out
@@ -83,20 +83,21 @@ class SAKT(nn.Module):
             encode_pos (bool): If True, add positional encoding
             drop_prob (float): Dropout probability
     """
+
     def __init__(self, num_items, embed_inputs, embed_size, hid_size, num_heads, encode_pos, drop_prob):
         super(SAKT, self).__init__()
         self.embed_inputs = embed_inputs
         self.encode_pos = encode_pos
-        
+
         if self.embed_inputs:
             self.input_embeds = nn.Embedding(2 * num_items + 1, embed_size, padding_idx=0)
             self.input_embeds.weight.requires_grad = False
             self.attn = MultiHeadedAttention(embed_size, hid_size, num_heads, drop_prob)
         else:
             self.attn = MultiHeadedAttention(2 * num_items + 1, hid_size, num_heads, drop_prob)
-        
+
         self.out = nn.Linear(hid_size, num_items)
-        
+
     def forward(self, inputs):
         if self.embed_inputs:
             embeds = self.input_embeds(inputs)

@@ -1,6 +1,7 @@
 import pandas as pd
 
-#skill_names- list of concept names in same order as in the form, currently each concept has to have same number of questions,all students answered all questions
+
+# skill_names- list of concept names in same order as in the form, currently each concept has to have same number of questions,all students answered all questions
 def process_data(data, skill_names):
     df = pd.read_csv(data, index_col=False)
 
@@ -15,21 +16,22 @@ def process_data(data, skill_names):
         for i in range(no_students):
             student_list += [i] * int(no_questions / no_skills)
 
-    #question_id_list = list(range(1, int(
-     #   no_questions / no_skills) + 1)) * no_students * no_skills
+    # question_id_list = list(range(1, int(
+    #   no_questions / no_skills) + 1)) * no_students * no_skills
 
-    concept_exercises_dict=dict()
+    concept_exercises_dict = dict()
     for i in range(len(skill_names)):
-        concept_exercises_dict[skill_names[i]]=[j for j in range(i*no_questions_per_skill,(i+1)*no_questions_per_skill)]
+        concept_exercises_dict[skill_names[i]] = [j for j in
+                                                  range(i * no_questions_per_skill, (i + 1) * no_questions_per_skill)]
         print(concept_exercises_dict[skill_names[i]])
 
-    question_id_list=[]
-    students=set(student_list)
+    question_id_list = []
+    students = set(student_list)
     print(len(students))
 
     for concept in skill_names:
         for student in students:
-            question_id_list+=concept_exercises_dict[concept]
+            question_id_list += concept_exercises_dict[concept]
 
     correctness_list = []
     list_of_gform_columns = [column for column in list(df.columns.values) if '[rezultat]' in column]
@@ -45,4 +47,3 @@ def process_data(data, skill_names):
     output_dataframe = pd.DataFrame(output_data)
 
     return output_dataframe
-

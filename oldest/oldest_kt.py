@@ -1,9 +1,12 @@
-from oldest.oldest_mymodel_concat import Model
-import os, time, argparse
-from oldest.oldest_data_loader import *
+import argparse
+import os
 import pickle
-from sklearn.model_selection import train_test_split
+
 import tensorflow as tf
+from sklearn.model_selection import train_test_split
+
+from oldest.oldest_data_loader import *
+from oldest.oldest_mymodel_concat import Model
 
 
 def main():
