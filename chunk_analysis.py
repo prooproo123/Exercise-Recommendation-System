@@ -84,50 +84,50 @@ def get_chunks(filepath, chunk_size=40000, sep='\t'):
     return list_df
 
 
-'''
-                       dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
-                              'problem_id': int,
-                              'original': int, 'correct': int, 'attempt_count': int, 'ms_first_response': int,
-                              'tutor_mode': 'string', 'answer_type': 'string', 'sequence_id': int,
-                              'student_class_id': int,
-                              'position': int, 'type': 'string', 'base_sequence_id': int, 'skill_id': float,
-                              'skill_name': 'string',
-                              'teacher_id': int, 'school_id': int, 'hint_count': int, 'hint_total': int,
-                              'overlap_time': int,
-                              'template_id': int, 'answer_id': int, 'answer_text': 'string',
-                              'first_action': int,
-                              'bottom_hint': int, 'opportunity': int, 'opportunity_original': int
-                              },
-                       usecols=['order_id', 'assignment_id', 'user_id', 'assistment_id', 'problem_id',
-                                'original',
-                                'correct',
-                                'attempt_count', 'ms_first_response', 'tutor_mode', 'answer_type',
-                                'sequence_id',
-                                'student_class_id', 'position', 'type', 'base_sequence_id', 'skill_id',
-                                'skill_name',
-                                'teacher_id', 'school_id', 'hint_count', 'hint_total', 'overlap_time',
-                                'template_id',
-                                'first_action', 'opportunity'])
 
-    '''
+# dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
+#       'problem_id': int,
+#       'original': int, 'correct': int, 'attempt_count': int, 'ms_first_response': int,
+#       'tutor_mode': 'string', 'answer_type': 'string', 'sequence_id': int,
+#       'student_class_id': int,
+#       'position': int, 'type': 'string', 'base_sequence_id': int, 'skill_id': float,
+#       'skill_name': 'string',
+#       'teacher_id': int, 'school_id': int, 'hint_count': int, 'hint_total': int,
+#       'overlap_time': int,
+#       'template_id': int, 'answer_id': int, 'answer_text': 'string',
+#       'first_action': int,
+#       'bottom_hint': int, 'opportunity': int, 'opportunity_original': int
+#       },
+# usecols=['order_id', 'assignment_id', 'user_id', 'assistment_id', 'problem_id',
+#         'original',
+#         'correct',
+#         'attempt_count', 'ms_first_response', 'tutor_mode', 'answer_type',
+#         'sequence_id',
+#         'student_class_id', 'position', 'type', 'base_sequence_id', 'skill_id',
+#         'skill_name',
+#         'teacher_id', 'school_id', 'hint_count', 'hint_total', 'overlap_time',
+#         'template_id',
+#         'first_action', 'opportunity'])
 
-'''
-       print('Number of students: ' + str(len(users)))
-       print('Number of exercises: ' + str(len(exercises)))
-       print('Number of concepts: ' + str(len(concepts)))
-       print()
 
-       print('Maximum exercises per student: ' + str(max([len(vals) for vals in user_exercises_mapping.values()])))
-       print('Maximum concepts per student: ' + str(max([len(vals) for vals in user_concepts_mapping.values()])))
-       print('Maximum exercises per concept: ' + str(max([len(vals) for vals in concept_exercises_mapping.values()])))
-       print('Maximum concepts per exercise: ' + str(max([len(vals) for vals in exercise_concepts_mapping.values()])))
-       print()
 
-       print('Median exercises per student: ' + str(median([len(vals) for vals in user_exercises_mapping.values()])))
-       print('Median concepts per student: ' + str(median([len(vals) for vals in user_concepts_mapping.values()])))
-       print(
-           'Median exercises per concept: ' + str(median([len(vals) for vals in concept_exercises_mapping.values()])))
-       print(
-           'Median concepts per exercise: ' + str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
-       print()
-       '''
+
+# print('Number of students: ' + str(len(users)))
+# print('Number of exercises: ' + str(len(exercises)))
+# print('Number of concepts: ' + str(len(concepts)))
+# print()
+#
+# print('Maximum exercises per student: ' + str(max([len(vals) for vals in user_exercises_mapping.values()])))
+# print('Maximum concepts per student: ' + str(max([len(vals) for vals in user_concepts_mapping.values()])))
+# print('Maximum exercises per concept: ' + str(max([len(vals) for vals in concept_exercises_mapping.values()])))
+# print('Maximum concepts per exercise: ' + str(max([len(vals) for vals in exercise_concepts_mapping.values()])))
+# print()
+#
+# print('Median exercises per student: ' + str(median([len(vals) for vals in user_exercises_mapping.values()])))
+# print('Median concepts per student: ' + str(median([len(vals) for vals in user_concepts_mapping.values()])))
+# print(
+#    'Median exercises per concept: ' + str(median([len(vals) for vals in concept_exercises_mapping.values()])))
+# print(
+#    'Median concepts per exercise: ' + str(median([len(vals) for vals in exercise_concepts_mapping.values()])))
+# print()
+

@@ -7,23 +7,25 @@ import pickle
 import sys
 import types
 
-from rllab.envs.gym_env import NoVideoSchedule, GymEnv, CappedCubicVideoSchedule, convert_gym_space
-from rllab.policies.categorical_gru_policy import CategoricalGRUPolicy
 import numpy as np
-import gym
 from gym import spaces
-from rllab.baselines.linear_feature_baseline import LinearFeatureBaseline
+
 from rllab.algos.trpo import TRPO
+from rllab.baselines.linear_feature_baseline import LinearFeatureBaseline
+from rllab.envs.gym_env import *
+from rllab.misc.overrides import overrides
+from rllab.policies.categorical_gru_policy import CategoricalGRUPolicy
+
 
 class MyGymEnv(GymEnv):
     def __init__(self, env, record_video=False, video_schedule=None, log_dir=None, record_log=False,
                  force_reset=False):
-        # if log_dir is None:
-        # if logger.get_snapshot_dir() is None:
-        #     logger.log("Warning: skipping Gym environment monitoring since snapshot_dir not configured.")
-        # else:
-        #    log_dir = os.path.join(logger.get_snapshot_dir(), "gym_log")
-        # Serializable.quick_init(self, locals())
+        if log_dir is None:
+            if logger.get_snapshot_dir() is None:
+                logger.log("Warning: skipping Gym environment monitoring since snapshot_dir not configured.")
+            else:
+                log_dir = os.path.join(logger.get_snapshot_dir(), "gym_log")
+        Serializable.quick_init(self, locals())
 
         self.env = env
         self.env_id = ''
@@ -42,9 +44,9 @@ class MyGymEnv(GymEnv):
             self.monitoring = True
 
         self._observation_space = convert_gym_space(env.observation_space)
-        # logger.log("observation space: {}".format(self._observation_space))
+        logger.log("observation space: {}".format(self._observation_space))
         self._action_space = convert_gym_space(env.action_space)
-        # logger.log("action space: {}".format(self._action_space))
+        logger.log("action space: {}".format(self._action_space))
         self._horizon = self.env.n_steps
         self._log_dir = log_dir
         self._force_reset = force_reset
@@ -52,7 +54,7 @@ class MyGymEnv(GymEnv):
 
 class StudentEnv(gym.Env):
 
-    def __init__(self, candidate_exercises, n_items=10, n_steps=100, discount=1., reward_func='likelihood'):
+    def __init__(self, n_items=10, n_steps=100, discount=1., reward_func='likelihood'):
 
         self.right = []
         self.curr_step = None
@@ -66,7 +68,6 @@ class StudentEnv(gym.Env):
         self.reward_func = reward_func
         self.action_space = spaces.Discrete(n_items)
         self.observation_space = spaces.Box(np.zeros(2), np.array([n_items - 1, 1]))
-        self.candidate_exercises = candidate_exercises
 
     def _recall_likelihoods(self):
         raise NotImplementedError
@@ -91,15 +92,7 @@ class StudentEnv(gym.Env):
         else:
             raise ValueError
 
-    def step(self, action: int):
-        """
-
-        Args:
-            action: Index of selected candidate exercise whose probability of correctness we want to predict.
-
-        Returns:
-
-        """
+    def step(self, action:int):
         if self.curr_step is None or self.curr_step >= self.n_steps:
             raise ValueError
 
@@ -108,16 +101,9 @@ class StudentEnv(gym.Env):
 
         # student model do the exercise and update model
         self.curr_item = action
-        # =====
-        # mu=0.5
-        # sigma=0.15
-        # random_gauss=random.gauss(mu,sigma)
-        # random_gauss= 0 if random_gauss < 0 else 1 if random_gauss > 1 else random_gauss
-        # =====
-        self.curr_outcome = 1 if np.random.random() < self.predict(self.candidate_exercises[action]) else 0
-        # self.curr_outcome = 1 if random_gauss < self.predict(self.candidate_exercises[action]) else 0
+        self.curr_outcome = 1 if np.random.random() < self.predict(candidate_exercises[action]) else 0
 
-        self._update_model(self.candidate_exercises[self.curr_item], self.curr_outcome)
+        self._update_model(candidate_exercises[self.curr_item], self.curr_outcome)
         self.curr_step += 1
 
         # if the exercise which student used to answer correctly, the reward is 0
@@ -137,7 +123,7 @@ class StudentEnv(gym.Env):
     def actualStep(self, action, answer):
         self.curr_item = action
         self.curr_outcome = answer
-        self._update_model(self.candidate_exercises[self.curr_item], self.curr_outcome)
+        self._update_model(candidate_exercises[self.curr_item], self.curr_outcome)
         obs = self._obs()
         return obs
 
@@ -152,65 +138,65 @@ class StudentEnv(gym.Env):
 
 
 class DKVEnv(StudentEnv):
-    def __init__(self, e2c, params, NumQ, Concepts, candidate_exercises, **kwargs):
+    def __init__(self, **kwargs):
 
-        super(DKVEnv, self).__init__(candidate_exercises, **kwargs)
+        super(DKVEnv, self).__init__(**kwargs)
 
-        self.e2c_default = e2c
-        self.params = params
         self._init_params()
-        self.NumQ = NumQ
-        self.Concepts = Concepts
 
     def _init_params(self):
         """
         Init DKVMN-CA student model
         """
 
-        self.e2c = self.e2c_default
+        # the parameters of trained DKVMN-CA model
+        with open('data/skill_builder/old_kt_params.pkl', 'rb') as f:
+            params = pickle.load(f)[0]
+
+        # Knowledge Concepts Corresponding to the exercise
+        with open('data/skill_builder/old_e2c.pkl', 'rb') as f:
+            self.e2c = pickle.load(f)
 
         # contains the exercise which has already been answered correctly
         self.right = []
 
-        # shape=(50)
-        self.key_matrix = self.params['Memory/key:0']
-        # shape=()
-        self.value_matrix = self.params['Memory/value:0']
-        # shape=(numq+1,50)
-        self.q_embed_mtx = self.params['Embedding/q_embed:0']
-        # shape=(2*numq+1,50)
-        self.qa_embed_mtx = self.params['Embedding/qa_embed:0']
-        # shape=(,)
-        self.erase_w = self.params['DKVMN_value_matrix/Erase_Vector/weight:0']
-        # shape=(,)
-        self.erase_b = self.params['DKVMN_value_matrix/Erase_Vector/bias:0']
-        # shape=(,)
-        self.add_w = self.params['DKVMN_value_matrix/Add_Vector/weight:0']
-        # shape=(,)
-        self.add_b = self.params['DKVMN_value_matrix/Add_Vector/bias:0']
-        # shape=(2*numq+1,memory_key_state_dim)
-        self.summary_w = self.params['Summary_Vector/weight:0']
-        # shape=(,)
-        self.summary_b = self.params['Summary_Vector/bias:0']
-        # shape=(,)
-        self.predict_w = self.params['Prediction/weight:0']
-        # shape=(,)
-        self.predict_b = self.params['Prediction/bias:0']
+        self.q_embed_mtx = params['Embedding/q_embed:0']
+
+        self.qa_embed_mtx = params['Embedding/qa_embed:0']
+
+        self.key_matrix = params['Memory/key:0']
+
+        self.value_matrix = params['Memory/value:0']
+
+        self.summary_w = params['Summary_Vector/weight:0']
+
+        self.summary_b = params['Summary_Vector/bias:0']
+
+        self.predict_w = params['Prediction/weight:0']
+
+        self.predict_b = params['Prediction/bias:0']
+
+        self.erase_w = params['DKVMN_value_matrix/Erase_Vector/weight:0']
+
+        self.erase_b = params['DKVMN_value_matrix/Erase_Vector/bias:0']
+
+        self.add_w = params['DKVMN_value_matrix/Add_Vector/weight:0']
+
+        self.add_b = params['DKVMN_value_matrix/Add_Vector/bias:0']
 
     def softmax(self, num):
         return np.exp(num) / np.sum(np.exp(num), axis=0)
 
     def cor_weight(self, embedded, q):
         """
-        Calculate the KCW of tparamshe exercise
+        Calculate the KCW of the exercise
         :param embedded: the embedding of exercise q
         :param q: exercise ID
         :return: the KCW of the exercise
         """
         concepts = self.e2c[q]
-
         corr = self.softmax([np.dot(embedded, self.key_matrix[i]) for i in concepts])
-        correlation = np.zeros(self.Concepts)
+        correlation = np.zeros(Concepts)
         for j in range(len(concepts)):
             correlation[concepts[j]] = corr[j]
         return correlation
@@ -224,9 +210,6 @@ class DKVEnv(StudentEnv):
         """
         read_content = []
         for dim in range(value_matrix.shape[0]):
-            # print(correlation_weight.shape)
-            # print(value_matrix.shape)
-
             r = np.multiply(correlation_weight[dim], value_matrix[dim])
             read_content.append(r)
         read_content = np.sum(np.array(read_content), axis=0)
@@ -274,7 +257,7 @@ class DKVEnv(StudentEnv):
         """
         The average probability of doing all the test exercises correctly
         """
-        return np.array(list(map(self.predict, self.candidate_exercises)))
+        return np.array(list(map(self.predict, candidate_exercises)))
 
     def _update_model(self, item, outcome):
         """
@@ -282,7 +265,7 @@ class DKVEnv(StudentEnv):
         :param item: action(recommended exercise)
         :param outcome: answer result
         """
-        ans = self.NumQ * outcome + item
+        ans = NumQ * outcome + item
         cor = self.cor_weight(self.q_embed_mtx[item], item)
         self.value_matrix = self.write(cor, self.qa_embed_mtx[ans])
 
@@ -363,7 +346,7 @@ class DummyTutor(Tutor):
 
 class RLTutor(Tutor):
 
-    def __init__(self, env, n_items, init_timestamp=0):
+    def __init__(self, n_items, init_timestamp=0):
         self.raw_policy = None
         self.curr_obs = None
         self.rl_env = MyGymEnv(make_rl_student_env(env))
@@ -459,47 +442,29 @@ def make_rl_student_env(env):
     return env
 
 
-def make_rl_student_env(env):
+def run_ep(agent, env):
     """
 
     Args:
+        agent:
         env:
 
     Returns:
 
     """
-    env = copy.deepcopy(env)
-
-    env.n_item_feats = int(np.log(2 * env.n_items))
-
-    env.item_feats = np.random.normal(
-        np.zeros(2 * env.n_items * env.n_item_feats),
-        np.ones(2 * env.n_items * env.n_item_feats)).reshape((2 * env.n_items, env.n_item_feats))
-
-    env.observation_space = spaces.Box(
-        np.concatenate((np.ones(env.n_item_feats) * -sys.maxsize, np.zeros(1))),
-        np.concatenate((np.ones(env.n_item_feats) * sys.maxsize, np.ones(1)))
-    )
-
-    def encode_item(self, item, outcome):
-        return self.item_feats[self.n_items * outcome + item, :]
-
-    def vectorize_obs(self, item, outcome):
-        return np.concatenate((self.encode_item(item, outcome), np.array([outcome])))
-        # return self.encode_item(item, outcome)
-
-    env._obs_orig = env._obs
-
-    def _obs(self):
-        item, outcome = env._obs_orig()
-
-        return self.vectorize_obs(item, outcome)
-
-    env.encode_item = types.MethodType(encode_item, env)
-    env.vectorize_obs = types.MethodType(vectorize_obs, env)
-    env._obs = types.MethodType(_obs, env)
-
-    return env
+    agent.reset()
+    obs = env.reset()
+    done = False
+    totalr = []
+    observations = []
+    print('run_ep')
+    while not done:
+        action = agent.act(obs)
+        obs, r, done, _ = env.step(action)
+        agent.learn(r)
+        totalr.append(r)
+        observations.append(obs)
+    return np.mean(totalr), observations
 
 
 def all_reset(agent):
@@ -554,60 +519,51 @@ def evaluation(agent):
     for trace in student_traces:
         agent = all_reset(agent)
         t, res = simulation(agent, trace, 50)
-        print("Preporuceni put: " + str(t))
         for j in range(50):
             allre[j].append(res[j])
     result = [np.mean(k) for k in allre]
     return result
 
 
-# def run_eps(agent, env, n_eps=100):
-#     tot_rew = []
-#     for i in range(n_eps):
-#         totalr, _ = run_ep(agent, env)
-#         tot_rew.append(totalr)
-#     return tot_rew
+def run_eps(agent, env, n_eps=100):
+    tot_rew = []
+    for i in range(n_eps):
+        totalr, _ = run_ep(agent, env)
+        tot_rew.append(totalr)
+    return tot_rew
 
-# student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
-# stu = [[(51424, 0), (51435, 1),(51444, 1)]]
-stu = [[(85829, 0), (85838, 1)]]
 
-# the parameters of trained DKVMN-CA model
-with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
-    params = pickle.load(f)
+student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
+# 18
+# 1,1,2,2,2,2,1,1,1,1,1,1,1,1,1,3,3,3
+# 0,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1
+# 162
+# 6,6,7,3,3,3,3,60,33,32,32,32,30,30,5,5,5,5,38,38,38,5,5,30,30,30,33,33,33,33,33,33,40,40,60,60,60,68,68,68,68,40,40,40,5,5,6,6,6,7,7,88,88,88,2,2,2,2,68,68,68,1,1,1,1,1,1,1,1,24,24,24,24,20,20,20,63,32,32,32,30,40,33,33,33,5,5,5,88,88,88,1,40,38,38,38,30,30,30,40,40,40,60,60,60,60,60,60,6,6,6,6,7,7,7,7,7,7,7,68,68,68,2,2,2,2,1,1,1,63,63,63,37,46,46,46,46,46,46,46,46,72,72,72,77,77,77,77,75,75,75,75,1,1,1,1,71,71,71,18,18,18
+# 1,0,1,0,1,1,1,0,0,1,1,1,1,0,0,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,0,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,0
 
-# Knowledge Concepts Corresponding to the exercise
-# with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
-with open('data/skill_builder/old_e2c.pkl', 'rb') as f:
-    e2c = pickle.load(f)
+# candidate_exercises=[]
+with open('data/skill_builder/old_cand_ex.pkl', 'rb') as f:
+    candidate_exercises = pickle.load(f)
 
-# with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
-# with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
-#     exercises_id_converter = pickle.load(f)
+dataset = 'assist2009_updated'
 
-# cands=[51424,51435,51444,51395,51481]
-cands = [85829, 61089, 85814, 85838]
+if dataset == 'assist2009_updated':
+    Concepts = 123  # number of concepts
+    NumQ = 17751 # number of exercises
+    n_steps = 5  # number of steps of algorithm
+    n_items = len(candidate_exercises)  # number of candidate exercises
+    # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
+    discount = 0.99
+    n_eps = 1  # number of epochs in algorithm
 
-# candidate_exercises = [exercises_id_converter[e] for e in cands]
-# student_traces = [[(exercises_id_converter[e], a) for e, a in t] for t in stu]
-candidate_exercises = cands
-student_traces = stu
-
-# current problems:
-# key error?
-
-# very bad results
-
-# very bad results
-Concepts = 9  # number of concepts
-NumQ = 2446  # number of exercises
-# Concepts = 123  # number of concepts
-# NumQ = 17751 # number of exercises
-n_steps = 5  # number of steps of algorithm
-n_items = len(candidate_exercises)  # number of candidate exercises
-# n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
-discount = 0.99
-n_eps = 1  # number of epochs in algorithm
+else:
+    Concepts = 123  # number of concepts
+    NumQ = 17751 # number of exercises
+    n_steps = 5  # number of steps of algorithm
+    n_items = len(candidate_exercises)  # number of candidate exercises
+    # n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
+    discount = 0.99
+    n_eps = 1  # number of epochs in algorithm
 
 reward_funcs = ['likelihood']
 envs = [
@@ -622,117 +578,9 @@ env_kwargs = {
     'n_items': n_items, 'n_steps': n_steps, 'discount': discount
 }
 
-# env = DKVEnv(**env_kwargs, reward_func='likelihood')
-# rl_env = make_rl_student_env(env)
-# agent = RLTutor(n_items)
-# reward = agent.train(rl_env, n_eps=n_eps)
-# print(evaluation(agent))
-
-
 env = DKVEnv(**env_kwargs, reward_func='likelihood')
-
-rl_env = MyGymEnv(make_rl_student_env(env))
-
-policy = CategoricalGRUPolicy(
-    env_spec=rl_env.spec, hidden_dim=32,
-    state_include_action=False)
-raw_policy = LoggedTRPO(
-    env=rl_env,
-    policy=policy,
-    baseline=LinearFeatureBaseline(env_spec=rl_env.spec),
-    batch_size=4000,
-    max_path_length=rl_env.env.n_steps,
-    n_itr=n_eps,
-    discount=0.99,
-    step_size=0.01,
-    verbose=False
-)
-
-agent = RLTutor(rl_env=rl_env, raw_policy=raw_policy)
-
-reward = agent.train()
+rl_env = make_rl_student_env(env)
+agent = RLTutor(n_items)
+reward = agent.train(rl_env, n_eps=n_eps)
 print(evaluation(agent))
-
-# student_traces = [[(1, 0), (3, 1)], [(6, 1), (6, 0), (7, 1)]]
-# stu = [[(51424, 0), (51435, 1),(51444, 1)]]
-# stu = [[(85829, 0),(85838, 1)]]
-# za biologiju
-stu = [[(1, 0), (27, 1)]]
-
-# the parameters of trained DKVMN-CA model
-# with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
-with open('/home/zvonimir/Exercise-Recommendation-System/checkpoint/biology30_32batch_1epochs/kt_params', 'rb') as f:
-    params = pickle.load(f)
-
-# Knowledge Concepts Corresponding to the exercise
-# with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
-with open('/home/zvonimir/Exercise-Recommendation-System/data/biology30/chunk_exercise_concepts_mapping.pkl',
-          'rb') as f:
-    e2c = pickle.load(f)
-
-# with open('data/skill_builder/chunk_exercises_id_converter.pkl', 'rb') as f:
-with open('/home/zvonimir/Exercise-Recommendation-System/data/biology30/chunk_exercises_id_converter.pkl', 'rb') as f:
-    exercises_id_converter = pickle.load(f)
-
-# cands=[51424,51435,51444,51395,51481]
-# cands=[85829,61089,85814,85838]
-cands = [1, 15, 16, 27]
-
-candidate_exercises = [exercises_id_converter[e] for e in cands]
-student_traces = [[(exercises_id_converter[e], a) for e, a in t] for t in stu]
-
-# current problems:
-# key error?
-
-Concepts = 5  # number of concepts
-NumQ = 30  # number of exercises
-# Concepts = 9  # number of concepts
-# NumQ = 2446 # number of exercises
-# Concepts = 123  # number of concepts
-# NumQ = 17751 # number of exercises
-n_steps = 5  # number of steps of algorithm
-n_items = len(candidate_exercises)  # number of candidate exercises
-# n_items = [len(candidate_exercises[i]) for i in candidate_exercises]
-discount = 0.99
-n_eps = 1  # number of epochs in algorithm
-
-# reward_funcs = ['likelihood']
-# envs = [
-#     ('DKVMN', DKVEnv)
-# ]
-#
-# tutor_builders = [
-#     ('RL', RLTutor)
-# ]
-
-env_kwargs = {
-    'n_items': n_items, 'n_steps': n_steps, 'discount': discount
-}
-
-env = DKVEnv(**env_kwargs, reward_func='likelihood')
-
-rl_env = MyGymEnv(make_rl_student_env(env))
-
-policy = CategoricalGRUPolicy(
-    env_spec=rl_env.spec, hidden_dim=32,
-    state_include_action=False)
-raw_policy = LoggedTRPO(
-    env=rl_env,
-    policy=policy,
-    baseline=LinearFeatureBaseline(env_spec=rl_env.spec),
-    batch_size=4000,
-    max_path_length=rl_env.env.n_steps,
-    n_itr=n_eps,
-    discount=0.99,
-    step_size=0.01,
-    verbose=False
-)
-
-agent = RLTutor(n_items=n_items, rl_env=rl_env, raw_policy=raw_policy)
-
-reward = agent.train()
-print(evaluation(agent))
-outList = evaluation(agent)
-
-# if __name__=='main':
-#     main()
+print('ok')

@@ -157,12 +157,12 @@ class DKVEnv(StudentEnv):
         # with open('../data/skill_builder/kt_params.pkl', 'rb') as f:
         #     params = pickle.load(f)
 
-        with open('old/checkpoint/skill_builder0_10batch_2epochs/kt_params', 'rb') as f:
-            params = pickle.load(f)
+        with open('data/skill_builder/old_kt_params.pkl', 'rb') as f:
+            params = pickle.load(f)[0]
 
         # Knowledge self.num_concepts Corresponding to the exercise
         # Knowledge Concepts Corresponding to the exercise
-        with open('data/skill_builder/chunk_exercise_concepts_mapping.pkl', 'rb') as f:
+        with open('data/skill_builder/old_e2c.pkl', 'rb') as f:
             self.e2c = pickle.load(f)
 
         # contains the exercise which has already been answered correctly

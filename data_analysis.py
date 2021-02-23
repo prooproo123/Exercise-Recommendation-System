@@ -7,8 +7,8 @@ import pandas as pd
 # DEBUGGING PKL FILES
 
 # zadaci kandidati za preporuku
-with open('data/skill_builder/kt_params.pkl', 'rb') as f:
-    a = pickle.load(f)
+# with open('data/skill_builder/kt_params.pkl', 'rb') as f:
+#     a = pickle.load(f)
 
 with open('data/skill_builder/old_cand_ex.pkl', 'rb') as f:
     x = pickle.load(f)

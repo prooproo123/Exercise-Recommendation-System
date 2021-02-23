@@ -1,7 +1,7 @@
 import pandas as pd
 
-# sb09 = pd.read_csv('data/skill_builder/skill_builder_data.csv')
-sb09_updated = pd.read_csv('data/skill_builder/skill_builder_data_corrected_collapsed.csv',
+# sb09_updated = pd.read_csv('data/skill_builder/skill_builder_data_corrected_collapsed.csv',
+sb09_updated = pd.read_csv('data/skill_builder/skill_builder_data.csv',
                            dtype={'order_id': int, 'assignment_id': int, 'user_id': int, 'assistment_id': int,
                                   'problem_id': int,
                                   'original': int, 'correct': int, 'attempt_count': int, 'ms_first_response': int,
@@ -47,15 +47,15 @@ print('Number of composite concepts: ' + str(len(concepts_updated)))
 print('Number of simple concepts: ' + str(len(simple_concepts_updated)))
 print()
 
-sb15 = pd.read_csv('data/skill_builder/sb_100.csv')
-sb09_updated = sb15[sb15['sequence_id'] != 'NA']
-users15 = sb15['user_id'].unique()
-logs15 = sb15['log_id'].unique()
-sequences15 = sb15['sequence_id'].unique()
-
-# sb15[sb15[]]
-
-print('Skill builder main 100 problems 2015 dataset:')
-print('Number of students: ' + str(len(users15)))
-print('Number of logs: ' + str(len(logs15)))
-print('Number of sequences: ' + str(len(sequences15)))
+# sb15 = pd.read_csv('data/skill_builder/sb_100.csv')
+# sb09_updated = sb15[sb15['sequence_id'] != 'NA']
+# users15 = sb15['user_id'].unique()
+# logs15 = sb15['log_id'].unique()
+# sequences15 = sb15['sequence_id'].unique()
+#
+# # sb15[sb15[]]
+#
+# print('Skill builder main 100 problems 2015 dataset:')
+# print('Number of students: ' + str(len(users15)))
+# print('Number of logs: ' + str(len(logs15)))
+# print('Number of sequences: ' + str(len(sequences15)))
