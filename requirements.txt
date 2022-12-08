@@ -6,7 +6,7 @@ botocore==1.18.5
 Box2D==2.3.10
 cached-property==1.5.2
 cachetools==4.1.1
-certifi==2020.6.20
+certifi==2022.12.7
 chardet==3.0.4
 click==7.1.2
 cloudpickle==1.6.0
